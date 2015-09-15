@@ -58,7 +58,7 @@ public class UserController {
 		Users loginUser = service.login(user.getUsersId(), user.getUsersPassword());
 		model.addAttribute("userInfo",loginUser);
 		
-		return "main/index";
+		return "Login";
 	}
 	
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
