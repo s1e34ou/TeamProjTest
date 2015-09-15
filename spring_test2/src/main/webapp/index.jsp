@@ -13,6 +13,7 @@
 </head>
 <body>
 	<jsp:include page="WEB-INF/view/header.jsp"></jsp:include>
+
 	<section id="parent">
 	<div id="box1">
 		<img src="<%=request.getContextPath()%>/images/planets.jpg"
@@ -20,15 +21,23 @@
 	</div>
 	<div id="box2">
 		<aside>
-		<div>
+		<div id="logintext">
 			<input type="text" name="id" placeholder="아이디" /> <input type="text"
 				name="pass" placeholder="비밀번호" />
+		</div>
+		<div id="loginbutton">
 			<button type="button" id="login">로그인</button>
 		</div>
-		</aside>
+		<button type="button" id="useradd">회원가입</button>
+		<button type="button" id="idpwsearch">ID/PW찾기</button>
+	</div>
+	</aside>
+	</div>
+	</aside>
 	</div>
 	</section>
 	<hr>
 	<jsp:include page="WEB-INF/view/footer.jsp"></jsp:include>
 </body>
 </html>
+

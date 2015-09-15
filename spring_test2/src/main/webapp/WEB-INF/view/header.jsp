@@ -11,7 +11,6 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-</head>
 
 	<header>
 	<button type="button" id="sitemap">사이트맵</button>
