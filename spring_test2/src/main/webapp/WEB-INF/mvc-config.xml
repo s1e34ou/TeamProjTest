@@ -16,7 +16,7 @@
 
 
 	<mvc:annotation-driven />
-	<context:component-scan base-package="aspect, controller"></context:component-scan>
+	<context:component-scan base-package="aspect,controller"></context:component-scan>
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

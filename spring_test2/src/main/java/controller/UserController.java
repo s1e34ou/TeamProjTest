@@ -60,6 +60,11 @@ public class UserController {
 		
 		return "Login";
 	}
+	@RequestMapping(value="/login",method=RequestMethod.GET)
+	public String userLogint(Model model, Users user){
+		
+		return "Login";
+	}
 	
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public String userLogout(Model model, SessionStatus sessionstatus){
