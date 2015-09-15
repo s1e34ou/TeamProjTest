@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/style/main.css" rel="stylesheet" type="text/css">
 <!-- 합쳐지고 최소화된 최신 CSS -->
 
 </head>
@@ -23,15 +23,15 @@
 			<div id="logintext">
 			<input type="text" name="id" placeholder="아이디" />
 			<input type="text" name="pass" placeholder="비밀번호" />
-			
 		</div>
 		<div id="loginbutton">
 			<button type="button" id="login">로그인</button>
 		</div>
-		<button type="button" id="useradd">회원가입</button>
-		<button type="button" id="idpwsearch">ID/PW찾기</button>
-	</div>
-	</aside>
+		</aside>
+		<div id="box3">
+			<button type="button" id="adduser">회원가입</button>
+			<button type="button" id="idpwsearch">ID/PW찾기</button>
+		</div>
 	</div>
 	</section>
 	<hr>
