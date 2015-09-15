@@ -18,7 +18,6 @@
 <link href="<%=request.getContextPath()%>/style/main.css"
 	rel="stylesheet" type="text/css">
 <style type="text/css">
-
 header {
 	margin: auto;
 	width: 1200px;
@@ -85,27 +84,41 @@ div {
 	margin-left:15px;
 	margin-right:15px;
 }
-
+#parent div:nth-of-type(2){
+	-webkit-box-flex:5;
+	margin-top:15px;
+	margin-left:15px;
+	margin-right:15px;
+}
 aside{
 	margin: auto;
-	margin-left:20px;
-	border:solid 1px red;
 	display: -webkit-box;
 }
+
+#logintext{
+	width: 150px;
+}
+
 #logintext input{
--webkit-box-flex:1; 
-	border:solid 1px blue;
+	-webkit-box-flex:1; 
 	width: 150px;
 	height: 35px;
 }
+
 #loginbutton button{
--webkit-box-flex:1; 
-	border:solid 1px blue;
+	-webkit-box-flex:1; 
 	width: 70px;
 	height: 70px;
 }
 
-
+#adduser{
+	width: 115px;
+	float: left;
+}
+#idpwsearch{
+	width: 115px;
+	margin-left:10px;
+}
 </style>
 </head>
 
@@ -125,10 +138,11 @@ aside{
 			<div id="loginbutton">
 			<button type="button" id="login">로그인</button>
 			</div>
-			<button type="button" id="useradd">회원가입</button>
-			<button type="button" id="idpwsearch">ID/PW찾기</button>
-			</div>
 		</aside>
+		<div id="box3">
+		<button type="button" id="adduser">회원가입</button>
+		<button type="button" id="idpwsearch">ID/PW찾기</button>
+		</div>
 		</div>
 	</section>
 	<hr>
