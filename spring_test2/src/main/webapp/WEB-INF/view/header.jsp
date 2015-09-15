@@ -10,11 +10,9 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<link href="<%=request.getContextPath()%>/css/basic.css"
-	rel="stylesheet" type="text/css">
+
 </head>
 
-<body>
 	<header>
 	<button type="button" id="sitemap">사이트맵</button>
 	<br>

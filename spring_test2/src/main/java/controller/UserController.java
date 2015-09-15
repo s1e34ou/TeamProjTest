@@ -73,6 +73,12 @@ public class UserController {
 		return "main/index";
 	}
 	
+	@RequestMapping(value="/login_findinput",method=RequestMethod.GET)
+	public String userLoginFindinput(Model model){
+		
+		return "login_findinput";
+	}
+	
 
 	
 	

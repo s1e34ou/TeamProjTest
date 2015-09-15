@@ -13,7 +13,6 @@
 	<!-- Uncomment and add your base-package here: <context:component-scan base-package="org.springframework.samples.service"/> -->
 	<context:component-scan base-package="dao,service"></context:component-scan>
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
