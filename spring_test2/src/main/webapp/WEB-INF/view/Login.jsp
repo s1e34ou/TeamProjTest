@@ -94,6 +94,9 @@
     </div>
   </div>
   
+   <input class="btn btn-default" type="button" onclick="" value="회원가입">
+   <input class="btn btn-default" type="button" onclick="" value="취소">
+  
   
 </form>
 </fieldset>
