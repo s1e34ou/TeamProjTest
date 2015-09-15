@@ -15,7 +15,7 @@
 		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 		<style type="text/css">
 			.form-group{
-				width: 30%;
+				width: 100%;
 			}
 			
 		</style>
