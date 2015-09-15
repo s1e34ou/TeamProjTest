@@ -21,6 +21,7 @@
 		</style>
 </head>
 <body>
+<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>
 <fieldset>
 <legend><h1>회원가입</h1></legend>
 <form class="form-horizontal">
@@ -100,6 +101,7 @@
   
 </form>
 </fieldset>
+<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
 </body>
 </html>
 <script>

@@ -18,9 +18,8 @@
 	<mvc:annotation-driven />
 	<context:component-scan base-package="aspect,controller"></context:component-scan>
 	
-	<mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
+	<mvc:resources location="/WEB-INF/style/" mapping="/style/**"/>
 	<mvc:resources location="/WEB-INF/images/" mapping="/images/**"/>
-	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->
