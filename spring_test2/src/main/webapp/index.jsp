@@ -72,12 +72,27 @@ div {
 	margin-left:15px;
 	margin-right:15px;
 }
-#box2 div{
+
+aside{
+	margin: auto;
 	margin-left:20px;
+	border:solid 1px red;
+	display: -webkit-box;
 }
-#box2 div{
-	border:solid 1px blue; 
+#logintext input{
+-webkit-box-flex:1; 
+	border:solid 1px blue;
+	width: 150px;
+	height: 35px;
 }
+#loginbutton button{
+-webkit-box-flex:1; 
+	border:solid 1px blue;
+	width: 70px;
+	height: 70px;
+}
+
+
 </style>
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -139,10 +154,15 @@ div {
 		</div>
 		<div id="box2">
 		<aside>
-			<div>
+			<div id="logintext">
 			<input type="text" name="id" placeholder="아이디" />
 			<input type="text" name="pass" placeholder="비밀번호" />
+			</div>
+			<div id="loginbutton">
 			<button type="button" id="login">로그인</button>
+			</div>
+			<button type="button" id="useradd">회원가입</button>
+			<button type="button" id="idpwsearch">ID/PW찾기</button>
 			</div>
 		</aside>
 		</div>
