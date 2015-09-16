@@ -6,36 +6,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/main.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/style/main.css"
+	rel="stylesheet" type="text/css">
 <!-- 합쳐지고 최소화된 최신 CSS -->
 
 </head>
 <body>
-	<jsp:include page="WEB-INF/view/header.jsp"></jsp:include>
 
+	<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>
 	<section id="parent">
 	<div id="box1">
 		<img src="<%=request.getContextPath()%>/images/planets.jpg"
 			id="seasonpic">
 	</div>
-	<div id="box2">
-		<aside>
+	<div id="loginbox">
+		<div id="box2">
 			<div id="logintext">
-			<input type="text" name="id" placeholder="아이디" />
-			<input type="text" name="pass" placeholder="비밀번호" />
+				<input type="text" name="id" placeholder="아이디" /> <input
+					type="text" name="pass" placeholder="비밀번호" />
+			</div>
+			<div id="loginbutton">
+				<button type="button" id="login">로그인</button>
+			</div>
 		</div>
-		<div id="loginbutton">
-			<button type="button" id="login">로그인</button>
-		</div>
-		</aside>
 		<div id="box3">
 			<button type="button" id="adduser">회원가입</button>
 			<button type="button" id="idpwsearch">ID/PW찾기</button>
 		</div>
 	</div>
+
 	</section>
 	<hr>
-	<jsp:include page="WEB-INF/view/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
 </body>
 </html>
 
