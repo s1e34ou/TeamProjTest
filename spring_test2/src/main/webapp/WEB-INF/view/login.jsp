@@ -42,7 +42,7 @@
 }
 #loginbutton input{
 	width:70px;
-	height:70px;
+	height:80px;
 }
 #defaultlogin{
 	width: 300px;
