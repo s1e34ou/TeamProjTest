@@ -33,9 +33,33 @@
 			<button type="button" id="adduser">회원가입</button>
 			<button type="button" id="idpwsearch">ID/PW찾기</button>
 		</div>
-	</div>
-
 	</section>
+	</div>
+	<div id="boardbox">
+			<div id="box4"></div>
+			<div id="box5"></div>
+			<div id="box6"></div>
+	</div>
+	<div id="defaultbox">
+		<div id="picboard">
+			<div id="picture1">
+			</div>
+			<div id="picture2">
+			</div>
+			<div id="picture3">
+			</div>
+			<div id="picture4">
+			</div>
+			<div id="picture5">
+			</div>
+		</div>
+		<div id="bannerbox">
+			<div id="banner1">
+			</div>
+			<div id="banner2">
+			</div>
+		</div>
+	</div>
 	<hr>
 	<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
 </body>
