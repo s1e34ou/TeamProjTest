@@ -22,16 +22,17 @@
 	<div id="loginbox">
 		<div id="box2">
 			<div id="logintext">
-				<input type="text" name="id" placeholder="아이디" /> <input
-					type="text" name="pass" placeholder="비밀번호" />
+				<input type="text" name="id" placeholder="아이디" /><br>
+				<input type="text" name="pass" placeholder="비밀번호" />
 			</div>
 			<div id="loginbutton">
-				<button type="button" id="login">로그인</button>
+				<input type="button" id="login" value="로그인"/>
 			</div>
 		</div>
 		<div id="box3">
-			<button type="button" id="adduser">회원가입</button>
-			<button type="button" id="idpwsearch">ID/PW찾기</button>
+			<input type="button" id="adduser" value="회원가입"/>
+			
+			<input type="button" id="idpwsearch" value="ID/PW찾기"/>
 		</div>
 	</section>
 	</div>
@@ -62,6 +63,7 @@
 	</div>
 	<hr>
 	<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
+	
 </body>
 </html>
 
