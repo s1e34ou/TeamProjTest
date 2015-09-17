@@ -15,7 +15,7 @@ import service.UsersService;
 
 
 @Controller
-@SessionAttributes({"user"})
+@SessionAttributes({"loginUser"})
 public class UserController {
 	@Autowired
 	UsersService service;
