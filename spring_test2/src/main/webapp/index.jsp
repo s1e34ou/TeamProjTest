@@ -13,7 +13,6 @@
 
 </head>
 <body>
-
 	<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>
 	<section id="parent">
 	<div id="box1">
@@ -32,7 +31,6 @@
 		</div>
 		<div id="box3">
 			<a href="<%=request.getContextPath() %>/join"><input type="button" id="adduser" value="회원가입"/></a>
-			
 			
 			<input type="button" id="idpwsearch" value="ID/PW찾기"/>
 		</div>
@@ -64,7 +62,6 @@
 		</div>
 	</div>
 	<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
-	
 </body>
 </html>
 
