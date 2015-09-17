@@ -10,6 +10,13 @@ public class Board {
 	private Integer boardHits;
 	private String boardCode;
 	private String usersUsersId;
+	final private String REGION="REGION";
+	final private String SEASON="SEASON";
+	final private String EVENT="EVENT";
+	final private String FREE="FREE";
+	final private String RANK="RANK";
+	final private String NOTICE="NOTICE";
+	final private String QNA="QNA";
 	
 	public Board() {
 		super();

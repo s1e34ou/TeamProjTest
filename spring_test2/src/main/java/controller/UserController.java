@@ -22,33 +22,34 @@ public class UserController {
 	
 	@RequestMapping(value="/join",method=RequestMethod.GET)
 	public String userJoinForm(Model model){
-		return "main/join";
+		model.addAttribute("contentpage", "/WEB-INF/view/join/join.jsp");
+		return "join/join";
 	}
 	@RequestMapping(value="/join",method=RequestMethod.POST)
 	public String userJoin(Model model, Users user){
 		service.join(user);
 		
-		return "main/joinsuccess";
+		return "join/joinsuccess";
 	}
 
 	@RequestMapping(value="/infochange",method=RequestMethod.GET)
 	public String userInfoChangeForm(Model model, Users user){
-		
-		return "main/id_infochange";
+		model.addAttribute("contentpage", "/WEB-INF/view/join/id_infochange.jsp");
+		return "join/id_infochange";
 	}
 	
 	@RequestMapping(value="/infochange",method=RequestMethod.POST)
 	public String userInfoChange(Model model, Users user){
 		service.changeInfo(user);
 		
-		return "main/id_infochangecheck";
+		return "join/id_infochangecheck";
 	}
 	
 	@RequestMapping(value="/deleteconfirm",method=RequestMethod.POST)
 	public String userDelete(Model model, Users user){
 		service.leave(user.getUsersId());
 		
-		return "main/id_deleteconfirm";
+		return "join/id_deleteconfirm";
 	}
 	
 	
@@ -56,7 +57,7 @@ public class UserController {
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String userLogin(Model model, Users user){
 		Users loginUser = service.login(user.getUsersId(), user.getUsersPassword());
-		model.addAttribute("userInfo",loginUser);
+		model.addAttribute("loginUser",loginUser);
 		
 		return "Login";
 	}
