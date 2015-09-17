@@ -22,7 +22,7 @@ public class UserController {
 	
 	@RequestMapping(value="/join",method=RequestMethod.GET)
 	public String userJoinForm(Model model){
-		return "main/join";
+		return "join/join";
 	}
 	@RequestMapping(value="/join",method=RequestMethod.POST)
 	public String userJoin(Model model, Users user){
