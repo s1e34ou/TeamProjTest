@@ -43,23 +43,23 @@
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id=inputPassword3 name=" placeholder="Password">
+      <input type="password" class="form-control" id=inputPassword3 name="USER_PASSWORD" placeholder="Password">
     </div>
   </div>
   
   <div class="form-group">
     <label for="name" class="col-sm-2 control-label">이름</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="name" placeholder="name">
+      <input type="text" class="form-control" id="name" name="USERS_NAME" placeholder="name">
     </div>
   </div>
   <div class="form-group">
-    <label for="gender" class="col-sm-2 control-label">성별</label>
+    <label for="gender" class="col-sm-2 control-label" name="USERS_GENDER">성별</label>
     <label class="radio-inline">
- 	 <input type="radio" name="gender" id="male" value="male"> 남
+ 	 <input type="radio" name="USERS_GENDER" id="male" value="male"> 남
 	</label>
 	<label class="radio-inline">
-  	<input type="radio" name="gender" id="female" value="female"> 여
+  	<input type="radio" name="USERS_GENDER" id="female" value="female"> 여
 	</label>
   </div>
   
@@ -68,31 +68,31 @@
 	<div class="form-group">
     <label for="birth" class="col-sm-2 control-label">생년월일</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="birth" placeholder="birth">
+      <input type="text" class="form-control" id="birth" name="USERS_NAME" placeholder="birth">
     </div>
   </div>
   
   <div class="form-group">
     <label for="address" class="col-sm-2 control-label">주소</label>
     <div class="col-sm-10">
-   		<input type="text" class="form-control" id="sample6_postcode" placeholder="우편번호">
-      <input type="text" class="form-control" id="sample6_address" placeholder="address">
+   		<input type="text" class="form-control" id="sample6_postcode" name="USERS_ADRESS1" placeholder="우편번호">
+      <input type="text" class="form-control" id="sample6_address" name="USERS_ADRESS2" placeholder="address">
       <input class="btn btn-default" type="button" onclick="sample6_execDaumPostcode()" value="주소찾기">
-      <input type="text" class="form-control" id="sample6_address2" placeholder="상세주소">
+      <input type="text" class="form-control" id="sample6_address2" name="USERS_ADRESS3" placeholder="상세주소">
     </div>
   </div>
   
   <div class="form-group">
     <label for="email" class="col-sm-2 control-label">Email</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="email" placeholder="email">
+      <input type="text" class="form-control" id="email" name="USERS_EMAIL" placeholder="email">
     </div>
   </div>
   
   <div class="form-group">
     <label for="email" class="col-sm-2 control-label">ID/PassWord 찾기질문</label>
     <div class="col-sm-10">
-      <select class="form-control">
+      <select class="form-control" name="USERS_PASSQUES">
 		<option>당신이 졸업한 초등학교는?</option>
 		<option>당신이 졸업한 고등학교는?</option>
 		<option>가장 좋아 하는 색은?</option>
