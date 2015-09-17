@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+header {
+	margin: auto;
+	width: 1200px;
+	padding: 10px;
+}
+footer {
+	margin: auto;
+	width: 1200px;
+}
+div {
+	flex: none;
+}
+#fastivallogo {
+	float: left;
+}
+#search {
+	padding: 20px;
+	float: right;
+	width: 500px;
+}
+#sitemap {
+	float: right;
+}
+#fastivalinfo {
+	float: left;
+}
+#sitegogo {
+	padding: 20px;
+	float: right;
+}
+#jumpMenu {
+	width: 200px;
+}
