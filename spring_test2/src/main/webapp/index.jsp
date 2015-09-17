@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
 	<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/view/main.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>

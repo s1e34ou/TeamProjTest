@@ -16,6 +16,10 @@
 			id="seasonpic">
 	</div>
 	<div id="loginbox">
+	<%
+			Object loginIdObj = session.getAttribute("loginId");
+			if (loginIdObj == null) {
+	%>
 		<div id="box2">
 			<div id="logintext">
 				<input type="text" name="id" placeholder="아이디" /><br>
@@ -31,8 +35,11 @@
 			
 			<input type="button" id="idpwsearch" value="ID/PW찾기"/>
 		</div>
-	</section>
+	<%}else{ %>
+	
+	<%} %>
 	</div>
+	</section>
 	<div id="boardbox">
 			<div id="box4"></div>
 			<div id="box5"></div>
