@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="<%=request.getContextPath()%>/style/main.css"
+			rel="stylesheet" type="text/css">
 <style>
 #sitemapbox {
 	width: 1000px;
@@ -50,6 +52,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>
 	<div id="sitemapbox">
 	<h1>SiteMap</h1>
 		<div id="sitemapin">
@@ -90,5 +93,6 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
 </body>
 </html>

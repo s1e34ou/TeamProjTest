@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 <link href="<%=request.getContextPath()%>/style/main.css"
 	rel="stylesheet" type="text/css">
-<!-- 합쳐지고 최소화된 최신 CSS -->
 
 </head>
 <body>
@@ -30,7 +29,8 @@
 			</div>
 		</div>
 		<div id="box3">
-			<input type="button" id="adduser" value="회원가입"/>
+			<a href="<%=request.getContextPath() %>/view/join.jsp"><input type="button" id="adduser" value="회원가입"/></a>
+			
 			
 			<input type="button" id="idpwsearch" value="ID/PW찾기"/>
 		</div>
