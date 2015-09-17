@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
    
 <footer>
+	<hr>
 	<div class="copy_link">
 		<div>
 			<span class="skip" id="fastivalinfo"> 충남 아산시 배방읍 호서로 79번길 20

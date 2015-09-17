@@ -5,64 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style>
-#loginbox {
-	width: 1000px;
-	height: 500px;
-	margin: auto;
-	padding: 15px;
-}
-#loginboxin{
-	border: solid 1px black;
-}
-#logintalk{
-	margin: auto;
-	margin-top:50px;
-	padding: 15px;
-}
-#inlogin{
-	width: 300px;
-	height: 100px;
-	margin: auto;
-	display: -webkit-box;
-}
-#logintext{
-	width:180px;
-	height:100px;
-}
-#loginbutton{
-	margin-left:10px;
-	width:100px;
-	height:100px;
-}
-#logintext input{
-	margin-left:25px;
-	width:150px;
-	height:35px;
-}
-#loginbutton input{
-	width:70px;
-	height:80px;
-}
-#defaultlogin{
-	width: 300px;
-	height: 120px;
-	margin: auto;
-	display: -webkit-box;
-}
-#adduser{
-	margin-left:25px;
-	width: 115px;
-}
-#idpwsearch{
-	width: 115px;
-}
-</style>
-<link href="<%=request.getContextPath()%>/style/main.css"
+<link href="<%=request.getContextPath()%>/style/login.css"
 	rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/style/head_footer.css"
+	rel="stylesheet" type="text/css">
+
 </head>
 <body>
-<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>
 	<div id="loginbox">
 	<h1>로그인</h1>
 		<div id="loginboxin">

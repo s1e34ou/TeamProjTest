@@ -5,51 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style>
-#sitemapbox {
-	width: 1000px;
-	height: 350px;
-	margin: auto;
-}
-#sitemapin{
-	width: 1000px;
-	height: 250px;
-	margin: auto;
-	display: -webkit-box;
-}
-#sitemapin div:nth-of-type(1){
-	border: solid 1px black;
-	width: 180px;
-	height: 200px;
-	margin-right:20px;
-}
-#sitemapin div:nth-of-type(2){
-	border: solid 1px black;
-	width: 180px;
-	height: 200px;
-	margin-right:20px;
-}
-#sitemapin div:nth-of-type(3){
-	border: solid 1px black;
-	width: 180px;
-	height: 200px;
-	margin-right:20px;
-}
-#sitemapin div:nth-of-type(4){
-	border: solid 1px black;
-	width: 180px;
-	height: 200px;
-	margin-right:20px;
-}
-#sitemapin div:nth-of-type(5){
-	border: solid 1px black;
-	width: 180px;
-	height: 200px;
-}
+<link href="<%=request.getContextPath()%>/style/sitemap.css"
+	rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/style/head_footer.css"
+	rel="stylesheet" type="text/css">
 
-</style>
 </head>
 <body>
+
+	<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>
 	<div id="sitemapbox">
 	<h1>SiteMap</h1>
 		<div id="sitemapin">
@@ -90,5 +54,6 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
 </body>
 </html>
