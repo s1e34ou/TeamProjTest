@@ -12,7 +12,6 @@
 
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>
 	<div id="loginbox">
 	<h1>로그인</h1>
 		<div id="loginboxin">
@@ -36,6 +35,5 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -5,20 +5,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/id_infochangecheck.css"
+<link href="<%=request.getContextPath()%>/style/joinsuccess.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
-
+	
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>
-	<div id="infochange">
-	<h1>정보수정</h1>
-		<div id="infochangein">
-		<div id="infochangetalk">
+	<div id="joinsuccess">
+	<h1>회원가입완료</h1>
+		<div id="joinsuccessin">
+		<div id="joinsuccesstalk">
 			<h2>
-				<center>회원정보 수정이<br>완료 되었습니다.</center>
+				<center>OO님<br>회원가입 되셨습니다.</center>
 			</h2>
 		</div>
 			<div id="gomain">
@@ -26,6 +25,5 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
 </body>
 </html>

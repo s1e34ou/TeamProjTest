@@ -5,20 +5,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/id_deleteconfirm.css"
+<link href="<%=request.getContextPath()%>/style/id_infochangecheck.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
 
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>
-	<div id="infodelete">
-	<h1>회원탈퇴</h1>
-		<div id="infodeletein">
-		<div id="infodeletetalk">
+	<div id="infochange">
+	<h1>정보수정</h1>
+		<div id="infochangein">
+		<div id="infochangetalk">
 			<h2>
-				<center>회원 탈퇴가<br>완료 되었습니다.</center>
+				<center>회원정보 수정이<br>완료 되었습니다.</center>
 			</h2>
 		</div>
 			<div id="gomain">
@@ -26,6 +25,5 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
 </body>
 </html>

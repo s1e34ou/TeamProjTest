@@ -13,7 +13,6 @@
 </head>
 <body>
 
-	<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>
 	<div id="sitemapbox">
 	<h1>SiteMap</h1>
 		<div id="sitemapin">
@@ -54,6 +53,5 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
 </body>
 </html>
