@@ -27,29 +27,33 @@ public class UserController {
 	}
 	@RequestMapping(value="/join",method=RequestMethod.POST)
 	public String userJoin(Model model, Users user){
+		model.addAttribute("contentpage", "/WEB-INF/view/join/joinsuccess.jsp");
 		service.join(user);
 		
-		return "join/joinsuccess";
+		return "start";
 	}
 
 	@RequestMapping(value="/infochange",method=RequestMethod.GET)
 	public String userInfoChangeForm(Model model, Users user){
 		model.addAttribute("contentpage", "/WEB-INF/view/join/id_infochange.jsp");
-		return "join/id_infochange";
+		return "start";
 	}
 	
 	@RequestMapping(value="/infochange",method=RequestMethod.POST)
 	public String userInfoChange(Model model, Users user){
+		model.addAttribute("contentpage", "/WEB-INF/view/join/id_infochangecheck.jsp");
 		service.changeInfo(user);
 		
-		return "join/id_infochangecheck";
+		return "start";
 	}
 	
 	@RequestMapping(value="/deleteconfirm",method=RequestMethod.POST)
 	public String userDelete(Model model, Users user){
+		model.addAttribute("contentpage", "/WEB-INF/view/join/id_deleteconfirm.jsp");
+
 		service.leave(user.getUsersId());
 		
-		return "join/id_deleteconfirm";
+		return "start";
 	}
 	
 	
@@ -58,26 +62,25 @@ public class UserController {
 	public String userLogin(Model model, Users user){
 		Users loginUser = service.login(user.getUsersId(), user.getUsersPassword());
 		model.addAttribute("loginUser",loginUser);
-		
-		return "Login";
+		model.addAttribute("contentpage", "/WEB-INF/view/start");
+
+		return "start";
 	}
-	@RequestMapping(value="/login",method=RequestMethod.GET)
-	public String userLogint(Model model, Users user){
-		
-		return "Login";
-	}
+
 	
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public String userLogout(Model model, SessionStatus sessionstatus){
 		sessionstatus.setComplete();
-		
-		return "main/index";
+		model.addAttribute("contentpage", "/WEB-INF/view/start");
+
+		return "start";
 	}
 	
 	@RequestMapping(value="/login_findinput",method=RequestMethod.GET)
 	public String userLoginFindinput(Model model){
-		
-		return "login_findinput";
+		model.addAttribute("contentpage", "/WEB-INF/view/login/login_findinput");
+
+		return "start";
 	}
 	
 
