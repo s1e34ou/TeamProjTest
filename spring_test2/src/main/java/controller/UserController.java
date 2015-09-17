@@ -23,7 +23,7 @@ public class UserController {
 	@RequestMapping(value="/join",method=RequestMethod.GET)
 	public String userJoinForm(Model model){
 		model.addAttribute("contentpage", "/WEB-INF/view/join/join.jsp");
-		return "join/join";
+		return "start";
 	}
 	@RequestMapping(value="/join",method=RequestMethod.POST)
 	public String userJoin(Model model, Users user){
