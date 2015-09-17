@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sform"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,14 +25,17 @@
 		</style>
 </head>
 <body>
+<h1>회원가입</h1>
+<c:url value="/join" var="join"></c:url>
+<sform:form method="post" action="${join }" modelAttribute="user">
 <fieldset>
-<legend><h1>회원가입</h1></legend>
+<legend>사용자 정보</legend>
 <form class="form-horizontal">
 
   <div class="form-group">
     <label for="ID" class="col-sm-2 control-label">ID</label>
     <div class="col-sm-10">
-      <input type="ID" class="form-control" id="ID" placeholder="ID">
+      <input type="ID" class="form-control" id="ID" name="USERS_NAME" placeholder="ID">
       <input class="btn btn-default" type="button" value="중복확인">
     </div>
   </div>
@@ -38,7 +43,7 @@
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+      <input type="password" class="form-control" id=inputPassword3 name=" placeholder="Password">
     </div>
   </div>
   
@@ -96,8 +101,9 @@
     </div>
   </div>
   
-   <input class="btn btn-default" type="button" onclick="" value="회원가입">
-   <input class="btn btn-default" type="button" onclick="" value="취소">
+   <input class="btn btn-default" type="submit" onclick="" value="회원가입">
+   <input class="btn btn-default" type="submit" onclick="" value="취소">
+   </sform:form>
   
   
 </form>
