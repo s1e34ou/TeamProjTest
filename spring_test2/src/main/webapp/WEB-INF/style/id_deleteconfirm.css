@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+
+#infodelete {
+	width: 1000px;
+	height: 500px;
+	margin: auto;
+	padding: 15px;
+}
+#infodeletein{
+	border: solid 1px black;
+	height: 300px;
+	margin: auto;
+}
+#infodeletetalk{
+	margin: auto;
+	margin-top:50px;
+	padding: 15px;
+}
+#gomain{
+	margin: auto;
+	width: 70px;
+	height: 50px;
+}
+#mainbut{
+	margin: auto;
+	width: 70px;
+	height: 50px;
+}
