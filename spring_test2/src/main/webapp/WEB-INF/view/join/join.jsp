@@ -35,7 +35,6 @@
   	<sform:label path="usersId" class="col-sm-2 control-label" >ID</sform:label>
     <div class="col-sm-10">
       <sform:input path="usersId" class="form-control" placeholder="ID"/>
-      <input class="btn btn-default" type="button" value="중복확인">
     </div>
   </div>
   
@@ -72,8 +71,6 @@
 	<div class="form-group">
      <sform:label path="usersBirth" class="col-sm-2 control-label">생년월일</sform:label>
     <div class="col-sm-10">
-   <%--  <fmt:formatDate value="${users.usersBirth }" 
-			                         pattern="yyyy-MM-dd (E)" var="birth"/> --%>
       <sform:input type="" path="usersBirth" class="form-control"  placeholder="birth"/>
     </div>
   </div>

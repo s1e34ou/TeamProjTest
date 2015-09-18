@@ -1,6 +1,7 @@
 <%@page import="dto.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sform"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -40,67 +41,59 @@ Object loginUserObj = session.getAttribute("loginUser");
 			<c:url value="/infochange" var="infochange"></c:url>
 			<sform:form method="post" action="${infochange }" modelAttribute="users">
 				<fieldset>
+				<legend>사용자 정보 수정</legend>
 					<form class="form-horizontal">
 						<input class="btn btn-default" type="button" onclick=""
 							id="iddeletebtn" value="회원 탈퇴">
 						<div class="form-group" id="idinputbox">
-							<label for="ID" class="col-sm-2 control-label">ID</label> <input readonly="readonly"
-								type="ID" class="form-control" id="ID" name="USERS_NAME" value="<%=loginUser %> "
-								placeholder="ID"> 
+							<sform:label path="usersId" class="col-sm-2 control-label" >ID</sform:label>
+							<sform:input path="usersId" class="form-control" placeholder="ID"  value="<%=loginUser %>" readonly="readonly"/>
 						</div>
 						<div class="form-group" id="passinputbox">
-							<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-							<input type="password" class="form-control" id=inputPassword3
-								name="USER_PASSWORD" placeholder="Password">
+							<sform:label path="usersPassword" class="col-sm-2 control-label">Password</sform:label>
+							<sform:input path="usersPassword" class="form-control" type="password" placeholder="Password" />
+							
 						</div>
 						<div class="form-group" id="nameinputbox">
-							<label for="name" class="col-sm-2 control-label">이름</label> <input
-								type="text" class="form-control" id="name" name="USERS_NAME"
-								placeholder="name">
+							<sform:label path="usersName" class="col-sm-2 control-label">이름</sform:label>
+							 <sform:input path="usersName" class="form-control" placeholder="Name"  />
 						</div>
+						
 						<div class="form-group" id="genderinputbox">
-							<label for="gender" class="col-sm-2 control-label"
-								name="USERS_GENDER">성별</label>
-							<div id="gendercheckbox">
-								<label class="radio-inline"> <input type="radio"
-									name="USERS_GENDER" id="male" value="m">남
-								</label> <label class="radio-inline"> <input type="radio"
-									name="USERS_GENDER" id="female" value="f">여
-								</label>
-							</div>
+							<sform:label path="usersGender" class="col-sm-2 control-label" >성별</sform:label>
+							<sform:radiobutton path="usersGender" label="남성" value="m" class="radio-inline"/>
+    						<sform:radiobutton path="usersGender" label="여성" value="f" class="radio-inline"/>
 						</div>
+						
+						<div class="form-group">
+  						  <sform:label path="usersPhone" class="col-sm-2 control-label">휴대전화</sform:label>
+   						 <div class="col-sm-10">
+      						<sform:input  class="form-control" path="usersPhone" placeholder="PHONE"/>
+   						 </div>
+  						</div>
+						
 						<div class="form-group" id="birthinputbox">
-							<label for="birth" class="col-sm-2 control-label">생년월일</label> <input
-								type="text" class="form-control" id="birth" name="USERS_NAME"
-								placeholder="birth">
+							<sform:label path="usersBirth" class="col-sm-2 control-label">생년월일</sform:label>
+							<sform:input type="" path="usersBirth" class="form-control"  placeholder="birth"/>
 						</div>
 
 						<div class="form-group" id="adressinputbox">
-							<label for="address" class="col-sm-2 control-label" id="adress">주소</label>
+							 <label for="address" class="col-sm-2 control-label">주소</label>
 							<div id="addressinput">
-								<div id="addressnum">
-									<input type="text" class="form-control" id="sample6_postcode"
-										name="USERS_ADRESS1" placeholder="우편번호"> <input
-										class="btn btn-default" id="adresssearchbtn" type="button"
-										onclick="sample6_execDaumPostcode()" value="주소찾기">
-								</div>
-								<div id="addresstext">
-									<input type="text" class="form-control" id="sample6_address"
-										name="USERS_ADRESS2" placeholder="address"> <input
-										type="text" class="form-control" id="sample6_address2"
-										name="USERS_ADRESS3" placeholder="상세주소">
-								</div>
+								<input type="text" class="form-control" id="sample6_postcode" name="USERS_ADRESS1" placeholder="우편번호">
+    							<input type="text" class="form-control" id="sample6_address" name="USERS_ADRESS2" placeholder="address">
+    							<input class="btn btn-default" type="button" onclick="sample6_execDaumPostcode()" value="주소찾기">
+    							<input type="text" class="form-control" id="sample6_address2" name="USERS_ADRESS3" placeholder="상세주소">
 							</div>
 						</div>
 						<div class="form-group" id="emailinputbox">
-							<label for="email" class="col-sm-2 control-label">Email</label> <input
-								type="text" class="form-control" id="email" name="USERS_EMAIL"
-								placeholder="email">
+							<sform:label path="usersEmail" class="col-sm-2 control-label">EMAIL</sform:label>
+							 <sform:input path="usersEmail" class="form-control"  placeholder="email"/>
 						</div>
 
 						<div class="form-group" id="idpwsearchquebox">
-							<label for="email" class="col-sm-2 control-label">ID/PW찾기
-								질문</label> <select class="form-control" name="USERS_PASSQUES"
+							<sform:label path="usersPassques" class="col-sm-2 control-label">ID/PassWord 찾기질문</sform:label>
+							 <select class="form-control" name="USERS_PASSQUES"
 								id="queidpw">
 								<option>당신이 졸업한 초등학교는?</option>
 								<option>당신이 졸업한 고등학교는?</option>
@@ -108,15 +101,13 @@ Object loginUserObj = session.getAttribute("loginUser");
 							</select>
 						</div>
 						<div class="form-group" id="idpwsearchansbox">
-							<label for="email" class="col-sm-2 control-label">ID/PW찾기
-								답변</label> <input type="text" class="form-control" id="findidpw"
-								placeholder="정답">
+							<label for="email" class="col-sm-2 control-label">ID/PW찾기 답변</label> 
+								<sform:input class="form-control" path="usersPassques" placeholder="정답"/>
 						</div>
 
 						<div id="joincancelbtn">
-							<input class="btn btn-default" type="submit" onclick=""
-								value="정보수정"> <input class="btn btn-default"
-								type="submit" onclick="" value="취소">
+							<sform:button class="btn btn-default">정보수정</sform:button>
+ 							 <sform:button class="btn btn-default">취소</sform:button>
 						</div>
 					</form>
 				</fieldset>
