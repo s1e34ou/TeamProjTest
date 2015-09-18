@@ -1,0 +1,119 @@
+@CHARSET "UTF-8";
+
+.form-group{
+	width: 100%;
+}
+	
+#infojoin {
+	width: 1000px;
+	height: 750px;
+	margin: auto;
+}
+#infojoinin {
+	border: solid 1px black;
+	width: 1000px;
+	height: 650px;
+	margin: auto;	
+}
+#idinputbox {
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#usersId {
+	width: 200px;
+}
+#idsamecheck {
+	width: 100px;
+	margin-left: 15px;
+}
+#passinputbox {
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#usersPassword {
+	width: 200px;
+}
+#nameinputbox {
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#usersName {
+	width: 150px;
+}
+#genderinputbox {
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#gendercheckbox{
+	width: 200px;
+	margin-left: 5px;
+}
+#phonenuminputbox {
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#usersPhone {
+	width: 150px;
+}
+#birthinputbox {
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#usersBirth {
+	width: 150px;
+}
+#adressinputbox {
+	width: 1000px;
+	height: 140px;
+	margin: auto;
+	display: -webkit-box;
+}
+#adressnum {
+	width: 150px;
+	height: 50px;
+	display: -webkit-box;
+}
+#adresstext {
+	width: 600px;
+	height: 80px;
+	margin: auto;
+}
+#adresssearchbtn {
+	width: 100px;
+	margin-left: 15px;
+}
+#emailinputbox {
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#usersEmail{
+	width: 200px;
+}
+#idpwsearchquebox{
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#usersPassques{
+	width: 400px;
+}
+
+#joincancelbtn{
+	float: right;
+	margin-right: 15px;
+}
