@@ -2,6 +2,9 @@ package dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 public class Users {
 	private String usersName;
 	private String usersId;
@@ -10,7 +13,8 @@ public class Users {
 	private String usersPhone;
 	private String usersEmail;
 	private String usersAddress;
-	private Date usersBirth;
+	@DateTimeFormat(iso=ISO.DATE)
+	private Date usersBirth = new Date();
 	private String usersPassques;
 	
 	

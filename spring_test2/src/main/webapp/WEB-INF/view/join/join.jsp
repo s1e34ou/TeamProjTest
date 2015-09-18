@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sform"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,48 +28,53 @@
 <body>
 <h1>회원가입</h1>
 <c:url value="/join" var="join"></c:url>
-<sform:form method="post" action="${join }" modelAttribute="user">
+<sform:form method="post" action="${join }" class="form-horizontal" modelAttribute="users">
 <fieldset>
 <legend>사용자 정보</legend>
-<form class="form-horizontal">
-
   <div class="form-group">
-    <label for="ID" class="col-sm-2 control-label">ID</label>
+  	<sform:label path="usersId" class="col-sm-2 control-label" >ID</sform:label>
     <div class="col-sm-10">
-      <input type="ID" class="form-control" id="ID" name="USERS_NAME" placeholder="ID">
+      <sform:input path="usersId" class="form-control" placeholder="ID"/>
       <input class="btn btn-default" type="button" value="중복확인">
     </div>
   </div>
   
   <div class="form-group">
-    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <sform:label path="usersPassword" class="col-sm-2 control-label">Password</sform:label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id=inputPassword3 name="USER_PASSWORD" placeholder="Password">
+    	<sform:input path="usersPassword" class="form-control" type="password" placeholder="Password" />
     </div>
   </div>
   
   <div class="form-group">
-    <label for="name" class="col-sm-2 control-label">이름</label>
+    <sform:label path="usersName" class="col-sm-2 control-label">이름</sform:label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="name" name="USERS_NAME" placeholder="name">
+    	<sform:input path="usersName" class="form-control" placeholder="Name" />
     </div>
   </div>
+  
+
+  
   <div class="form-group">
-    <label for="gender" class="col-sm-2 control-label" name="USERS_GENDER">성별</label>
-    <label class="radio-inline">
- 	 <input type="radio" name="USERS_GENDER" id="male" value="male"> 남
-	</label>
-	<label class="radio-inline">
-  	<input type="radio" name="USERS_GENDER" id="female" value="female"> 여
-	</label>
+    <sform:label path="usersGender" class="col-sm-2 control-label" >성별</sform:label>
+    	<sform:radiobutton path="usersGender" label="남성" value="male" class="radio-inline"/>
+    	<sform:radiobutton path="usersGender" label="여성" value="female" class="radio-inline"/>
   </div>
   
+  <div class="form-group">
+    <sform:label path="usersPhone" class="col-sm-2 control-label">휴대전화</sform:label>
+    <div class="col-sm-10">
+      <sform:input  class="form-control" path="usersPhone" placeholder="PHONE"/>
+    </div>
+  </div>
 	
 	
 	<div class="form-group">
-    <label for="birth" class="col-sm-2 control-label">생년월일</label>
+     <sform:label path="usersBirth" class="col-sm-2 control-label">생년월일</sform:label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="birth" name="USERS_NAME" placeholder="birth">
+   <%--  <fmt:formatDate value="${users.usersBirth }" 
+			                         pattern="yyyy-MM-dd (E)" var="birth"/> --%>
+      <sform:input type="" path="usersBirth" class="form-control"  placeholder="birth"/>
     </div>
   </div>
   
@@ -76,38 +82,40 @@
     <label for="address" class="col-sm-2 control-label">주소</label>
     <div class="col-sm-10">
    		<input type="text" class="form-control" id="sample6_postcode" name="USERS_ADRESS1" placeholder="우편번호">
-      <input type="text" class="form-control" id="sample6_address" name="USERS_ADRESS2" placeholder="address">
-      <input class="btn btn-default" type="button" onclick="sample6_execDaumPostcode()" value="주소찾기">
-      <input type="text" class="form-control" id="sample6_address2" name="USERS_ADRESS3" placeholder="상세주소">
+    	<input type="text" class="form-control" id="sample6_address" name="USERS_ADRESS2" placeholder="address">
+    	<input class="btn btn-default" type="button" onclick="sample6_execDaumPostcode()" value="주소찾기">
+    	<input type="text" class="form-control" id="sample6_address2" name="USERS_ADRESS3" placeholder="상세주소">
     </div>
   </div>
   
   <div class="form-group">
-    <label for="email" class="col-sm-2 control-label">Email</label>
+   <sform:label path="usersEmail" class="col-sm-2 control-label">EMAIL</sform:label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="email" name="USERS_EMAIL" placeholder="email">
+     <sform:input path="usersEmail" class="form-control"  placeholder="email"/>
     </div>
   </div>
   
   <div class="form-group">
-    <label for="email" class="col-sm-2 control-label">ID/PassWord 찾기질문</label>
+    <sform:label path="usersPassques" class="col-sm-2 control-label">ID/PassWord 찾기질문</sform:label>
+   
     <div class="col-sm-10">
-      <select class="form-control" name="USERS_PASSQUES">
-		<option>당신이 졸업한 초등학교는?</option>
-		<option>당신이 졸업한 고등학교는?</option>
-		<option>가장 좋아 하는 색은?</option>
-	</select>
-	<input type="text" class="form-control" id="findpass" placeholder="정답">
+    	<select class="form-control" >
+			<option>당신이 졸업한 초등학교는?</option>
+			<option>당신이 졸업한 고등학교는?</option>
+			<option>가장 좋아 하는 색은?</option>
+		</select>
+	 <sform:input class="form-control" path="usersPassques" placeholder="정답"/>
     </div>
   </div>
   
-   <input class="btn btn-default" type="submit" onclick="" value="회원가입">
-   <input class="btn btn-default" type="submit" onclick="" value="취소">
-   </sform:form>
+  <sform:button class="btn btn-default">회원가입</sform:button>
+  <sform:button class="btn btn-default">취소</sform:button>
+ 
   
   
-</form>
+
 </fieldset>
+</sform:form>
 </body>
 </html>
 <script>
