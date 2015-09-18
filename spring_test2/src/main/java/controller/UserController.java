@@ -50,8 +50,13 @@ public class UserController {
 		return "start";
 	}
 	@RequestMapping(value="/join",method=RequestMethod.POST)
-	public String userJoin(Model model, Users users){
+	public String userJoin(Model model, Users users, HttpServletRequest req){
 		model.addAttribute("contentpage", "/WEB-INF/view/join/joinsuccess.jsp");
+		String address1 = req.getParameter("USERS_ADRESS1");
+		String address2 = req.getParameter("USERS_ADRESS2");
+		String address3 = req.getParameter("USERS_ADRESS3");
+		String address = address1+address2+address3;
+		users.setUsersAddress(address);
 		service.join(users);
 		return "start";
 	}
