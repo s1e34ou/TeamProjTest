@@ -17,7 +17,7 @@
 	<br>
 	<br>
 	<div class="row">
-		<img src="<%=request.getContextPath()%>/images/fastival.jpg" id="fastivallogo">
+		<a href="<%=request.getContextPath()%>/main"><img src="<%=request.getContextPath()%>/images/fastival.jpg" id="fastivallogo"></a>
 
 		<div class="col-lg-6" id="search">
 			<div class="input-group">

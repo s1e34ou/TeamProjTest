@@ -21,6 +21,14 @@ public class Users {
 
 
 
+	public Users(String usersId, String usersPassword) {
+		super();
+		this.usersId = usersId;
+		this.usersPassword = usersPassword;
+	}
+
+
+
 	public Users(String usersName, String usersId, String usersPassword) {
 		super();
 		this.usersName = usersName;

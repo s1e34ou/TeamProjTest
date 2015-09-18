@@ -40,16 +40,6 @@ public class UsersDaoImpl implements UsersDao {
 		};
 	}
 	
-	private String usersName;
-	private String usersId;
-	private String usersPassword;
-	private String usersGender;
-	private String usersPhone;
-	private String usersEmail;
-	private String usersAddress;
-	private Integer usersBirth;
-	private String usersPassques;
-	
 	@Override
 	public void insertUser(Users users) {
 		String sql = "insert into users values(?,?,?,?,?,?,?,?,?)";
