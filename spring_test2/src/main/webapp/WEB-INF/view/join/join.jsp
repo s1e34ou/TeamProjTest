@@ -100,7 +100,7 @@
   
   <div id="joincancelbtn">
   <sform:button class="btn btn-default">회원가입</sform:button>
-  <sform:button class="btn btn-default">취소</sform:button>
+  <a href="<%=request.getContextPath() %>/main"><button type="button" class="btn btn-default">취소</button></a>
   </div>
   
   
