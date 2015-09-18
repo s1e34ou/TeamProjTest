@@ -57,8 +57,8 @@
   
   <div class="form-group">
     <sform:label path="usersGender" class="col-sm-2 control-label" >성별</sform:label>
-    	<sform:radiobutton path="usersGender" label="남성" value="male" class="radio-inline"/>
-    	<sform:radiobutton path="usersGender" label="여성" value="female" class="radio-inline"/>
+    	<sform:radiobutton path="usersGender" label="남성" value="m" class="radio-inline"/>
+    	<sform:radiobutton path="usersGender" label="여성" value="f" class="radio-inline"/>
   </div>
   
   <div class="form-group">
