@@ -57,24 +57,24 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/infochange", method = RequestMethod.GET)
-	public String userInfoChangeForm(Model model, Users user) {
+	public String userInfoChangeForm(Model model, Users users) {
 		model.addAttribute("contentpage", "/WEB-INF/view/join/id_infochange.jsp");
 		return "start";
 	}
 
 	@RequestMapping(value = "/infochange", method = RequestMethod.POST)
-	public String userInfoChange(Model model, Users user) {
+	public String userInfoChange(Model model, Users users) {
 		model.addAttribute("contentpage", "/WEB-INF/view/join/id_infochangecheck.jsp");
-		service.changeInfo(user);
+		service.changeInfo(users);
 
 		return "start";
 	}
 
 	@RequestMapping(value = "/deleteconfirm", method = RequestMethod.POST)
-	public String userDelete(Model model, Users user) {
+	public String userDelete(Model model, Users users) {
 		model.addAttribute("contentpage", "/WEB-INF/view/join/id_deleteconfirm.jsp");
 
-		service.leave(user.getUsersId());
+		service.leave(users.getUsersId());
 
 		return "start";
 	}

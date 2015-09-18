@@ -1,3 +1,4 @@
+<%@page import="dto.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -29,20 +30,23 @@
 </style>
 </head>
 <body>
+<%
+Object loginUserObj = session.getAttribute("loginUser");
+				String loginUser = ((Users) loginUserObj).getUsersName();
+				%>
 	<div id="infochange">
 		<h1>정보수정</h1>
 		<div id="infochangein">
-			<c:url value="/join" var="join"></c:url>
-			<sform:form method="post" action="${join }" modelAttribute="user">
+			<c:url value="/infochange" var="infochange"></c:url>
+			<sform:form method="post" action="${infochange }" modelAttribute="users">
 				<fieldset>
 					<form class="form-horizontal">
 						<input class="btn btn-default" type="button" onclick=""
 							id="iddeletebtn" value="회원 탈퇴">
 						<div class="form-group" id="idinputbox">
-							<label for="ID" class="col-sm-2 control-label">ID</label> <input
-								type="ID" class="form-control" id="ID" name="USERS_NAME"
-								placeholder="ID"> <input class="btn btn-default"
-								type="button" id="idsamecheck" value="중복확인">
+							<label for="ID" class="col-sm-2 control-label">ID</label> <input readonly="readonly"
+								type="ID" class="form-control" id="ID" name="USERS_NAME" value="<%=loginUser %> "
+								placeholder="ID"> 
 						</div>
 						<div class="form-group" id="passinputbox">
 							<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
@@ -59,9 +63,9 @@
 								name="USERS_GENDER">성별</label>
 							<div id="gendercheckbox">
 								<label class="radio-inline"> <input type="radio"
-									name="USERS_GENDER" id="male" value="male">남
+									name="USERS_GENDER" id="male" value="m">남
 								</label> <label class="radio-inline"> <input type="radio"
-									name="USERS_GENDER" id="female" value="female">여
+									name="USERS_GENDER" id="female" value="f">여
 								</label>
 							</div>
 						</div>
@@ -111,7 +115,7 @@
 
 						<div id="joincancelbtn">
 							<input class="btn btn-default" type="submit" onclick=""
-								value="회원가입"> <input class="btn btn-default"
+								value="정보수정"> <input class="btn btn-default"
 								type="submit" onclick="" value="취소">
 						</div>
 					</form>
