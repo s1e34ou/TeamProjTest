@@ -39,7 +39,13 @@ private static Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
 			
 		return user;
 	}
-
+	
+	@Override
+	public Users selectUser(String userId){
+		Users selUser=dao.selectUser(userId);
+		
+		return selUser;
+	}
 	@Override
 	@Transactional
 	public void changeInfo(Users user) {
