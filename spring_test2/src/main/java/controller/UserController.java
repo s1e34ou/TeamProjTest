@@ -110,10 +110,12 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/login_findinput", method = RequestMethod.GET)
-	public String userLoginFindinput(Model model) {
-		model.addAttribute("contentpage", "/WEB-INF/view/login/login_findinput");
-
+	public String userLoginFindinputForm(Model model) {
+		model.addAttribute("contentpage", "/WEB-INF/view/login/login_findinput.jsp");
+		
 		return "start";
 	}
+	
+	
 
 }

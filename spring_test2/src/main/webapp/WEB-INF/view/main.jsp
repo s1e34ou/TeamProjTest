@@ -40,8 +40,9 @@
 		
 		<div id="box3">
 			<a href="<%=request.getContextPath()%>/join"><input type="button"
-				id="adduser" value="회원가입" /></a> <input type="button" id="idpwsearch"
-				value="ID/PW찾기" />
+				id="adduser" value="회원가입" /></a> 
+			<a href="<%=request.getContextPath()%>/login_findinput"><input type="button" id="idpwsearch"
+				value="ID/PW찾기" /></a>	
 		</div>
 		<%
 			} else {
