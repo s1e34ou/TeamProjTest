@@ -21,7 +21,7 @@ import dto.Users;
 import service.UsersService;
 
 @Controller
-@SessionAttributes({ "loginUser" })
+@SessionAttributes({ "loginUser","seluser" })
 public class UserController {
 	@Autowired
 	UsersService service;
@@ -70,6 +70,7 @@ public class UserController {
 	@RequestMapping(value = "/infochange", method = RequestMethod.POST)
 	public String userInfoChange(Model model, Users users) {
 		model.addAttribute("contentpage", "/WEB-INF/view/join/id_infochangecheck.jsp");
+		
 		service.changeInfo(users);
 
 		return "start";
@@ -90,7 +91,10 @@ public class UserController {
 		String userspassword = req.getParameter("usersPassword");
 		
 		Users loginUser = service.login(usersid,userspassword);
+		Users seluser = service.selectUser(loginUser.getUsersId());
+		
 		model.addAttribute("loginUser", loginUser);
+		model.addAttribute("seluser",seluser);
 		model.addAttribute("contentpage", "/WEB-INF/view/main.jsp");
 
 
@@ -106,10 +110,12 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/login_findinput", method = RequestMethod.GET)
-	public String userLoginFindinput(Model model) {
-		model.addAttribute("contentpage", "/WEB-INF/view/login/login_findinput");
-
+	public String userLoginFindinputForm(Model model) {
+		model.addAttribute("contentpage", "/WEB-INF/view/login/login_findinput.jsp");
+		
 		return "start";
 	}
+	
+	
 
 }

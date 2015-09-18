@@ -35,8 +35,7 @@
   <div class="form-group" id="idinputbox">
   	<sform:label path="usersId" class="col-sm-2 control-label" >ID</sform:label>
       <sform:input path="usersId" class="form-control" placeholder="ID"/>
-      <input class="btn btn-default" type="button" id="idsamecheck" value="중복확인">
-  </div>
+    </div>
   
   <div class="form-group" id="passinputbox">
     <sform:label path="usersPassword" class="col-sm-2 control-label">Password</sform:label>
@@ -64,8 +63,7 @@
 	
 	<div class="form-group" id="birthinputbox">
      <sform:label path="usersBirth" class="col-sm-2 control-label">생년월일</sform:label>
-   <%--  <fmt:formatDate value="${users.usersBirth }" 
-			                         pattern="yyyy-MM-dd (E)" var="birth"/> --%>
+
       <sform:input type="" path="usersBirth" class="form-control"  placeholder="birth"/>
   </div>
   

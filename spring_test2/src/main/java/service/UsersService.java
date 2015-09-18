@@ -10,4 +10,6 @@ public interface UsersService {
 	void changeInfo(Users user);
 
 	void leave(String userId);
+	
+	Users selectUser(String userId);
 }
