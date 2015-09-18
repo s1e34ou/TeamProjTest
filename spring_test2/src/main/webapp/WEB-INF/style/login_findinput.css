@@ -1,0 +1,76 @@
+@CHARSET "UTF-8";
+
+#idpwsearchinput {
+	width: 1000px;
+	height: 650px;
+	margin: auto;
+	padding: 15px;
+}
+#idpwsearchinputin{
+	border: solid 1px black;
+	height: 550px;
+	margin: auto;
+}
+#idsearch{
+	margin: auto;
+	margin-top:50px;
+	margin-left: 30px;
+}
+#nameinputbox {
+	width: 700px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#nametext{
+	width: 150px;
+}
+#name {
+	width: 150px;
+}
+
+#idpwsearchquebox{
+	width: 700px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#idsearchquetext{
+	width: 150px;
+}
+#queidpw{
+	width: 400px;
+}
+#idpwsearchansbox{
+	width: 700px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#idsearchanstext{
+	width: 150px;
+}
+#findidpw{
+	width: 200px;
+}
+#pwsearch{
+	margin: auto;
+	margin-top:20px;
+	margin-left: 30px;
+	margin-bottom:20px;
+}
+#idinputbox {
+	width: 700px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#idtext{
+	width: 150px;
+}
+#id {
+	width: 150px;
+}
+#searchbtn{
+	margin-left: 15px;
+}

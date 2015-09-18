@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+#fastivalintro {
+	width: 1000px;
+	height: 650px;
+	margin: auto;
+	padding: 15px;
+}
+#fastivalintroin{
+	border: solid 1px black;
+	height: 550px;
+	margin: auto;
+}
+#fastivalintrotalk{
+	margin: auto;
+	padding: 15px;
+}
+#fastivalpicbox{
+	margin: auto;
+	width: 600px;
+}
+#fastivalpic{
+	margin: auto;
+	width: 600px;
+	margin-bottom: 20px;
+}
+#gomain{
+	margin: auto;
+	width: 70px;
+	height: 50px;
+}
+#mainbut{
+	margin: auto;
+	width: 70px;
+	height: 50px;
+}
