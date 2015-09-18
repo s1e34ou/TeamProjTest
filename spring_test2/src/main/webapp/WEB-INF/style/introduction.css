@@ -1,18 +1,17 @@
 @CHARSET "UTF-8";
 
-#fastivalinfo {
-	border: solid 1px red;
+#fastivalintro {
 	width: 1000px;
 	height: 650px;
 	margin: auto;
 	padding: 15px;
 }
-#fastivalinfoin{
+#fastivalintroin{
 	border: solid 1px black;
 	height: 550px;
 	margin: auto;
 }
-#fastivalinfotalk{
+#fastivalintrotalk{
 	margin: auto;
 	padding: 15px;
 }

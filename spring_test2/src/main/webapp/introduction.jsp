@@ -12,10 +12,10 @@
 	
 </head>
 <body>
-	<div id="fastivalinfo">
+	<div id="fastivalintro">
 	<h1>Fastival Information</h1>
-		<div id="fastivalinfoin">
-			<div id="fastivalinfotalk">
+		<div id="fastivalintroin">
+			<div id="fastivalintrotalk">
 				<center><h1>Fastival</h1>
 				<br>
 				<h2>Fast + Festival의 합성어</h2>
