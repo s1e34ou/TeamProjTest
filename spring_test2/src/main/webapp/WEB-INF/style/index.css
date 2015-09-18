@@ -32,10 +32,12 @@ div {
 	margin-right:15px;
 }
 #box2{
+	border:solid 1px red;
 	margin: auto;
 	display: -webkit-box;
 }
 #logintext{
+	border:solid 1px blue;
 	width: 150px;
 	margin-left:15px;
 }

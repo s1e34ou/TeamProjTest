@@ -24,18 +24,20 @@
 			Object loginUserObj = session.getAttribute("loginUser");
 			if (loginUserObj == null) {
 		%>
-		<div id="box2">
+		
 			<c:url value="/login" var="login"></c:url>
 			<form action="${login }" method="POST">
+			<div id="box2">
 				<div id="logintext">
-					<input type="text" name="usersId" /> <br> <input
-						type="password" name="usersPassword" />
+					<input type="text" name="usersId" />
+					<input type="password" name="usersPassword" />
 				</div>
 				<div id="loginbutton">
 					<input type="submit" value="로그인" />
 				</div>
+				</div>
 			</form>
-		</div>
+		
 		<div id="box3">
 			<a href="<%=request.getContextPath()%>/join"><input type="button"
 				id="adduser" value="회원가입" /></a> <input type="button" id="idpwsearch"
