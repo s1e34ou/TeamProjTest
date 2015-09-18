@@ -39,10 +39,9 @@ Object loginUserObj = session.getAttribute("loginUser");
 		<h1>정보수정</h1>
 		<div id="infochangein">
 			<c:url value="/infochange" var="infochange"></c:url>
-			<sform:form method="post" action="${infochange }" modelAttribute="users">
+			<sform:form method="post" action="${infochange }" modelAttribute="users" class="form-horizontal">
 				<fieldset>
 				<legend>사용자 정보 수정</legend>
-					<form class="form-horizontal">
 						<input class="btn btn-default" type="button" onclick=""
 							id="iddeletebtn" value="회원 탈퇴">
 						<div class="form-group" id="idinputbox">
@@ -109,7 +108,6 @@ Object loginUserObj = session.getAttribute("loginUser");
 							<sform:button class="btn btn-default">정보수정</sform:button>
  							 <sform:button class="btn btn-default">취소</sform:button>
 						</div>
-					</form>
 				</fieldset>
 			</sform:form>
 		</div>
