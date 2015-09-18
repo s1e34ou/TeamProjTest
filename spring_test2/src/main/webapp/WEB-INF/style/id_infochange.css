@@ -1,0 +1,123 @@
+@CHARSET "UTF-8";
+
+.form-group {
+	width: 100%;
+}
+#infochange {
+	width: 1000px;
+	height: 750px;
+	margin: auto;
+}
+#infochangein {
+	border: solid 1px black;
+	width: 1000px;
+	height: 650px;
+	margin: auto;
+}
+#iddeletebtn{
+	width: 100px;
+	float: right;
+	margin-top: 10px;
+	margin-right: 15px;
+}
+#idinputbox {
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#ID {
+	width: 200px;
+}
+#idsamecheck {
+	width: 100px;
+	margin-left: 15px;
+}
+#passinputbox {
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#inputPassword3 {
+	width: 200px;
+}
+#nameinputbox {
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#name {
+	width: 150px;
+}
+#genderinputbox {
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#gendercheckbox{
+	width: 200px;
+}
+#birthinputbox {
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#birth {
+	width: 150px;
+}
+#adressinputbox {
+	width: 1000px;
+	height: 140px;
+	margin: auto;
+	display: -webkit-box;
+}
+#addressnum {
+	width: 150px;
+	height: 50px;
+	display: -webkit-box;
+}
+#addresstext {
+	width: 600px;
+	height: 80px;
+	margin: auto;
+}
+#adresssearchbtn {
+	width: 100px;
+	margin-left: 15px;
+}
+
+#emailinputbox {
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#email {
+	width: 200px;
+}
+#idpwsearchquebox{
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#queidpw{
+	width: 400px;
+}
+#idpwsearchansbox{
+	width: 1000px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#findidpw{
+	width: 200px;
+}
+#joincancelbtn{
+	float: right;
+	margin-right: 15px;
+}

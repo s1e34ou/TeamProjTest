@@ -1,0 +1,169 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link href="<%=request.getContextPath()%>/style/id_infochange.css"
+	rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/style/head_footer.css"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<link href="<%=request.getContextPath()%>/style/main.css"
+	rel="stylesheet" type="text/css">
+<style type="text/css">
+.form-group {
+	width: 100%;
+}
+</style>
+</head>
+<body>
+	<div id="infochange">
+		<h1>정보수정</h1>
+		<div id="infochangein">
+			<c:url value="/join" var="join"></c:url>
+			<sform:form method="post" action="${join }" modelAttribute="user">
+				<fieldset>
+					<form class="form-horizontal">
+						<input class="btn btn-default" type="button" onclick=""
+							id="iddeletebtn" value="회원 탈퇴">
+						<div class="form-group" id="idinputbox">
+							<label for="ID" class="col-sm-2 control-label">ID</label> <input
+								type="ID" class="form-control" id="ID" name="USERS_NAME"
+								placeholder="ID"> <input class="btn btn-default"
+								type="button" id="idsamecheck" value="중복확인">
+						</div>
+						<div class="form-group" id="passinputbox">
+							<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+							<input type="password" class="form-control" id=inputPassword3
+								name="USER_PASSWORD" placeholder="Password">
+						</div>
+						<div class="form-group" id="nameinputbox">
+							<label for="name" class="col-sm-2 control-label">이름</label> <input
+								type="text" class="form-control" id="name" name="USERS_NAME"
+								placeholder="name">
+						</div>
+						<div class="form-group" id="genderinputbox">
+							<label for="gender" class="col-sm-2 control-label"
+								name="USERS_GENDER">성별</label>
+							<div id="gendercheckbox">
+								<label class="radio-inline"> <input type="radio"
+									name="USERS_GENDER" id="male" value="male">남
+								</label> <label class="radio-inline"> <input type="radio"
+									name="USERS_GENDER" id="female" value="female">여
+								</label>
+							</div>
+						</div>
+						<div class="form-group" id="birthinputbox">
+							<label for="birth" class="col-sm-2 control-label">생년월일</label> <input
+								type="text" class="form-control" id="birth" name="USERS_NAME"
+								placeholder="birth">
+						</div>
+
+						<div class="form-group" id="adressinputbox">
+							<label for="address" class="col-sm-2 control-label" id="adress">주소</label>
+							<div id="addressinput">
+								<div id="addressnum">
+									<input type="text" class="form-control" id="sample6_postcode"
+										name="USERS_ADRESS1" placeholder="우편번호"> <input
+										class="btn btn-default" id="adresssearchbtn" type="button"
+										onclick="sample6_execDaumPostcode()" value="주소찾기">
+								</div>
+								<div id="addresstext">
+									<input type="text" class="form-control" id="sample6_address"
+										name="USERS_ADRESS2" placeholder="address"> <input
+										type="text" class="form-control" id="sample6_address2"
+										name="USERS_ADRESS3" placeholder="상세주소">
+								</div>
+							</div>
+						</div>
+						<div class="form-group" id="emailinputbox">
+							<label for="email" class="col-sm-2 control-label">Email</label> <input
+								type="text" class="form-control" id="email" name="USERS_EMAIL"
+								placeholder="email">
+						</div>
+
+						<div class="form-group" id="idpwsearchquebox">
+							<label for="email" class="col-sm-2 control-label">ID/PW찾기
+								질문</label> <select class="form-control" name="USERS_PASSQUES"
+								id="queidpw">
+								<option>당신이 졸업한 초등학교는?</option>
+								<option>당신이 졸업한 고등학교는?</option>
+								<option>가장 좋아 하는 색은?</option>
+							</select>
+						</div>
+						<div class="form-group" id="idpwsearchansbox">
+							<label for="email" class="col-sm-2 control-label">ID/PW찾기
+								답변</label> <input type="text" class="form-control" id="findidpw"
+								placeholder="정답">
+						</div>
+
+						<div id="joincancelbtn">
+							<input class="btn btn-default" type="submit" onclick=""
+								value="회원가입"> <input class="btn btn-default"
+								type="submit" onclick="" value="취소">
+						</div>
+					</form>
+				</fieldset>
+			</sform:form>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	function sample6_execDaumPostcode() {
+		new daum.Postcode(
+				{
+					oncomplete : function(data) {
+						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						var fullAddr = ''; // 최종 주소 변수
+						var extraAddr = ''; // 조합형 주소 변수
+
+						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+							fullAddr = data.roadAddress;
+
+						} else { // 사용자가 지번 주소를 선택했을 경우(J)
+							fullAddr = data.jibunAddress;
+						}
+
+						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+						if (data.userSelectedType === 'R') {
+							//법정동명이 있을 경우 추가한다.
+							if (data.bname !== '') {
+								extraAddr += data.bname;
+							}
+							// 건물명이 있을 경우 추가한다.
+							if (data.buildingName !== '') {
+								extraAddr += (extraAddr !== '' ? ', '
+										+ data.buildingName : data.buildingName);
+							}
+							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+							fullAddr += (extraAddr !== '' ? ' (' + extraAddr
+									+ ')' : '');
+						}
+
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+						document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
+						document.getElementById('sample6_address').value = fullAddr;
+
+						// 커서를 상세주소 필드로 이동한다.
+						document.getElementById('sample6_address2').focus();
+					}
+				}).open();
+	}
+</script>
