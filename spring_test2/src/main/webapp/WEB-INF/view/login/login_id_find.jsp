@@ -14,9 +14,9 @@
 </head>
 <body>
 <% 
-	Object loginUserObj = session.getAttribute("selectUser");
-	if(loginUserObj ==null) {
-		String loginUser = ((Users) loginUserObj).getUsersId();
+	Object findUserObj = session.getAttribute("findUser");
+	if(findUserObj ==null) {
+		String findUser = ((Users) findUserObj).getUsersId();
 %>
 
 	<div id="idpwsearch2">
@@ -24,7 +24,7 @@
 		<div id="idpwsearch2in">
 		<div id="idpwsearch2talk">
 			<h2>
-				<center>회원님의<br>ID(PW)는 <%=loginUser %> 입니다.</center>
+				<center>회원님의<br>ID(PW)는 <%=findUser %> 입니다.</center>
 			</h2>
 		</div>
 			<div id="gomain">
@@ -34,14 +34,14 @@
 	</div>
 	<%
 	} else{
-		String loginUser = ((Users) loginUserObj).getUsersId();
+		String findUser = ((Users) findUserObj).getUsersId();
 	%>
 	<div id="idpwsearch2">
 	<h1>ID/PW찾기</h1>
 		<div id="idpwsearch2in">
 		<div id="idpwsearch2talk">
 			<h2>
-				<center>회원님의<br>ID(PW)는 <%=loginUser %> 입니다.</center>
+				<center>회원님의<br>ID(PW)는 <%=findUser %> 입니다.</center>
 			</h2>
 		</div>
 			<div id="gomain">

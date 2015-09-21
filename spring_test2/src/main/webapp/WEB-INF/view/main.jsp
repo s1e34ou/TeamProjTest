@@ -13,6 +13,22 @@
 <title>Insert title here</title>
 <link href="<%=request.getContextPath()%>/style/index.css"
 	rel="stylesheet" type="text/css">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#loginbutton").on("click",function(e){
+		if($("#usersId").val()==""){
+			alert("아이디를 입력해 주세요");
+			e.preventDefault();
+			
+		}
+		if($("#usersId").val()!=""&&$("#usersPassword").val()==""){
+			alert("비밀번호를 입력해 주세요");
+			e.preventDefault();
+		}
+	});
+});
+</script>
 </head>
 <body>
 
@@ -31,11 +47,11 @@
 			<form action="${login }" method="POST">
 			<div id="box2">
 				<div id="logintext">
-					<input type="text" name="usersId" />
-					<input type="password" name="usersPassword" />
+					<input type="text" name="usersId" id="usersId" />
+					<input type="password" name="usersPassword" id="usersPassword"/>
 				</div>
 				<div id="loginbutton">
-					<input type="submit" value="로그인" />
+					<input type="submit" id="loginbutton" value="로그인" />
 				</div>
 				</div>
 			</form>

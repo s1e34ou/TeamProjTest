@@ -21,7 +21,7 @@ import dto.Users;
 import service.UsersService;
 
 @Controller
-@SessionAttributes({ "loginUser","seluser" })
+@SessionAttributes({ "loginUser","seluser","findUser" })
 public class UserController {
 	@Autowired
 	UsersService service;
@@ -121,10 +121,8 @@ public class UserController {
 		String usersname = req.getParameter("usersName");
 		
 		Users findUser = service.find(usersemail, usersname);
-		Users seluser = service.selectUser(findUser.getUsersId());
 		
 		model.addAttribute("findUser", findUser);
-		model.addAttribute("seluser", seluser);
 		model.addAttribute("contentpage", "/WEB-INF/view/login/login_id_find.jsp");
 		
 		return "start";
