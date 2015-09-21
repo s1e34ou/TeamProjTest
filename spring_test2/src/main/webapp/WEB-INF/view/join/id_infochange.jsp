@@ -47,7 +47,7 @@
 					<div class="form-group" id="idinputbox">
 						<sform:label path="usersId" class="col-sm-2 control-label">ID</sform:label>
 						<sform:input path="usersId" class="form-control" placeholder="ID"
-							value="<%=seluser.getUsersId()%>" readonly="readonly" />
+							value="<%=seluser.getUsersId()%>" readonly="true" />
 					</div>
 					<div class="form-group" id="passinputbox">
 						<sform:label path="usersPassword" class="col-sm-2 control-label">Password</sform:label>
