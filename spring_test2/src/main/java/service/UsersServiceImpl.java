@@ -77,6 +77,8 @@ private static Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
 	@Override
 	public Users findPw(String userId, String userName, String passQues) {
 		Users findedPw = dao.selectUser(userId);
+		logger.trace("findedPw : {}",findedPw);
+
 		Users user;
 		if(findedPw==null){
 			throw new ServiceFailException(userId+"로 등록된 사용자가 없습니다.");
@@ -85,6 +87,7 @@ private static Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
 			user=findedPw;
 			logger.trace("비밀번호 찾기{}",user);
 		}else{
+
 			throw new ServiceFailException("비밀번호를 찾을수 없습니다.");
 		}
 		return user;
