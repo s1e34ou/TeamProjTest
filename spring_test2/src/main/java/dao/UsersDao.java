@@ -10,4 +10,6 @@ public interface UsersDao {
 	void deleteUser(String id);
 
 	Users selectUser(String userId);
+	
+	Users findUser(String userEmail);
 }

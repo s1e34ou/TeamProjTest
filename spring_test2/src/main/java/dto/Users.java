@@ -23,8 +23,6 @@ public class Users {
 		super();
 	}
 
-
-
 	public Users(String usersId, String usersPassword) {
 		super();
 		this.usersId = usersId;

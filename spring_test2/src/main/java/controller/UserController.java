@@ -112,9 +112,24 @@ public class UserController {
 	@RequestMapping(value = "/login_findinput", method = RequestMethod.GET)
 	public String userLoginFindinputForm(Model model) {
 		model.addAttribute("contentpage", "/WEB-INF/view/login/login_findinput.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/login_findinput", method = RequestMethod.POST)
+	public String userLoginFindinput(Model model,HttpServletRequest req) {
+		String usersemail = req.getParameter("usersEmail");
+		String usersname = req.getParameter("usersName");
+		
+		Users findUser = service.find(usersemail, usersname);
+		Users seluser = service.selectUser(findUser.getUsersId());
+		
+		model.addAttribute("findUser", findUser);
+		model.addAttribute("seluser", seluser);
+		model.addAttribute("contentpage", "/WEB-INF/view/login/login_id_find.jsp");
 		
 		return "start";
 	}
+	
 	
 	
 

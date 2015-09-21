@@ -30,29 +30,31 @@
 	<div id="idpwsearchinput">
 	<h1>ID/PW찾기</h1>
 		<div id="idpwsearchinputin">
+		
+		
 			<div id="idsearch">
 				<h2>ID 찾기</h2>
+				<c:url value="/login_findinput" var="login_findinput"></c:url>
+				<sform:form method="post" action="${login_findinput }" class="form-horizontal" modelAttribute="users">
+				
 					<div class="form-group" id="nameinputbox">
-						<label for="name" class="col-sm-2 control-label" id="nametext">이름</label>
-						<input type="text" class="form-control" id="name" name="USERS_NAME" placeholder="name">
+						<sform:label path="usersEmail" class="col-sm-2 control-label">EMAIL</sform:label>
+						<sform:input path="usersEmail" class="form-control"  placeholder="email"/>
 					</div>
+					
 					<div class="form-group" id="idpwsearchquebox">
-						<label for="email" class="col-sm-2 control-label" id="idsearchquetext">ID찾기 질문</label>
-						<select class="form-control" name="USERS_PASSQUES" id="queidpw">
-							<option>당신이 졸업한 초등학교는?</option>
-							<option>당신이 졸업한 고등학교는?</option>
-							<option>가장 좋아 하는 색은?</option>
-						</select> 
+						<sform:label path="usersName" class="col-sm-2 control-label" >이름</sform:label>
+						<sform:input path="usersName" class="form-control" placeholder="name"/>
 					</div>
-					<div class="form-group" id="idpwsearchansbox">
-						<label for="email" class="col-sm-2 control-label" id="idsearchanstext">ID찾기 답</label>
-						<input type="text" class="form-control" id="findidpw" placeholder="정답">
-						<div id="searchbtn">
-							<input class="btn btn-default" type="submit" onclick=""	value="ID 찾기">
-							<input class="btn btn-default" type="submit" onclick="" value="취소">
-						</div>
-					</div>
+					<div id="joincancelbtn">
+  						<sform:button class="btn btn-default">ID찾기</sform:button>
+ 						<a href="<%=request.getContextPath() %>/main"><button type="button" class="btn btn-default">취소</button></a>
+ 					 </div>					
+				</sform:form>
+			
 			</div>
+			
+			
 			<div id="pwsearch">
 				<h2>PW 찾기</h2>
 					<div class="form-group" id="idinputbox">
@@ -80,6 +82,8 @@
 						</div>
 					</div>
 			</div>
+			
+			
 		</div>
 	</div>
 </body>
