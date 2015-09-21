@@ -86,14 +86,14 @@
 					<div class="form-group" id="adressinputbox">
 						<label for="address" class="col-sm-2 control-label">주소</label>
 						<div id="addressinput">
-							<input type="text" class="form-control" id="sample6_postcode"
-								name="USERS_ADRESS1" placeholder="우편번호"> <input
-								type="text" class="form-control" id="sample6_address"
-								name="USERS_ADRESS2" placeholder="address"> <input
-								class="btn btn-default" type="button"
-								onclick="sample6_execDaumPostcode()" value="주소찾기"> <input
-								type="text" class="form-control" id="sample6_address2"
-								name="USERS_ADRESS3" placeholder="상세주소">
+							<div id="adressnum">
+							<input type="text" class="form-control" id="sample6_postcode" name="USERS_ADRESS1" placeholder="우편번호"> 
+							<input class="btn btn-default" type="button" onclick="sample6_execDaumPostcode()" id="adresssearchbtn" value="주소찾기"> 
+							</div>
+							<div id="adresstext">
+							<input type="text" class="form-control" id="sample6_address" name="USERS_ADRESS2" placeholder="address">
+							<input type="text" class="form-control" id="sample6_address2" name="USERS_ADRESS3" placeholder="상세주소">
+							</div>
 						</div>
 					</div>
 					<div class="form-group" id="emailinputbox">
