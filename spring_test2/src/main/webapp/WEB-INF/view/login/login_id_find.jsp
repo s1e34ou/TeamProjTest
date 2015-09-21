@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page import="dto.Users" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,12 +13,18 @@
 	
 </head>
 <body>
+<% 
+	Object loginUserObj = session.getAttribute("selectUser");
+	if(loginUserObj ==null) {
+		String loginUser = ((Users) loginUserObj).getUsersId();
+%>
+
 	<div id="idpwsearch2">
 	<h1>ID/PW찾기</h1>
 		<div id="idpwsearch2in">
 		<div id="idpwsearch2talk">
 			<h2>
-				<center>회원님의<br>ID(PW)는 OOOOO 입니다.</center>
+				<center>회원님의<br>ID(PW)는 <%=loginUser %> 입니다.</center>
 			</h2>
 		</div>
 			<div id="gomain">
@@ -25,5 +32,25 @@
 			</div>
 		</div>
 	</div>
+	<%
+	} else{
+		String loginUser = ((Users) loginUserObj).getUsersId();
+	%>
+	<div id="idpwsearch2">
+	<h1>ID/PW찾기</h1>
+		<div id="idpwsearch2in">
+		<div id="idpwsearch2talk">
+			<h2>
+				<center>회원님의<br>ID(PW)는 <%=loginUser %> 입니다.</center>
+			</h2>
+		</div>
+			<div id="gomain">
+				<input type="button" id="mainbut" value="main으로"/>
+			</div>
+		</div>
+	</div>
+	<%
+	}
+	%>
 </body>
 </html>

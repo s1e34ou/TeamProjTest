@@ -58,4 +58,21 @@ private static Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
 		dao.deleteUser(userId);
 	}
 
+	@Override
+	public Users find(String userEmail, String userName) {
+		Users finded = dao.findUser(userEmail);
+		Users user;
+		if(finded==null){
+			throw new ServiceFailException(userEmail+"로 등록된 사용자가 없습니다.");
+		}
+		if(finded.getUsersName().equals(userName)){
+			user=finded;
+			logger.trace("사용자 찾기{}",user);
+		}else{
+			throw new ServiceFailException("이름이 일치하지 않습니다.");
+		}
+		return user;
+	}
+
+
 }

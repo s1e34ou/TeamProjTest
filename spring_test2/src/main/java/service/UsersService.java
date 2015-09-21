@@ -12,4 +12,7 @@ public interface UsersService {
 	void leave(String userId);
 	
 	Users selectUser(String userId);
+	
+	Users find(String userEmail, String userName);
+	
 }
