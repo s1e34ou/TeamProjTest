@@ -43,8 +43,7 @@
 				modelAttribute="users" class="form-horizontal">
 				<fieldset>
 					<legend>사용자 정보 수정</legend>
-					<input class="btn btn-default" type="button" onclick=""
-						id="iddeletebtn" value="회원 탈퇴">
+					<input class="btn btn-default" type="button" id="iddeletebtn" value="회원 탈퇴">
 					<div class="form-group" id="idinputbox">
 						<sform:label path="usersId" class="col-sm-2 control-label">ID</sform:label>
 						<sform:input path="usersId" class="form-control" placeholder="ID"
@@ -127,7 +126,18 @@
 	</div>
 </body>
 </html>
-<script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#iddeletebtn").on("click",function(e){
+			if(confirm("탈퇴하시겠습니까?")){
+				$(location).attr("href","<%=request.getContextPath()%>/deleteconfirm?id=<%=seluser.getUsersId()%>");
+			}else{
+				$(location).attr("href","<%=request.getContextPath()%>/main");
+			}
+		});
+	});
+
 	function sample6_execDaumPostcode() {
 		new daum.Postcode(
 				{
