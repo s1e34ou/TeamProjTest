@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -20,12 +22,15 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import dto.Users;
+import exception.ServiceFailException;
 import service.UsersService;
 
 @Controller
 @SessionAttributes({ "loginUser","seluser","findUser","findPw" })
 
 public class UserController {
+	private static Logger logger = LoggerFactory.getLogger(UserController.class);
+
 	@Autowired
 	UsersService service;
 
@@ -87,20 +92,30 @@ public class UserController {
 		return "start";
 	}
 
+	@SuppressWarnings("finally")
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String userLogin(Model model, HttpServletRequest req) {
 		String usersid = req.getParameter("usersId");
 		String userspassword = req.getParameter("usersPassword");
-		
+		try{
+			logger.trace("전");
 		Users loginUser = service.login(usersid,userspassword);
 		Users seluser = service.selectUser(loginUser.getUsersId());
+		logger.trace("loginUser : {}",loginUser);
+		logger.trace("selser : {}",seluser);
 		
 		model.addAttribute("loginUser", loginUser);
 		model.addAttribute("seluser",seluser);
-		model.addAttribute("contentpage", "/WEB-INF/view/main.jsp");
-
-
-		return "start";
+		logger.trace("로그인");
+		}catch(ServiceFailException e){
+			logger.trace("로그인에러");
+			e.getMessage();
+		}finally{
+			model.addAttribute("contentpage", "/WEB-INF/view/main.jsp");
+			return "start";
+		}
+		
+		
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
