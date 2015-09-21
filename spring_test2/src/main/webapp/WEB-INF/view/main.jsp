@@ -1,4 +1,6 @@
 <%@page import="dto.Users"%>
+<%@page import="java.util.*"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sform"%>
@@ -48,10 +50,26 @@
 			} else {
 				String loginUser = ((Users) loginUserObj).getUsersName();
 		%>
-		<%=loginUser%>님 반갑습니다.
-		<a href="<%=request.getContextPath()%>/infochange"><input type="button"
-				id="changeuser" value="정보수정" /></a> <a href="<%=request.getContextPath() %>/logout"><input type="button" id="logout"
-				value="로그아웃" /></a>
+		<div id="loginonbox">
+		<div id="welcome">
+		<center><%=loginUser%>님 반갑습니다.</center>
+		</div>
+		<div id="timetoday">
+		<%
+			Date today = new Date();
+			SimpleDateFormat sdf;
+			sdf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh시 mm분");
+		%>
+		<center><%=sdf.format(today)%></center>
+		</div>
+		</div>
+		<div id="infologbox">
+		<a href="<%=request.getContextPath()%>/infochange">
+		<input type="button" id="changeuser" value="정보수정" /></a> 
+		<a href="<%=request.getContextPath() %>/logout">
+			<input type="button" id="logout" value="로그아웃" />
+		</a>
+		</div>
 		<%
 			}
 		%>
