@@ -35,6 +35,7 @@ public class UsersDaoImpl implements UsersDao {
 				users.setUsersEmail(rs.getString("users_email"));
 				users.setUsersPhone(rs.getString("users_phone"));
 				users.setUsersGender(rs.getString("users_gender"));
+				users.setUsersPassques(rs.getString("users_passques"));
 				return users;
 			}
 		};
