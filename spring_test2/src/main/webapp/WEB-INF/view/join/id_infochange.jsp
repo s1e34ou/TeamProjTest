@@ -123,7 +123,7 @@
 
 						<div id="joincancelbtn">
 							<sform:button class="btn btn-default">정보수정</sform:button>
-							<a href="<%=request.getContextPath()%>/main"><button >취소</button></a>
+							<sform:button class="btn btn-default">취소</sform:button>
 						</div>
 				</fieldset>
 			</sform:form>
