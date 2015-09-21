@@ -2,44 +2,53 @@
 
 #idpwsearchinput {
 	width: 1000px;
-	height: 650px;
+	height: 600px;
 	margin: auto;
 	padding: 15px;
 }
 #idpwsearchinputin{
 	border: solid 1px black;
-	height: 550px;
+	height: 500px;
 	margin: auto;
 }
-#idsearch{
-	margin: auto;
-	margin-top:50px;
-	margin-left: 30px;
-}
-#nameinputbox {
+#emailinputbox{
 	width: 700px;
 	height: 50px;
 	margin: auto;
 	display: -webkit-box;
 }
-#nametext{
+#usersEmail{
 	width: 150px;
 }
-#name {
+#nameinputbox{
+	width: 700px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#usersName{
 	width: 150px;
 }
-
+#idinputbox{
+	width: 700px;
+	height: 50px;
+	margin: auto;
+	display: -webkit-box;
+}
+#usersId{
+	width: 150px;
+}
 #idpwsearchquebox{
 	width: 700px;
 	height: 50px;
 	margin: auto;
 	display: -webkit-box;
 }
-#idsearchquetext{
-	width: 150px;
-}
 #queidpw{
-	width: 400px;
+	width: 115px;
+}
+#queidpwslc{
+	width: 300px;
 }
 #idpwsearchansbox{
 	width: 700px;
@@ -47,30 +56,19 @@
 	margin: auto;
 	display: -webkit-box;
 }
-#idsearchanstext{
-	width: 150px;
-}
-#findidpw{
-	width: 200px;
-}
-#pwsearch{
-	margin: auto;
-	margin-top:20px;
-	margin-left: 30px;
-	margin-bottom:20px;
-}
-#idinputbox {
-	width: 700px;
-	height: 50px;
-	margin: auto;
-	display: -webkit-box;
-}
-#idtext{
-	width: 150px;
-}
-#id {
+#usersPassques{
 	width: 150px;
 }
 #searchbtn{
 	margin-left: 15px;
+}
+#idsearchin{
+	width: 800px;
+	margin: auto;
+	padding: 15px;
+}
+#pwsearchin{
+	width: 800px;
+	margin: auto;
+	padding: 15px;
 }

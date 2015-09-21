@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -82,11 +84,11 @@ public class UserController {
 		return "start";
 	}
 
-	@RequestMapping(value = "/deleteconfirm", method = RequestMethod.POST)
-	public String userDelete(Model model, Users users) {
+	@RequestMapping(value = "/deleteconfirm", method = RequestMethod.GET)
+	public String userDelete(Model model,@RequestParam String id, SessionStatus sessionstatus) {
 		model.addAttribute("contentpage", "/WEB-INF/view/join/id_deleteconfirm.jsp");
-
-		service.leave(users.getUsersId());
+		service.leave(id);
+		sessionstatus.setComplete();	
 		return "start";
 	}
 

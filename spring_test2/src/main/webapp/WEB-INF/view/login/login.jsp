@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sform"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,6 +17,8 @@
 <body>
 	<div id="loginbox">
 	<h1>로그인</h1>
+		<c:url value=login var="login"></c:url>
+		<sform:form method="post" action="${login }" class="form-horizontal" modelAttribute="users">
 		<div id="loginboxin">
 		<div id="logintalk">
 			<h3>
@@ -22,18 +27,19 @@
 		</div>
 			<div id="inlogin">
 			<div id="logintext">
-				<input type="text" name="id" placeholder="아이디" />
-				<input type="text" name="pass" placeholder="비밀번호" />
+     			<sform:input path="usersId" class="form-control" placeholder="ID"/>
+    			<sform:input path="usersPassword" class="form-control" type="password" placeholder="Password" />
 			</div>
 			<div id="loginbutton">
-				<input type="button" id="login" value="로그인"/>
+				<sform:button class="btn btn-default">로그인</sform:button>
 			</div>
 			</div>
 			<div id="defaultlogin">
-				<input type="button" id="adduser" value="회원가입"/>
-				<input type="button" id="idpwsearch" value="ID/PW찾기"/>
+				<a href="<%=request.getContextPath() %>/join"><input type="button" id="adduser" value="회원가입"/></a>
+				<a href="<%=request.getContextPath() %>/login_findinput"><input type="button" id="idpwsearch" value="ID/PW찾기"/></a>
 			</div>
 		</div>
+		</sform:form>
 	</div>
 </body>
 </html>

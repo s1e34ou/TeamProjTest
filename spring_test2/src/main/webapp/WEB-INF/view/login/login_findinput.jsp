@@ -28,34 +28,37 @@
 </head>
 <body>
 	<div id="idpwsearchinput">
-	<h1>ID/PW찾기</h1>
+	<h1>ID / PW찾기</h1>
 		<div id="idpwsearchinputin">
 		
 		
 			<div id="idsearch">
+				<div id="idsearchin">
 				<h2>ID 찾기</h2>
 				<c:url value="/login_findinput" var="login_findinput"></c:url>
 				<sform:form method="post" action="${login_findinput }" class="form-horizontal" modelAttribute="users">
 				
-					<div class="form-group" id="nameinputbox">
+					<div class="form-group" id="emailinputbox">
 						<sform:label path="usersEmail" class="col-sm-2 control-label">EMAIL</sform:label>
 						<sform:input path="usersEmail" class="form-control"  placeholder="email"/>
 					</div>
 					
-					<div class="form-group" id="idpwsearchquebox">
+					<div class="form-group" id="nameinputbox">
 						<sform:label path="usersName" class="col-sm-2 control-label" >이름</sform:label>
 						<sform:input path="usersName" class="form-control" placeholder="name"/>
-					</div>
-					<div id="joincancelbtn">
+						<div id="searchbtn">
   						<sform:button class="btn btn-default">ID찾기</sform:button>
  						<a href="<%=request.getContextPath() %>/main"><button type="button" class="btn btn-default">취소</button></a>
- 					 </div>					
+ 					 </div>	
+					</div>
+									
 				</sform:form>
-			
+				</div>
 			</div>
 			
 			
 			<div id="pwsearch">
+				<div id="pwsearchin">
 				<h2>PW 찾기</h2>
 				<c:url value="/login_findinputPw" var="login_findinputPw"></c:url>
 				<sform:form method="post" action="${login_findinputPw }" class="form-horizontal" modelAttribute="users">
@@ -69,8 +72,8 @@
 						<sform:input path="usersName" class="form-control" placeholder="name"/>
 					</div>
 					<div class="form-group" id="idpwsearchquebox">
-						<label id="queidpw" class="col-sm-2 control-label">PW 찾기질문</label>
-						<select class="form-control" name="USERS_PASSQUES" id="queidpw">
+						<label id="queidpw" class="col-sm-2 control-label">찾기질문</label>
+						<select class="form-control" name="USERS_PASSQUES" id="queidpwslc">
 							<option>당신이 졸업한 초등학교는?</option>
 							<option>당신이 졸업한 고등학교는?</option>
 							<option>가장 좋아 하는 색은?</option>
@@ -85,6 +88,7 @@
 						</div>
 					</div>
 					</sform:form>
+					</div>
 			</div>
 			
 			
