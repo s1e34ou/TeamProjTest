@@ -14,17 +14,15 @@
 </head>
 <body>
 <% 
-	Object loginUserObj = session.getAttribute("selectUser");
+	Object loginUserObj = session.getAttribute("findUser");
 	if(loginUserObj ==null) {
-		String loginUser = ((Users) loginUserObj).getUsersId();
 %>
-
-	<div id="idpwsearch2">
+	<div id="idpwsearch3">
 	<h1>ID/PW찾기</h1>
-		<div id="idpwsearch2in">
-		<div id="idpwsearch2talk">
+		<div id="idpwsearch3in">
+		<div id="idpwsearch3talk">
 			<h2>
-				<center>회원님의<br>ID(PW)는 <%=loginUser %> 입니다.</center>
+				<center>해당 정보에 대한<br>ID(PW)가 존재하지 않습니다.</center>
 			</h2>
 		</div>
 			<div id="gomain">

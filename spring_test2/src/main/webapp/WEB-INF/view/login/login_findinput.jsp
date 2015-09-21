@@ -57,16 +57,19 @@
 			
 			<div id="pwsearch">
 				<h2>PW 찾기</h2>
+				<c:url value="/login_findinputPw" var="login_findinputPw"></c:url>
+				<sform:form method="post" action="${login_findinputPw }" class="form-horizontal" modelAttribute="users">
+				
 					<div class="form-group" id="idinputbox">
-						<label for="ID" class="col-sm-2 control-label" id="idtext">ID</label> 
-						<input type="ID" class="form-control" id="id" name="USERS_NAME" placeholder="ID"> 
+						<sform:label path="usersId" class="col-sm-2 control-label">ID</sform:label>
+						<sform:input path="usersId"  class="form-control" placeholder="ID"/>
 					</div>
 					<div class="form-group" id="nameinputbox">
-						<label for="name" class="col-sm-2 control-label" id="nametext">이름</label>
-						<input type="text" class="form-control" id="name" name="USERS_NAME" placeholder="name">
+						<sform:label path="usersName" class="col-sm-2 control-label" >이름</sform:label>
+						<sform:input path="usersName" class="form-control" placeholder="name"/>
 					</div>
 					<div class="form-group" id="idpwsearchquebox">
-						<label for="email" class="col-sm-2 control-label" id="idsearchquetext">PW찾기 질문</label>
+						<label id="queidpw" class="col-sm-2 control-label">PW 찾기질문</label>
 						<select class="form-control" name="USERS_PASSQUES" id="queidpw">
 							<option>당신이 졸업한 초등학교는?</option>
 							<option>당신이 졸업한 고등학교는?</option>
@@ -74,13 +77,14 @@
 						</select> 
 					</div>
 					<div class="form-group" id="idpwsearchansbox">
-						<label for="email" class="col-sm-2 control-label" id="idsearchanstext">PW찾기 답</label>
-						<input type="text" class="form-control" id="findidpw" placeholder="정답">
+						<sform:label path="usersPassques" class="col-sm-2 control-label" >PW찾기 답</sform:label>
+						<sform:input class="form-control" path="usersPassques" placeholder="정답"/>
 						<div id="searchbtn">
-							<input class="btn btn-default" type="submit" onclick=""	value="PW 찾기">
-							<input class="btn btn-default" type="submit" onclick="" value="취소">
+							<sform:button class="btn btn-default">PW 찾기</sform:button>
+							<a href="<%=request.getContextPath() %>/main"><button type="button" class="btn btn-default">취소</button></a>
 						</div>
 					</div>
+					</sform:form>
 			</div>
 			
 			

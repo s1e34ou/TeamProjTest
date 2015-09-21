@@ -15,4 +15,6 @@ public interface UsersService {
 	
 	Users find(String userEmail, String userName);
 	
+	Users findPw(String userId, String userName, String passQues);
+	
 }

@@ -21,7 +21,7 @@ import dto.Users;
 import service.UsersService;
 
 @Controller
-@SessionAttributes({ "loginUser","seluser" })
+@SessionAttributes({ "loginUser","seluser","findUser","findPw" })
 public class UserController {
 	@Autowired
 	UsersService service;
@@ -121,11 +121,23 @@ public class UserController {
 		String usersname = req.getParameter("usersName");
 		
 		Users findUser = service.find(usersemail, usersname);
-		Users seluser = service.selectUser(findUser.getUsersId());
 		
 		model.addAttribute("findUser", findUser);
-		model.addAttribute("seluser", seluser);
 		model.addAttribute("contentpage", "/WEB-INF/view/login/login_id_find.jsp");
+		
+		return "start";
+	}
+	
+	@RequestMapping(value = "/login_findinputPw", method = RequestMethod.POST)
+	public String userLoginFindinputPw(Model model,HttpServletRequest req) {
+		String usersid = req.getParameter("usersId");
+		String usersname = req.getParameter("usersName");
+		String usersques =req.getParameter("usersPassques");
+		
+		Users findPw = service.findPw(usersid, usersname, usersques);
+		
+		model.addAttribute("findPw", findPw);
+		model.addAttribute("contentpage", "/WEB-INF/view/login/login_pw_find.jsp");
 		
 		return "start";
 	}
