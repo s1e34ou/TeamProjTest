@@ -26,14 +26,18 @@ private static Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
 	@Override
 	public Users login(String userId, String pass) {
 		Users selected = dao.selectUser(userId);
+		logger.trace("selected: {}",selected);
 		Users user;
-		if(selected ==null){
+	
+		if(selected == null){
+			logger.trace(userId+"로등록된 사용자 없음");
 			throw new ServiceFailException(userId+"로 등록된 사용자가 없습니다.");
 		}
-		if(selected.getUsersPassword().equals(pass)){
+		if(selected!=null&&selected.getUsersPassword().equals(pass)){
 			user=selected;
 			logger.trace("사용자 조회 {}",user);
 		}else{
+			logger.trace("비번확인");
 			throw new ServiceFailException("패스워드를 확인하세요");
 		}
 			
