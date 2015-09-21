@@ -32,12 +32,10 @@ div {
 	margin-right:15px;
 }
 #box2{
-	border:solid 1px red;
 	margin: auto;
 	display: -webkit-box;
 }
 #logintext{
-	border:solid 1px blue;
 	width: 150px;
 	margin-left:15px;
 }
@@ -52,6 +50,21 @@ div {
 	width: 70px;
 	height: 70px;
 }
+#loginonbox{
+	border:solid 1px black;
+	width: 270px;
+	height: 100px;
+}
+#infologbox{
+	width: 240px;
+	display: -webkit-box;
+}
+#changeuser{
+	width: 115px;
+}
+#logout{
+	width: 115px;
+}
 #box3{
 	margin: auto;
 	display: -webkit-box;
@@ -60,6 +73,7 @@ div {
 	border:solid 1px #c5c5c5;
 }
 #adduser{
+	margin-left:15px;
 	width: 115px;
 }
 #idpwsearch{
