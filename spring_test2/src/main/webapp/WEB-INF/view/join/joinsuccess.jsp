@@ -17,7 +17,7 @@
 		<div id="joinsuccessin">
 		<div id="joinsuccesstalk">
 			<h2>
-				<center>OO님<br>회원가입 되셨습니다.</center>
+				<center>회원가입 되셨습니다.</center>
 			</h2>
 		</div>
 			<div id="gomain">

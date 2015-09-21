@@ -81,7 +81,7 @@ private static Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
 		if(findedPw==null){
 			throw new ServiceFailException(userId+"로 등록된 사용자가 없습니다.");
 		}
-		if(findedPw.getUsersName().equals(userName)&&findedPw.getUsersPassques().equals(passQues)){
+		if(findedPw!=null&&findedPw.getUsersName().equals(userName)&&findedPw.getUsersPassques().equals(passQues)){
 			user=findedPw;
 			logger.trace("비밀번호 찾기{}",user);
 		}else{
