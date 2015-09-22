@@ -32,19 +32,19 @@
 	<div class="btn-group btn-group-justified" role="group"
 		aria-label="...">
 		<div class="btn-group" role="group">
-			<button type="button" class="btn btn-default">축제</button>
+			<a href="<%=request.getContextPath()%>/site"><button type="button" class="btn btn-default">축제</button></a>
 		</div>
 		<div class="btn-group" role="group">
-			<button type="button" class="btn btn-default">이벤트</button>
+			<a href="<%=request.getContextPath()%>/site"><button type="button" class="btn btn-default">이벤트</button></a>
 		</div>
 		<div class="btn-group" role="group">
-			<button type="button" class="btn btn-default">커뮤니티</button>
+			<a href="<%=request.getContextPath()%>/site"><button type="button" class="btn btn-default">커뮤니티</button></a>
 		</div>
 		<div class="btn-group" role="group">
-			<button type="button" class="btn btn-default">랭킹</button>
+			<a href="<%=request.getContextPath()%>/site"><button type="button" class="btn btn-default">랭킹</button></a>
 		</div>
 		<div class="btn-group" role="group">
-			<button type="button" class="btn btn-default">고객마당</button>
+			<a href="<%=request.getContextPath()%>/site"><button type="button" class="btn btn-default">고객마당</button></a>
 		</div>
 	</div>
 	</header>

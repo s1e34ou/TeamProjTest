@@ -13,6 +13,13 @@
 <title>Insert title here</title>
 <link href="<%=request.getContextPath()%>/style/index.css"
 	rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+		<!-- 부가적인 테마 -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+		<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -98,7 +105,20 @@ $(function() {
 	</div>
 	<div id="defaultbox">
 		<div id="picboard">
-			<div id="picture1"></div>
+			<div id="picture1">
+			<div class="row">
+ 				 <div class="col-sm-6 col-md-4">
+  				  <div class="thumbnail">
+  		 			   <img src="..." alt="...">
+     				 <div class="caption">
+    		  	  <h3>Thumbnail label</h3>
+      				  <p>...</p>
+      		 	 <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+     		 		</div>
+   				 </div>
+ 			 	</div>
+				</div>
+			</div>
 			<div id="picture2"></div>
 			<div id="picture3"></div>
 			<div id="picture4"></div>
