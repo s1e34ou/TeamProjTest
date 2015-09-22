@@ -106,7 +106,7 @@ $(function() {
 	<div id="defaultbox">
 		<div id="picboard">
 			<div id="picture1">
-				<a href="#" class="thumbnail"> <img
+				<a href="<%=request.getContextPath() %>/test" class="thumbnail"> <img
 					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb1">
 				</a>
 				<div class="caption" id="picbtext1">
