@@ -105,11 +105,42 @@ $(function() {
 	</div>
 	<div id="defaultbox">
 		<div id="picboard">
-			<div id="picture1"></div>
-			<div id="picture2"></div>
-			<div id="picture3"></div>
-			<div id="picture4"></div>
-			<div id="picture5"></div>
+			<div id="picture1">
+				<a href="#" class="thumbnail"> <img
+					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb1">
+				</a>
+				<div class="caption" id="picbtext1">
+					<center><h3>제목제목제목1</h3>
+					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
+				</div>
+			</div>
+				<div id="picture2">
+				<a href="#" class="thumbnail"> 
+					<img src="<%=request.getContextPath()%>/images/planets.jpg" id="picb2">
+				</a>
+				<div class="caption" id="picbtext2">
+					<center><h3>제목제목제목2</h3>
+					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
+				</div>
+			</div>
+			<div id="picture3">
+				<a href="#" class="thumbnail"> 
+					<img src="<%=request.getContextPath()%>/images/planets.jpg" id="picb3">
+				</a>
+				<div class="caption" id="picbtext3">
+					<center><h3>제목제목제목3</h3>
+					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
+				</div>
+			</div>
+			<div id="picture4">
+				<a href="#" class="thumbnail"> 
+					<img src="<%=request.getContextPath()%>/images/planets.jpg" id="picb4">
+				</a>
+				<div class="caption" id="picbtext4">
+					<center><h3>제목제목제목4</h3>
+					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
+				</div>	
+			</div>
 		</div>
 		<div id="bannerbox">
 			<div id="banner1"></div>
