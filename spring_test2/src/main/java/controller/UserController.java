@@ -55,9 +55,15 @@ public class UserController {
 		model.addAttribute("contentpage", "/WEB-INF/view/join/join.jsp");
 		return "start";
 	}
-
-	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String userJoin(Model model, Users users, HttpServletRequest req) {
+	
+	@RequestMapping(value = "/site", method = RequestMethod.GET)
+	public String userSiteMap(Model model) {
+		model.addAttribute("contentpage", "/WEB-INF/view/sitemap.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value="/join",method=RequestMethod.POST)
+	public String userJoin(Model model, Users users, HttpServletRequest req){
 		model.addAttribute("contentpage", "/WEB-INF/view/join/joinsuccess.jsp");
 		String address1 = req.getParameter("USERS_ADRESS1");
 		String address2 = req.getParameter("USERS_ADRESS2");

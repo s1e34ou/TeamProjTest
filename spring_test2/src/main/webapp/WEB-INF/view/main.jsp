@@ -14,6 +14,13 @@
 <title>Insert title here</title>
 <link href="<%=request.getContextPath()%>/style/index.css"
 	rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+		<!-- 부가적인 테마 -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+		<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 
@@ -109,11 +116,42 @@ $(function() {
 	</div>
 	<div id="defaultbox">
 		<div id="picboard">
-			<div id="picture1"></div>
-			<div id="picture2"></div>
-			<div id="picture3"></div>
-			<div id="picture4"></div>
-			<div id="picture5"></div>
+			<div id="picture1">
+				<a href="#" class="thumbnail"> <img
+					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb1">
+				</a>
+				<div class="caption" id="picbtext1">
+					<center><h3>제목제목제목1</h3>
+					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
+				</div>
+			</div>
+				<div id="picture2">
+				<a href="#" class="thumbnail"> 
+					<img src="<%=request.getContextPath()%>/images/planets.jpg" id="picb2">
+				</a>
+				<div class="caption" id="picbtext2">
+					<center><h3>제목제목제목2</h3>
+					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
+				</div>
+			</div>
+			<div id="picture3">
+				<a href="#" class="thumbnail"> 
+					<img src="<%=request.getContextPath()%>/images/planets.jpg" id="picb3">
+				</a>
+				<div class="caption" id="picbtext3">
+					<center><h3>제목제목제목3</h3>
+					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
+				</div>
+			</div>
+			<div id="picture4">
+				<a href="#" class="thumbnail"> 
+					<img src="<%=request.getContextPath()%>/images/planets.jpg" id="picb4">
+				</a>
+				<div class="caption" id="picbtext4">
+					<center><h3>제목제목제목4</h3>
+					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
+				</div>	
+			</div>
 		</div>
 		<div id="bannerbox">
 			<div id="banner1"></div>
