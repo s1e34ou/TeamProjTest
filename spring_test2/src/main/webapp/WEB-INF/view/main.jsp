@@ -1,3 +1,4 @@
+<%@page import="java.io.Console"%>
 <%@page import="dto.Users"%>
 <%@page import="java.util.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -22,6 +23,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+
 $(function() {
 	$("#loginbutton").on("click",function(e){
 		if($("#usersId").val()==""){
@@ -34,15 +36,62 @@ $(function() {
 			e.preventDefault();
 		}
 	});
+	<%String msg=(String)request.getAttribute("ex");
+		if(msg=="아이디 확인"){%>
+			alert("아이디를 확인하세요");
+		<%}else if(msg=="비밀번호 확인"){%>
+		alert("비밀번호를 확인하세요");
+		<%}%>
+		
+	
+	
 });
 </script>
 </head>
 <body>
-
+	
 	<section id="parent">
 	<div id="box1">
-		<img src="<%=request.getContextPath()%>/images/planets.jpg"
-			id="seasonpic">
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="3"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner" role="listbox">
+				<div class="item active">
+					<img src="<%=request.getContextPath()%>/images/fall1.jpg" id="seasonpic1">
+					<div class="carousel-caption">...</div>
+				</div>
+				<div class="item">
+					<img src="<%=request.getContextPath()%>/images/fall2.jpg" id="seasonpic2">
+					<div class="carousel-caption">...</div>
+				</div>
+				<div class="item">
+					<img src="<%=request.getContextPath()%>/images/fall3.jpg" id="seasonpic3">
+					<div class="carousel-caption">...</div>
+				</div>
+				<div class="item">
+					<img src="<%=request.getContextPath()%>/images/fall4.jpg" id="seasonpic4">
+					<div class="carousel-caption">...</div>
+				</div>
+			</div>
+
+			<!-- Controls -->
+			<a class="left carousel-control" href="#carousel-example-generic"
+				role="button" data-slide="prev"> <span
+				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a> <a class="right carousel-control" href="#carousel-example-generic"
+				role="button" data-slide="next"> <span
+				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
 	</div>
 	<div id="loginbox">
 		<%
@@ -58,9 +107,9 @@ $(function() {
 					<input type="password" name="usersPassword" id="usersPassword"/>
 				</div>
 				<div id="loginbutton">
-					<input type="submit" id="loginbutton" value="로그인" />
+					<input type="submit" id="loginbtn" value="로그인" />
 				</div>
-				</div>
+			</div>
 			</form>
 		
 		<div id="box3">
@@ -110,7 +159,7 @@ $(function() {
 					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb1">
 				</a>
 				<div class="caption" id="picbtext1">
-					<center><h3>제목제목제목1</h3>
+					<center><h3>제목제목제목2</h3>
 					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
 				</div>
 			</div>

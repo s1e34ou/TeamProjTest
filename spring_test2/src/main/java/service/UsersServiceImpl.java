@@ -1,8 +1,12 @@
 package service;
 
+import java.sql.SQLException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,33 +24,54 @@ private static Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
 	@Override
 	@Transactional
 	public void join(Users user) {
+		try{
 		dao.insertUser(user);
+		}catch(DuplicateKeyException e){
+			logger.trace("아이디중복");
+			e.printStackTrace();
+		}
 	}
 
+	
 	@Override
 	public Users login(String userId, String pass) {
+		Users user = null;
+		try{
 		Users selected = dao.selectUser(userId);
-		logger.trace("selected: {}",selected);
-		Users user;
-	
-		if(selected == null){
-			logger.trace(userId+"로등록된 사용자 없음");
-			throw new ServiceFailException(userId+"로 등록된 사용자가 없습니다.");
-		}
+
+		
+		String msg;
 		if(selected!=null&&selected.getUsersPassword().equals(pass)){
 			user=selected;
-			logger.trace("사용자 조회 {}",user);
-		}else{
-			logger.trace("비번확인");
-			throw new ServiceFailException("패스워드를 확인하세요");
-		}
+			logger.trace("사용자 로그인 {}",user);
+			return user;
 			
-		return user;
+		}else{
+			msg="비밀번호 확인";
+			throw new ServiceFailException(msg);
+		}
+	}catch(ServiceFailException e){
+		logger.trace(e.getMessage());
+		throw e;
+	}catch(EmptyResultDataAccessException e){
+		String msg;
+		msg="아이디 확인";
+		logger.trace(msg);
+		throw e;
+	}
+		
+	
 	}
 	
 	@Override
 	public Users selectUser(String userId){
-		Users selUser=dao.selectUser(userId);
+		Users selUser=null;
+		try{
+			selUser=dao.selectUser(userId);
+		}catch(EmptyResultDataAccessException e){
+			logger.trace(e.getMessage());
+		}
+		
 		
 		return selUser;
 	}
