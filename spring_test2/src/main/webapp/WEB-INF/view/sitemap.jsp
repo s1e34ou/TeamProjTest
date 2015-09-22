@@ -16,40 +16,29 @@
 	<div id="sitemapbox">
 	<h1>SiteMap</h1>
 		<div id="sitemapin">
-			<div id="box1">
-				<center>
-				<h2>축제</h2>
-				- 지역별<br>
-				- 계절별<br>
-				</center>
+			<div id="box1" class="list-group">
+				<a href="#" class="list-group-item active"> 축제 </a> 
+				<a href="#" class="list-group-item"> 지역별 </a> 
+				<a href="#" class="list-group-item"> 계절별 </a> 
 			</div>
-			<div id="box2">
-				<center>
-				<h2>이벤트</h2>
-				- 이벤트<br>
-				</center>
+			<div id="box2" class="list-group">
+				<a href="#" class="list-group-item active"> 이벤트 </a> 
+				<a href="#" class="list-group-item"> 이벤트(할인) </a> 
 			</div>
-			<div id="box3">
-				<center>
-				<h2>커뮤니티</h2>
-				- 자유게시판<br>
-				- 축제후기<br>
-				</center>
+			<div id="box3" class="list-group">
+				<a href="#" class="list-group-item active"> 커뮤니티 </a> 
+				<a href="#" class="list-group-item"> 자유게시판 </a> 
+				<a href="#" class="list-group-item"> 축제후기게시판 </a> 
 			</div>
-			<div id="box4">
-				<center>
-				<h2>랭킹</h2>
-				- 랭킹게시판<br>
-				(추천/조회수)<br>
-				</center>
+			<div id="box4" class="list-group">
+				<a href="#" class="list-group-item active"> 랭킹 </a> 
+				<a href="#" class="list-group-item"> 랭킹게시판(추천/조회) </a> 
 			</div>
-			<div id="box5">
-				<center>
-				<h2>고객마당</h2>
-				- 소개<br>
-				- 공지사항<br>
-				- Q&A게시판<br>
-				</center>
+			<div id="box5" class="list-group">
+				<a href="#" class="list-group-item active"> 고객마당 </a> 
+				<a href="#" class="list-group-item"> 소개 </a> 
+				<a href="#" class="list-group-item"> 공지사항 </a> 
+				<a href="#" class="list-group-item"> Q&A게시판 </a> 
 			</div>
 		</div>
 	</div>
