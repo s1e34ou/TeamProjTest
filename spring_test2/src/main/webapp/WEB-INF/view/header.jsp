@@ -31,10 +31,8 @@
 	<!-- /.col-lg-6 -->
 	<div class="btn-group btn-group-justified" role="group">
 		<div class="btn-group" role="group">
-			<button type="button" class="btn btn-default dropdown-toggle"
-				data-toggle="dropdown" aria-expanded="false">축제
-				<span class="caret"></span>
-			</button>
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="mbtn1">축제
+				<span class="caret"></span></button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul1">
 				<li><a href="#">지역별 축제</a></li>
 				<li><a href="#">계절별 축제</a></li>
@@ -42,7 +40,7 @@
 		</div>
 		<div class="btn-group" role="group">
 			<button type="button" class="btn btn-default dropdown-toggle"
-				data-toggle="dropdown" aria-expanded="false">이벤트
+				data-toggle="dropdown" aria-expanded="false"id="mbtn2">이벤트
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul2">
@@ -51,7 +49,7 @@
 		</div>
 		<div class="btn-group" role="group">
 			<button type="button" class="btn btn-default dropdown-toggle"
-				data-toggle="dropdown" aria-expanded="false">커뮤니티
+				data-toggle="dropdown" aria-expanded="false" id="mbtn3">커뮤니티
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul3">
@@ -61,16 +59,16 @@
 		</div>
 		<div class="btn-group" role="group">
 			<button type="button" class="btn btn-default dropdown-toggle"
-				data-toggle="dropdown" aria-expanded="false">랭킹
+				data-toggle="dropdown" aria-expanded="false" id="mbtn4">랭킹
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul4">
 				<li><a href="#">랭킹게시판(추천/조회수)</a></li>
 			</ul>
 		</div>
-		<div class="btn-group" role="group">
+		<div class="btn-group" role="group" id="menu5">
 			<button type="button" class="btn btn-default dropdown-toggle"
-				data-toggle="dropdown" aria-expanded="false">고객마당
+				data-toggle="dropdown" aria-expanded="false" id="mbtn5">고객마당
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul5">
@@ -82,3 +80,45 @@
 	</div>
 </header>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#mbtn1").mouseover(function() {
+			$("#headmenuul1").show();
+		});
+		$("#mbtn1").mouseout(function() {
+			$("#headmenuul1").hide();
+		});
+	});
+	$(function() {
+		$("#mbtn2").mouseover(function() {
+			$("#headmenuul2").show();
+		});
+		$("#mbtn2").mouseout(function() {
+			$("#headmenuul2").hide();
+		});
+	});
+	$(function() {
+		$("#mbtn3").mouseover(function() {
+			$("#headmenuul3").show();
+		});
+		$("#mbtn3").mouseout(function() {
+			$("#headmenuul3").hide();
+		});
+	});
+	$(function() {
+		$("#mbtn4").mouseover(function() {
+			$("#headmenuul4").show();
+		});
+		$("#mbtn4").mouseout(function() {
+			$("#headmenuul4").hide();
+		});
+	});
+	$(function() {
+		$("#mbtn5").mouseover(function() {
+			$("#headmenuul5").show();
+		});
+		$("#mbtn5").mouseout(function() {
+			$("#headmenuul5").hide();
+		});
+	});
+</script>
