@@ -26,7 +26,7 @@ import exception.ServiceFailException;
 import service.UsersService;
 
 @Controller
-@SessionAttributes({ "loginUser","seluser","findUser","findPw" })
+@SessionAttributes({ "loginUser", "seluser", "findUser", "findPw" })
 
 public class UserController {
 	private static Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -34,24 +34,22 @@ public class UserController {
 	@Autowired
 	UsersService service;
 
-		
 	@ModelAttribute("users")
-	public Users getusers(){
+	public Users getusers() {
 		return new Users();
 	}
-	
-	
+
 	@InitBinder
 	public void bindData(WebDataBinder binder) {
 		SimpleDateFormat format = new SimpleDateFormat("yyMMdd");
 		binder.registerCustomEditor(Date.class, "usersBirth", new CustomDateEditor(format, true));
 	}
-	
+
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String mainForm(Model model) {
 		return "start";
 	}
-	
+
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String userJoinForm(Model model) {
 		model.addAttribute("contentpage", "/WEB-INF/view/join/join.jsp");
@@ -70,7 +68,7 @@ public class UserController {
 		String address1 = req.getParameter("USERS_ADRESS1");
 		String address2 = req.getParameter("USERS_ADRESS2");
 		String address3 = req.getParameter("USERS_ADRESS3");
-		String address = address1+address2+address3;
+		String address = address1 + address2 + address3;
 		users.setUsersAddress(address);
 		service.join(users);
 		return "start";
@@ -85,17 +83,17 @@ public class UserController {
 	@RequestMapping(value = "/infochange", method = RequestMethod.POST)
 	public String userInfoChange(Model model, Users users) {
 		model.addAttribute("contentpage", "/WEB-INF/view/join/id_infochangecheck.jsp");
-		
+
 		service.changeInfo(users);
 
 		return "start";
 	}
 
 	@RequestMapping(value = "/deleteconfirm", method = RequestMethod.GET)
-	public String userDelete(Model model,@RequestParam String id, SessionStatus sessionstatus) {
+	public String userDelete(Model model, @RequestParam String id, SessionStatus sessionstatus) {
 		model.addAttribute("contentpage", "/WEB-INF/view/join/id_deleteconfirm.jsp");
 		service.leave(id);
-		sessionstatus.setComplete();	
+		sessionstatus.setComplete();
 		return "start";
 	}
 
@@ -104,25 +102,29 @@ public class UserController {
 	public String userLogin(Model model, HttpServletRequest req) {
 		String usersid = req.getParameter("usersId");
 		String userspassword = req.getParameter("usersPassword");
-		try{
-			logger.trace("전");
-		Users loginUser = service.login(usersid,userspassword);
-		Users seluser = service.selectUser(loginUser.getUsersId());
-		logger.trace("loginUser : {}",loginUser);
-		logger.trace("selser : {}",seluser);
-		
-		model.addAttribute("loginUser", loginUser);
-		model.addAttribute("seluser",seluser);
-		logger.trace("로그인");
-		}catch(ServiceFailException e){
-			logger.trace("로그인에러");
-			e.getMessage();
-		}finally{
+		String msg=null;
+		try {
+			Users loginUser = service.login(usersid, userspassword);
+			Users seluser = service.selectUser(loginUser.getUsersId());
+			logger.trace("loginUser : {}", loginUser);
+			logger.trace("selser : {}", seluser);
+
+			model.addAttribute("loginUser", loginUser);
+			model.addAttribute("seluser", seluser);
+
+		} catch (Exception e) {
+			logger.trace(e.getMessage());
+			if(e.getMessage()=="아이디 확인"){
+				msg="아이디 확인";	
+			}else{
+				msg="비밀번호 확인";
+			}
+			
+		} finally {
+			model.addAttribute("ex",msg);
 			model.addAttribute("contentpage", "/WEB-INF/view/main.jsp");
 			return "start";
 		}
-		
-		
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -138,35 +140,32 @@ public class UserController {
 		model.addAttribute("contentpage", "/WEB-INF/view/login/login_findinput.jsp");
 		return "start";
 	}
-	
+
 	@RequestMapping(value = "/login_findinput", method = RequestMethod.POST)
-	public String userLoginFindinput(Model model,HttpServletRequest req) {
+	public String userLoginFindinput(Model model, HttpServletRequest req) {
 		String usersemail = req.getParameter("usersEmail");
 		String usersname = req.getParameter("usersName");
-		
+
 		Users findUser = service.find(usersemail, usersname);
-		
+
 		model.addAttribute("findUser", findUser);
 		model.addAttribute("contentpage", "/WEB-INF/view/login/login_id_find.jsp");
-		
+
 		return "start";
 	}
-	
+
 	@RequestMapping(value = "/login_findinputPw", method = RequestMethod.POST)
-	public String userLoginFindinputPw(Model model,HttpServletRequest req) {
+	public String userLoginFindinputPw(Model model, HttpServletRequest req) {
 		String usersid = req.getParameter("usersId");
 		String usersname = req.getParameter("usersName");
-		String usersques =req.getParameter("usersPassques");
-		
+		String usersques = req.getParameter("usersPassques");
+
 		Users findPw = service.findPw(usersid, usersname, usersques);
-		
+
 		model.addAttribute("findPw", findPw);
 		model.addAttribute("contentpage", "/WEB-INF/view/login/login_pw_find.jsp");
-		
+
 		return "start";
 	}
-	
-	
-	
 
 }

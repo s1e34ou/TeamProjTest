@@ -1,3 +1,4 @@
+<%@page import="java.io.Console"%>
 <%@page import="dto.Users"%>
 <%@page import="java.util.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -22,6 +23,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+
 $(function() {
 	$("#loginbutton").on("click",function(e){
 		if($("#usersId").val()==""){
@@ -34,11 +36,20 @@ $(function() {
 			e.preventDefault();
 		}
 	});
+	<%String msg=(String)request.getAttribute("ex");
+		if(msg=="아이디 확인"){%>
+			alert("아이디를 확인하세요");
+		<%}else if(msg=="비밀번호 확인"){%>
+		alert("비밀번호를 확인하세요");
+		<%}%>
+		
+	
+	
 });
 </script>
 </head>
 <body>
-
+	
 	<section id="parent">
 	<div id="box1">
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
