@@ -23,6 +23,26 @@ div {
 #sitemap {
 	float: right;
 }
+#headmenuul1 {
+	border: solid 1px gray;
+	width: 240px;
+}
+#headmenuul2 {
+	border: solid 1px gray;
+	width: 240px;
+}
+#headmenuul3 {
+	border: solid 1px gray;
+	width: 240px;
+}
+#headmenuul4 {
+	border: solid 1px gray;
+	width: 240px;
+}
+#headmenuul5 {
+	border: solid 1px gray;
+	width: 240px;
+}
 #fastivalinfo {
 	float: left;
 }
