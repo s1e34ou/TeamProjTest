@@ -100,37 +100,52 @@ div {
 	width: 300px;
 }
 #defaultbox{
-	border:solid 1px red;
 	margin: auto;
 	width: 1200px;
-	height: 200px;
+	height: 350px;
 	margin-top:15px;
 	display: -webkit-box;
 }
 #picboard{
-	border:solid 1px black;
 	width: 900px;
+	height: 350px;
 	display: -webkit-box;
 }
-#picboard div:nth-of-type(1){
-	border:solid 1px blue;
-	width: 180px;
+#picture1{
+	border:solid 1px gray;
+	width: 200px;
+	width: 225px;
 }
-#picboard div:nth-of-type(2){
-	border:solid 1px blue;
-	width: 180px;
+#picb1{
+	width: 200px;
+	height: 200px;
 }
-#picboard div:nth-of-type(3){
-	border:solid 1px blue;
-	width: 180px;
+#picture2{
+	border:solid 1px gray;
+	width: 200px;
+	width: 225px;
 }
-#picboard div:nth-of-type(4){
-	border:solid 1px blue;
-	width: 180px;
+#picb2{
+	width: 200px;
+	height: 200px;
 }
-#picboard div:nth-of-type(5){
-	border:solid 1px blue;
-	width: 180px;
+#picture3{
+	border:solid 1px gray;
+	width: 200px;
+	width: 225px;
+}
+#picb3{
+	width: 200px;
+	height: 200px;
+}
+#picture4{
+	border:solid 1px gray;
+	width: 200px;
+	width: 225px;
+}
+#picb4{
+	width: 200px;
+	height: 200px;
 }
 #bannerbox{
 	border:solid 1px black;

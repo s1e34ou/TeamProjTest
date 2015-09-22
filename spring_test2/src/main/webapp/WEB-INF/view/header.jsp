@@ -13,7 +13,7 @@
 
 
 	<header>
-	<button type="button" id="sitemap">사이트맵</button>
+	<a href="<%=request.getContextPath()%>/site"><button type="button" id="sitemap">사이트맵</button></a>
 	<br>
 	<br>
 	<div class="row">
