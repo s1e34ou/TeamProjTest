@@ -1,17 +1,16 @@
 package controller;
 
-import java.io.Console;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -24,8 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.google.gson.Gson;
+
 import dto.Users;
-import exception.ServiceFailException;
 import service.UsersService;
 
 @Controller
@@ -209,6 +209,18 @@ public class UserController {
 			return msg;
 		}
 
+	}
+	
+	@RequestMapping(value = "/passtest", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String userpassTest(@RequestParam String usersPassword, @RequestParam String usersPasswordcheck) {
+		Gson gson = new Gson();
+		Map<String, String> resultMap= new HashMap<>();
+		if(usersPassword.equals(usersPasswordcheck)){
+			resultMap.put("result", "비밀번호 확인완료");
+		}else{
+			resultMap.put("result", "비밀번호 다름");
+		}
+		return gson.toJson(resultMap);
 	}
 
 }

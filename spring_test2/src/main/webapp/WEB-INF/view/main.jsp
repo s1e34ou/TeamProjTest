@@ -128,8 +128,8 @@ $(function() {
 		</form>
 
 		<div id="box3">
-			<input  class="btn btn-default"type="button" id="adduser" value="회원가입" /> <input
-				 class="btn btn-default" type="button" id="idpwsearch" value="ID/PW찾기" />
+			<input class="btn btn-default" type="button" id="adduser" value="회원가입" />
+			 <input class="btn btn-default" type="button" id="idpwsearch" value="ID/PW찾기" />
 		</div>
 		<%
 			} else {
@@ -171,15 +171,10 @@ $(function() {
 					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb1">
 				</a>
 				<div class="caption" id="picbtext1">
-<<<<<<< HEAD
 					<center>
 						<h3>제목제목제목1</h3>
 						<p>내용내용내용내용내용내용내용내용내용내용내용내용</p>
 					</center>
-=======
-					<center><h3>제목제목제목2</h3>
-					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
->>>>>>> refs/remotes/origin/master
 				</div>
 			</div>
 			<div id="picture2">

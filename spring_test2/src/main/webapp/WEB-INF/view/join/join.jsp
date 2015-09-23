@@ -29,6 +29,7 @@
 <script type="text/javascript">
 	$(function() {
 		var dupl;
+		var dupl2;
 		$("#usersId").on("keyup",function(){
 										
 					$target=$("#dup");
@@ -54,13 +55,36 @@
 					});
 				});
 		
+		$("#usersPasswordcheck").on("keyup",function(){
+			
+			$target=$("#dup2");
+			
+			$.ajax({
+				type:'post',
+				url:"<%=request.getContextPath()%>/passtest",
+				data:{usersPassword:$("#usersPassword").val(),usersPasswordcheck:$("#usersPasswordcheck").val()},
+				success:function(responseTxt){
+					var result=responseTxt["result"];
+					dupl2=result;
+					if(result=="비밀번호 다름"){
+						$target.css("color","red");
+					}else{
+						$target.css("color","green");
+					}
+					$target.html(result);
+				},
+				
+				error:function(xhr, status, error){
+					console.log("error: "+error);
+				}
+				
+			});
+		});
+		
 		$("#joinbt").on(
 				"click",
 				function(e) {
-					if(dupl=="아이디중복"){
-						alert("아이디를 다시 확인해주세요");
-						e.preventDefault();
-					}
+					
 					if ($("#usersId").val() == "") {
 						alert("아이디를 입력해 주세요");
 						e.preventDefault();
@@ -140,6 +164,15 @@
 						alert("비밀번호찾기 답을 입력해 주세요");
 						e.preventDefault();
 					}
+					
+					if(dupl=="아이디중복"){
+						alert("아이디를 다시 확인해주세요");
+						e.preventDefault();
+					}
+					if(dupl2=="비밀번호 다름"){
+						alert("비밀번호를 확인해주세요");
+						e.preventDefault();
+					}
 				});
 	});
 </script>
@@ -163,6 +196,11 @@
 						<sform:label path="usersPassword" class="col-sm-2 control-label">Password</sform:label>
 						<sform:input path="usersPassword" class="form-control"
 							type="password" placeholder="Password" />
+					</div>
+					<div class="form-group" id="passinputbox2">
+						<label id="usersPasswordchecklb" class="col-sm-2 control-label">Password확인</label>
+						<input id="usersPasswordcheck"  class="form-control" type="password" placeholder="Password" />
+							<label id="dup2" class="col-sm-2 control-label"></label>
 					</div>
 
 					<div class="form-group" id="nameinputbox">
