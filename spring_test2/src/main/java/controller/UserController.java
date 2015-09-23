@@ -43,11 +43,11 @@ public class UserController {
 		return new Users();
 	}
 	
-	@ModelAttribute("board")
+	/*@ModelAttribute("board")
 	public Board getboard(){
 		
 		return new Board();
-	}
+	}*/
 		
 
 	@InitBinder
@@ -67,11 +67,11 @@ public class UserController {
 		return "start";
 	}
 
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String userTest(Model model) {
 		model.addAttribute("contentpage", "/WEB-INF/view/test.jsp");
 		return "start";
-	}
+	}*/
 	@RequestMapping(value = "/site", method = RequestMethod.GET)
 	public String userSiteMap(Model model) {
 		model.addAttribute("contentpage", "/WEB-INF/view/sitemap.jsp");
