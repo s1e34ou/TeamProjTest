@@ -31,11 +31,6 @@ public class BoardController {
 		return "main/keyword";
 	}
 
-	@RequestMapping(value = "/sitemap", method = RequestMethod.GET)
-	public String sitemap(Model model) {
-		model.addAttribute("contentpage", "/WEB-INF/view/sitemap.jsp");
-		return "start";
-	}
 
 	@RequestMapping(value = "/festival_regionboard", method = RequestMethod.GET)
 	public String festivalRegionboard(Model model) {
@@ -104,9 +99,10 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/freeboard", method = RequestMethod.GET)
-	public String freeboard(Model model) {
-
-		return "commmunity/freeboard";
+	public String freeboard(Model model, BoardService boardservice, Board board) {
+		model.addAttribute("board",board);
+		model.addAttribute("boardserivce",boardservice);
+		return "community/freeboard";
 	}
 
 	@RequestMapping(value = "/freeboard_view", method = RequestMethod.GET)
