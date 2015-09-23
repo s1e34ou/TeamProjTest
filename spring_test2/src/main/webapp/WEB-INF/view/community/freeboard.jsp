@@ -32,9 +32,9 @@ List<Board> list = bservice.getBoardByPage(BoardDao.BOARD_PER_PAGE);
         </th>
     </tr>
     
-    <%
+    <%-- <%
         for(int i=0;i<list.size();i++){
-            list.get(i).;
+            list.get(i).; 
     %>
     <tr align="center" valign="middle" bordercolor="#333333"
         onmouseover="this.style.backgroundColor='F8F8F8'"
@@ -69,7 +69,7 @@ List<Board> list = bservice.getBoardByPage(BoardDao.BOARD_PER_PAGE);
             <div align="center"><%=bl.getBOARD_READCOUNT() %></div>
         </td>
     </tr>
-    <%} %>
+    <%} %> --%>
  <%--    <tr align=center height=20>
         <td colspan=7 style=font-family:Tahoma;font-size:10pt;>
             <%if(nowpage<=1){ %>

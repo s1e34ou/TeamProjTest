@@ -37,7 +37,9 @@ $(function() {
 	</div>
 	<!-- /.col-lg-6 -->
 	<div class="btn-group btn-group-justified" role="group">
-		<a href="<%=request.getContextPath()%>/freeboard">gg</a>
+	
+		<%-- <a href="<%=request.getContextPath()%>/freeboard">gg</a> --%>
+		
 		<div class="btn-group" role="group">
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="mbtn1">축제
 				<span class="caret"></span></button>
@@ -93,7 +95,7 @@ $(function() {
 		$("#mbtn1").mouseover(function() {
 			$("#headmenuul1").show();
 		});
-		$("#mbtn1").mouseout(function() {
+		$("#mbtn1").delay(3000).mouseout(function() {
 			$("#headmenuul1").hide();
 		});
 	});
