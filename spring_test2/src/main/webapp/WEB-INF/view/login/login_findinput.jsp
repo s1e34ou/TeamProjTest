@@ -24,6 +24,39 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link href="<%=request.getContextPath()%>/style/main.css"
 	rel="stylesheet" type="text/css">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(function() {
+	
+	$("#findid").on("click",function(e){
+		if($("#usersEmail").val()==""){
+			alert("이메일을 입력해 주세요");
+			e.preventDefault();
+			
+		}
+		if($("#usersEmail").val()!=""&&$("#usersName").val()==""){
+			alert("이름을 입력해 주세요");
+			e.preventDefault();
+		}
+	});
+	
+	$("#findpw").on("click",function(e){
+		if($("#usersId").val()==""){
+			alert("아이디를 입력해 주세요");
+			e.preventDefault();
+			
+		}
+		if($("#usersId").val()!=""&&$("#usersName2").val()==""){
+			alert("이름을 입력해 주세요");
+			e.preventDefault();
+		}
+		if($("#usersId").val()!=""&&$("#usersName2").val()!=""&&$("#usersPassques").val()==""){
+			alert("비밀번호 찾기 답을 입력해 주세요");
+			e.preventDefault();
+		}
+	});
+});
+</script>
 
 </head>
 <body>
@@ -47,7 +80,7 @@
 						<sform:label path="usersName" class="col-sm-2 control-label" >이름</sform:label>
 						<sform:input path="usersName" class="form-control" placeholder="name"/>
 						<div id="searchbtn">
-  						<sform:button class="btn btn-default">ID찾기</sform:button>
+  						<sform:button id="findid" class="btn btn-default">ID찾기</sform:button>
  						<a href="<%=request.getContextPath() %>/main"><button type="button" class="btn btn-default">취소</button></a>
  					 </div>	
 					</div>
@@ -69,7 +102,7 @@
 					</div>
 					<div class="form-group" id="nameinputbox">
 						<sform:label path="usersName" class="col-sm-2 control-label" >이름</sform:label>
-						<sform:input path="usersName" class="form-control" placeholder="name"/>
+						<sform:input id="usersName2" path="usersName" class="form-control" placeholder="name"/>
 					</div>
 					<div class="form-group" id="idpwsearchquebox">
 						<label id="queidpw" class="col-sm-2 control-label">찾기질문</label>
@@ -83,7 +116,7 @@
 						<sform:label path="usersPassques" class="col-sm-2 control-label" >PW찾기 답</sform:label>
 						<sform:input class="form-control" path="usersPassques" placeholder="정답"/>
 						<div id="searchbtn">
-							<sform:button class="btn btn-default">PW 찾기</sform:button>
+							<sform:button id="findpw" class="btn btn-default">PW 찾기</sform:button>
 							<a href="<%=request.getContextPath() %>/main"><button type="button" class="btn btn-default">취소</button></a>
 						</div>
 					</div>

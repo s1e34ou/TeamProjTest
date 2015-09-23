@@ -15,70 +15,71 @@ import dto.Users;
 import exception.ServiceFailException;
 
 @Service
-public class UsersServiceImpl implements UsersService{
-private static Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
+public class UsersServiceImpl implements UsersService {
+	private static Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
 
 	@Autowired
 	UsersDao dao;
-	
+
 	@Override
 	@Transactional
 	public void join(Users user) {
-		try{
-		dao.insertUser(user);
-		}catch(DuplicateKeyException e){
+		try {
+			dao.insertUser(user);
+		} catch (DuplicateKeyException e) {
 			logger.trace("아이디중복");
 			e.printStackTrace();
 		}
 	}
 
-	
 	@Override
 	public Users login(String userId, String pass) {
 		Users user = null;
-		try{
-		Users selected = dao.selectUser(userId);
+		try {
+			Users selected = dao.selectUser(userId);
 
-		
-		String msg;
-		if(selected!=null&&selected.getUsersPassword().equals(pass)){
-			user=selected;
-			logger.trace("사용자 로그인 {}",user);
-			return user;
-			
-		}else{
-			msg="비밀번호 확인";
+			String msg;
+			if (selected != null && selected.getUsersPassword().equals(pass)) {
+				user = selected;
+				logger.trace("사용자 로그인 {}", user);
+				return user;
+
+			} else {
+				msg = "비밀번호 확인";
+				throw new ServiceFailException(msg);
+			}
+		} catch (ServiceFailException e) {
+			logger.trace(e.getMessage());
+			throw e;
+		} catch (EmptyResultDataAccessException e) {
+			String msg;
+			msg = "아이디 확인";
+			logger.trace(msg);
 			throw new ServiceFailException(msg);
 		}
-	}catch(ServiceFailException e){
-		logger.trace(e.getMessage());
-		throw e;
-	}catch(EmptyResultDataAccessException e){
-		String msg;
-		msg="아이디 확인";
-		logger.trace(msg);
-		throw e;
+
 	}
-		
-	
-	}
-	
+
 	@Override
-	public Users selectUser(String userId){
-		Users selUser=null;
-		try{
-			selUser=dao.selectUser(userId);
-		}catch(EmptyResultDataAccessException e){
+	public Users selectUser(String userId) {
+		Users selUser = null;
+		try {
+			selUser = dao.selectUser(userId);
+		} catch (EmptyResultDataAccessException e) {
 			logger.trace(e.getMessage());
 		}
-		
-		
+
 		return selUser;
 	}
+
 	@Override
 	@Transactional
 	public void changeInfo(Users user) {
-		dao.updateUser(user);
+		try {
+			dao.updateUser(user);
+		} catch (NullPointerException e) {
+			logger.trace(e.getMessage());
+		}
 	}
 
 	@Override
@@ -89,38 +90,46 @@ private static Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
 
 	@Override
 	public Users find(String userEmail, String userName) {
-		Users finded = dao.findUser(userEmail);
-		Users user;
-		if(finded==null){
-			throw new ServiceFailException(userEmail+"로 등록된 사용자가 없습니다.");
+
+		Users user = null;
+		String msg;
+		try {
+
+			Users finded = dao.findUser(userEmail);
+			if (finded.getUsersName().equals(userName)) {
+				user = finded;
+				logger.trace("사용자 찾기{}", user);
+			} else {
+				msg = "이름이 일치하지 않습니다.";
+				throw new ServiceFailException(msg);
+			}
+			return user;
+		} catch (EmptyResultDataAccessException e) {
+			msg = userEmail + "로 등록된 이메일이 없습니다.";
+			throw e;
 		}
-		if(finded.getUsersName().equals(userName)){
-			user=finded;
-			logger.trace("사용자 찾기{}",user);
-		}else{
-			throw new ServiceFailException("이름이 일치하지 않습니다.");
-		}
-		return user;
 	}
 
 	@Override
 	public Users findPw(String userId, String userName, String passQues) {
-		Users findedPw = dao.selectUser(userId);
-		logger.trace("findedPw : {}",findedPw);
 
-		Users user;
-		if(findedPw==null){
-			throw new ServiceFailException(userId+"로 등록된 사용자가 없습니다.");
+		Users user = null;
+		String msg;
+		try {
+			Users findedPw = dao.selectUser(userId);
+			if (findedPw != null && findedPw.getUsersName().equals(userName)
+					&& findedPw.getUsersPassques().equals(passQues)) {
+				user = findedPw;
+				logger.trace("비밀번호 찾기{}", user);
+			} else {
+				msg = "비밀번호를 찾을 수 없습니다.";
+				throw new ServiceFailException(msg);
+			}
+			return user;
+		} catch (EmptyResultDataAccessException e) {
+			msg = userId + "로 등록된 사용자가 없습니다.";
+			throw e;
 		}
-		if(findedPw!=null&&findedPw.getUsersName().equals(userName)&&findedPw.getUsersPassques().equals(passQues)){
-			user=findedPw;
-			logger.trace("비밀번호 찾기{}",user);
-		}else{
-
-			throw new ServiceFailException("비밀번호를 찾을수 없습니다.");
-		}
-		return user;
 	}
-
 
 }

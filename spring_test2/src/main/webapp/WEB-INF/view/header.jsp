@@ -10,10 +10,17 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#sitemap").on("click",function(){
+		$(location).attr("href", "<%=request.getContextPath()%>/site");
+	});
+});
+</script>
 
 	<header>
-	<a href="<%=request.getContextPath()%>/site"><button type="button" id="sitemap">사이트맵</button></a>
+	<button type="button" id="sitemap" class="btn btn-default">사이트맵</button>
 	<br>
 	<br>
 	<div class="row">

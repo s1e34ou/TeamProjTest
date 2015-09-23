@@ -50,8 +50,8 @@ public class UsersDaoImpl implements UsersDao {
 
 	@Override
 	public void updateUser(Users users) {
-		String sql = "update users set users_password=?, users_address=?, users_birth=?, users_gender=?, users_phone=?, users_email=? where users_id=?";
-		jdbcTemp.update(sql, users.getUsersPassword(), users.getUsersAddress(), users.getUsersBirth(), users.getUsersGender(),
+		String sql = "update users set users_name=?, users_password=?, users_address=?, users_birth=?, users_gender=?, users_phone=?, users_email=? where users_id=?";
+		jdbcTemp.update(sql,users.getUsersName(), users.getUsersPassword(), users.getUsersAddress(), users.getUsersBirth(), users.getUsersGender(),
 				users.getUsersPhone(), users.getUsersEmail(), users.getUsersId());
 	}
 

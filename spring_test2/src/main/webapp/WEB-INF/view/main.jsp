@@ -14,14 +14,17 @@
 <title>Insert title here</title>
 <link href="<%=request.getContextPath()%>/style/index.css"
 	rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-		<!-- 부가적인 테마 -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-		<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 
 $(function() {
@@ -36,20 +39,32 @@ $(function() {
 			e.preventDefault();
 		}
 	});
-	<%String msg=(String)request.getAttribute("ex");
-		if(msg=="아이디 확인"){%>
-			alert("아이디를 확인하세요");
-		<%}else if(msg=="비밀번호 확인"){%>
-		alert("비밀번호를 확인하세요");
-		<%}%>
-		
+	$("#adduser").on("click",function(){
+		$(location).attr("href", "<%=request.getContextPath()%>/join");
+	});
 	
+	$("#idpwsearch").on("click",function(){
+		$(location).attr("href", "<%=request.getContextPath()%>/login_findinput");
+				});
 	
-});
+	$("#changeuser").on("click",function(){
+		$(location).attr("href", "<%=request.getContextPath()%>/infochange");
+	});
+	
+	$("#logout").on("click",function(){
+		$(location).attr("href", "<%=request.getContextPath()%>/logout");
+		});
+<%String msg = (String) request.getAttribute("ex");
+			if (msg == "아이디 확인") {%>
+	alert("아이디를 확인하세요");
+<%} else if (msg == "비밀번호 확인") {%>
+	alert("비밀번호를 확인하세요");
+<%}%>
+	});
 </script>
 </head>
 <body>
-	
+
 	<section id="parent">
 	<div id="box1">
 		<img src="<%=request.getContextPath()%>/images/planets.jpg"
@@ -60,49 +75,46 @@ $(function() {
 			Object loginUserObj = session.getAttribute("loginUser");
 			if (loginUserObj == null) {
 		%>
-		
-			<c:url value="/login" var="login"></c:url>
-			<form action="${login }" method="POST">
+
+		<c:url value="/login" var="login"></c:url>
+		<form action="${login }" method="POST">
 			<div id="box2">
 				<div id="logintext">
-					<input type="text" name="usersId" id="usersId" />
-					<input type="password" name="usersPassword" id="usersPassword"/>
+					<input type="text" name="usersId" id="usersId" /> <input
+						type="password" name="usersPassword" id="usersPassword" />
 				</div>
 				<div id="loginbutton">
-					<input type="submit" id="loginbutton" value="로그인" />
+					<input class="btn btn-default" type="submit" id="loginbutton" value="로그인" />
 				</div>
-				</div>
-			</form>
-		
+			</div>
+		</form>
+
 		<div id="box3">
-			<a href="<%=request.getContextPath()%>/join"><input type="button"
-				id="adduser" value="회원가입" /></a> 
-			<a href="<%=request.getContextPath()%>/login_findinput"><input type="button" id="idpwsearch"
-				value="ID/PW찾기" /></a>	
+			<input  class="btn btn-default"type="button" id="adduser" value="회원가입" /> <input
+				 class="btn btn-default" type="button" id="idpwsearch" value="ID/PW찾기" />
 		</div>
 		<%
 			} else {
 				String loginUser = ((Users) loginUserObj).getUsersName();
 		%>
 		<div id="loginonbox">
-		<div id="welcome">
-		<center><%=loginUser%>님 반갑습니다.</center>
-		</div>
-		<div id="timetoday">
-		<%
-			Date today = new Date();
-			SimpleDateFormat sdf;
-			sdf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh시 mm분");
-		%>
-		<center><%=sdf.format(today)%></center>
-		</div>
+			<div id="welcome">
+				<center><%=loginUser%>님 반갑습니다.
+				</center>
+			</div>
+			<div id="timetoday">
+				<%
+					Date today = new Date();
+						SimpleDateFormat sdf;
+						sdf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh시 mm분");
+				%>
+				<center><%=sdf.format(today)%></center>
+			</div>
 		</div>
 		<div id="infologbox">
-		<a href="<%=request.getContextPath()%>/infochange">
-		<input type="button" id="changeuser" value="정보수정" /></a> 
-		<a href="<%=request.getContextPath() %>/logout">
-			<input type="button" id="logout" value="로그아웃" />
-		</a>
+			<input class="btn btn-default" type="button" id="changeuser" value="정보수정" /> <input
+			 class="btn btn-default"	type="button" id="logout" value="로그아웃" />
+
 		</div>
 		<%
 			}
@@ -121,36 +133,44 @@ $(function() {
 					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb1">
 				</a>
 				<div class="caption" id="picbtext1">
-					<center><h3>제목제목제목1</h3>
-					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
+					<center>
+						<h3>제목제목제목1</h3>
+						<p>내용내용내용내용내용내용내용내용내용내용내용내용</p>
+					</center>
 				</div>
 			</div>
-				<div id="picture2">
-				<a href="#" class="thumbnail"> 
-					<img src="<%=request.getContextPath()%>/images/planets.jpg" id="picb2">
+			<div id="picture2">
+				<a href="#" class="thumbnail"> <img
+					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb2">
 				</a>
 				<div class="caption" id="picbtext2">
-					<center><h3>제목제목제목2</h3>
-					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
+					<center>
+						<h3>제목제목제목2</h3>
+						<p>내용내용내용내용내용내용내용내용내용내용내용내용</p>
+					</center>
 				</div>
 			</div>
 			<div id="picture3">
-				<a href="#" class="thumbnail"> 
-					<img src="<%=request.getContextPath()%>/images/planets.jpg" id="picb3">
+				<a href="#" class="thumbnail"> <img
+					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb3">
 				</a>
 				<div class="caption" id="picbtext3">
-					<center><h3>제목제목제목3</h3>
-					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
+					<center>
+						<h3>제목제목제목3</h3>
+						<p>내용내용내용내용내용내용내용내용내용내용내용내용</p>
+					</center>
 				</div>
 			</div>
 			<div id="picture4">
-				<a href="#" class="thumbnail"> 
-					<img src="<%=request.getContextPath()%>/images/planets.jpg" id="picb4">
+				<a href="#" class="thumbnail"> <img
+					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb4">
 				</a>
 				<div class="caption" id="picbtext4">
-					<center><h3>제목제목제목4</h3>
-					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
-				</div>	
+					<center>
+						<h3>제목제목제목4</h3>
+						<p>내용내용내용내용내용내용내용내용내용내용내용내용</p>
+					</center>
+				</div>
 			</div>
 		</div>
 		<div id="bannerbox">

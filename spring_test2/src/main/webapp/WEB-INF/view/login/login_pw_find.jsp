@@ -11,6 +11,7 @@
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
 	
+	
 </head>
 <body>
 <% 
@@ -26,7 +27,7 @@
 			</h2>
 		</div>
 			<div id="gomain">
-				<input type="button" id="mainbut" value="main으로"/>
+				<a href="<%=request.getContextPath() %>/main"><input type="button" id="mainbut" value="main으로"/></a>
 			</div>
 		</div>
 	</div>

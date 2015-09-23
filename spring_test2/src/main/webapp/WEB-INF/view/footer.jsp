@@ -16,7 +16,7 @@
 				<option>관련 사이트</option>
 				<option value="http://www.naver.com/">네이버</option>
 				<option value="http://intranet.hsu.ac.kr/">학사시스템</option>
-			</select> <input type="button" name="go_button" id="go_button"
+			</select> <input type="button" class="btn btn-default" name="go_button" id="go_button"
 				title="새 창으로 이동" class="site_go" value="바로가기" />
 		</div>
 	</div>
