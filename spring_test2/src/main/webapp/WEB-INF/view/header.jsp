@@ -95,8 +95,8 @@ $(function() {
 		$("#mbtn1").mouseover(function() {
 			$("#headmenuul1").show();
 		});
-		$("#mbtn1").delay(3000).mouseout(function() {
-			$("#headmenuul1").hide();
+		$("#mbtn1").mouseout(function() {
+			$("#headmenuul1").hide;
 		});
 	});
 	$(function() {
