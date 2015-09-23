@@ -37,6 +37,7 @@ $(function() {
 	</div>
 	<!-- /.col-lg-6 -->
 	<div class="btn-group btn-group-justified" role="group">
+		<a href="<%=request.getContextPath()%>/freeboard">gg</a>
 		<div class="btn-group" role="group">
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="mbtn1">축제
 				<span class="caret"></span></button>
@@ -60,7 +61,7 @@ $(function() {
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul3">
-				<li><a href="#">자유게시판</a></li>
+				<li><a href="<%=request.getContextPath()%>/freeboard">자유게시판</a></li>
 				<li><a href="#">축제후기게시판</a></li>
 			</ul>
 		</div>
