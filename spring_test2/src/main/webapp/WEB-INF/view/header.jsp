@@ -88,11 +88,12 @@ $(function() {
 </header>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+
 	$(function() {
 		$("#mbtn1").mouseover(function() {
 			$("#headmenuul1").show();
 		});
-		$("#mbtn1").mouseout(function() {
+		$("#menu1").mouseout(function() {
 			$("#headmenuul1").hide();
 		});
 	});

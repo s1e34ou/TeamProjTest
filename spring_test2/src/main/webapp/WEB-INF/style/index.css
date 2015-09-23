@@ -67,8 +67,8 @@ div {
 }
 #loginonbox{
 	border:solid 1px black;
-	width: 300px;
-	height: 100px;
+	width: 270px;
+	height: 90px;
 }
 #infologbox{
 	width: 240px;
@@ -130,7 +130,6 @@ div {
 }
 #picture1{
 	border:solid 1px gray;
-	width: 200px;
 	width: 225px;
 }
 #picb1{
@@ -139,7 +138,6 @@ div {
 }
 #picture2{
 	border:solid 1px gray;
-	width: 200px;
 	width: 225px;
 }
 #picb2{
@@ -148,7 +146,6 @@ div {
 }
 #picture3{
 	border:solid 1px gray;
-	width: 200px;
 	width: 225px;
 }
 #picb3{
@@ -157,7 +154,6 @@ div {
 }
 #picture4{
 	border:solid 1px gray;
-	width: 200px;
 	width: 225px;
 }
 #picb4{
