@@ -115,10 +115,12 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/freeboard_view", method = RequestMethod.GET)
-	public String freeboardView(Model model, @RequestParam int boardno, Board board) {
+	public String freeboardView(Model model, @RequestParam int boardno) {
+		Board board = new Board();
 		board = service.selectboard(boardno);
 		model.addAttribute("currentboard", board);
-		return "commmunity/freeboard_view";
+		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
+		return "start";
 	}
 
 	@RequestMapping(value = "/freeboard_write", method = RequestMethod.GET)
