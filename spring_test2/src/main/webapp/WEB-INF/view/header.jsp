@@ -37,8 +37,6 @@ $(function() {
 	</div>
 	<!-- /.col-lg-6 -->
 	<div class="btn-group btn-group-justified" role="group">
-	
-		<%-- <a href="<%=request.getContextPath()%>/freeboard">gg</a> --%>
 		
 		<div class="btn-group" role="group">
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="mbtn1">축제
@@ -91,6 +89,7 @@ $(function() {
 </header>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+
 	$(function() {
 		$("#mbtn1").mouseover(function() {
 			$("#headmenuul1").show();

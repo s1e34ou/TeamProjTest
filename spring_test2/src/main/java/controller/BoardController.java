@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dao.BoardDao;
 import dto.Board;
 import dto.Users;
 import service.BoardService;
@@ -21,8 +24,10 @@ public class BoardController {
 	@Autowired
 	BoardService service;
 	
+
 	@ModelAttribute("board")
 	public Board getboard(){
+		
 		return new Board();
 	}
 	
@@ -99,10 +104,14 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/freeboard", method = RequestMethod.GET)
-	public String freeboard(Model model, BoardService boardservice, Board board) {
-		model.addAttribute("board",board);
-		model.addAttribute("boardserivce",boardservice);
-		return "community/freeboard";
+	public String freeboard(Model model, @RequestParam int page) {
+		List<Board> plist = service.getBoardByPage(page);
+		List<Board> list = service.getAllBoard();
+		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
+		model.addAttribute("page",page);
+		return "start";
 	}
 
 	@RequestMapping(value = "/freeboard_view", method = RequestMethod.GET)

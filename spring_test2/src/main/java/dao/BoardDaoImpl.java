@@ -43,7 +43,7 @@ public class BoardDaoImpl implements BoardDao {
 	
 	@Override
 	public List<Board> selectAllBoard() {
-		String sql = "select * from Board";
+		String sql = "select * from Board order by board_date desc";
 		List<Board> board = jdbcTemp.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 		return board;
 	}

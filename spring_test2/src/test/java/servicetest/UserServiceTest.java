@@ -26,7 +26,7 @@ private static Logger logger = LoggerFactory.getLogger(UserServiceTest.class);
 	
 	@Test
 	public void joinTest() {
-		Users user= new Users("qq", "qq", "qq", "a", "qq", "qq", "qq", new Date(), "qq");
+		Users user= new Users("qqq", "qqq", "qqq", "a", "qqq", "qq", "qq", new Date(), "qq");
 		
 		service.join(user);
 		
