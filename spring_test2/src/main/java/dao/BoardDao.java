@@ -5,7 +5,7 @@ import java.util.List;
 import dto.Board;
 
 public interface BoardDao {
-	int BOARD_PER_PAGE = 3;
+	int BOARD_PER_PAGE = 10;
 
 	public List<Board> selectAllBoard();
 

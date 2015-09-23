@@ -133,6 +133,7 @@ $(function() {
 		</div>
 		<%
 			} else {
+
 				String loginUser = ((Users) loginUserObj).getUsersName();
 		%>
 		<div id="loginonbox">

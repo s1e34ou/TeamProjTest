@@ -29,13 +29,13 @@ public class BoardServiceTest {
 	PhotoService pservice;
 	@Test
 	public void writeTest() {
-		Board board = new Board("bbb", "bbb", "bbb", "ee");
+		Board board = new Board("qqq", "qqq", "qqq", "qqq");
 		bservice.writeboard(board);
 		
-		Photo photo = new Photo("bbb", "bbb", "bbb", "ee");
-		pservice.writephoto(photo);
+		//Photo photo = new Photo("bbb", "bbb", "bbb", "ee");
+		//pservice.writephoto(photo);
 		assertThat(board.getBoardContent(), is("bbb"));
-		assertThat(photo.getPhotoContent(), is("bbb"));
+	//	assertThat(photo.getPhotoContent(), is("bbb"));
 	}
 	
 	@Test
