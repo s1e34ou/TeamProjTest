@@ -64,7 +64,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
       
     </tr>
     <%} %>
-    <tr align=center height=20>
+     <tr align=center height=20>
         <td colspan=7 style=font-family:Tahoma;font-size:10pt;>
             
             <%if(currentPage<=1){ %>
