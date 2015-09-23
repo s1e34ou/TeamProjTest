@@ -20,6 +20,8 @@
 	
 	<mvc:resources location="/WEB-INF/style/" mapping="/style/**"/>
 	<mvc:resources location="/WEB-INF/images/" mapping="/images/**"/>
+	<mvc:resources location="/WEB-INF/ckeditor/" mapping="/ckeditor/**"/>
+	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->

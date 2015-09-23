@@ -67,8 +67,46 @@ $(function() {
 
 	<section id="parent">
 	<div id="box1">
-		<img src="<%=request.getContextPath()%>/images/planets.jpg"
-			id="seasonpic">
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="3"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner" role="listbox">
+				<div class="item active">
+					<img src="<%=request.getContextPath()%>/images/fall1.jpg" id="seasonpic1">
+					<div class="carousel-caption">...</div>
+				</div>
+				<div class="item">
+					<img src="<%=request.getContextPath()%>/images/fall2.jpg" id="seasonpic2">
+					<div class="carousel-caption">...</div>
+				</div>
+				<div class="item">
+					<img src="<%=request.getContextPath()%>/images/fall3.jpg" id="seasonpic3">
+					<div class="carousel-caption">...</div>
+				</div>
+				<div class="item">
+					<img src="<%=request.getContextPath()%>/images/fall4.jpg" id="seasonpic4">
+					<div class="carousel-caption">...</div>
+				</div>
+			</div>
+
+			<!-- Controls -->
+			<a class="left carousel-control" href="#carousel-example-generic"
+				role="button" data-slide="prev"> <span
+				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a> <a class="right carousel-control" href="#carousel-example-generic"
+				role="button" data-slide="next"> <span
+				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
 	</div>
 	<div id="loginbox">
 		<%
@@ -129,14 +167,19 @@ $(function() {
 	<div id="defaultbox">
 		<div id="picboard">
 			<div id="picture1">
-				<a href="#" class="thumbnail"> <img
+				<a href="<%=request.getContextPath() %>/test" class="thumbnail"> <img
 					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb1">
 				</a>
 				<div class="caption" id="picbtext1">
+<<<<<<< HEAD
 					<center>
 						<h3>제목제목제목1</h3>
 						<p>내용내용내용내용내용내용내용내용내용내용내용내용</p>
 					</center>
+=======
+					<center><h3>제목제목제목2</h3>
+					<p>내용내용내용내용내용내용내용내용내용내용내용내용</p></center>
+>>>>>>> refs/remotes/origin/master
 				</div>
 			</div>
 			<div id="picture2">
