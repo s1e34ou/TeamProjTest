@@ -49,6 +49,7 @@ var CKBUILDER_CONFIG = {
 		'README.md',
 		'tests'
 	],
+
 	plugins : {
 		'a11yhelp' : 1,
 		'about' : 1,

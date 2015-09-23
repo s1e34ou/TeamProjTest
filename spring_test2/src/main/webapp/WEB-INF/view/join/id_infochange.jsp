@@ -29,12 +29,104 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link href="<%=request.getContextPath()%>/style/main.css"
 	rel="stylesheet" type="text/css">
-
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	
+<script type="text/javascript">
+<%
+Users seluser = (Users) session.getAttribute("seluser");
+%>
+	$(function() {
+		$("#iddeletebtn").on("click",function(){
+			if(confirm("탈퇴하시겠습니까")){
+				$(location).attr("href", "<%=request.getContextPath()%>/deleteconfirm?id=<%=seluser.getUsersId()%>");	
+			}else{
+				e.preventDefault();
+			}
+			
+		});
+		$("#changeinfobt").on(
+				"click",
+				function(e) {
+					
+					if ( $("#usersPassword").val() == "") {
+						alert("비밀번호를 입력해 주세요");
+						e.preventDefault();
+					}
+					if ( 
+							 $("#usersPassword").val() != ""
+							&& $("#usersName").val() == "") {
+						alert("이름을 입력해 주세요");
+						e.preventDefault();
+					}
+					if ( 
+							 $("#usersPassword").val() != ""
+							&& $("#usersName").val() != ""
+							&& $("#usersGender").val() == "") {
+						alert("성별을 선택해 주세요");
+						e.preventDefault();
+					}
+					if ( 
+							 $("#usersPassword").val() != ""
+							&& $("#usersName").val() != ""
+							&& $("#usersGender").val() != ""
+							&& $("#usersPhone").val() == "") {
+						alert("휴대전화번호를 입력해 주세요");
+						e.preventDefault();
+					}
+					if ( 
+							 $("#usersPassword").val() != ""
+							&& $("#usersName").val() != ""
+							&& $("#usersGender").val() != ""
+							&& $("#usersPhone").val() != ""
+							&& $("#usersBirth").val() == "") {
+						alert("생년월일을 입력해 주세요");
+						e.preventDefault();
+					}
+					if ( 
+							 $("#usersPassword").val() != ""
+							&& $("#usersName").val() != ""
+							&& $("#usersGender").val() != ""
+							&& $("#usersPhone").val() != ""
+							&& $("#usersBirth").val() != ""
+							&& ($("#sample6_postcode").val() == ""
+							|| $("#sample6_address").val() == ""
+							|| $("#sample6_address2").val() == "")) {
+						alert("주소를 입력해 주세요");
+						e.preventDefault();
+					}
+					if ( 
+							 $("#usersPassword").val() != ""
+							&& $("#usersName").val() != ""
+							&& $("#usersGender").val() != ""
+							&& $("#usersPhone").val() != ""
+							&& $("#usersBirth").val() != ""
+							&& $("#sample6_postcode").val() != ""
+							&& $("#sample6_address").val() != ""
+							&& $("#sample6_address").val() != ""
+							&& $("#usersEmail").val() == "") {
+						alert("usersEmail 입력해 주세요");
+						e.preventDefault();
+					}
+					if ( 
+						 $("#usersPassword").val() != ""
+							&& $("#usersName").val() != ""
+							&& $("#usersGender").val() != ""
+							&& $("#usersPhone").val() != ""
+							&& $("#usersBirth").val() != ""
+							&& $("#sample6_postcode").val() != ""
+							&& $("#sample6_address").val() != ""
+							&& $("#sample6_address").val() != ""
+							&& $("#usersEmail").val() != ""
+							&& $("#usersPassques").val() == "") {
+						alert("비밀번호찾기 답을 입력해 주세요");
+						e.preventDefault();
+					}
+				});
+	});
+</script>
 </head>
 <body>
-	<%
-		Users seluser = (Users) session.getAttribute("seluser");
-	%>
+	
 	<div id="infochange">
 		<h1>정보수정</h1>
 		<div id="infochangein">
@@ -43,7 +135,8 @@
 				modelAttribute="users" class="form-horizontal">
 				<fieldset>
 					<legend>사용자 정보 수정</legend>
-					<input class="btn btn-default" type="button" id="iddeletebtn" value="회원 탈퇴">
+					<input class="btn btn-default" type="button" id="iddeletebtn"
+						value="회원 탈퇴">
 					<div class="form-group" id="idinputbox">
 						<sform:label path="usersId" class="col-sm-2 control-label">ID</sform:label>
 						<sform:input path="usersId" class="form-control" placeholder="ID"
@@ -87,12 +180,17 @@
 						<label for="address" class="col-sm-2 control-label">주소</label>
 						<div id="addressinput">
 							<div id="adressnum">
-							<input type="text" class="form-control" id="sample6_postcode" name="USERS_ADRESS1" placeholder="우편번호"> 
-							<input class="btn btn-default" type="button" onclick="sample6_execDaumPostcode()" id="adresssearchbtn" value="주소찾기"> 
+								<input type="text" class="form-control" id="sample6_postcode"
+									name="USERS_ADRESS1" placeholder="우편번호"> <input
+									class="btn btn-default" type="button"
+									onclick="sample6_execDaumPostcode()" id="adresssearchbtn"
+									value="주소찾기">
 							</div>
 							<div id="adresstext">
-							<input type="text" class="form-control" id="sample6_address" name="USERS_ADRESS2" placeholder="address">
-							<input type="text" class="form-control" id="sample6_address2" name="USERS_ADRESS3" placeholder="상세주소">
+								<input type="text" class="form-control" id="sample6_address"
+									name="USERS_ADRESS2" placeholder="address"> <input
+									type="text" class="form-control" id="sample6_address2"
+									name="USERS_ADRESS3" placeholder="상세주소">
 							</div>
 						</div>
 					</div>
@@ -116,17 +214,17 @@
 					</div>
 
 
-						<div id="joincancelbtn">
-							<sform:button class="btn btn-default">정보수정</sform:button>
-							 <a href="<%=request.getContextPath() %>/main"><button type="button" class="btn btn-default">취소</button></a>
-						</div>
+					<div id="joincancelbtn">
+						<sform:button id="changeinfobt" class="btn btn-default">정보수정</sform:button>
+						<a href="<%=request.getContextPath()%>/main"><button
+								type="button" class="btn btn-default">취소</button></a>
+					</div>
 				</fieldset>
 			</sform:form>
 		</div>
 	</div>
 </body>
 </html>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$("#iddeletebtn").on("click",function(e){
@@ -134,8 +232,8 @@
 				$(location).attr("href","<%=request.getContextPath()%>/deleteconfirm?id=<%=seluser.getUsersId()%>");
 			}else{
 				$(location).attr("href","<%=request.getContextPath()%>/main");
-			}
-		});
+							}
+						});
 	});
 
 	function sample6_execDaumPostcode() {

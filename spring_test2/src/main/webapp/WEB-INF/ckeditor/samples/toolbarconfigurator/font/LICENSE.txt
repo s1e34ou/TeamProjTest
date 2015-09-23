@@ -8,5 +8,8 @@ Font license info
    Author:    Dave Gandy
    License:   SIL ()
    Homepage:  http://fortawesome.github.com/Font-Awesome/
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/s1e34ou/TeamProjTest.git
