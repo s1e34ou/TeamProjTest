@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import dto.Board;
 import com.google.gson.Gson;
 
 import dto.Users;
@@ -41,6 +42,12 @@ public class UserController {
 	public Users getusers() {
 		return new Users();
 	}
+	
+	@ModelAttribute("board")
+	public Board getboard(){
+		return new Board();
+	}
+	
 
 	@InitBinder
 	public void bindData(WebDataBinder binder) {
