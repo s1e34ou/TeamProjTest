@@ -43,6 +43,11 @@ public class UserController {
 		return new Users();
 	}
 	
+	@ModelAttribute("board")
+	public Board getboard(){
+		
+		return new Board();
+	}
 		
 
 	@InitBinder
