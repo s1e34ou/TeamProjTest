@@ -60,6 +60,8 @@ public class BoardDaoImpl implements BoardDao {
 	public Board selectBoard(int boardNo) {
 		String sql = "select * from board where board_no=?";
 		Board board = jdbcTemp.queryForObject(sql, getBoardRowMapper(),boardNo);
+		sql = "update board set board_hits=board_hits+1 where board_no=?";
+		jdbcTemp.update(sql,board.getBoardNo());
 		return board;
 	}
 

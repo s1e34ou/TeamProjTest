@@ -53,7 +53,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%=pplist.get(i).getBoardNo()%>
         </td>
             <td height="23" style="font-family:Tahoma;font-size:10pt;">
-            <%=pplist.get(i).getBoardName()%>
+            <a href="<%=request.getContextPath()%>/freeboard_view?boardno=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:10pt;">
             <%=pplist.get(i).getUsersUsersId()%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:10pt;">
