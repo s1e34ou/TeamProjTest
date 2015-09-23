@@ -402,7 +402,7 @@ html {
 .content h3:target lesshat-selector,
 .content h4:target lesshat-selector,
 .content h5:target lesshat-selector {
-  -lh-property: 0; }
+  -lh-property: 0; } 
 @-webkit-keyframes targetLinkOpacity{ 0%{ opacity: 0 } 100%{ opacity: 1 }}
 @-moz-keyframes targetLinkOpacity{ 0%{ opacity: 0 } 100%{ opacity: 1 }}
 @-o-keyframes targetLinkOpacity{ 0%{ opacity: 0 } 100%{ opacity: 1 }}

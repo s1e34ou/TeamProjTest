@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import dto.Board;
 import dto.Users;
 import exception.ServiceFailException;
 import service.UsersService;
@@ -38,6 +39,12 @@ public class UserController {
 	public Users getusers() {
 		return new Users();
 	}
+	
+	@ModelAttribute("board")
+	public Board getboard(){
+		return new Board();
+	}
+	
 
 	@InitBinder
 	public void bindData(WebDataBinder binder) {

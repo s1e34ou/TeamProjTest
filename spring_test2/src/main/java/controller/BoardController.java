@@ -1,13 +1,18 @@
 package controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dto.Board;
+import dto.Users;
 import service.BoardService;
 
 @Controller
@@ -15,65 +20,73 @@ public class BoardController {
 
 	@Autowired
 	BoardService service;
-
+	
+	@ModelAttribute("board")
+	public Board getboard(){
+		return new Board();
+	}
+	
 	@RequestMapping(value = "/keyword", method = RequestMethod.GET)
 	public String keyword(Model model) {
-
 		return "main/keyword";
 	}
 
 	@RequestMapping(value = "/sitemap", method = RequestMethod.GET)
 	public String sitemap(Model model) {
-
-		return "main/sitemap";
+		model.addAttribute("contentpage", "/WEB-INF/view/sitemap.jsp");
+		return "start";
 	}
 
 	@RequestMapping(value = "/festival_regionboard", method = RequestMethod.GET)
 	public String festivalRegionboard(Model model) {
-
-		return "festival/festival_regionboard";
+		model.addAttribute("contentpage", "/WEB-INF/view/festival/festival_regionboard.jsp");
+		return "start";
 	}
 
 	@RequestMapping(value = "/festival_regionboard_view", method = RequestMethod.GET)
 	public String festivalRegionView(Model model, @RequestParam int boardno, Board board) {
 		board = service.selectboard(boardno);
+		model.addAttribute("contentpage", "/WEB-INF/view/festival/festival_regionboard_view.jsp");
 		model.addAttribute("currentboard", board);
-		return "festival/festival_regionboard_view";
+		return "start";
 	}
 
 	@RequestMapping(value = "/festival_regionboard_write", method = RequestMethod.GET)
 	public String festivalRegionWriteForm(Model model) {
-		
-		return "festival/festival_regionboard_write";
+		model.addAttribute("contentpage", "/WEB-INF/view/test.jsp");
+		return "start";
 	}
 	
 	@RequestMapping(value = "/festival_regionboard_write", method = RequestMethod.POST)
-	public String festivalRegionWrite(Model model) {
-		return "festival/festival_regionboard";
+	public String festivalRegionWrite(Model model,Board board) {
+		model.addAttribute("contentpage", "/WEB-INF/view/main.jsp");
+		service.writeboard(board);
+		return "start";
 	}
 
 	@RequestMapping(value = "/festival_seasonboard", method = RequestMethod.GET)
 	public String festivalSeasonboard(Model model) {
-
-		return "festival/festival_seasonboard";
+		model.addAttribute("contentpage", "/WEB-INF/view/festival/festival_seasonboard.jsp");
+		return "start";
 	}
 
 	@RequestMapping(value = "/festival_seasonboard_view", method = RequestMethod.GET)
 	public String festivalSeasonView(Model model, @RequestParam int boardno, Board board) {
 		board = service.selectboard(boardno);
+		model.addAttribute("contentpage", "/WEB-INF/view/festival/festival_seasonboard_view.jsp");
 		model.addAttribute("currentboard", board);
-		return "festival/festival_seasonboard_view";
+		return "start";
 	}
 
 	@RequestMapping(value = "/festival_seasonboard_write", method = RequestMethod.GET)
 	public String festivalSeasonWriteForm(Model model) {
-
-		return "festival/festival_seasonboard_write";
+		model.addAttribute("contentpage", "/WEB-INF/view/festival/festival_seasonboard_write.jsp");
+		return "start";
 	}
 
 	@RequestMapping(value = "/eventboard", method = RequestMethod.GET)
 	public String eventboard(Model model) {
-
+		
 		return "event/eventboard";
 	}
 
