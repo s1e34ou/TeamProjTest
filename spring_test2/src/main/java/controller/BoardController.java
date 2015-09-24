@@ -3,8 +3,9 @@ package controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,18 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import dao.BoardDao;
 import dto.Board;
-import dto.Users;
 import service.BoardService;
 
 @Controller
 public class BoardController {
+	private static Logger logger = LoggerFactory.getLogger(BoardController.class);
 
 	@Autowired
 	BoardService service;
 	
 
+	
 	@ModelAttribute("board")
 	public Board getboard(){
 		
@@ -53,13 +54,13 @@ public class BoardController {
 
 	@RequestMapping(value = "/festival_regionboard_write", method = RequestMethod.GET)
 	public String festivalRegionWriteForm(Model model) {
-		model.addAttribute("contentpage", "/WEB-INF/view/test.jsp");
+		model.addAttribute("contentpage", "/WEB-INF/view/festival/festival_regionboard.jsp");
 		return "start";
 	}
 	
 	@RequestMapping(value = "/festival_regionboard_write", method = RequestMethod.POST)
 	public String festivalRegionWrite(Model model,Board board) {
-		model.addAttribute("contentpage", "/WEB-INF/view/main.jsp");
+		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
 		service.writeboard(board);
 		return "start";
 	}
@@ -104,7 +105,17 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/freeboard", method = RequestMethod.GET)
-	public String freeboard(Model model, @RequestParam int page) {
+	public String freeboard(Model model,HttpServletRequest req) {
+		Object pageObj = req.getAttribute("page");
+		logger.trace("pageObj : {}",pageObj);
+		
+		int page;
+		if(pageObj!=null){
+			page= (int)pageObj;
+			
+		}else{
+			page=1;
+		}
 		List<Board> plist = service.getBoardByPage(page);
 		List<Board> list = service.getAllBoard();
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
@@ -118,6 +129,7 @@ public class BoardController {
 	public String freeboardView(Model model, @RequestParam int boardno) {
 		Board board = new Board();
 		board = service.selectboard(boardno);
+		board.setBoardCode(board.getFREE());
 		model.addAttribute("currentboard", board);
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
 		return "start";

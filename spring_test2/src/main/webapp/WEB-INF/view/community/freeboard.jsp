@@ -108,7 +108,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
     <tr align="right">
         <td colspan="5">
         <%if(loginUserObj!=null){ %>
-             <a href="<%=request.getContextPath() %>/festival_regionboard">[글쓰기]</a>
+             <a href="<%=request.getContextPath()%>/festival_regionboard_write">[글쓰기]</a>
              <%} %>
         </td>
     </tr>

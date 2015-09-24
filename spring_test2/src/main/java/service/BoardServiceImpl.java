@@ -48,6 +48,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<Board> getBoardByPage(int page) {
 		List<Board> boards = dao.getBoardByPage(page);
+		
 		return boards;
 	}
 

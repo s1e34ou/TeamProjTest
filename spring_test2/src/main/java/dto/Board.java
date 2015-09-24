@@ -18,6 +18,35 @@ public class Board {
 	final private String NOTICE="NOTICE";
 	final private String QNA="QNA";
 	
+	
+	public String getREGION() {
+		return REGION;
+	}
+
+	public String getSEASON() {
+		return SEASON;
+	}
+
+	public String getEVENT() {
+		return EVENT;
+	}
+
+	public String getFREE() {
+		return FREE;
+	}
+
+	public String getRANK() {
+		return RANK;
+	}
+
+	public String getNOTICE() {
+		return NOTICE;
+	}
+
+	public String getQNA() {
+		return QNA;
+	}
+
 	public Board() {
 		super();
 	}
