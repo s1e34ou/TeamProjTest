@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import dao.BoardDao;
 import dto.Board;
 import dto.Users;
 import service.BoardService;
@@ -173,7 +174,6 @@ public class BoardController {
 
 	@RequestMapping(value = "/rankboard", method = RequestMethod.GET)
 	public String rankboard(Model model) {
-
 		return "rank/rankboard";
 	}
 
