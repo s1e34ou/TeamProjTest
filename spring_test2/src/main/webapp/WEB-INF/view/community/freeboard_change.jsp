@@ -15,15 +15,6 @@
 
 </head>
 <body>
-<%
-	Object loginUserObj = session.getAttribute("loginUser");
-	String UserId = ((Users) loginUserObj).getUsersId();
-%>
-
-<%/* Object cb = request.getAttribute("currentboard");
-Board board = (Board)cb;
-out.println(board.getBoardContent()); */
- %>
 <div class="admin admin-add-problem">
 	<c:url value="/freeboard_write" var="freeboard_write"></c:url>
     <sform:form method="post" action="${freeboard_write }" modelAttribute="board">
@@ -35,7 +26,8 @@ out.println(board.getBoardContent()); */
 			<sform:input path="boardName"/><br>
             <sform:label path="boardContent">내용</sform:label>
             <sform:textarea path="boardContent" rows="10" cols="100"></sform:textarea><br>
-            <sform:button>글쓰기</sform:button>
+            <sform:button>수정</sform:button>
+            <a href="<%=request.getContextPath()%>/freeboard_view"><button type="button">취소</button></a>
         </fieldset>
     </sform:form>
 </div>

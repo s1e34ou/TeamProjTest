@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import dto.Board;
+import dto.Users;
 import service.BoardService;
 
 @Controller
-@SessionAttributes({"boardlist","pagelist","board"})
+@SessionAttributes({"boardlist","pagelist"})
 public class BoardController {
 	private static Logger logger = LoggerFactory.getLogger(BoardController.class);
 
@@ -133,14 +135,16 @@ public class BoardController {
 	public String freeboardView(Model model, @RequestParam int boardno) {
 		Board board = new Board();
 		board = service.selectboard(boardno);
-		board.setBoardCode(board.getFREE());
+		
 		model.addAttribute("currentboard", board);
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
 		return "start";
 	}
 
 	@RequestMapping(value = "/freeboard_write", method = RequestMethod.GET)
-	public String freeboardWriteForm(Model model) {
+	public String freeboardWriteForm(Model model,Board board,HttpSession sess) {
+		 Users users = (Users) sess.getAttribute("loginUser");
+		board.setUsersUsersId(users.getUsersId());
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_write.jsp");
 		return "start";
 	}
@@ -148,8 +152,9 @@ public class BoardController {
 	@RequestMapping(value = "/freeboard_write", method = RequestMethod.POST)
 	public String freeboardWrite(Model model,Board board) {
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
-		
+		board.setBoardCode(board.getFREE());
 		service.writeboard(board);
+		
 		List<Board> plist = service.getBoardByPage(1);
 		List<Board> list = service.getAllBoard();
 		model.addAttribute("boardlist", list);
