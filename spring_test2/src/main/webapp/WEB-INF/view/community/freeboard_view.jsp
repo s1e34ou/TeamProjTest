@@ -13,60 +13,75 @@
 	height: 1350px;
 	margin: auto;
 }
+
 #boardin {
 	border: solid 1px black;
 	width: 1000px;
 	height: 770px;
-	margin: auto;	
+	margin: auto;
 }
-#boardhead{
+
+#boardhead {
 	height: 60px;
 }
-#boardtitle{
+
+#boardtitle {
 	margin-left: 10px;
 }
-#boardinfo{
+
+#boardinfo {
 	display: -webkit-box;
 	float: right;
 	margin-right: 10px;
 }
-#boardwriter{
+
+#boardwriter {
 	margin-right: 20px;
 }
-#boarddate{
+
+#boarddate {
 	margin-right: 20px;
 }
-#boardindex{
+
+#boardindex {
 	margin-right: 20px;
 }
-#boardmid{
+
+#boardmid {
 	height: 600px;
 	width: 1000px;
 }
-#boardcontent{
+
+#boardcontent {
 	height: 570px;
 	width: 850px;
 	margin: auto;
 }
-#boardfoot{
+
+#boardfoot {
 	height: 40px;
 }
-#moddelbtn{
+
+#moddelbtn {
 	display: -webkit-box;
-	float:right;
+	float: right;
 	margin-right: 15px;
 }
-#prevnextbtn{
+
+#prevnextbtn {
 	height: 70px;
 }
-#replyboard{
+
+#replyboard {
 	height: 400px;
 }
-#replyboardin{
+
+#replyboardin {
 	border: solid 1px gray;
 	height: 350px;
 }
-#listgobtn{
+
+#listgobtn {
 	height: 70px;
 }
 </style>
@@ -83,25 +98,25 @@
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <link href="<%=request.getContextPath()%>/css/basic.css"
 	rel="stylesheet" type="text/css">
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 <%Object cb = request.getAttribute("currentboard");
-Board board = (Board)cb;
-String loginUser=null;
-Object loginUserObj = session.getAttribute("loginUser");
-if(loginUserObj!=null){
- loginUser = ((Users) loginUserObj).getUsersId();
-}
- %>
+			Board board = (Board) cb;
+			String loginUser = null;
+			Object loginUserObj = session.getAttribute("loginUser");
+			if (loginUserObj != null) {
+				loginUser = ((Users) loginUserObj).getUsersId();
+			}%>
 $(function() {
 	$("#deleteboard").on("click",function(){
 		if(confirm("삭제하시겠습니까")){
-			$(location).attr("href", "<%=request.getContextPath()%>/freeboard_delete");	
-		}else{
-			e.preventDefault();
-		}
+			$(location).attr("href", "<%=request.getContextPath()%>/freeboard_delete?boardNo=<%=board.getBoardNo()%>");	
+							} else{
+								e.preventDefault();
+							}
+							
+						});
 	});
-});
 </script>
 </head>
 
@@ -109,54 +124,72 @@ $(function() {
 	<div id="board">
 		<h1>자유게시판</h1>
 		<div id="boardin">
-		<div id="boardhead">
-			<div id="boardtitle"><h4>제목 : <%=board.getBoardName() %></h4></div>
-			<div id="boardinfo">
-				<div id="boardwriter">작성자 : <%=board.getUsersUsersId()%></div>
-				<div id="boarddate">작성일 : <%=board.getBoardDate()%></div>
-				<div id="boardindex">글번호 : <%=board.getBoardNo()%></div>
+			<div id="boardhead">
+				<div id="boardtitle">
+					<h4>
+						제목 :
+						<%=board.getBoardName()%></h4>
+				</div>
+				<div id="boardinfo">
+					<div id="boardwriter">
+						작성자 :
+						<%=board.getUsersUsersId()%></div>
+					<div id="boarddate">
+						작성일 :
+						<%=board.getBoardDate()%></div>
+					<div id="boardindex">
+						글번호 :
+						<%=board.getBoardNo()%></div>
+				</div>
 			</div>
-		</div>
-		<hr>
-		<div id="boardmid">
-			<div id="boardcontent"><%=board.getBoardContent() %></div>
-		</div>
-		<div id="boardfoot">
-			<div id="boardmodidelbtn">
+			<hr>
+			<div id="boardmid">
+				<div id="boardcontent"><%=board.getBoardContent()%></div>
+			</div>
+			<div id="boardfoot">
+				<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
-					<%if(loginUser!=null&&loginUser.equals(board.getUsersUsersId())){ %>
-						<div>						<a href="<%=request.getContextPath()%>/freeboard_change?boardNo=<%=board.getBoardNo() %>"><button type="button" class="btn btn-default">수정</button></a>
-</div>
+						<%
+							if (loginUser != null && loginUser.equals(board.getUsersUsersId())) {
+						%>
 						<div>
-						<form method="post" action="<%=request.getContextPath()%>/freeboard_delete">
-					
-							<input  id = "boardNo" name="boardNo" value="<%=board.getBoardNo()%>" type="hidden">
-							<input type="button" id="deleteboard" class="btn btn-default" value="삭제"/>
-						</form></div>
-						<%} %>
-						<div><button type="button" class="btn btn-default">댓글쓰기</button></div>
+							<a
+								href="<%=request.getContextPath()%>/freeboard_change?boardNo=<%=board.getBoardNo()%>"><button
+									type="button" class="btn btn-default">수정</button></a>
+						</div>
+						<div>
+							<form method="post"
+								action="<%=request.getContextPath()%>/freeboard_delete">
+
+								<input type="button" id="deleteboard" class="btn btn-default" value="삭제">
+							</form>
+						</div>
+						<%
+							}
+						%>
+						<div>
+							<button type="button" class="btn btn-default">댓글쓰기</button>
+						</div>
 					</div>
 				</div>
-		</div>
+			</div>
 		</div>
 		<div id="prevnextbtn">
-				<ul class="pager">
-					<li><a href="#">Previous</a></li>
-					<li><a href="#">Next</a></li>
-				</ul>
-			</div>
-		<div id="replyboard">
-			<h2>댓글</h2>
-			<div id="replyboardin">
-		</div>
-		<div id="listgobtn">
 			<ul class="pager">
-					<li class="previous">
-					<a href="#">
-					<span aria-hidden="true">&larr;</span>
-					list</a></li>
+				<li><a href="#">Previous</a></li>
+				<li><a href="#">Next</a></li>
 			</ul>
 		</div>
-	</div>
+		<div id="replyboard">
+			<h2>댓글</h2>
+			<div id="replyboardin"></div>
+			<div id="listgobtn">
+				<ul class="pager">
+					<li class="previous"><a href="#"> <span aria-hidden="true">&larr;</span>
+							list
+					</a></li>
+				</ul>
+			</div>
+		</div>
 </body>
 </html>
