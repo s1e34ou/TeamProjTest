@@ -1,3 +1,4 @@
+<%@page import="dto.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="dto.Board"%>
@@ -51,6 +52,7 @@
 	height: 40px;
 }
 #moddelbtn{
+	display: -webkit-box;
 	float:right;
 	margin-right: 15px;
 }
@@ -81,10 +83,28 @@
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <link href="<%=request.getContextPath()%>/css/basic.css"
 	rel="stylesheet" type="text/css">
-</head>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
 <%Object cb = request.getAttribute("currentboard");
 Board board = (Board)cb;
+String loginUser=null;
+Object loginUserObj = session.getAttribute("loginUser");
+if(loginUserObj!=null){
+ loginUser = ((Users) loginUserObj).getUsersId();
+}
  %>
+$(function() {
+	$("#deleteboard").on("click",function(){
+		if(confirm("삭제하시겠습니까")){
+			$(location).attr("href", "<%=request.getContextPath()%>/freeboard_delete");	
+		}else{
+			e.preventDefault();
+		}
+	});
+});
+</script>
+</head>
+
 <body>
 	<div id="board">
 		<h1>자유게시판</h1>
@@ -104,9 +124,16 @@ Board board = (Board)cb;
 		<div id="boardfoot">
 			<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
-						<button type="button" class="btn btn-default">수정</button>
-						<button type="button" class="btn btn-default">삭제</button>
-						<button type="button" class="btn btn-default">댓글쓰기</button>
+					<%if(loginUser!=null&&loginUser.equals(board.getUsersUsersId())){ %>
+						<div><button type="button" class="btn btn-default">수정</button></div>
+						<div>
+						<form method="post" action="<%=request.getContextPath()%>/freeboard_delete">
+					
+							<input  id = "boardNo" name="boardNo" value="<%=board.getBoardNo()%>" type="hidden">
+							<input type="button" id="deleteboard" class="btn btn-default" value="삭제"/>
+						</form></div>
+						<%} %>
+						<div><button type="button" class="btn btn-default">댓글쓰기</button></div>
 					</div>
 				</div>
 		</div>

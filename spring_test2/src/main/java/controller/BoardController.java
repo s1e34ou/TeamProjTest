@@ -156,10 +156,17 @@ public class BoardController {
 		model.addAttribute("pagelist", plist);
 		return "start";
 	}
+	
+	@RequestMapping(value = "/freeboard_delete", method = RequestMethod.POST)
+	public String freeboardDelete(Model model,@RequestParam int boardNo) {
+		service.deleteboard(boardNo);
+		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_delete.jsp");
+		
+		return "start";
+	}
 
 	@RequestMapping(value = "/rankboard", method = RequestMethod.GET)
 	public String rankboard(Model model) {
-
 		return "rank/rankboard";
 	}
 
