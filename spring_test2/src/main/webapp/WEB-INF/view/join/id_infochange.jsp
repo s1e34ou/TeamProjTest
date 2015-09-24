@@ -140,7 +140,7 @@ Users seluser = (Users) session.getAttribute("seluser");
 					<div class="form-group" id="idinputbox">
 						<sform:label path="usersId" class="col-sm-2 control-label">ID</sform:label>
 						<sform:input path="usersId" class="form-control" placeholder="ID"
-							value="<%=seluser.getUsersId()%>" readonly="true" />
+							 readonly="true" />
 					</div>
 					<div class="form-group" id="passinputbox">
 						<sform:label path="usersPassword" class="col-sm-2 control-label">Password</sform:label>
@@ -151,7 +151,7 @@ Users seluser = (Users) session.getAttribute("seluser");
 					<div class="form-group" id="nameinputbox">
 						<sform:label path="usersName" class="col-sm-2 control-label">이름</sform:label>
 						<sform:input path="usersName" class="form-control"
-							placeholder="Name" value="<%=seluser.getUsersName()%>" />
+							placeholder="Name"  />
 					</div>
 
 					<div class="form-group" id="genderinputbox">
@@ -166,14 +166,14 @@ Users seluser = (Users) session.getAttribute("seluser");
 						<sform:label path="usersPhone" class="col-sm-2 control-label">휴대전화</sform:label>
 						<div class="col-sm-10">
 							<sform:input class="form-control" path="usersPhone"
-								placeholder="PHONE" value="<%=seluser.getUsersPhone()%>" />
+								placeholder="PHONE"  />
 						</div>
 					</div>
 
 					<div class="form-group" id="birthinputbox">
 						<sform:label path="usersBirth" class="col-sm-2 control-label">생년월일</sform:label>
 						<sform:input type="" path="usersBirth" class="form-control"
-							placeholder="birth" value="<%=seluser.getUsersBirth()%>" />
+							placeholder="birth" />
 					</div>
 
 					<div class="form-group" id="adressinputbox">
@@ -197,7 +197,7 @@ Users seluser = (Users) session.getAttribute("seluser");
 					<div class="form-group" id="emailinputbox">
 						<sform:label path="usersEmail" class="col-sm-2 control-label">EMAIL</sform:label>
 						<sform:input path="usersEmail" class="form-control"
-							placeholder="email" value="<%=seluser.getUsersEmail()%>" />
+							placeholder="email"  />
 					</div>
 
 					<div class="form-group" id="idpwsearchquebox">
@@ -209,7 +209,7 @@ Users seluser = (Users) session.getAttribute("seluser");
 								<option>가장 좋아 하는 색은?</option>
 							</select>
 							<sform:input class="form-control" path="usersPassques"
-								placeholder="정답" value="<%=seluser.getUsersPassques()%>" />
+								placeholder="정답"  />
 						</div>
 					</div>
 

@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import dao.BoardDao;
 import dto.Board;
 import service.BoardService;
 
 @Controller
-@SessionAttributes({"boardlist","pagelist"})
+@SessionAttributes({"boardlist","pagelist","board"})
 public class BoardController {
 	private static Logger logger = LoggerFactory.getLogger(BoardController.class);
 
@@ -146,9 +147,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/freeboard_write", method = RequestMethod.POST)
-	public String freeboardWrite(Model model,Board board,HttpServletRequest req) {
+	public String freeboardWrite(Model model,Board board) {
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
-		
 		service.writeboard(board);
 		List<Board> plist = service.getBoardByPage(1);
 		List<Board> list = service.getAllBoard();
@@ -157,11 +157,12 @@ public class BoardController {
 		return "start";
 	}
 	
-	@RequestMapping(value = "/freeboard_delete", method = RequestMethod.POST)
-	public String freeboardDelete(Model model,@RequestParam int boardNo) {
-		service.deleteboard(boardNo);
-		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_delete.jsp");
+	@RequestMapping(value = "/freeboard_change", method = RequestMethod.GET)
+	public String freeboardChangeForm(Model model,@RequestParam int boardNo) {
+		model.addAttribute("board", service.selectboard(boardNo));
+		logger.trace("trace  "+service.selectboard(boardNo));
 		
+		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_change.jsp");
 		return "start";
 	}
 

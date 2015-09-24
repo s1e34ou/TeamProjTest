@@ -125,7 +125,8 @@ $(function() {
 			<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
 					<%if(loginUser!=null&&loginUser.equals(board.getUsersUsersId())){ %>
-						<div><button type="button" class="btn btn-default">수정</button></div>
+						<div>						<a href="<%=request.getContextPath()%>/freeboard_change?boardNo=<%=board.getBoardNo() %>"><button type="button" class="btn btn-default">수정</button></a>
+</div>
 						<div>
 						<form method="post" action="<%=request.getContextPath()%>/freeboard_delete">
 					
