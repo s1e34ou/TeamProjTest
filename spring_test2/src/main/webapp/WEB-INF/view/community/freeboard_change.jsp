@@ -23,7 +23,6 @@
         	<sform:input path="usersUsersId"  readonly="true"/><br>
 			<sform:label path="boardName">제목</sform:label>
 			<sform:input path="boardName"/><br>
-			<sform:input path="boardName"/><br>
             <sform:label path="boardContent">내용</sform:label>
             <sform:textarea path="boardContent" rows="10" cols="100"></sform:textarea><br>
             <sform:button>수정</sform:button>

@@ -172,8 +172,20 @@ public class BoardController {
 	public String freeboardChangeForm(Model model,@RequestParam int boardNo) {
 		model.addAttribute("board", service.selectboard(boardNo));
 		logger.trace("trace  "+service.selectboard(boardNo));
+		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_change.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/freeboard_change", method = RequestMethod.POST)
+	public String freeboardChange(Model model,Board board,@RequestParam int boardNo) {
+		model.addAttribute("board", service.selectboard(boardNo));
+		service.updateboard(board);
 		
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_change.jsp");
+		List<Board> plist = service.getBoardByPage(1);
+		List<Board> list = service.getAllBoard();
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
 		return "start";
 	}
 
