@@ -104,7 +104,7 @@ Board board = (Board)cb;
 		<div id="boardfoot">
 			<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
-						<button type="button" class="btn btn-default">수정</button>
+						<a href="<%=request.getContextPath()%>/freeboard_change?boardNo=<%=board.getBoardNo() %>"><button type="button" class="btn btn-default">수정</button></a>
 						<button type="button" class="btn btn-default">삭제</button>
 						<button type="button" class="btn btn-default">댓글쓰기</button>
 					</div>

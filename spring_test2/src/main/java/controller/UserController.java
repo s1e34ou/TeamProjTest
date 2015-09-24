@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,14 +41,11 @@ public class UserController {
 
 	@ModelAttribute("users")
 	public Users getusers() {
+		
 		return new Users();
 	}
 	
-	/*@ModelAttribute("board")
-	public Board getboard(){
-		
-		return new Board();
-	}*/
+	
 		
 
 	@InitBinder
@@ -67,11 +65,7 @@ public class UserController {
 		return "start";
 	}
 
-	/*@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String userTest(Model model) {
-		model.addAttribute("contentpage", "/WEB-INF/view/test.jsp");
-		return "start";
-	}*/
+	
 	@RequestMapping(value = "/site", method = RequestMethod.GET)
 	public String userSiteMap(Model model) {
 		model.addAttribute("contentpage", "/WEB-INF/view/sitemap.jsp");
@@ -91,7 +85,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/infochange", method = RequestMethod.GET)
-	public String userInfoChangeForm(Model model, Users users) {
+	public String userInfoChangeForm(Model model, Users users, HttpSession sess) {
+		users = (Users) sess.getAttribute("loginUser");
+		model.addAttribute("users", service.selectUser(users.getUsersId()));
+		logger.trace("trace  "+service.selectUser(users.getUsersId()));
 		model.addAttribute("contentpage", "/WEB-INF/view/join/id_infochange.jsp");
 		return "start";
 	}

@@ -19,7 +19,7 @@ import dto.Board;
 import service.BoardService;
 
 @Controller
-@SessionAttributes({"boardlist","pagelist"})
+@SessionAttributes({"boardlist","pagelist","board"})
 public class BoardController {
 	private static Logger logger = LoggerFactory.getLogger(BoardController.class);
 
@@ -146,7 +146,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/freeboard_write", method = RequestMethod.POST)
-	public String freeboardWrite(Model model,Board board,HttpServletRequest req) {
+	public String freeboardWrite(Model model,Board board) {
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
 		
 		service.writeboard(board);
@@ -154,6 +154,15 @@ public class BoardController {
 		List<Board> list = service.getAllBoard();
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
+		return "start";
+	}
+	
+	@RequestMapping(value = "/freeboard_change", method = RequestMethod.GET)
+	public String freeboardChangeForm(Model model,@RequestParam int boardNo) {
+		model.addAttribute("board", service.selectboard(boardNo));
+		logger.trace("trace  "+service.selectboard(boardNo));
+		
+		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_change.jsp");
 		return "start";
 	}
 
