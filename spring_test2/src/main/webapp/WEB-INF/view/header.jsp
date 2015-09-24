@@ -80,7 +80,7 @@ $(function() {
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul5">
-				<li><a href="#">소개</a></li>
+				<li><a href="<%=request.getContextPath()%>/event/introduction.jsp">소개</a></li>
 				<li><a href="#">공지사항</a></li>
 				<li><a href="#">Q&A</a></li>
 			</ul>

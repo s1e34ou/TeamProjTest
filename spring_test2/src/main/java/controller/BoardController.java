@@ -54,7 +54,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/festival_regionboard_write", method = RequestMethod.GET)
 	public String festivalRegionWriteForm(Model model) {
-		model.addAttribute("contentpage", "/WEB-INF/view/festival/festival_regionboard.jsp");
+		model.addAttribute("contentpage", "/WEB-INF/view/festival_regionboard_write.jsp");
 		return "start";
 	}
 	
@@ -137,8 +137,15 @@ public class BoardController {
 
 	@RequestMapping(value = "/freeboard_write", method = RequestMethod.GET)
 	public String freeboardWriteForm(Model model) {
-
-		return "commmunity/freeboard_write";
+		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_write.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/freeboard_write", method = RequestMethod.POST)
+	public String freeboardWrite(Model model,Board board) {
+		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
+		service.writeboard(board);
+		return "start";
 	}
 
 	@RequestMapping(value = "/rankboard", method = RequestMethod.GET)

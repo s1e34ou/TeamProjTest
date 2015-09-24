@@ -19,11 +19,11 @@
 	String UserId = ((Users) loginUserObj).getUsersId();
 %>
 <div class="admin admin-add-problem">
-	<c:url value="/festival_regionboard_write" var="festival_regionboard_write"></c:url>
-    <sform:form method="post" action="${festival_regionboard_write }" modelAttribute="board">
+	<c:url value="/freeboard_write" var="freeboard_write"></c:url>
+    <sform:form method="post" action="${freeboard_write }" modelAttribute="board">
         <fieldset>
         	<sform:label path="usersUsersId">작성자</sform:label>
-        	<sform:input path="usersUsersId" value="<%=UserId %>"/><br>
+        	<sform:input path="usersUsersId" value="<%=UserId %>" readonly="true"/><br>
 			<sform:label path="boardName">제목</sform:label>
 			<sform:input path="boardName" /><br>
             <sform:label path="boardContent">내용</sform:label>
