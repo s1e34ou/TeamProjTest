@@ -12,8 +12,15 @@ Object loginUserObj = session.getAttribute("loginUser");
 if(loginUserObj!=null){
 String loginUser = ((Users) loginUserObj).getUsersId();
 }
-int currentPage=(int)request.getAttribute("page");
+Object currentPageObj= request.getAttribute("page");
+int currentPage;
+if(currentPageObj!=null){
+	 currentPage = (int)currentPageObj;
+}else{
+	 currentPage = 1;
+}
 int pnum;
+
 Object blist = request.getAttribute("boardlist"); 
 List<Board> list = (List<Board>)blist;
 

@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import dto.Board;
 import service.BoardService;
 
 @Controller
+@SessionAttributes({"boardlist","pagelist"})
 public class BoardController {
 	private static Logger logger = LoggerFactory.getLogger(BoardController.class);
 
@@ -107,6 +109,7 @@ public class BoardController {
 	@RequestMapping(value = "/freeboard", method = RequestMethod.GET)
 	public String freeboard(Model model,HttpServletRequest req) {
 		Object pageObj = req.getAttribute("page");
+		
 		logger.trace("pageObj : {}",pageObj);
 		
 		int page;
@@ -114,7 +117,8 @@ public class BoardController {
 			page= (int)pageObj;
 			
 		}else{
-			page=1;
+			page=Integer.parseInt(req.getParameter("page"));
+//			page=1;
 		}
 		List<Board> plist = service.getBoardByPage(page);
 		List<Board> list = service.getAllBoard();
@@ -142,9 +146,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/freeboard_write", method = RequestMethod.POST)
-	public String freeboardWrite(Model model,Board board) {
+	public String freeboardWrite(Model model,Board board,HttpServletRequest req) {
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
+		
 		service.writeboard(board);
+		List<Board> plist = service.getBoardByPage(1);
+		List<Board> list = service.getAllBoard();
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
 		return "start";
 	}
 
