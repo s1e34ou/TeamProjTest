@@ -34,9 +34,9 @@ Board board = (Board) cb;
         	<sform:label path="boardName">제목</sform:label>
 			<sform:input path="boardName"/>
 			<sform:label path="usersUsersId">작성자</sform:label>
-        	<sform:input path="usersUsersId"  readonly="true"/><br>
+        	<sform:input path="usersUsersId"  readonly="true"/>
         	<sform:label path="boardNo">글번호</sform:label>
-        	<sform:input path="boardNo" readonly="true"/><br>
+        	<sform:input path="boardNo" readonly="true"/>
 			</div>
 			<hr>
             <sform:label path="boardContent">내용</sform:label>
