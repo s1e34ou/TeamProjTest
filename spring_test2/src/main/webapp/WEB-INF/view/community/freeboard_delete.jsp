@@ -5,6 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="<%=request.getContextPath()%>/style/freeboard_delete.css"
+	rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/style/head_footer.css"
+	rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -16,11 +20,20 @@ $(function() {
 </head>
 
 <body>
-	글이 삭제 되었습니다.
-	<div id="gomain">
-		<input type="button" id="mainbut" value="목록으로"
-			class="btn btn-default" />
-			
+	<div id="boarddelete">
+		<h1>자유게시판</h1>
+		<div id="boardin">
+			<div id="deletetalk">
+				<h2>
+					<center>글이 삭제 되었습니다.</center>
+				</h2>
+			</div>
+			<div id="gomain">
+				<input type="button" id="mainbut" value="목록으로"
+					class="btn btn-default" />
+
+			</div>
+		</div>
 	</div>
 </body>
 </html>
