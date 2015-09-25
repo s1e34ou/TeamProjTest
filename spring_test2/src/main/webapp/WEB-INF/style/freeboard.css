@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+#board {
+	width: 1000px;
+	height: 600px;
+	margin: auto;
+}
+#boardin {
+	border: solid 1px black;
+	width: 1000px;
+	height: 500px;
+	margin: auto;
+}
+#boardlist {
+	width: 900px;
+	margin-top: 50px;
+}

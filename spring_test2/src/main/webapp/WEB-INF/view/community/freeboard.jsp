@@ -6,7 +6,18 @@
 <%@page import="dto.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link href="<%=request.getContextPath()%>/style/freeboard.css"
+	rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/style/head_footer.css"
+	rel="stylesheet" type="text/css">
+</head>
 <body>
+<div id="board">
+	<h1>자유게시판</h1>
+		<div id="boardin">
 <%
 Object loginUserObj = session.getAttribute("loginUser");
 if(loginUserObj!=null){
@@ -30,7 +41,7 @@ List<Board> pplist = (List<Board>)plist;
 pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 %>
 <center>
-<table width=570 border="0" cellpadding="0" cellspacing="0">
+<table width=570 border="0" cellpadding="0" cellspacing="0" id="boardlist">
      
     <tr align="center" valign="middle" bordercolor="#333333">
         <th style="font-family:Tahoma;font-size:8pt;" width="8%" height="26">
@@ -120,5 +131,6 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
         </td>
     </tr>
 </table>
-
+</div>
+</div>
 </body>
