@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-#boardwrite {
+#boardchange {
 	width: 1000px;
 	height: 630px;
 	margin: auto;
@@ -27,5 +27,5 @@
 }
 #blistfoot{
 	height: 30px;
-	margin-top: 30px;
+	margin-top: 10px;
 }
