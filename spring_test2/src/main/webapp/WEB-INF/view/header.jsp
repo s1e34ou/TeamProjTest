@@ -90,7 +90,7 @@ $(function() {
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 
-	$(function() {
+	/* $(function() {
 		$("#mbtn1").mouseover(function() {
 			$("#headmenuul1").show();
 		});
@@ -129,5 +129,5 @@ $(function() {
 		$("#mbtn5").mouseout(function() {
 			$("#headmenuul5").hide();
 		});
-	});
+	}); */
 </script>
