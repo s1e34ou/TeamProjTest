@@ -7,84 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style>
-#board {
-	width: 1000px;
-	height: 1350px;
-	margin: auto;
-}
-
-#boardin {
-	border: solid 1px black;
-	width: 1000px;
-	height: 770px;
-	margin: auto;
-}
-
-#boardhead {
-	height: 60px;
-}
-
-#boardtitle {
-	margin-left: 10px;
-}
-
-#boardinfo {
-	display: -webkit-box;
-	float: right;
-	margin-right: 10px;
-}
-
-#boardwriter {
-	margin-right: 20px;
-}
-
-#boarddate {
-	margin-right: 20px;
-}
-
-#boardindex {
-	margin-right: 20px;
-}
-
-#boardmid {
-	height: 600px;
-	width: 1000px;
-}
-
-#boardcontent {
-	height: 570px;
-	width: 850px;
-	margin: auto;
-}
-
-#boardfoot {
-	height: 40px;
-}
-
-#moddelbtn {
-	display: -webkit-box;
-	float: right;
-	margin-right: 15px;
-}
-
-#prevnextbtn {
-	height: 70px;
-}
-
-#replyboard {
-	height: 400px;
-}
-
-#replyboardin {
-	border: solid 1px gray;
-	height: 350px;
-}
-
-#listgobtn {
-	height: 70px;
-}
-</style>
+<link href="<%=request.getContextPath()%>/style/freeboard_view.css"
+	rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/style/head_footer.css"
+	rel="stylesheet" type="text/css">
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -140,6 +66,9 @@ $(function() {
 					<div id="boardindex">
 						글번호 :
 						<%=board.getBoardNo()%></div>
+					<div id="boardhits">
+						조회수 :
+						<%=board.getBoardHits()%></div>
 				</div>
 			</div>
 			<hr>
@@ -183,13 +112,12 @@ $(function() {
 		<div id="replyboard">
 			<h2>댓글</h2>
 			<div id="replyboardin"></div>
-			<div id="listgobtn">
-				<ul class="pager">
-					<li class="previous"><a href="#"> <span aria-hidden="true">&larr;</span>
-							list
-					</a></li>
-				</ul>
-			</div>
 		</div>
-</body>
+		<div id="listgobtn">
+			<ul class="pager">
+				<li class="previous"><a href="#"> <span aria-hidden="true">&larr;</span>
+						list
+				</a></li>
+			</ul>
+		</div></body>
 </html>

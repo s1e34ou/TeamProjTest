@@ -1,0 +1,67 @@
+@CHARSET "UTF-8";
+
+#board {
+	width: 1000px;
+	height: 670px;
+	margin: auto;
+}
+#boardin {
+	border: solid 1px black;
+	width: 1000px;
+	height: 600px;
+	margin: auto;
+}
+#boardhead {
+	height: 60px;
+}
+#boardtitle {
+	margin-left: 10px;
+}
+#boardinfo {
+	display: -webkit-box;
+	float: right;
+	margin-right: 10px;
+}
+#boardwriter {
+	margin-right: 20px;
+}
+
+#boarddate {
+	margin-right: 30px;
+}
+#boardindex {
+	margin-right: 20px;
+}
+#boardhits{
+	margin-right: 20px;
+}
+#boardmid {
+	height: 450px;
+	width: 1000px;
+}
+#boardcontent {
+	height: 400px;
+	width: 850px;
+	margin: auto;
+}
+#boardfoot {
+	height: 40px;
+}
+#moddelbtn {
+	display: -webkit-box;
+	float: right;
+	margin-right: 15px;
+}
+#prevnextbtn {
+	height: 70px;
+}
+#replyboard {
+	height: 370px;
+}
+#replyboardin {
+	border: solid 1px gray;
+	height: 300px;
+}
+#listgobtn {
+	height: 70px;
+}
