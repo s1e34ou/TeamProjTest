@@ -2,16 +2,16 @@
 
 #board {
 	width: 1000px;
-	height: 600px;
+	height: 650px;
 	margin: auto;
 }
 #boardin {
 	border: solid 1px black;
 	width: 1000px;
-	height: 500px;
+	height: 550px;
 	margin: auto;
 }
 #boardlist {
 	width: 900px;
-	margin-top: 50px;
+	margin-top: 30px;
 }

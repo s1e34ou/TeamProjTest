@@ -44,19 +44,19 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 <table width=570 border="0" cellpadding="0" cellspacing="0" id="boardlist">
      
     <tr align="center" valign="middle" bordercolor="#333333">
-        <th style="font-family:Tahoma;font-size:8pt;" width="8%" height="26">
+        <th style="font-family:Tahoma;font-size:15pt;" width="8%" height="26">
             <div align="center">번호</div>
         </th>
-        <th style="font-family:Tahoma;font-size:8pt;" width="50%">
+        <th style="font-family:Tahoma;font-size:15pt;" width="50%">
             <div align="center">제목</div>
         </th>
-        <th style="font-family:Tahoma;font-size:8pt;" width="14%">
+        <th style="font-family:Tahoma;font-size:15pt;" width="14%">
             <div align="center">작성자</div>
         </th>
-        <th style="font-family:Tahoma;font-size:8pt;" width="17%">
+        <th style="font-family:Tahoma;font-size:15pt;" width="17%">
             <div align="center">날짜</div>
         </th>
-        <th style="font-family:Tahoma;font-size:8pt;" width="11%">
+        <th style="font-family:Tahoma;font-size:15pt;" width="11%">
             <div align="center">조회수</div>
         </th>
     </tr>
@@ -67,23 +67,23 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
     <tr align="center" valign="middle" bordercolor="#333333"
         onmouseover="this.style.backgroundColor='F8F8F8'"
         onmouseout="this.style.backgroundColor=''">
-        <td height="23" style="font-family:Tahoma;font-size:10pt;">
+        <td height="23" style="font-family:Tahoma;font-size:12pt;">
             <%=pplist.get(i).getBoardNo()%>
         </td>
-            <td height="23" style="font-family:Tahoma;font-size:10pt;">
+            <td height="23" style="font-family:Tahoma;font-size:12pt;">
             <a href="<%=request.getContextPath()%>/freeboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
-        </td>    <td height="23" style="font-family:Tahoma;font-size:10pt;">
+        </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;">
             <%=pplist.get(i).getUsersUsersId()%>
-        </td>    <td height="23" style="font-family:Tahoma;font-size:10pt;">
+        </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;">
             <%=pplist.get(i).getBoardDate()%>
-        </td>    <td height="23" style="font-family:Tahoma;font-size:10pt;">
+        </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;">
             <%=pplist.get(i).getBoardHits()%>
         </td>
       
     </tr>
     <%} %>
      <tr align=center height=20>
-        <td colspan=7 style=font-family:Tahoma;font-size:10pt;>
+        <td colspan=7 style=font-family:Tahoma;font-size:11pt;>
             
             <%if(currentPage<=1){ %>
             [처음]&nbsp;
