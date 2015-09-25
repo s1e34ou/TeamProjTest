@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="dto.Users"%>
 <%@page import="dto.Board"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,21 +13,27 @@
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
+<%
+Object cb = request.getAttribute("board");
+Board board = (Board) cb;
 
+%>
 </head>
 <body>
 <div class="admin admin-add-problem">
-	<c:url value="/freeboard_write" var="freeboard_write"></c:url>
-    <sform:form method="post" action="${freeboard_write }" modelAttribute="board">
+	<c:url value="/freeboard_change" var="freeboard_change"></c:url>
+    <sform:form method="post" action="${freeboard_change }" modelAttribute="board">
         <fieldset>
         	<sform:label path="usersUsersId">작성자</sform:label>
         	<sform:input path="usersUsersId"  readonly="true"/><br>
+        	<sform:label path="boardNo">글번호</sform:label>
+        	<sform:input path="boardNo" readonly="true"/><br>
 			<sform:label path="boardName">제목</sform:label>
 			<sform:input path="boardName"/><br>
             <sform:label path="boardContent">내용</sform:label>
             <sform:textarea path="boardContent" rows="10" cols="100"></sform:textarea><br>
             <sform:button>수정</sform:button>
-            <a href="<%=request.getContextPath()%>/freeboard_view"><button type="button">취소</button></a>
+            <a href="<%=request.getContextPath()%>/freeboard_view?boardNo=<%=board.getBoardNo()%>"><button type="button">취소</button></a>
         </fieldset>
     </sform:form>
 </div>

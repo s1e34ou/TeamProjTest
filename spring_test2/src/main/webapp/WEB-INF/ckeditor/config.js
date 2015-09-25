@@ -11,7 +11,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.skin = 'moono';
 	// %REMOVE_END%
 	config.language = 'ko';
-	 config.uiColor = "#F0F0F0";
+	config.uiColor = "#F0F0F0";
 	 
 	 config.enterMode = CKEDITOR.ENTER_BR;
 	 config.shiftEnterMode = CKEDITOR.ENTER_P;

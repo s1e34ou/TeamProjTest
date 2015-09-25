@@ -26,6 +26,7 @@
             <sform:label path="boardContent">내용</sform:label>
             <sform:textarea path="boardContent"/><br>
             <sform:button>글쓰기</sform:button>
+            <a href="<%=request.getContextPath()%>/freeboard?page=1"><button type="button">취소</button></a>
         </fieldset>
     </sform:form>
 </div>
