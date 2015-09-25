@@ -35,25 +35,16 @@ Board board = (Board) cb;
 			<sform:input path="boardName"/>
 			<sform:label path="usersUsersId">작성자</sform:label>
         	<sform:input path="usersUsersId"  readonly="true"/><br>
-<<<<<<< HEAD
         	<sform:label path="boardNo">글번호</sform:label>
         	<sform:input path="boardNo" readonly="true"/><br>
-			<sform:label path="boardName">제목</sform:label>
-			<sform:input path="boardName"/><br>
-=======
 			</div>
 			<hr>
->>>>>>> branch 'master' of https://github.com/s1e34ou/TeamProjTest.git
             <sform:label path="boardContent">내용</sform:label>
             <sform:textarea path="boardContent" rows="10" cols="100"></sform:textarea><br>
             <div id="blistfoot">
             <sform:button>수정</sform:button>
-<<<<<<< HEAD
             <a href="<%=request.getContextPath()%>/freeboard_view?boardNo=<%=board.getBoardNo()%>"><button type="button">취소</button></a>
-=======
-            <a href="<%=request.getContextPath()%>/freeboard_view"><button type="button">취소</button></a>
             </div>
->>>>>>> branch 'master' of https://github.com/s1e34ou/TeamProjTest.git
         </fieldset>
     </sform:form>
 </div>
