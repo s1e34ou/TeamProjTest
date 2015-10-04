@@ -4,34 +4,52 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="dto.Users"%>
 <%@page import="dto.Board"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<link href="<%=request.getContextPath()%>/style/freeboard_change.css"
+	rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/style/head_footer.css"
+	rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
+<%
+Object cb = request.getAttribute("board");
+Board board = (Board) cb;
 
+%>
 </head>
 <body>
+<div id="boardchange">
+	<h1>자유게시판</h1>
+		<div id="boardin">
 <div class="admin admin-add-problem">
-	<c:url value="/freeboard_write" var="freeboard_write"></c:url>
-    <sform:form method="post" action="${freeboard_write }" modelAttribute="board">
+	<c:url value="/freeboard_change" var="freeboard_change"></c:url>
+    <sform:form method="post" action="${freeboard_change }" modelAttribute="board">
         <fieldset>
-        	<sform:label path="usersUsersId">작성자</sform:label>
-        	<sform:input path="usersUsersId"  readonly="true"/><br>
-			<sform:label path="boardName">제목</sform:label>
-			<sform:input path="boardName"/><br>
-			<sform:input path="boardName"/><br>
+        	<div id="blisthead">
+        	<sform:label path="boardName">제목</sform:label>
+			<sform:input path="boardName"/>
+			<sform:label path="usersUsersId">작성자</sform:label>
+        	<sform:input path="usersUsersId"  readonly="true"/>
+        	<sform:label path="boardNo">글번호</sform:label>
+        	<sform:input path="boardNo" readonly="true"/>
+			</div>
+			<hr>
             <sform:label path="boardContent">내용</sform:label>
             <sform:textarea path="boardContent" rows="10" cols="100"></sform:textarea><br>
+            <div id="blistfoot">
             <sform:button>수정</sform:button>
-            <a href="<%=request.getContextPath()%>/freeboard_view"><button type="button">취소</button></a>
+            <a href="<%=request.getContextPath()%>/freeboard_view?boardNo=<%=board.getBoardNo()%>"><button type="button">취소</button></a>
+            </div>
         </fieldset>
     </sform:form>
 </div>
-
+</div>
+</div>
 <script>
 	CKEDITOR.replace('boardContent');
 	

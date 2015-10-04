@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+
+#boarddelete {
+	width: 1000px;
+	height: 500px;
+	margin: auto;
+	padding: 15px;
+}
+#boardin {
+	border: solid 1px black;
+	height: 300px;
+	margin: auto;
+}
+#deletetalk{
+	margin: auto;
+	margin-top:50px;
+	padding: 15px;
+}
+#gomain{
+	margin: auto;
+	width: 70px;
+	height: 50px;
+}

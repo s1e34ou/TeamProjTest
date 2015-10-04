@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+#boardchange {
+	width: 1000px;
+	height: 630px;
+	margin: auto;
+}
+#boardin {
+	border: solid 1px black;
+	width: 1000px;
+	height: 530px;
+	margin: auto;
+}
+#blisthead {
+	width: 980px;
+	margin: auto;
+	display: -webkit-box;
+}
+#boardName {
+	width: 550px;
+	margin-right: 20px;
+	margin-top: 20px;
+}
+#usersUsersId {
+	width: 150px;
+	margin-right: 70px;
+}
+#boardNo {
+	width: 50px;
+}
+
+#blistfoot{
+	height: 30px;
+	margin-top: 10px;
+}

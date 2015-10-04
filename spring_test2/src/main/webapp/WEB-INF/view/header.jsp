@@ -61,7 +61,7 @@ $(function() {
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul3">
-				<li><a href="<%=request.getContextPath()%>/freeboard">자유게시판</a></li>
+				<li><a href="<%=request.getContextPath()%>/freeboard?page=1">자유게시판</a></li>
 				<li><a href="#">축제후기게시판</a></li>
 			</ul>
 		</div>
@@ -90,7 +90,7 @@ $(function() {
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 
-	$(function() {
+	/* $(function() {
 		$("#mbtn1").mouseover(function() {
 			$("#headmenuul1").show();
 		});
@@ -129,5 +129,5 @@ $(function() {
 		$("#mbtn5").mouseout(function() {
 			$("#headmenuul5").hide();
 		});
-	});
+	}); */
 </script>

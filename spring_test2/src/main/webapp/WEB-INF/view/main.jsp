@@ -168,7 +168,7 @@ $(function() {
 	<div id="defaultbox">
 		<div id="picboard">
 			<div id="picture1">
-				<a href="<%=request.getContextPath() %>/test" class="thumbnail"> <img
+				<a href="#" class="thumbnail"> <img
 					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb1">
 				</a>
 				<div class="caption" id="picbtext1">
@@ -201,7 +201,7 @@ $(function() {
 				</div>
 			</div>
 			<div id="picture4">
-				<a href="<%=request.getContextPath()%>/freeboard?page=1" class="thumbnail"> <img
+				<a href="#" class="thumbnail"> <img
 					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb4">
 				</a>
 				<div class="caption" id="picbtext4">

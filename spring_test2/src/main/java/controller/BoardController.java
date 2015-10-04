@@ -121,7 +121,6 @@ public class BoardController {
 			
 		}else{
 			page=Integer.parseInt(req.getParameter("page"));
-//			page=1;
 		}
 		List<Board> plist = service.getBoardByPage(page);
 		List<Board> list = service.getAllBoard();
@@ -133,11 +132,12 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/freeboard_view", method = RequestMethod.GET)
-	public String freeboardView(Model model, @RequestParam int boardno) {
+	public String freeboardView(Model model, @RequestParam int boardNo) {
 		Board board = new Board();
-		board = service.selectboard(boardno);
+		board = service.selectboard(boardNo);
 		
-		model.addAttribute("currentboard", board);
+		model.addAttribute("currentboard", board); //사용자 인증 
+		
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
 		return "start";
 	}
@@ -168,12 +168,25 @@ public class BoardController {
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_delete.jsp");
 		return "start";
 	}
+	
 	@RequestMapping(value = "/freeboard_change", method = RequestMethod.GET)
 	public String freeboardChangeForm(Model model,@RequestParam int boardNo) {
 		model.addAttribute("board", service.selectboard(boardNo));
-		logger.trace("trace  "+service.selectboard(boardNo));
-		
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_change.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/freeboard_change", method = RequestMethod.POST)
+	public String freeboardChange(Model model,Board board,@RequestParam int boardNo) {
+		
+		service.updateboard(board);
+		logger.trace("board {}",board);
+		
+		board = service.selectboard(boardNo);
+		logger.trace("board 후 {}",board);
+		
+		model.addAttribute("currentboard", board); //사용자 인증 
+		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
 		return "start";
 	}
 
