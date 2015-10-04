@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import dao.BoardDao;
 import dto.Board;
 import dto.Users;
 import service.BoardService;
@@ -43,7 +43,7 @@ public class BoardController {
 	}
 
 
-	@RequestMapping(value = "/festival_regionboard", method = RequestMethod.GET)
+	@RequestMapping(value = "/festival_regionboard", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String festivalRegionboard(Model model) {
 		model.addAttribute("contentpage", "/WEB-INF/view/festival/festival_regionboard.jsp");
 		return "start";
