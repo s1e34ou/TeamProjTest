@@ -18,7 +18,7 @@
 
 <body>
 <div id="boardwrite">
-	<h1>자유게시판</h1>
+	<h1>이벤트게시판</h1>
 		<div id="boardin">
 <div class="admin admin-add-problem">
 	<c:url value="/eventboard_write" var="eventboard_write"></c:url>

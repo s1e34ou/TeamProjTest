@@ -106,8 +106,8 @@ public class BoardController {
 		}
 		Board b = new Board();
 		Pattern pat = Pattern.compile("EVENT_.*");
-		List<Board> plist = service.getBoardByPage(page,b.getEVENT());
-		List<Board> list = service.getAllBoard(b.getEVENT());
+		List<Board> plist = service.getBoardByPage(page,"EVENT_.*");
+		List<Board> list = service.getAllBoard("EVENT_.*");
 		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
@@ -116,10 +116,15 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/eventboard_view", method = RequestMethod.GET)
-	public String eventView(Model model, @RequestParam int boardno, Board board) {
-		board = service.selectboard(boardno);
-		model.addAttribute("currentboard", board);
-		return "event/eventboard_view";
+	public String eventView(Model model, @RequestParam int boardNo) {
+		Board board = new Board();
+		board = service.selectboard(boardNo);
+		
+		model.addAttribute("currentboard", board); //사용자 인증 
+		
+		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_view.jsp");
+		return "start";
+		
 	}
 
 	@RequestMapping(value = "/eventboard_write", method = RequestMethod.GET)
@@ -141,6 +146,34 @@ public class BoardController {
 		List<Board> list = service.getAllBoard(board.getEVENT());
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
+		return "start";
+	}
+	
+	@RequestMapping(value = "/eventboard_delete", method = RequestMethod.GET)
+	public String eventboardDelete(Model model,@RequestParam int boardNo) {
+		service.deleteboard(boardNo);
+		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_delete.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/eventboard_change", method = RequestMethod.GET)
+	public String eventboardChangeForm(Model model,@RequestParam int boardNo) {
+		model.addAttribute("board", service.selectboard(boardNo));
+		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_change.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/eventboard_change", method = RequestMethod.POST)
+	public String eventboardChange(Model model,Board board,@RequestParam int boardNo) {
+		
+		service.updateboard(board);
+		logger.trace("board {}",board);
+		
+		board = service.selectboard(boardNo);
+		logger.trace("board 후 {}",board);
+		
+		model.addAttribute("currentboard", board); //사용자 인증 
+		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_view.jsp");
 		return "start";
 	}
 
