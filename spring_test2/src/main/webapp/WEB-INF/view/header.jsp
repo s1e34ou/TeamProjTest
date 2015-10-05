@@ -89,6 +89,12 @@ $(function() {
 </header>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+ 	$(function() {
+		$("#mbtn1").click(function() {
+			$("#headmenuul1").toggle();
+		});
+	});
+	
 
 	/* $(function() {
 		$("#mbtn1").mouseover(function() {

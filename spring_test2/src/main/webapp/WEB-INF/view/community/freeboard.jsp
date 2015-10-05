@@ -104,7 +104,10 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 			 <%=i%> 
 <%
 		} else {
-%>
+%>		
+		<%-- <ul class="pagination">
+		<li><a href="<%=request.getContextPath()%>/freeboard?page=<%=i%>"><%=i%></a></li>
+		</ul> --%>
 		<a href="<%=request.getContextPath()%>/freeboard?page=<%=i%>"><%=i%></a>
 <%
 		}
@@ -130,6 +133,9 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
              <%} %>
         </td>
     </tr>
+    
+
+    
 </table>
 </div>
 </div>
