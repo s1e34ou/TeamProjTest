@@ -211,13 +211,29 @@ public class BoardController {
 	@RequestMapping(value = "/introduction", method = RequestMethod.GET)
 	public String introduction(Model model) {
 
-		return "event/introduction";
+		return "forclient/introduction";
 	}
 
 	@RequestMapping(value = "/notice", method = RequestMethod.GET)
-	public String notice(Model model) {
-
-		return "notice";
+	public String notice(Model model,HttpServletRequest req) {
+		Object pageObj = req.getAttribute("page");
+		
+		logger.trace("pageObj : {}",pageObj);
+		
+		int page;
+		if(pageObj!=null){
+			page= (int)pageObj;
+			
+		}else{
+			page=Integer.parseInt(req.getParameter("page"));
+		}
+		List<Board> plist = service.getBoardByPage(page);
+		List<Board> list = service.getAllBoard();
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice.jsp");
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
+		model.addAttribute("page",page);
+		return "start";
 	}
 
 	@RequestMapping(value = "/notice_view", method = RequestMethod.GET)
