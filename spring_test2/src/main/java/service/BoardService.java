@@ -13,7 +13,7 @@ public interface BoardService {
 
 	Board selectboard(int boardNo);
 
-	List<Board> getBoardByPage(int page);
+	List<Board> getBoardByPage(int page,String boardCode);
 
-	List<Board> getAllBoard();
+	List<Board> getAllBoard(String boardCode);
 }

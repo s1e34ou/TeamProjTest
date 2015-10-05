@@ -7,7 +7,7 @@ import dto.Board;
 public interface BoardDao {
 	int BOARD_PER_PAGE = 10;
 
-	public List<Board> selectAllBoard();
+	public List<Board> selectAllBoard(String boardCode);
 
 	public void insertBoard(Board board);
 
@@ -17,5 +17,5 @@ public interface BoardDao {
 
 	public void deleteBoard(int boardNo);
 
-	public List<Board> getBoardByPage(int page);
+	public List<Board> getBoardByPage(int page,String boardCode);
 }

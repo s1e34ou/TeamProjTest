@@ -15,7 +15,14 @@ $(function() {
 	//var url = "http://data.daejeon.go.kr/openapi-data/service/rest/festival/festivalDaejeonService/festivalDaejeon?searchCondition=DATE&searchKeyword=2015&ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D"
 	//var url="http://tour.chungnam.net/_prog/openapi/?func=tour&mode=getCnt";
 	//var url="http://210.99.248.79/rest/FestivalInquiryService/getFestivalList?authApiKey=HGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D&startPage=1&pageSize=10"
-	var url="http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D&numOfRows=30&pageNo=1&eventStartDate=20150901&eventEndDate=20150930&MobileOS=ETC&MobileApp=AppTesting&arrange=P&_type=json";
+	var url="http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D";
+	var url2="&numOfRows=10";
+	var url3="&pageNo=1";
+	var url4="&eventStartDate=20151001";
+	var url5="&eventEndDate=20151030";
+	var url6="&MobileOS=ETC&MobileApp=AppTesting&arrange=P&_type=json";
+	
+	url = url+url2+url3+url4+url5+url6;
 	//한국관광공사 api
 	//var url ="http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?ServiceKey=Vy4971YDIgMFmywWHmPkgSex6ENrqIJLG2VRGHEZ7geY%2BqiSR7qdr7vXoVo20mxV1xIeM49o3WYt4Fft6%2Fg9yg%3D%3D&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=TestApp&_type=json";
 	$.ajax({
@@ -24,16 +31,19 @@ $(function() {
 		success:function(txt){
 			
 			var $target=$("#fromServer");
+			
 			var item= txt["response"]["body"]["items"]["item"];
 			$.each(item,function(index,data){
 				//$target.append("<li>"+"이름 : "+data["title"]+"내용 : " +data["content"]+"</li>");
-				$target.append("<tr><td width=300px>"+data["title"]+"</td><td width=800px>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td><td width=300px><img src=" +data["firstimage2"]+" width=100px height=100px></td></tr>");
+				$target.append("<tr><td width=300px>"+data["title"]+"</td><td width=800px>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td><td width=300px><img src=" +data["firstimage2"]+" width=100px height=100px></td><td>"+data["contentid"]+"</td></tr>");
 				//한국관광공사 api
 				//$target.append("<tr><td width=300px>"+data["title"]+"</td><td width=500px>"+ data["bgnde"]+"~"+data[endde]+"</td><td width=300px>"+data["sigun"]+"</td></tr>");
 				//강원도
 				//$target.append("<tr><td width=300px>"+data["name"]+"</td><td width=500px>"+ data["sday"]+"~"+data["eday"]+"</td><td width=300px>"+data["sigun"]+"</td></tr>");
 				
 			});
+			var page=txt["response"]["pageNo"];
+			$target.append(page);
 			//$target.append("<li>"+JSON.stringify(txt)+"</li>");
 		}
 	});
@@ -53,6 +63,9 @@ $(function() {
         </th>
         <th style="font-family:Tahoma;font-size:8pt;" width="300px">
             <div align="center">썸네일</div>
+        </th>
+        <th style="font-family:Tahoma;font-size:8pt;" width="300px">
+            <div align="center">id</div>
         </th>
     </tr>
     

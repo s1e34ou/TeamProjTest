@@ -122,8 +122,9 @@ public class BoardController {
 		}else{
 			page=Integer.parseInt(req.getParameter("page"));
 		}
-		List<Board> plist = service.getBoardByPage(page);
-		List<Board> list = service.getAllBoard();
+		Board b = new Board();
+		List<Board> plist = service.getBoardByPage(page,b.getFREE());
+		List<Board> list = service.getAllBoard(b.getFREE());
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
@@ -156,8 +157,9 @@ public class BoardController {
 		board.setBoardCode(board.getFREE());
 		service.writeboard(board);
 		
-		List<Board> plist = service.getBoardByPage(1);
-		List<Board> list = service.getAllBoard();
+		
+		List<Board> plist = service.getBoardByPage(1,board.getFREE());
+		List<Board> list = service.getAllBoard(board.getFREE());
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
 		return "start";
