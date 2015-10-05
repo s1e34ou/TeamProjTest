@@ -66,7 +66,7 @@ public class BoardServiceTest {
 		assertThat(board.getBoardContent(), is("bbb"));
 	}
 	
-	@Test
+	/*@Test
 	public void getBoardByPageTest() {
 		List<Board> boards = bservice.getBoardByPage(1);
 		logger.trace("boards : {}",boards);
@@ -83,6 +83,6 @@ public class BoardServiceTest {
 		List<Photo> photos = pservice.getAllPhoto();
 		logger.trace("boards : {}",boards);
 		logger.trace("boards : {}",photos);
-	}
+	}*/
 	
 }

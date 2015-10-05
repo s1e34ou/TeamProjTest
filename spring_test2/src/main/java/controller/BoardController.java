@@ -229,8 +229,9 @@ public class BoardController {
 		}else{
 			page=Integer.parseInt(req.getParameter("page"));
 		}
-		List<Board> plist = service.getBoardByPage(page);
-		List<Board> list = service.getAllBoard();
+		Board b = new Board();
+		List<Board> plist = service.getBoardByPage(1,b.getNOTICE());
+		List<Board> list = service.getAllBoard(b.getNOTICE());
 		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
