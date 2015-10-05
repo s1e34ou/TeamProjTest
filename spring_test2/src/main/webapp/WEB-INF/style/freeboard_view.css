@@ -8,7 +8,8 @@
 #boardin {
 	border: solid 1px black;
 	width: 1000px;
-	height: 600px;
+	height: auto;
+	/* 글 양에따라 크기가 자유자재로 조절되게 */
 	margin: auto;
 }
 #boardhead {
@@ -36,11 +37,13 @@
 	margin-right: 20px;
 }
 #boardmid {
-	height: 450px;
+	height: auto;
+	/* 글 양에따라 크기가 자유자재로 조절되게 */
 	width: 1000px;
 }
 #boardcontent {
-	height: 400px;
+	height: auto;
+	/* 글 양에따라 크기가 자유자재로 조절되게 */
 	width: 850px;
 	margin: auto;
 }
