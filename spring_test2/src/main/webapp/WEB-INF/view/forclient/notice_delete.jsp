@@ -13,7 +13,7 @@
 <script type="text/javascript">
 $(function() {
 	$("#mainbut").on("click",function(){
-		$(location).attr("href", "<%=request.getContextPath()%>/freeboard?page=1");
+		$(location).attr("href", "<%=request.getContextPath()%>/notice?page=1");
 	});
 });
 </script>
@@ -21,7 +21,7 @@ $(function() {
 
 <body>
 	<div id="boarddelete">
-		<h1>자유게시판</h1>
+		<h1>공지사항</h1>
 		<div id="boardin">
 			<div id="deletetalk">
 				<h2>
