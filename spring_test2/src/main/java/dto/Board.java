@@ -19,7 +19,6 @@ public class Board {
 	final private String RANK="RANK";
 	final private String NOTICE="NOTICE";
 	final private String QNA="QNA";
-	Pattern pat = Pattern.compile("EVENT_.*");
 	
 	public String getREGION() {
 		return REGION;

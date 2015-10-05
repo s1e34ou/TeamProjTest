@@ -94,6 +94,22 @@ $(function() {
 			$("#headmenuul1").toggle();
 		});
 	});
+ 	$(function() {
+		$("#mbtn2").click(function() {
+			$("#headmenuul2").toggle();
+		});
+	});
+ 	$(function() {
+		$("#mbtn3").click(function() {
+			$("#headmenuul3").toggle();
+		});
+	});
+ 	$(function() {
+		$("#mbtn4").click(function() {
+			$("#headmenuul4").toggle();
+		});
+	});
+ 	
 	
 
 	/* $(function() {

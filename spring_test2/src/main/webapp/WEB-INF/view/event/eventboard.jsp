@@ -13,15 +13,22 @@
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$("#all").on("click",function(){
-			alert("으으으");
-		});
-	});
-</script>
+	<style type="text/css">
+	.family_site ul {display:none;position:absolute;top:30px; /*임의*/width:100px;/*임의*/}
+	.family_site {position:relative;}
+	.family_site button.title {height:30px;/*임의*/width:100px;/*임의*/}
+	</style>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript">
+	jQuery(document).ready(function($){
+		 //button toggle
+		     $('.family_site button.title').click(function(){
+		     $('.family_site ul').slideToggle();
+		    });
+		})
+	</script>
 </head>
+
 <body>
 <div id="board">
 	<h1>이벤트게시판</h1>
@@ -48,12 +55,16 @@ List<Board> pplist = (List<Board>)plist;
 
 pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 %>
-<select>
-	<option id="all" name="all">전체</option>
-	<option>식품</option>
-	<option>미용</option>
-	<option>문화</option>
-</select>
+
+
+<div class="family_site">
+    <button type="button" class="title">Family Site</button>
+    <ul>
+        <li><a href="<%=request.getContextPath() %>/eventboard?page=1" title="식품" value="<%=request.setAttribute("select", "EVENT_f.*" ) %>">식품</a></li>            
+        <li><a href="#" title="새 창" target="_blank">내용2</a></li>
+        <li><a href="#" title="새 창" target="_blank">내용3</a></li>
+    </ul>
+</div>
 <center>
 <table width=570 border="0" cellpadding="0" cellspacing="0" id="boardlist">
      

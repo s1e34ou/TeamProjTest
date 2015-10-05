@@ -104,14 +104,24 @@ public class BoardController {
 		}else{
 			page=Integer.parseInt(req.getParameter("page"));
 		}
-		Board b = new Board();
-		Pattern pat = Pattern.compile("EVENT_.*");
+		Object q = req.getAttribute("select");
+		String qwe = (String)q;
+		
+		if(q.equals(null)){
 		List<Board> plist = service.getBoardByPage(page,"EVENT_.*");
 		List<Board> list = service.getAllBoard("EVENT_.*");
 		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
 		model.addAttribute("page",page);
+		}else{
+			List<Board> plist = service.getBoardByPage(page,qwe);
+			List<Board> list = service.getAllBoard("EVENT_.*");
+			model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
+			model.addAttribute("boardlist", list);
+			model.addAttribute("pagelist", plist);
+			model.addAttribute("page",page);
+		}
 		return "start";
 	}
 
@@ -191,8 +201,8 @@ public class BoardController {
 			page=Integer.parseInt(req.getParameter("page"));
 		}
 		Board b = new Board();
-		List<Board> plist = service.getBoardByPage(page,b.getFREE());
-		List<Board> list = service.getAllBoard(b.getFREE());
+		List<Board> plist = service.getBoardByPage(page,"FREE");
+		List<Board> list = service.getAllBoard("FREE");
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
