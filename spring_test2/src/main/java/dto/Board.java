@@ -1,6 +1,8 @@
 package dto;
 
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Board {
 	private Integer boardNo;
@@ -17,7 +19,7 @@ public class Board {
 	final private String RANK="RANK";
 	final private String NOTICE="NOTICE";
 	final private String QNA="QNA";
-	
+	Pattern pat = Pattern.compile("EVENT_.*");
 	
 	public String getREGION() {
 		return REGION;

@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -91,9 +92,27 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/eventboard", method = RequestMethod.GET)
-	public String eventboard(Model model) {
+	public String eventboard(Model model,HttpServletRequest req) {
+		Object pageObj = req.getAttribute("page");
 		
-		return "event/eventboard";
+		logger.trace("pageObj : {}",pageObj);
+		
+		int page;
+		if(pageObj!=null){
+			page= (int)pageObj;
+			
+		}else{
+			page=Integer.parseInt(req.getParameter("page"));
+		}
+		Board b = new Board();
+		Pattern pat = Pattern.compile("EVENT_.*");
+		List<Board> plist = service.getBoardByPage(page,b.getEVENT());
+		List<Board> list = service.getAllBoard(b.getEVENT());
+		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
+		model.addAttribute("page",page);
+		return "start";
 	}
 
 	@RequestMapping(value = "/eventboard_view", method = RequestMethod.GET)
@@ -104,9 +123,25 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/eventboard_write", method = RequestMethod.GET)
-	public String eventWriteForm(Model model) {
-
-		return "event/eventboard_write";
+	public String eventWriteForm(Model model,Board board, HttpSession sess) {
+		Users users = (Users) sess.getAttribute("loginUser");
+		board.setUsersUsersId(users.getUsersId());
+		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_write.jsp");
+		return "start"; 
+	}
+	
+	@RequestMapping(value = "/eventboard_write", method = RequestMethod.POST)
+	public String eventWrite(Model model,Board board) {
+		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
+		/*board.setBoardCode(board.getEVENT());*/
+		service.writeboard(board);
+		
+		
+		List<Board> plist = service.getBoardByPage(1,board.getEVENT());
+		List<Board> list = service.getAllBoard(board.getEVENT());
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
+		return "start";
 	}
 
 	@RequestMapping(value = "/freeboard", method = RequestMethod.GET)
