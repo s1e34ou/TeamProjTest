@@ -80,8 +80,8 @@ $(function() {
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul5">
-				<li><a href="<%=request.getContextPath()%>/event/introduction.jsp">소개</a></li>
-				<li><a href="#">공지사항</a></li>
+				<li><a href="<%=request.getContextPath()%>/introduction">소개</a></li>
+				<li><a href="<%=request.getContextPath()%>/notice?page=1">공지사항</a></li>
 				<li><a href="#">Q&A</a></li>
 			</ul>
 		</div>
@@ -89,6 +89,12 @@ $(function() {
 </header>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+ 	$(function() {
+		$("#mbtn1").click(function() {
+			$("#headmenuul1").toggle();
+		});
+	});
+	
 
 	/* $(function() {
 		$("#mbtn1").mouseover(function() {
