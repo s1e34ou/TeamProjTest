@@ -16,7 +16,7 @@
 </head>
 <body>
 <div id="board">
-	<h1>공지사항</h1>
+	<h1>Q&A게시판</h1>
 		<div id="boardin">
 <%
 Object loginUserObj = session.getAttribute("loginUser");
@@ -71,7 +71,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%=pplist.get(i).getBoardNo()%>
         </td>
             <td height="23" style="font-family:Tahoma;font-size:12pt;">
-            <a href="<%=request.getContextPath()%>/notice_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+            <a href="<%=request.getContextPath()%>/qnaboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;">
             <%=pplist.get(i).getUsersUsersId()%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;">
@@ -88,13 +88,13 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%if(currentPage<=1){ %>
             [처음]&nbsp;
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/notice?page=1">[처음]</a>&nbsp;
+            <a href="<%=request.getContextPath() %>/qnaboard?page=1">[처음]</a>&nbsp;
             <%} %>
             
             <%if(currentPage<=1){ %>
             [이전]&nbsp;
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/notice?page=<%=currentPage-1 %>">[이전]</a>&nbsp;
+            <a href="<%=request.getContextPath() %>/qnaboard?page=<%=currentPage-1 %>">[이전]</a>&nbsp;
             <%} %>
             
           <%
@@ -105,7 +105,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 <%
 		} else {
 %>
-		<a href="<%=request.getContextPath()%>/notice?page=<%=i%>"><%=i%></a>
+		<a href="<%=request.getContextPath()%>/qnaboard?page=<%=i%>"><%=i%></a>
 <%
 		}
 	}
@@ -114,19 +114,19 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%if(currentPage>=pnum){ %>
             [다음]
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/notice?page=<%=currentPage+1 %>">[다음]</a>
+            <a href="<%=request.getContextPath() %>/qnaboard?page=<%=currentPage+1 %>">[다음]</a>
             <%} %>
              <%if(currentPage>=pnum){ %>
             [끝]
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/notice?page=<%=pnum%>">[끝]</a>
+            <a href="<%=request.getContextPath() %>/qnaboard?page=<%=pnum%>">[끝]</a>
             <%} %>
         </td>
     </tr>
-    <tr align="right">v
+    <tr align="right">
         <td colspan="5">
-        <%if((loginUserObj!=null)&&(((Users)loginUserObj).getUsersId().equals("admin"))){ %>
-             <a href="<%=request.getContextPath() %>/notice_write">[글쓰기]</a>
+        <%if(loginUserObj!=null){ %>
+             <a href="<%=request.getContextPath() %>/qnaboard_write">[글쓰기]</a>
              <%} %>
         </td>
     </tr>

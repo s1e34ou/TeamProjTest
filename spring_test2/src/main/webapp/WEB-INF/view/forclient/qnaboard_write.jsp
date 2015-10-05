@@ -18,11 +18,11 @@
 
 <body>
 <div id="boardwrite">
-	<h1>자유게시판</h1>
+	<h1>Q&A게시판</h1>
 		<div id="boardin">
 <div class="admin admin-add-problem">
-	<c:url value="/freeboard_write" var="freeboard_write"></c:url>
-    <sform:form method="post" action="${freeboard_write }" modelAttribute="board">
+	<c:url value="/qnaboard_write" var="qnaboard_write"></c:url>
+    <sform:form method="post" action="${qnaboard_write }" modelAttribute="board">
         <fieldset>
         	<div id="blisthead">
         	<sform:label path="boardName">제목</sform:label>
@@ -35,7 +35,7 @@
             <sform:textarea path="boardContent"/>
             <div id="blistfoot">
             <sform:button>글쓰기</sform:button>
-            <a href="<%=request.getContextPath()%>/freeboard?page=1"><button type="button">취소</button></a>
+            <a href="<%=request.getContextPath()%>/qnaboard?page=1"><button type="button">취소</button></a>
             </div>
         </fieldset>
     </sform:form>

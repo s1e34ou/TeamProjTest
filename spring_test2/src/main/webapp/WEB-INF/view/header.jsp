@@ -82,7 +82,7 @@ $(function() {
 			<ul class="dropdown-menu" role="menu" id="headmenuul5">
 				<li><a href="<%=request.getContextPath()%>/introduction">소개</a></li>
 				<li><a href="<%=request.getContextPath()%>/notice?page=1">공지사항</a></li>
-				<li><a href="#">Q&A</a></li>
+				<li><a href="<%=request.getContextPath()%>/qnaboard?page=1">Q&A게시판</a></li>
 			</ul>
 		</div>
 	</div>
