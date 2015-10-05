@@ -9,7 +9,14 @@
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
-	
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#mainbut").on("click",function(){
+		$(location).attr("href", "<%=request.getContextPath()%>/main");
+	});
+});
+</script>	
 </head>
 <body>
 	<div id="fastivalintro">
@@ -25,7 +32,7 @@
 			<img src="<%=request.getContextPath()%>/images/fast_festival.png" id="fastivalpic">
 			</div>
 			<div id="gomain">
-				<input type="button" id="mainbut" value="main으로"/>
+				<input type="button" id="mainbut" value="main으로" class="btn btn-default"/>
 			</div>
 		</div>
 	</div>
