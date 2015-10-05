@@ -52,7 +52,7 @@ $(function() {
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul2">
-				<li><a href="#">이벤트(할인정보)</a></li>
+				<li><a href="<%=request.getContextPath()%>/eventboard?page=1">이벤트(할인정보)</a></li>
 			</ul>
 		</div>
 		<div class="btn-group" role="group">
