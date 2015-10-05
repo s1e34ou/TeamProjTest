@@ -52,7 +52,7 @@ $(function() {
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul2">
-				<li><a href="<%=request.getContextPath()%>/eventboard?page=1">이벤트(할인정보)</a></li>
+				<li><a href="#">이벤트(할인정보)</a></li>
 			</ul>
 		</div>
 		<div class="btn-group" role="group">
@@ -89,67 +89,45 @@ $(function() {
 </header>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
- 	$(function() {
-		$("#mbtn1").click(function() {
-			$("#headmenuul1").toggle();
-		});
-	});
- 	$(function() {
-		$("#mbtn2").click(function() {
-			$("#headmenuul2").toggle();
-		});
-	});
- 	$(function() {
-		$("#mbtn3").click(function() {
-			$("#headmenuul3").toggle();
-		});
-	});
- 	$(function() {
-		$("#mbtn4").click(function() {
-			$("#headmenuul4").toggle();
-		});
-	});
- 	
-	
+	 $(function() {
 
-	/* $(function() {
 		$("#mbtn1").mouseover(function() {
-			$("#headmenuul1").show();
+			$("#headmenuul1").slideDown('slow');
 		});
-		$("#mbtn1").delay(3000).mouseout(function() {
-			$("#headmenuul1").hide();
+		$("#headmenuul1").mouseleave(function() {
+			$("#headmenuul1").slideUp('slow');
 		});
 	});
-	$(function() {
+ 	$(function() {
 		$("#mbtn2").mouseover(function() {
-			$("#headmenuul2").show();
+			$("#headmenuul2").slideDown('slow');
 		});
-		$("#mbtn2").mouseout(function() {
-			$("#headmenuul2").hide();
+		$("#headmenuul2").mouseleave(function() {
+			$("#headmenuul2").slideUp('slow');
 		});
 	});
-	$(function() {
+ 	$(function() {
 		$("#mbtn3").mouseover(function() {
-			$("#headmenuul3").show();
+			$("#headmenuul3").slideDown('slow');
 		});
-		$("#mbtn3").mouseout(function() {
-			$("#headmenuul3").hide();
+		$("#headmenuul3").mouseleave(function() {
+			$("#headmenuul3").slideUp('slow');
 		});
 	});
-	$(function() {
+ 	$(function() {
 		$("#mbtn4").mouseover(function() {
-			$("#headmenuul4").show();
+			$("#headmenuul4").slideDown('slow');
 		});
-		$("#mbtn4").mouseout(function() {
-			$("#headmenuul4").hide();
+		$("#headmenuul4").mouseleave(function() {
+			$("#headmenuul4").slideUp('slow');
 		});
 	});
-	$(function() {
+ 	$(function() {
 		$("#mbtn5").mouseover(function() {
-			$("#headmenuul5").show();
+			$("#headmenuul5").slideDown('slow');
 		});
-		$("#mbtn5").mouseout(function() {
-			$("#headmenuul5").hide();
+		$("#headmenuul5").mouseleave(function() {
+			$("#headmenuul5").slideUp('slow');
 		});
-	}); */
+	});
 </script>
