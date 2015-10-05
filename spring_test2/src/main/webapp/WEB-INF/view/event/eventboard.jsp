@@ -9,10 +9,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/freeboard.css"
+<link href="<%=request.getContextPath()%>/style/board.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#all").on("click",function(){
+			alert("으으으");
+		});
+	});
+</script>
 </head>
 <body>
 <div id="board">
@@ -41,6 +49,7 @@ List<Board> pplist = (List<Board>)plist;
 pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 %>
 <select>
+	<option id="all" name="all">전체</option>
 	<option>식품</option>
 	<option>미용</option>
 	<option>문화</option>
