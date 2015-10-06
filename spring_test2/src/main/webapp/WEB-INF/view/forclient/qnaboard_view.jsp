@@ -59,7 +59,12 @@ $(function() {
 				<div id="boardinfo">
 					<div id="boardwriter">
 						작성자 :
-						<%=board.getUsersUsersId()%></div>
+						<%if(board.getUsersUsersId().equals(loginUser)) { %>
+						<%=board.getUsersUsersId()%>
+						<%} else {%>
+						익명
+						<%} %>
+						</div>
 					<div id="boarddate">
 						작성일 :
 						<%=board.getBoardDate()%></div>
@@ -78,6 +83,11 @@ $(function() {
 			<div id="boardfoot">
 				<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
+						<div>
+							<a
+								href="<%=request.getContextPath()%>/qnaboard?page=1"><button
+									type="button" class="btn btn-default">목록</button></a>
+						</div>
 						<%
 							if (loginUser != null && loginUser.equals(board.getUsersUsersId())) {
 						%>

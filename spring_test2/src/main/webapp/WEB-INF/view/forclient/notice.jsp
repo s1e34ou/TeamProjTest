@@ -134,7 +134,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%} %>
         </td>
     </tr>
-    <tr align="right">v
+    <tr align="right">
         <td colspan="5">
         <%if((loginUserObj!=null)&&(((Users)loginUserObj).getUsersId().equals("admin"))){ %>
              <a href="<%=request.getContextPath() %>/notice_write">[글쓰기]</a>

@@ -69,6 +69,21 @@ $(function() {
 					<div id="boardhits">
 						조회수 :
 						<%=board.getBoardHits()%></div>
+					<div>
+						종류 : 
+						<%
+            			String code=board.getBoardCode();
+            			String q;
+            				if(code.equals("EVENT_food")){
+            			code="음식";
+            			}else if(code.equals("EVENT_beauty")){
+            			code="미용";
+            			}else{
+            			code="문화";
+            		}
+            		out.println(code);
+          			  %>
+					</div>
 				</div>
 			</div>
 			<hr>
@@ -78,6 +93,11 @@ $(function() {
 			<div id="boardfoot">
 				<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
+						<div>
+							<a
+								href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_.*"><button
+									type="button" class="btn btn-default">목록</button></a>
+						</div>
 						<%
 							if (loginUser != null && loginUser.equals(board.getUsersUsersId())) {
 						%>

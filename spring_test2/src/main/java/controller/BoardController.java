@@ -290,8 +290,8 @@ public class BoardController {
 
 	@RequestMapping(value = "/introduction", method = RequestMethod.GET)
 	public String introduction(Model model) {
-
-		return "forclient/introduction";
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/introduction.jsp");
+		return "start";
 	}
 
 	@RequestMapping(value = "/notice", method = RequestMethod.GET)

@@ -78,6 +78,11 @@ $(function() {
 			<div id="boardfoot">
 				<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
+						<div>
+							<a
+								href="<%=request.getContextPath()%>/freeboard?page=1"><button
+									type="button" class="btn btn-default">목록</button></a>
+						</div>
 						<%
 							if (loginUser != null && loginUser.equals(board.getUsersUsersId())) {
 						%>
