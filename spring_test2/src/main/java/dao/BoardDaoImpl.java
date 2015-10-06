@@ -70,6 +70,12 @@ public class BoardDaoImpl implements BoardDao {
 		String sql = "update board set board_name=?,board_content=? where board_no=?";
 		jdbcTemp.update(sql, board.getBoardName(), board.getBoardContent(), board.getBoardNo());
 	}
+	
+	@Override
+	public void updateCodeBoard(Board board) {
+		String sql = "update board set board_name=?,board_content=?,board_code=? where board_no=?";
+		jdbcTemp.update(sql, board.getBoardName(), board.getBoardContent(),board.getBoardCode(), board.getBoardNo());
+	}
 
 	@Override
 	public void deleteBoard(int boardNo) {

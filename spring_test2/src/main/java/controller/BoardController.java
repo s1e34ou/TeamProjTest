@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import dto.Board;
 import dto.Users;
@@ -104,24 +105,24 @@ public class BoardController {
 		}else{
 			page=Integer.parseInt(req.getParameter("page"));
 		}
-		Object q = req.getAttribute("select");
-		String qwe = (String)q;
 		
-		if(q.equals(null)){
-		List<Board> plist = service.getBoardByPage(page,"EVENT_.*");
-		List<Board> list = service.getAllBoard("EVENT_.*");
+		Object selectObj = req.getAttribute("select");
+		logger.trace("selectObj : {}",selectObj);
+		
+		String select;
+		if(selectObj!=null){
+			select = (String)selectObj;
+		}else{
+			select=req.getParameter("select");
+		}
+		
+		List<Board> plist = service.getBoardByPage(page,select);
+		List<Board> list = service.getAllBoard(select);
 		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
 		model.addAttribute("page",page);
-		}else{
-			List<Board> plist = service.getBoardByPage(page,qwe);
-			List<Board> list = service.getAllBoard("EVENT_.*");
-			model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
-			model.addAttribute("boardlist", list);
-			model.addAttribute("pagelist", plist);
-			model.addAttribute("page",page);
-		}
+		model.addAttribute("select",select);
 		return "start";
 	}
 
@@ -176,9 +177,8 @@ public class BoardController {
 	@RequestMapping(value = "/eventboard_change", method = RequestMethod.POST)
 	public String eventboardChange(Model model,Board board,@RequestParam int boardNo) {
 		
-		service.updateboard(board);
+		service.updateCodeboard(board);
 		logger.trace("board {}",board);
-		
 		board = service.selectboard(boardNo);
 		logger.trace("board 후 {}",board);
 		

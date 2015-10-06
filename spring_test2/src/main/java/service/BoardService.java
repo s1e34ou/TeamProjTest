@@ -8,6 +8,8 @@ public interface BoardService {
 	void writeboard(Board board);
 
 	void updateboard(Board board);
+	
+	void updateCodeboard(Board board);
 
 	void deleteboard(int boardNo);
 

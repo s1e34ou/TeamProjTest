@@ -31,6 +31,13 @@ public class BoardServiceImpl implements BoardService {
 		dao.updateBoard(board);
 
 	}
+	
+	@Override
+	@Transactional
+	public void updateCodeboard(Board board) {
+		dao.updateCodeBoard(board);
+
+	}
 
 	@Override
 	@Transactional
