@@ -2,14 +2,35 @@
 
 #board {
 	width: 1000px;
-	height: 650px;
+	height: 750px;
 	margin: auto;
 }
 #boardin {
 	border: solid 1px black;
 	width: 1000px;
-	height: 550px;
+	height: 650px;
 	margin: auto;
+}
+#boardinhead{
+	width: 900px;
+	height: 80px;
+	margin-left: 50px;
+	display: -webkit-box;
+}
+#contentnum{
+	border: solid 1px red;
+	width: 450px;
+	height: 40px;
+	margin-top: 40px;
+}
+#contentsearch{
+	width: 450px;
+	height: 40px;
+	margin-top: 40px;
+	display: -webkit-box;
+}
+#contentsearchin{
+	margin-left: 200px;
 }
 #boardlist {
 	width: 900px;
