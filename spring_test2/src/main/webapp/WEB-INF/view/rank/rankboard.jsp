@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/board.css"
+<link href="<%=request.getContextPath()%>/style/rankboard.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
@@ -86,16 +86,16 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
         <th style="font-family:Tahoma;font-size:15pt;" width="8%" height="26">
             <div align="center">종류</div>
         </th>
-        <th style="font-family:Tahoma;font-size:15pt;" width="50%">
+        <th style="font-family:Tahoma;font-size:15pt;" width="45%">
             <div align="center">제목</div>
         </th>
-        <th style="font-family:Tahoma;font-size:15pt;" width="14%">
+        <th style="font-family:Tahoma;font-size:15pt;" width="15%">
             <div align="center">작성자</div>
         </th>
         <th style="font-family:Tahoma;font-size:15pt;" width="17%">
             <div align="center">날짜</div>
         </th>
-        <th style="font-family:Tahoma;font-size:15pt;" width="11%">
+        <th style="font-family:Tahoma;font-size:15pt;" width="15%">
             <div align="center">조회수</div>
         </th>
     </tr>
