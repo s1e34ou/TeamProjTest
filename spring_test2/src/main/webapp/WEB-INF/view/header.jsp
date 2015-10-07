@@ -28,7 +28,8 @@ $(function() {
 
 		<div class="col-lg-6" id="search">
 			<div class="input-group">
-				<form action="<%=request.getContextPath()%>/search?page=1"
+
+				<form action="<%=request.getContextPath()%>/search"
 					method="get">
 					<input id="page" name="page" type="hidden" value="1"> 
 					<div id="searchgr">

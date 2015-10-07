@@ -63,18 +63,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 %>
 
 
-<%-- <div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-    목록
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-   <li role="presentation"><a role="menuitem" tabindex="-1" id="all" href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_.*">전체</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" id="food"  href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_f.*">음식</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" id="beauty" href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_b.*">미용</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" id="culture" href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_c.*">문화</a></li>
-  </ul>
-</div> --%>
+
 <center>
 <table width=570 border="0" cellpadding="0" cellspacing="0" id="boardlist">
      

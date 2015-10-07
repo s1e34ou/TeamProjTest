@@ -518,7 +518,6 @@ public class BoardController {
 			select=req.getParameter("select");
 			logger.trace("select : {}",select);
 		}
-		logger.trace("select : {}",select);
 		List<Board> plist = service.gettAllAllBoardByPage(page, select);
 		List<Board> list = service.getAllAllBoard(select);
 		model.addAttribute("contentpage", "/WEB-INF/view/search/searchboard.jsp");
