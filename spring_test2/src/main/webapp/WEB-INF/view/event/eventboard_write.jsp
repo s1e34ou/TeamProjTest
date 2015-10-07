@@ -31,7 +31,7 @@
         	<sform:input path="usersUsersId" readonly="true"/>
         	<sform:label path="boardCode">종류</sform:label>
         	<sform:select path="boardCode">
-        		<sform:option label="식품" value="EVENT_food"/>
+        		<sform:option label="음식" value="EVENT_food"/>
         		<sform:option label="미용" value="EVENT_beauty"/>
         		<sform:option label="문화" value="EVENT_culture"/>
         	</sform:select>

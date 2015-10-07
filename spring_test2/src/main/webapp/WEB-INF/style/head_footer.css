@@ -20,6 +20,12 @@ div {
 	float: right;
 	width: 500px;
 }
+#searchgr{
+	display: -webkit-box;
+}
+#stext{
+	width: 400px;
+}
 #sitemap {
 	float: right;
 }
