@@ -53,6 +53,11 @@ if(currentPageObj!=null){
 	 currentPage = 1;
 }
 int pnum;
+int pageblock=10;
+int block=(int)Math.ceil((double)currentPage/pageblock);
+int bstartpage=(block-1)*pageblock+1;
+int bendpage=bstartpage+pageblock-1;
+System.out.println("cc : "+currentPage+" a : "+block+" b :"+bstartpage+" c : "+bendpage);
 
 Object blist = request.getAttribute("boardlist"); 
 List<Board> list = (List<Board>)blist;
@@ -108,28 +113,26 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
         <td colspan=7 style=font-family:Tahoma;font-size:11pt;>
             
             <%if(currentPage<=1){ %>
-            [처음]&nbsp;
             <%}else{ %>
             <a href="<%=request.getContextPath() %>/freeboard?page=1">[처음]</a>&nbsp;
             <%} %>
             
             <%if(currentPage<=1){ %>
-            [이전]&nbsp;
             <%}else{ %>
             <a href="<%=request.getContextPath() %>/freeboard?page=<%=currentPage-1 %>">[이전]</a>&nbsp;
             <%} %>
             
           <%
-	for (int i = 1; i <= pnum; i++) {
+          if(bendpage>pnum){
+				bendpage=pnum;
+			}
+	for (int i = bstartpage; i <= bendpage; i++) {
 		if (currentPage == i) {
 %>
-			 <%=i%> 
+			 [<%=i%>] 
 <%
 		} else {
 %>		
-		<%-- <ul class="pagination">
-		<li><a href="<%=request.getContextPath()%>/freeboard?page=<%=i%>"><%=i%></a></li>
-		</ul> --%>
 		<a href="<%=request.getContextPath()%>/freeboard?page=<%=i%>"><%=i%></a>
 <%
 		}
@@ -137,12 +140,10 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 %>
             
             <%if(currentPage>=pnum){ %>
-            [다음]
             <%}else{ %>
             <a href="<%=request.getContextPath() %>/freeboard?page=<%=currentPage+1 %>">[다음]</a>
             <%} %>
              <%if(currentPage>=pnum){ %>
-            [끝]
             <%}else{ %>
             <a href="<%=request.getContextPath() %>/freeboard?page=<%=pnum%>">[끝]</a>
             <%} %>
