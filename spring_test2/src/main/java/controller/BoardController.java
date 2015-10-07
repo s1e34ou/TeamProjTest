@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -271,15 +272,46 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/rankboard", method = RequestMethod.GET)
-	public String rankboard(Model model) {
-		return "rank/rankboard";
+	public String rankboard(Model model,HttpServletRequest req) {
+		Object pageObj = req.getAttribute("page");
+		
+		logger.trace("pageObj : {}",pageObj);
+		
+		int page;
+		if(pageObj!=null){
+			page= (int)pageObj;
+			
+		}else{
+			page=Integer.parseInt(req.getParameter("page"));
+		}
+		
+		Object selectObj = req.getAttribute("select");
+		logger.trace("selectObj : {}",selectObj);
+		
+		String select;
+		if(selectObj!=null){
+			select = (String)selectObj;
+		}else{
+			select=req.getParameter("select");
+		}
+		
+		List<Board> plist = service.getRankBoardByPage(page,select);
+		List<Board> list = service.getRankAllBoard(select);
+		model.addAttribute("contentpage", "/WEB-INF/view/rank/rankboard.jsp");
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
+		model.addAttribute("page",page);
+		model.addAttribute("select",select);
+		return "start";
 	}
 
 	@RequestMapping(value = "/rankboard_view", method = RequestMethod.GET)
-	public String rankView(Model model, @RequestParam int boardno, Board board) {
-		board = service.selectboard(boardno);
-		model.addAttribute("currentboard", board);
-		return "rank/rankboard_view";
+	public String rankView(Model model, @RequestParam int boardNo) {
+		Board board = new Board();
+		board = service.selectboard(boardNo);
+		model.addAttribute("currentboard", board); //사용자 인증 
+		model.addAttribute("contentpage", "/WEB-INF/view/rank/rankboard_view.jsp");
+		return "start";
 	}
 
 	@RequestMapping(value = "/rankboard_write", method = RequestMethod.GET)

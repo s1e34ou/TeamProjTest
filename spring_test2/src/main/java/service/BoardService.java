@@ -18,4 +18,8 @@ public interface BoardService {
 	List<Board> getBoardByPage(int page,String boardCode);
 
 	List<Board> getAllBoard(String boardCode);
+	
+	List<Board> getRankAllBoard(String boardCode);
+	
+	List<Board> getRankBoardByPage(int page,String boardCode);
 }

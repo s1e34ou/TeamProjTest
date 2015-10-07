@@ -65,4 +65,17 @@ public class BoardServiceImpl implements BoardService {
 		return boards;
 	}
 
+	@Override
+	public List<Board> getRankAllBoard(String boardCode) {
+		List<Board> boards = dao.selectRankAllBoard(boardCode);
+		return boards;
+	}
+
+	@Override
+	public List<Board> getRankBoardByPage(int page, String boardCode) {
+		List<Board> boards = dao.getrankBoardByPage(page, boardCode);
+		
+		return boards;
+	}
+
 }

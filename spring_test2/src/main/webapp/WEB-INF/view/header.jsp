@@ -71,7 +71,7 @@ $(function() {
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul4">
-				<li><a href="#">랭킹게시판(추천/조회수)</a></li>
+				<li><a href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT.*">랭킹게시판(추천/조회수)</a></li>
 			</ul>
 		</div>
 		<div class="btn-group" role="group" id="menu5">
