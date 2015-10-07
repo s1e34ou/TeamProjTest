@@ -78,4 +78,16 @@ public class BoardServiceImpl implements BoardService {
 		return boards;
 	}
 
+	@Override
+	public List<Board> getAllAllBoard(String boardContent) {
+		List<Board> boards = dao.selectAllAllBoard( boardContent);
+		return boards;
+	}
+
+	@Override
+	public List<Board> gettAllAllBoardByPage(int page, String boardContent) {
+		List<Board> boards = dao.getAllAllBoardByPage(page, boardContent);
+		return boards;
+	}
+
 }

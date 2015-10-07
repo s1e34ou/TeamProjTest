@@ -3,6 +3,7 @@ package controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,7 @@ import dto.Board;
 import com.google.gson.Gson;
 
 import dto.Users;
+import service.BoardService;
 import service.UsersService;
 
 @Controller
@@ -38,7 +40,9 @@ public class UserController {
 
 	@Autowired
 	UsersService service;
-
+	
+	@Autowired
+	BoardService serviceb;
 	@ModelAttribute("users")
 	public Users getusers() {
 		
@@ -55,7 +59,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String mainForm(Model model) {
+	public String mainForm(Model model,HttpServletRequest req) {
 		return "start";
 	}
 

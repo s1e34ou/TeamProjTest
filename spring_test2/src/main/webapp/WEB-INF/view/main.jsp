@@ -2,6 +2,14 @@
 <%@page import="dto.Users"%>
 <%@page import="java.util.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="dto.Board"%>
+
+<%@page import="java.awt.print.Printable"%>
+<%@page import="dto.Users"%>
+<%@page import="service.BoardServiceImpl"%>
+<%@page import="dao.BoardDao"%>
+<%@page import="java.util.List"%>
+<%@page import="service.BoardService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sform"%>
@@ -163,12 +171,44 @@ $(function() {
 	<div id="boardbox">
 		<div id="box4"></div>
 		<div id="box5"></div>
-		<div id="box6"></div>
+		<div id="box6">
+		<%
+		Object selectObj = request.getAttribute("select");
+		String currentSelect;
+		if(selectObj!=null){
+			currentSelect = (String)selectObj;
+		}else{
+			currentSelect="EVENT_.*";
+		}
+		
+		Object plist = request.getAttribute("pagelist"); 
+		List<Board> pplist = (List<Board>)plist;
+		%>
+		 <h2>랭킹</h2>
+		<%
+        for(int i=0;i<4;i++){
+   		 %>
+   
+    <tr align="center" valign="middle" bordercolor="#333333"
+        onmouseover="this.style.backgroundColor='F8F8F8'"
+        onmouseout="this.style.backgroundColor=''">
+        <td height="23" style="font-family:Tahoma;font-size:12pt;">
+            <%out.println(i+1);%>위
+        </td>
+        <td height="23" style="font-family:Tahoma;font-size:12pt;">
+            <a href="<%=request.getContextPath()%>/rankboard_view?boardNo=92">A</a>
+        </td>    
+    </tr>
+    <br>
+    <%} %>
+		
+		
+		</div>
 	</div>
 	<div id="defaultbox">
 		<div id="picboard">
 			<div id="picture1">
-				<a href="<%=request.getContextPath() %>/eventboard?page=1" class="thumbnail"> <img
+				<a href="<%=request.getContextPath() %>/search?page=1&select=롯" class="thumbnail"> <img
 					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb1">
 				</a>
 				<div class="caption" id="picbtext1">

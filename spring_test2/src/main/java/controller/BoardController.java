@@ -491,4 +491,37 @@ public class BoardController {
 		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_view.jsp");
 		return "start";
 	}
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String searchboard(Model model,HttpServletRequest req) {
+		Object pageObj = req.getAttribute("page");
+		logger.trace("pageObj : {}",pageObj);
+		
+		int page;
+		if(pageObj!=null){
+			page= (int)pageObj;
+			
+		}else{
+			page=Integer.parseInt(req.getParameter("page"));
+		}
+		
+		Object selectObj = req.getAttribute("select");
+		logger.trace("selectObj : {}",selectObj);
+		
+		String select;
+		if(selectObj!=null){
+			select = (String)selectObj;
+		}else{
+			select=req.getParameter("select");
+			logger.trace("select : {}",select);
+		}
+		logger.trace("select : {}",select);
+		List<Board> plist = service.gettAllAllBoardByPage(page, select);
+		List<Board> list = service.getAllAllBoard(select);
+		model.addAttribute("contentpage", "/WEB-INF/view/search/searchboard.jsp");
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
+		model.addAttribute("page",page);
+		model.addAttribute("select",select);
+		return "start";
+	}
 }

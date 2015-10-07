@@ -1,4 +1,3 @@
-<%@page import="java.awt.print.Printable"%>
 <%@page import="dto.Users"%>
 <%@page import="service.BoardServiceImpl"%>
 <%@page import="dao.BoardDao"%>
@@ -10,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/rankboard.css"
+<link href="<%=request.getContextPath()%>/style/eventboard.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
@@ -29,7 +28,7 @@
 
 <body>
 <div id="board">
-	<h1>랭킹게시판</h1>
+	<h1>검색게시판</h1>
 		<div id="boardin">
 <%
 Object loginUserObj = session.getAttribute("loginUser");
@@ -37,40 +36,51 @@ if(loginUserObj!=null){
 String loginUser = ((Users) loginUserObj).getUsersId();
 }
 
+Object currentPageObj= request.getAttribute("page");
+int currentPage;
+if(currentPageObj!=null){
+	 currentPage = (int)currentPageObj;
+}else{
+	 currentPage = 1;
+}
+int pnum;
 
 Object selectObj = request.getAttribute("select");
 String currentSelect;
 if(selectObj!=null){
 	currentSelect = (String)selectObj;
 }else{
-	currentSelect="EVENT_.*";
+	currentSelect="*";
 }
 
+Object blist = request.getAttribute("boardlist"); 
+List<Board> list = (List<Board>)blist;
 
 Object plist = request.getAttribute("pagelist"); 
 List<Board> pplist = (List<Board>)plist;
 
+pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 %>
 
 
-<div class="dropdown">
+<%-- <div class="dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
     목록
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-   <li role="presentation"><a role="menuitem" tabindex="-1" id="all" href="<%=request.getContextPath()%>/rankboard?page=1&select=*">전체</a></li>
-   <li role="presentation"><a role="menuitem" tabindex="-1" id="food"  href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_.*">이벤트</a></li>
-  <%--  <li role="presentation"><a role="menuitem" tabindex="-1" id="beauty" href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_b.*">미용</a></li>
-   <li role="presentation"><a role="menuitem" tabindex="-1" id="culture" href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_c.*">문화</a></li> --%>
+   <li role="presentation"><a role="menuitem" tabindex="-1" id="all" href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_.*">전체</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="food"  href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_f.*">음식</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="beauty" href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_b.*">미용</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="culture" href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_c.*">문화</a></li>
   </ul>
-</div>
+</div> --%>
 <center>
 <table width=570 border="0" cellpadding="0" cellspacing="0" id="boardlist">
      
     <tr align="center" valign="middle" bordercolor="#333333">
         <th style="font-family:Tahoma;font-size:15pt;" width="8%" height="26">
-            <div align="center">순위</div>
+            <div align="center">번호</div>
         </th>
         <th style="font-family:Tahoma;font-size:15pt;" width="8%" height="26">
             <div align="center">종류</div>
@@ -96,25 +106,27 @@ List<Board> pplist = (List<Board>)plist;
         onmouseover="this.style.backgroundColor='F8F8F8'"
         onmouseout="this.style.backgroundColor=''">
         <td height="23" style="font-family:Tahoma;font-size:12pt;">
-            <%out.println(i+1);%>위
+            <%=pplist.get(i).getBoardNo()%>
         </td>
         <td height="23" style="font-family:Tahoma;font-size:12pt;">
-            <%
+           <%
             	String code=pplist.get(i).getBoardCode();
             	String q;
             	if(code.equals("EVENT_food")){
             		code="음식";
             	}else if(code.equals("EVENT_beauty")){
             		code="미용";
-            	}else{
+            	}else if(code.equals("EVENT_culture")){
             		code="문화";
+            	}else{
+            		code="기타";
             	}
             	out.println(code);
             %>
             
         </td>
             <td height="23" style="font-family:Tahoma;font-size:12pt;">
-            <a href="<%=request.getContextPath()%>/rankboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+            <a href="<%=request.getContextPath()%>/eventboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;">
             <%=pplist.get(i).getUsersUsersId()%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;">
@@ -125,7 +137,55 @@ List<Board> pplist = (List<Board>)plist;
       
     </tr>
     <%} %>
-    
+     <tr align=center height=20>
+        <td colspan=7 style=font-family:Tahoma;font-size:11pt;>
+            
+            <%if(currentPage<=1){ %>
+            [처음]&nbsp;
+            <%}else{ %>
+            <a href="<%=request.getContextPath() %>/search?page=1&select=<%=currentSelect%>">[처음]</a>&nbsp;
+            <%} %>
+            
+            <%if(currentPage<=1){ %>
+            [이전]&nbsp;
+            <%}else{ %>
+            <a href="<%=request.getContextPath() %>/search?page=<%=currentPage-1 %>&select=<%=currentSelect%>">[이전]</a>&nbsp;
+            <%} %>
+            
+          <%
+	for (int i = 1; i <= pnum; i++) {
+		if (currentPage == i) {
+%>
+			 <%=i%> 
+<%
+		} else {
+%>		
+		
+		<a href="<%=request.getContextPath()%>/search?page=<%=i%>&select=<%=currentSelect%>"><%=i%></a>
+<%
+		}
+	}
+%>
+            
+            <%if(currentPage>=pnum){ %>
+            [다음]
+            <%}else{ %>
+            <a href="<%=request.getContextPath() %>/search?page=<%=currentPage+1 %>&select=<%=currentSelect%>">[다음]</a>
+            <%} %>
+             <%if(currentPage>=pnum){ %>
+            [끝]
+            <%}else{ %>
+            <a href="<%=request.getContextPath() %>/search?page=<%=pnum%>&select=<%=currentSelect%>">[끝]</a>
+            <%} %>
+        </td>
+    </tr>
+    <tr align="right">
+        <td colspan="5">
+        <%if(loginUserObj!=null){ %>
+             <a href="<%=request.getContextPath() %>/searchboard_write">[글쓰기]</a>
+             <%} %>
+        </td>
+    </tr>
     
 
     
