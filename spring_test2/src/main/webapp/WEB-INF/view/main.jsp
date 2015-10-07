@@ -230,7 +230,7 @@ $(function() {
 				</div>
 			</div>
 			<div id="picture3">
-				<a href="<%=request.getContextPath()%>/festival_regionboard" class="thumbnail"> <img
+				<a href="#" class="thumbnail"> <img
 					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb3">
 				</a>
 				<div class="caption" id="picbtext3">
