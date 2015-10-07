@@ -15,9 +15,15 @@ $(function() {
 	//var url = "http://data.daejeon.go.kr/openapi-data/service/rest/festival/festivalDaejeonService/festivalDaejeon?searchCondition=DATE&searchKeyword=2015&ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D"
 	//var url="http://tour.chungnam.net/_prog/openapi/?func=tour&mode=getCnt";
 	//var url="http://210.99.248.79/rest/FestivalInquiryService/getFestivalList?authApiKey=HGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D&startPage=1&pageSize=10"
+	<%Object pagenoObj = request.getAttribute("pageno");
+	int pn=1;
+	if(pagenoObj!=null){
+		pn = (int)pagenoObj; 
+	}
+	%>			
 	var url="http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D";
 	var url2="&numOfRows=10";
-	var url3="&pageNo=1";
+	var url3="&pageNo=<%=pn%>";
 	var url4="&eventStartDate=20151001";
 	var url5="&eventEndDate=20151030";
 	var url6="&MobileOS=ETC&MobileApp=AppTesting&arrange=P&_type=json";
@@ -31,19 +37,27 @@ $(function() {
 		success:function(txt){
 			
 			var $target=$("#fromServer");
-			
+			var $abc=$("#abc");
 			var item= txt["response"]["body"]["items"]["item"];
 			$.each(item,function(index,data){
 				//$target.append("<li>"+"이름 : "+data["title"]+"내용 : " +data["content"]+"</li>");
-				$target.append("<tr><td width=300px>"+data["title"]+"</td><td width=800px>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td><td width=300px><img src=" +data["firstimage2"]+" width=100px height=100px></td><td>"+data["contentid"]+"</td></tr>");
+				$target.append("<tr><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+">"+data["title"]+"</a></td><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td><td><img src=" +data["firstimage2"]+" width=100px height=100px></td><td>"+data["contentid"]+"</td></tr>");
 				//한국관광공사 api
 				//$target.append("<tr><td width=300px>"+data["title"]+"</td><td width=500px>"+ data["bgnde"]+"~"+data[endde]+"</td><td width=300px>"+data["sigun"]+"</td></tr>");
 				//강원도
 				//$target.append("<tr><td width=300px>"+data["name"]+"</td><td width=500px>"+ data["sday"]+"~"+data["eday"]+"</td><td width=300px>"+data["sigun"]+"</td></tr>");
 				
 			});
-			var page=txt["response"]["pageNo"];
-			$target.append(page);
+			var numOfRows=txt["response"]["body"]["numOfRows"];
+			var total=txt["response"]["body"]["totalCount"];
+			var page=txt["response"]["body"]["pageNo"];
+			var pnum;
+			pnum=Math.ceil(total/numOfRows);
+			for(var i=1;i<=pnum;i++){
+				url3="&pageNo="+i;
+			
+				$abc.append("<a href='<%=request.getContextPath()%>/festival_regionboard?pageno="+i+"'> ["+i+"]</a> ");
+			}
 			//$target.append("<li>"+JSON.stringify(txt)+"</li>");
 		}
 	});
@@ -52,13 +66,14 @@ $(function() {
 </head>
 <body>
 <center>
+<div id="abc">
 <table id="fromServer" width=570 border="0" cellpadding="0" cellspacing="0">
      
     <tr align="center" valign="middle" bordercolor="#333333">
-        <th style="font-family:Tahoma;font-size:8pt;" width="300px">
+        <th style="font-family:Tahoma;font-size:8pt;" width="1000px">
             <div align="center">제목</div>
         </th>
-        <th style="font-family:Tahoma;font-size:8pt;" width="500px%">
+        <th style="font-family:Tahoma;font-size:8pt;" width="500px">
             <div align="center">날짜</div>
         </th>
         <th style="font-family:Tahoma;font-size:8pt;" width="300px">
@@ -70,6 +85,6 @@ $(function() {
     </tr>
     
     </table>
-
+</div>
 </body>
 </html>
