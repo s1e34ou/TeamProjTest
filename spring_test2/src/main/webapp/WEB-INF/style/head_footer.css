@@ -49,13 +49,25 @@ div {
 	border: solid 1px gray;
 	width: 240px;
 }
-#fastivalinfo {
-	float: left;
+#mainfoot{
+	display: -webkit-box;
+	height: 50px;
+	margin-bottom: 50px;
+	margin-top: 30px;
 }
-#sitegogo {
-	padding: 20px;
-	float: right;
+#fastivalci{
 }
-#jumpMenu {
-	width: 200px;
+#fastivalfootlogo{
+	height: 40px;
+	
+}
+#fastivalinfo{
+	width: 750px; 
+}
+#sitegogo{
+	width: 250px; 
+}
+#jumpMenu{
+	width: 250px; 
+	height: 30px;
 }
