@@ -29,6 +29,17 @@
 <div id="board">
 	<h1>Q&A게시판</h1>
 		<div id="boardin">
+		<div id="boardinhead">
+			<div id="contentnum">
+				게시물수 : ㅇㅇㅇ 
+			</div>
+			<div id="contentsearch">
+				<div id="contentsearchin">
+				<input type="text" name="searchtext" placeholder="키워드 검색" id="searchtext" />
+				<input class="btn btn-default" type="submit" id="searchbutton" value="검색" />
+				</div>
+			</div>
+		</div>
 <%
 String loginUser = null;
 Object loginUserObj = session.getAttribute("loginUser");
