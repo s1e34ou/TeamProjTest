@@ -28,7 +28,8 @@ $(function() {
 
 		<div class="col-lg-6" id="search">
 			<div class="input-group">
-				<form action="<%=request.getContextPath()%>/search?page=1"
+
+				<form action="<%=request.getContextPath()%>/search"
 					method="get">
 					<input id="page" name="page" type="hidden" value="1"> 
 					<div id="searchgr">
@@ -49,7 +50,7 @@ $(function() {
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="mbtn1">축제
 				<span class="caret"></span></button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul1">
-				<li><a href="#">지역별 축제</a></li>
+				<li><a href="<%=request.getContextPath()%>/festival_regionboard">지역별 축제</a></li>
 				<li><a href="#">계절별 축제</a></li>
 			</ul>
 		</div>
