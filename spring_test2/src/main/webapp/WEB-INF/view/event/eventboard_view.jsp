@@ -36,7 +36,7 @@
 $(function() {
 	$("#deleteboard").on("click",function(){
 		if(confirm("삭제하시겠습니까")){
-			$(location).attr("href", "<%=request.getContextPath()%>/freeboard_delete?boardNo=<%=board.getBoardNo()%>");	
+			$(location).attr("href", "<%=request.getContextPath()%>/eventboard_delete?boardNo=<%=board.getBoardNo()%>");	
 							} else{
 								e.preventDefault();
 							}
@@ -48,7 +48,7 @@ $(function() {
 
 <body>
 	<div id="board">
-		<h1>자유게시판</h1>
+		<h1>이벤트게시판</h1>
 		<div id="boardin">
 			<div id="boardhead">
 				<div id="boardtitle">
@@ -69,6 +69,21 @@ $(function() {
 					<div id="boardhits">
 						조회수 :
 						<%=board.getBoardHits()%></div>
+					<div>
+						종류 : 
+						<%
+            			String code=board.getBoardCode();
+            			String q;
+            				if(code.equals("EVENT_food")){
+            			code="음식";
+            			}else if(code.equals("EVENT_beauty")){
+            			code="미용";
+            			}else{
+            			code="문화";
+            		}
+            		out.println(code);
+          			  %>
+					</div>
 				</div>
 			</div>
 			<hr>
@@ -80,7 +95,7 @@ $(function() {
 					<div class="btn-group" role="group" id="moddelbtn">
 						<div>
 							<a
-								href="<%=request.getContextPath()%>/freeboard?page=1"><button
+								href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_.*"><button
 									type="button" class="btn btn-default">목록</button></a>
 						</div>
 						<%
@@ -88,12 +103,12 @@ $(function() {
 						%>
 						<div>
 							<a
-								href="<%=request.getContextPath()%>/freeboard_change?boardNo=<%=board.getBoardNo()%>"><button
+								href="<%=request.getContextPath()%>/eventboard_change?boardNo=<%=board.getBoardNo()%>"><button
 									type="button" class="btn btn-default">수정</button></a>
 						</div>
 						<div>
 							<form method="post"
-								action="<%=request.getContextPath()%>/freeboard_delete">
+								action="<%=request.getContextPath()%>/eventboard_delete">
 
 								<input type="button" id="deleteboard" class="btn btn-default" value="삭제">
 							</form>

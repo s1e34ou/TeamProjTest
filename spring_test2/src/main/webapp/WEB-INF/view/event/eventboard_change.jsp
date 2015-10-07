@@ -34,17 +34,23 @@ Board board = (Board) cb;
 </head>
 <body>
 <div id="boardchange">
-	<h1>자유게시판</h1>
+	<h1>이벤트게시판</h1>
 		<div id="boardin">
 <div class="admin admin-add-problem">
-	<c:url value="/freeboard_change" var="freeboard_change"></c:url>
-    <sform:form method="post" action="${freeboard_change }" modelAttribute="board">
+	<c:url value="/eventboard_change" var="eventboard_change"></c:url>
+    <sform:form method="post" action="${eventboard_change }" modelAttribute="board">
         <fieldset>
         	<div id="blisthead">
         	<sform:label path="boardName">제목</sform:label>
 			<sform:input path="boardName"/>
 			<sform:label path="usersUsersId">작성자</sform:label>
         	<sform:input path="usersUsersId"  readonly="true"/>
+        	<sform:label path="boardCode">종류</sform:label>
+        	<sform:select path="boardCode">
+        		<sform:option label="식품" value="EVENT_food"/>
+        		<sform:option label="미용" value="EVENT_beauty"/>
+        		<sform:option label="문화" value="EVENT_culture"/>
+        	</sform:select>
         	<sform:label path="boardNo">글번호</sform:label>
         	<sform:input path="boardNo" readonly="true"/>
 			</div>
@@ -53,7 +59,7 @@ Board board = (Board) cb;
             <sform:textarea path="boardContent" rows="10" cols="100"></sform:textarea><br>
             <div id="blistfoot">
             <sform:button>수정</sform:button>
-            <a href="<%=request.getContextPath()%>/freeboard_view?boardNo=<%=board.getBoardNo()%>"><button type="button">취소</button></a>
+            <a href="<%=request.getContextPath()%>/eventboard_view?boardNo=<%=board.getBoardNo()%>"><button type="button">취소</button></a>
             </div>
         </fieldset>
     </sform:form>

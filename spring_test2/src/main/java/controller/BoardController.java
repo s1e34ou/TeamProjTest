@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import dto.Board;
 import dto.Users;
@@ -95,22 +98,98 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/eventboard", method = RequestMethod.GET)
-	public String eventboard(Model model) {
+	public String eventboard(Model model,HttpServletRequest req) {
+		Object pageObj = req.getAttribute("page");
 		
-		return "event/eventboard";
+		logger.trace("pageObj : {}",pageObj);
+		
+		int page;
+		if(pageObj!=null){
+			page= (int)pageObj;
+			
+		}else{
+			page=Integer.parseInt(req.getParameter("page"));
+		}
+		
+		Object selectObj = req.getAttribute("select");
+		logger.trace("selectObj : {}",selectObj);
+		
+		String select;
+		if(selectObj!=null){
+			select = (String)selectObj;
+		}else{
+			select=req.getParameter("select");
+		}
+		
+		List<Board> plist = service.getBoardByPage(page,select);
+		List<Board> list = service.getAllBoard(select);
+		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
+		model.addAttribute("page",page);
+		model.addAttribute("select",select);
+		return "start";
 	}
 
 	@RequestMapping(value = "/eventboard_view", method = RequestMethod.GET)
-	public String eventView(Model model, @RequestParam int boardno, Board board) {
-		board = service.selectboard(boardno);
-		model.addAttribute("currentboard", board);
-		return "event/eventboard_view";
+	public String eventView(Model model, @RequestParam int boardNo) {
+		Board board = new Board();
+		board = service.selectboard(boardNo);
+		
+		model.addAttribute("currentboard", board); //사용자 인증 
+		
+		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_view.jsp");
+		return "start";
+		
 	}
 
 	@RequestMapping(value = "/eventboard_write", method = RequestMethod.GET)
-	public String eventWriteForm(Model model) {
-
-		return "event/eventboard_write";
+	public String eventWriteForm(Model model,Board board, HttpSession sess) {
+		Users users = (Users) sess.getAttribute("loginUser");
+		board.setUsersUsersId(users.getUsersId());
+		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_write.jsp");
+		return "start"; 
+	}
+	
+	@RequestMapping(value = "/eventboard_write", method = RequestMethod.POST)
+	public String eventWrite(Model model,Board board) {
+		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
+		/*board.setBoardCode(board.getEVENT());*/
+		service.writeboard(board);
+		
+		
+		List<Board> plist = service.getBoardByPage(1,board.getEVENT());
+		List<Board> list = service.getAllBoard(board.getEVENT());
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
+		return "start";
+	}
+	
+	@RequestMapping(value = "/eventboard_delete", method = RequestMethod.GET)
+	public String eventboardDelete(Model model,@RequestParam int boardNo) {
+		service.deleteboard(boardNo);
+		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_delete.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/eventboard_change", method = RequestMethod.GET)
+	public String eventboardChangeForm(Model model,@RequestParam int boardNo) {
+		model.addAttribute("board", service.selectboard(boardNo));
+		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_change.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/eventboard_change", method = RequestMethod.POST)
+	public String eventboardChange(Model model,Board board,@RequestParam int boardNo) {
+		
+		service.updateCodeboard(board);
+		logger.trace("board {}",board);
+		board = service.selectboard(boardNo);
+		logger.trace("board 후 {}",board);
+		
+		model.addAttribute("currentboard", board); //사용자 인증 
+		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_view.jsp");
+		return "start";
 	}
 
 	@RequestMapping(value = "/freeboard", method = RequestMethod.GET)
@@ -127,8 +206,8 @@ public class BoardController {
 			page=Integer.parseInt(req.getParameter("page"));
 		}
 		Board b = new Board();
-		List<Board> plist = service.getBoardByPage(page,b.getFREE());
-		List<Board> list = service.getAllBoard(b.getFREE());
+		List<Board> plist = service.getBoardByPage(page,"FREE");
+		List<Board> list = service.getAllBoard("FREE");
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
@@ -197,15 +276,46 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/rankboard", method = RequestMethod.GET)
-	public String rankboard(Model model) {
-		return "rank/rankboard";
+	public String rankboard(Model model,HttpServletRequest req) {
+		Object pageObj = req.getAttribute("page");
+		
+		logger.trace("pageObj : {}",pageObj);
+		
+		int page;
+		if(pageObj!=null){
+			page= (int)pageObj;
+			
+		}else{
+			page=Integer.parseInt(req.getParameter("page"));
+		}
+		
+		Object selectObj = req.getAttribute("select");
+		logger.trace("selectObj : {}",selectObj);
+		
+		String select;
+		if(selectObj!=null){
+			select = (String)selectObj;
+		}else{
+			select=req.getParameter("select");
+		}
+		
+		List<Board> plist = service.getRankBoardByPage(page,select);
+		List<Board> list = service.getRankAllBoard(select);
+		model.addAttribute("contentpage", "/WEB-INF/view/rank/rankboard.jsp");
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
+		model.addAttribute("page",page);
+		model.addAttribute("select",select);
+		return "start";
 	}
 
 	@RequestMapping(value = "/rankboard_view", method = RequestMethod.GET)
-	public String rankView(Model model, @RequestParam int boardno, Board board) {
-		board = service.selectboard(boardno);
-		model.addAttribute("currentboard", board);
-		return "rank/rankboard_view";
+	public String rankView(Model model, @RequestParam int boardNo) {
+		Board board = new Board();
+		board = service.selectboard(boardNo);
+		model.addAttribute("currentboard", board); //사용자 인증 
+		model.addAttribute("contentpage", "/WEB-INF/view/rank/rankboard_view.jsp");
+		return "start";
 	}
 
 	@RequestMapping(value = "/rankboard_write", method = RequestMethod.GET)
@@ -216,8 +326,8 @@ public class BoardController {
 
 	@RequestMapping(value = "/introduction", method = RequestMethod.GET)
 	public String introduction(Model model) {
-
-		return "forclient/introduction";
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/introduction.jsp");
+		return "start";
 	}
 
 	@RequestMapping(value = "/notice", method = RequestMethod.GET)
@@ -233,8 +343,9 @@ public class BoardController {
 		}else{
 			page=Integer.parseInt(req.getParameter("page"));
 		}
-		List<Board> plist = service.getBoardByPage(page);
-		List<Board> list = service.getAllBoard();
+		Board b = new Board();
+		List<Board> plist = service.getBoardByPage(1,b.getNOTICE());
+		List<Board> list = service.getAllBoard(b.getNOTICE());
 		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
@@ -243,34 +354,145 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/notice_view", method = RequestMethod.GET)
-	public String noticeView(Model model, @RequestParam int boardno, Board board) {
-		board = service.selectboard(boardno);
-		model.addAttribute("currentboard", board);
-		return "notice_view";
+	public String noticeView(Model model, @RequestParam int boardNo) {
+		Board board = new Board();
+		board = service.selectboard(boardNo);
+		
+		model.addAttribute("currentboard", board); //사용자 인증 
+		
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice_view.jsp");
+		return "start";
 	}
 
 	@RequestMapping(value = "/notice_write", method = RequestMethod.GET)
-	public String noticeWriteForm(Model model) {
-
-		return "notice_write";
+	public String noticeWriteForm(Model model,Board board,HttpSession sess) {
+		Users users = (Users) sess.getAttribute("loginUser");
+		board.setUsersUsersId(users.getUsersId());
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice_write.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/notice_write", method = RequestMethod.POST)
+	public String noticeWrite(Model model,Board board) {
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice.jsp");
+		board.setBoardCode(board.getNOTICE());
+		service.writeboard(board);
+		
+		
+		List<Board> plist = service.getBoardByPage(1,board.getNOTICE());
+		List<Board> list = service.getAllBoard(board.getNOTICE());
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
+		return "start";
+	}
+	@RequestMapping(value = "/notice_delete", method = RequestMethod.GET)
+	public String noticeDelete(Model model,@RequestParam int boardNo) {
+		service.deleteboard(boardNo);
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice_delete.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/notice_change", method = RequestMethod.GET)
+	public String noticeChangeForm(Model model,@RequestParam int boardNo) {
+		model.addAttribute("board", service.selectboard(boardNo));
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice_change.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/notice_change", method = RequestMethod.POST)
+	public String noticeChange(Model model,Board board,@RequestParam int boardNo) {
+		
+		service.updateboard(board);
+		logger.trace("board {}",board);
+		
+		board = service.selectboard(boardNo);
+		logger.trace("board 후 {}",board);
+		
+		model.addAttribute("currentboard", board); //사용자 인증 
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice_view.jsp");
+		return "start";
 	}
 
 	@RequestMapping(value = "/qnaboard", method = RequestMethod.GET)
-	public String qnaboard(Model model) {
-
-		return "forclient/qnaboard";
+	public String qnaboard(Model model,HttpServletRequest req) {
+		Object pageObj = req.getAttribute("page");
+		
+		logger.trace("pageObj : {}",pageObj);
+		
+		int page;
+		if(pageObj!=null){
+			page= (int)pageObj;
+			
+		}else{
+			page=Integer.parseInt(req.getParameter("page"));
+		}
+		Board b = new Board();
+		List<Board> plist = service.getBoardByPage(1,b.getQNA());
+		List<Board> list = service.getAllBoard(b.getQNA());
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard.jsp");
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
+		model.addAttribute("page",page);
+		return "start";
 	}
 
 	@RequestMapping(value = "/qnaboard_view", method = RequestMethod.GET)
-	public String qnaboardView(Model model, @RequestParam int boardno, Board board) {
-		board = service.selectboard(boardno);
-		model.addAttribute("currentboard", board);
-		return "forclient/qnaboard_view";
+	public String qnaboardView(Model model, @RequestParam int boardNo) {
+		Board board = new Board();
+		board = service.selectboard(boardNo);
+		
+		model.addAttribute("currentboard", board); //사용자 인증 
+		
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_view.jsp");
+		return "start";
 	}
 
 	@RequestMapping(value = "/qnaboard_write", method = RequestMethod.GET)
-	public String qnaSboardWriteForm(Model model) {
-
-		return "forclient/qnaboard_write";
+	public String qnaboardWriteForm(Model model,Board board,HttpSession sess) {
+		Users users = (Users) sess.getAttribute("loginUser");
+		board.setUsersUsersId(users.getUsersId());
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_write.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/qnaboard_write", method = RequestMethod.POST)
+	public String qnaboardWrite(Model model,Board board) {
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard.jsp");
+		board.setBoardCode(board.getQNA());
+		service.writeboard(board);
+		
+		
+		List<Board> plist = service.getBoardByPage(1,board.getQNA());
+		List<Board> list = service.getAllBoard(board.getQNA());
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
+		return "start";
+	}
+	@RequestMapping(value = "/qnaboard_delete", method = RequestMethod.GET)
+	public String qnaboardDelete(Model model,@RequestParam int boardNo) {
+		service.deleteboard(boardNo);
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_delete.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/qnaboard_change", method = RequestMethod.GET)
+	public String qnaboardChangeForm(Model model,@RequestParam int boardNo) {
+		model.addAttribute("board", service.selectboard(boardNo));
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_change.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/qnaboard_change", method = RequestMethod.POST)
+	public String qnaboardChange(Model model,Board board,@RequestParam int boardNo) {
+		
+		service.updateboard(board);
+		logger.trace("board {}",board);
+		
+		board = service.selectboard(boardNo);
+		logger.trace("board 후 {}",board);
+		
+		model.addAttribute("currentboard", board); //사용자 인증 
+		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_view.jsp");
+		return "start";
 	}
 }

@@ -8,37 +8,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/board_write.css"
+<link href="<%=request.getContextPath()%>/style/freeboard_write.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-<!-- 합쳐지고 최소화된 옵션 테마 -->
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script
-	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
 <div id="boardwrite">
-	<h1>자유게시판</h1>
+	<h1>이벤트게시판</h1>
 		<div id="boardin">
 <div class="admin admin-add-problem">
-	<c:url value="/freeboard_write" var="freeboard_write"></c:url>
-    <sform:form method="post" action="${freeboard_write }" modelAttribute="board">
+	<c:url value="/eventboard_write" var="eventboard_write"></c:url>
+    <sform:form method="post" action="${eventboard_write }" modelAttribute="board">
         <fieldset>
         	<div id="blisthead">
         	<sform:label path="boardName">제목</sform:label>
 			<sform:input path="boardName" />
         	<sform:label path="usersUsersId">작성자</sform:label>
         	<sform:input path="usersUsersId" readonly="true"/>
+        	<sform:label path="boardCode">종류</sform:label>
+        	<sform:select path="boardCode">
+        		<sform:option label="식품" value="EVENT_food"/>
+        		<sform:option label="미용" value="EVENT_beauty"/>
+        		<sform:option label="문화" value="EVENT_culture"/>
+        	</sform:select>
 			</div>
 			<hr>
             <sform:label path="boardContent">내용</sform:label>

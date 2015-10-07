@@ -34,11 +34,11 @@ Board board = (Board) cb;
 </head>
 <body>
 <div id="boardchange">
-	<h1>자유게시판</h1>
+	<h1>Q&A게시판</h1>
 		<div id="boardin">
 <div class="admin admin-add-problem">
-	<c:url value="/freeboard_change" var="freeboard_change"></c:url>
-    <sform:form method="post" action="${freeboard_change }" modelAttribute="board">
+	<c:url value="/qnaboard_change" var="qnaboard_change"></c:url>
+    <sform:form method="post" action="${qnaboard_change }" modelAttribute="board">
         <fieldset>
         	<div id="blisthead">
         	<sform:label path="boardName">제목</sform:label>
@@ -53,7 +53,7 @@ Board board = (Board) cb;
             <sform:textarea path="boardContent" rows="10" cols="100"></sform:textarea><br>
             <div id="blistfoot">
             <sform:button>수정</sform:button>
-            <a href="<%=request.getContextPath()%>/freeboard_view?boardNo=<%=board.getBoardNo()%>"><button type="button">취소</button></a>
+            <a href="<%=request.getContextPath()%>/qnaboard_view?boardNo=<%=board.getBoardNo()%>"><button type="button">취소</button></a>
             </div>
         </fieldset>
     </sform:form>

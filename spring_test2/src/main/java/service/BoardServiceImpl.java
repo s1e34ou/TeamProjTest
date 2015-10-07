@@ -31,6 +31,13 @@ public class BoardServiceImpl implements BoardService {
 		dao.updateBoard(board);
 
 	}
+	
+	@Override
+	@Transactional
+	public void updateCodeboard(Board board) {
+		dao.updateCodeBoard(board);
+
+	}
 
 	@Override
 	@Transactional
@@ -55,6 +62,19 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<Board> getAllBoard(String boardCode) {
 		List<Board> boards = dao.selectAllBoard(boardCode);
+		return boards;
+	}
+
+	@Override
+	public List<Board> getRankAllBoard(String boardCode) {
+		List<Board> boards = dao.selectRankAllBoard(boardCode);
+		return boards;
+	}
+
+	@Override
+	public List<Board> getRankBoardByPage(int page, String boardCode) {
+		List<Board> boards = dao.getrankBoardByPage(page, boardCode);
+		
 		return boards;
 	}
 

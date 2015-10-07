@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/id_infochangecheck.css"
+<link href="<%=request.getContextPath()%>/style/board_delete.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
@@ -23,22 +23,25 @@
 <script type="text/javascript">
 $(function() {
 	$("#mainbut").on("click",function(){
-		$(location).attr("href", "<%=request.getContextPath()%>/main");
+		$(location).attr("href", "<%=request.getContextPath()%>/notice?page=1");
 	});
 });
 </script>
 </head>
+
 <body>
-	<div id="infochange">
-	<h1>정보수정</h1>
-		<div id="infochangein">
-		<div id="infochangetalk">
-			<h2>
-				<center>회원정보 수정이<br>완료 되었습니다.</center>
-			</h2>
-		</div>
+	<div id="boarddelete">
+		<h1>공지사항</h1>
+		<div id="boardin">
+			<div id="deletetalk">
+				<h2>
+					<center>글이 삭제 되었습니다.</center>
+				</h2>
+			</div>
 			<div id="gomain">
-				<input type="button" id="mainbut" value="main으로" class="btn btn-default"/>
+				<input type="button" id="mainbut" value="목록으로"
+					class="btn btn-default" />
+
 			</div>
 		</div>
 	</div>

@@ -52,7 +52,7 @@ $(function() {
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul2">
-				<li><a href="#">이벤트(할인정보)</a></li>
+				<li><a href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_.*">이벤트(할인정보)</a></li>
 			</ul>
 		</div>
 		<div class="btn-group" role="group">
@@ -71,7 +71,7 @@ $(function() {
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul4">
-				<li><a href="#">랭킹게시판(추천/조회수)</a></li>
+				<li><a href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT.*">랭킹게시판(추천/조회수)</a></li>
 			</ul>
 		</div>
 		<div class="btn-group" role="group" id="menu5">
@@ -82,58 +82,52 @@ $(function() {
 			<ul class="dropdown-menu" role="menu" id="headmenuul5">
 				<li><a href="<%=request.getContextPath()%>/introduction">소개</a></li>
 				<li><a href="<%=request.getContextPath()%>/notice?page=1">공지사항</a></li>
-				<li><a href="#">Q&A</a></li>
+				<li><a href="<%=request.getContextPath()%>/qnaboard?page=1">Q&A게시판</a></li>
 			</ul>
 		</div>
 	</div>
 </header>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
- 	$(function() {
-		$("#mbtn1").click(function() {
-			$("#headmenuul1").toggle();
-		});
-	});
-	
+	 $(function() {
 
-	/* $(function() {
 		$("#mbtn1").mouseover(function() {
-			$("#headmenuul1").show();
+			$("#headmenuul1").slideDown('slow');
 		});
-		$("#mbtn1").delay(3000).mouseout(function() {
-			$("#headmenuul1").hide();
+		$("#headmenuul1"+"#mbtn1").mouseleave(function() {
+			$("#headmenuul1").slideUp('slow');
 		});
 	});
-	$(function() {
+ 	$(function() {
 		$("#mbtn2").mouseover(function() {
-			$("#headmenuul2").show();
+			$("#headmenuul2").slideDown('slow');
 		});
-		$("#mbtn2").mouseout(function() {
-			$("#headmenuul2").hide();
+		$("#headmenuul2").mouseleave(function() {
+			$("#headmenuul2").slideUp('slow');
 		});
 	});
-	$(function() {
+ 	$(function() {
 		$("#mbtn3").mouseover(function() {
-			$("#headmenuul3").show();
+			$("#headmenuul3").slideDown('slow');
 		});
-		$("#mbtn3").mouseout(function() {
-			$("#headmenuul3").hide();
+		$("#headmenuul3").mouseleave(function() {
+			$("#headmenuul3").slideUp('slow');
 		});
 	});
-	$(function() {
+ 	$(function() {
 		$("#mbtn4").mouseover(function() {
-			$("#headmenuul4").show();
+			$("#headmenuul4").slideDown('slow');
 		});
-		$("#mbtn4").mouseout(function() {
-			$("#headmenuul4").hide();
+		$("#headmenuul4").mouseleave(function() {
+			$("#headmenuul4").slideUp('slow');
 		});
 	});
-	$(function() {
+ 	$(function() {
 		$("#mbtn5").mouseover(function() {
-			$("#headmenuul5").show();
+			$("#headmenuul5").slideDown('slow');
 		});
-		$("#mbtn5").mouseout(function() {
-			$("#headmenuul5").hide();
+		$("#headmenuul5").mouseleave(function() {
+			$("#headmenuul5").slideUp('slow');
 		});
-	}); */
+	});
 </script>

@@ -9,10 +9,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/board.css"
+<link href="<%=request.getContextPath()%>/style/eventboard.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
+	
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
@@ -23,28 +24,18 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
+
 <body>
 <div id="board">
-	<h1>공지사항</h1>
+	<h1>이벤트게시판</h1>
 		<div id="boardin">
-		<div id="boardinhead">
-			<div id="contentnum">
-				게시물수 : ㅇㅇㅇ 
-			</div>
-			<div id="contentsearch">
-				<div id="contentsearchin">
-				<input type="text" name="searchtext" placeholder="키워드 검색" id="searchtext" />
-				<input class="btn btn-default" type="submit" id="searchbutton" value="검색" />
-				</div>
-			</div>
-		</div>
 <%
 Object loginUserObj = session.getAttribute("loginUser");
 if(loginUserObj!=null){
 String loginUser = ((Users) loginUserObj).getUsersId();
 }
+
 Object currentPageObj= request.getAttribute("page");
 int currentPage;
 if(currentPageObj!=null){
@@ -54,6 +45,14 @@ if(currentPageObj!=null){
 }
 int pnum;
 
+Object selectObj = request.getAttribute("select");
+String currentSelect;
+if(selectObj!=null){
+	currentSelect = (String)selectObj;
+}else{
+	currentSelect="EVENT_.*";
+}
+
 Object blist = request.getAttribute("boardlist"); 
 List<Board> list = (List<Board>)blist;
 
@@ -62,6 +61,20 @@ List<Board> pplist = (List<Board>)plist;
 
 pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 %>
+
+
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+    목록
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+   <li role="presentation"><a role="menuitem" tabindex="-1" id="all" href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_.*">전체</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="food"  href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_f.*">음식</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="beauty" href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_b.*">미용</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" id="culture" href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_c.*">문화</a></li>
+  </ul>
+</div>
 <center>
 <table width=570 border="0" cellpadding="0" cellspacing="0" id="boardlist">
      
@@ -69,16 +82,19 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
         <th style="font-family:Tahoma;font-size:15pt;" width="8%" height="26">
             <div align="center">번호</div>
         </th>
-        <th style="font-family:Tahoma;font-size:15pt;" width="50%">
+        <th style="font-family:Tahoma;font-size:15pt;" width="8%" height="26">
+            <div align="center">종류</div>
+        </th>
+        <th style="font-family:Tahoma;font-size:15pt;" width="45%">
             <div align="center">제목</div>
         </th>
-        <th style="font-family:Tahoma;font-size:15pt;" width="14%">
+        <th style="font-family:Tahoma;font-size:15pt;" width="15%">
             <div align="center">작성자</div>
         </th>
         <th style="font-family:Tahoma;font-size:15pt;" width="17%">
             <div align="center">날짜</div>
         </th>
-        <th style="font-family:Tahoma;font-size:15pt;" width="11%">
+        <th style="font-family:Tahoma;font-size:15pt;" width="15%">
             <div align="center">조회수</div>
         </th>
     </tr>
@@ -92,8 +108,23 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
         <td height="23" style="font-family:Tahoma;font-size:12pt;">
             <%=pplist.get(i).getBoardNo()%>
         </td>
+        <td height="23" style="font-family:Tahoma;font-size:12pt;">
+            <%
+            	String code=pplist.get(i).getBoardCode();
+            	String q;
+            	if(code.equals("EVENT_food")){
+            		code="음식";
+            	}else if(code.equals("EVENT_beauty")){
+            		code="미용";
+            	}else{
+            		code="문화";
+            	}
+            	out.println(code);
+            %>
+            
+        </td>
             <td height="23" style="font-family:Tahoma;font-size:12pt;">
-            <a href="<%=request.getContextPath()%>/notice_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+            <a href="<%=request.getContextPath()%>/eventboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;">
             <%=pplist.get(i).getUsersUsersId()%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;">
@@ -110,13 +141,13 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%if(currentPage<=1){ %>
             [처음]&nbsp;
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/notice?page=1">[처음]</a>&nbsp;
+            <a href="<%=request.getContextPath() %>/eventboard?page=1&select=<%=currentSelect%>">[처음]</a>&nbsp;
             <%} %>
             
             <%if(currentPage<=1){ %>
             [이전]&nbsp;
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/notice?page=<%=currentPage-1 %>">[이전]</a>&nbsp;
+            <a href="<%=request.getContextPath() %>/eventboard?page=<%=currentPage-1 %>&select=<%=currentSelect%>">[이전]</a>&nbsp;
             <%} %>
             
           <%
@@ -126,8 +157,9 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 			 <%=i%> 
 <%
 		} else {
-%>
-		<a href="<%=request.getContextPath()%>/notice?page=<%=i%>"><%=i%></a>
+%>		
+		
+		<a href="<%=request.getContextPath()%>/eventboard?page=<%=i%>&select=<%=currentSelect%>"><%=i%></a>
 <%
 		}
 	}
@@ -136,23 +168,28 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%if(currentPage>=pnum){ %>
             [다음]
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/notice?page=<%=currentPage+1 %>">[다음]</a>
+            <a href="<%=request.getContextPath() %>/eventboard?page=<%=currentPage+1 %>&select=<%=currentSelect%>">[다음]</a>
             <%} %>
              <%if(currentPage>=pnum){ %>
             [끝]
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/notice?page=<%=pnum%>">[끝]</a>
+            <a href="<%=request.getContextPath() %>/eventboard?page=<%=pnum%>&select=<%=currentSelect%>">[끝]</a>
             <%} %>
         </td>
     </tr>
     <tr align="right">
         <td colspan="5">
-        <%if((loginUserObj!=null)&&(((Users)loginUserObj).getUsersId().equals("admin"))){ %>
-             <a href="<%=request.getContextPath() %>/notice_write">[글쓰기]</a>
+        <%if(loginUserObj!=null){ %>
+             <a href="<%=request.getContextPath() %>/eventboard_write">[글쓰기]</a>
              <%} %>
         </td>
     </tr>
+    
+
+    
 </table>
 </div>
 </div>
 </body>
+
+

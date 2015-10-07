@@ -18,4 +18,12 @@ public interface BoardDao {
 	public void deleteBoard(int boardNo);
 
 	public List<Board> getBoardByPage(int page,String boardCode);
+	
+	public void updateCodeBoard(Board board);
+	
+	public List<Board> selectRankAllBoard(String boardCode);
+
+	public List<Board> getrankBoardByPage(int page, String boardCode);
+	
+	
 }
