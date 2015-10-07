@@ -116,4 +116,24 @@ public class BoardDaoImpl implements BoardDao {
 		return board;
 	}
 
+	@Override
+	public List<Board> selectAllAllBoard(String boardContent) {
+		String sql = "select * from Board where (regexp_like(board_content,?) or regexp_like(board_name,?)) order by board_date desc";
+		List<Board> board = jdbcTemp.query(sql, new BeanPropertyRowMapper<Board>(Board.class),boardContent,boardContent);
+		return board;
+	}
+
+	@Override
+	public List<Board> getAllAllBoardByPage(int page, String boardContent) {
+		String sql = "SELECT * FROM ("
+				+ 		"SELECT sub.*, ROWNUM AS RNUM "
+				+		"FROM ( select * from board where (regexp_like(board_content,?) or regexp_like(board_name,?)) order by board_date desc) sub)"
+				+ "WHERE RNUM >= ? AND RNUM <= ?";
+		
+		List<Board> board = jdbcTemp.query(sql, new BeanPropertyRowMapper<Board>(Board.class),boardContent,boardContent,(page - 1) * BoardDao.BOARD_PER_PAGE + 1,page * BoardDao.BOARD_PER_PAGE);
+		
+		
+		return board;
+	}
+
 }

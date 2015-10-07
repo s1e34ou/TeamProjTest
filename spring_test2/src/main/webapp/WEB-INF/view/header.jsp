@@ -28,9 +28,16 @@ $(function() {
 
 		<div class="col-lg-6" id="search">
 			<div class="input-group">
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="button">Go!</button>
-				</span> <input type="text" class="form-control" placeholder="Search for...">
+				<form action="<%=request.getContextPath()%>/search?page=1"
+					method="get">
+					<input id="page" name="page" type="hidden" value="1"> 
+					<div id="searchgr">
+					<input id="stext" name="select" type="text" class="form-control" placeholder="Search for..."> 
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="submit">Go!</button>
+					</span>
+					</div>
+				</form>
 			</div>
 			<!-- /input-group -->
 		</div>
@@ -90,11 +97,10 @@ $(function() {
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	 $(function() {
-
 		$("#mbtn1").mouseover(function() {
 			$("#headmenuul1").slideDown('slow');
 		});
-		$("#headmenuul1"+"#mbtn1").mouseleave(function() {
+		$("#headmenuul1").mouseleave(function() {
 			$("#headmenuul1").slideUp('slow');
 		});
 	});

@@ -25,5 +25,9 @@ public interface BoardDao {
 
 	public List<Board> getrankBoardByPage(int page, String boardCode);
 	
+	public List<Board> selectAllAllBoard(String boardContent);
+	
+	public List<Board> getAllAllBoardByPage(int page,String boardContent);
+	
 	
 }

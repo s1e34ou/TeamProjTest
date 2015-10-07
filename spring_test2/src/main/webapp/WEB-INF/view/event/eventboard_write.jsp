@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/freeboard_write.css"
+<link href="<%=request.getContextPath()%>/style/board_write.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
@@ -31,7 +31,7 @@
         	<sform:input path="usersUsersId" readonly="true"/>
         	<sform:label path="boardCode">종류</sform:label>
         	<sform:select path="boardCode">
-        		<sform:option label="식품" value="EVENT_food"/>
+        		<sform:option label="음식" value="EVENT_food"/>
         		<sform:option label="미용" value="EVENT_beauty"/>
         		<sform:option label="문화" value="EVENT_culture"/>
         	</sform:select>
