@@ -33,22 +33,22 @@
 			</div>
 			<div id="box2" class="list-group">
 				<a href="#" class="list-group-item active"> 이벤트 </a> 
-				<a href="#" class="list-group-item"> 이벤트(할인) </a> 
+				<a href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_.*" class="list-group-item"> 이벤트(할인) </a> 
 			</div>
 			<div id="box3" class="list-group">
 				<a href="#" class="list-group-item active"> 커뮤니티 </a> 
-				<a href="#" class="list-group-item"> 자유게시판 </a> 
+				<a href="<%=request.getContextPath()%>/freeboard?page=1" class="list-group-item"> 자유게시판 </a> 
 				<a href="#" class="list-group-item"> 축제후기게시판 </a> 
 			</div>
 			<div id="box4" class="list-group">
 				<a href="#" class="list-group-item active"> 랭킹 </a> 
-				<a href="#" class="list-group-item"> 랭킹게시판(추천/조회) </a> 
+				<a href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT.*" class="list-group-item"> 랭킹게시판(추천/조회) </a> 
 			</div>
 			<div id="box5" class="list-group">
 				<a href="#" class="list-group-item active"> 고객마당 </a> 
-				<a href="#" class="list-group-item"> 소개 </a> 
-				<a href="#" class="list-group-item"> 공지사항 </a> 
-				<a href="#" class="list-group-item"> Q&A게시판 </a> 
+				<a href="<%=request.getContextPath()%>/introduction" class="list-group-item"> 소개 </a> 
+				<a href="<%=request.getContextPath()%>/notice?page=1" class="list-group-item"> 공지사항 </a> 
+				<a href="<%=request.getContextPath()%>/qnaboard?page=1" class="list-group-item"> Q&A게시판 </a> 
 			</div>
 		</div>
 	</div>
