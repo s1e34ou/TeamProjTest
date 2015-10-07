@@ -18,17 +18,17 @@
 	display: -webkit-box;
 }
 #contentnum{
-	border: solid 1px red;
 	width: 450px;
 	height: 40px;
 	margin-top: 40px;
 	display: -webkit-box;
 }
 #numtext{
-	width: 200px;
+	width: 250px;
+	border: solid 1px red;
 }
 #dropdown{
-	width: 250px;
+	width: 200px;
 }
 #contentsearch{
 	width: 450px;

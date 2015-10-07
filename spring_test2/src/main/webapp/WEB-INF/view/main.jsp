@@ -213,8 +213,21 @@ $(function() {
 			</div>
 		</div>
 		<div id="bannerbox">
-			<div id="banner1"></div>
-			<div id="banner2"></div>
+			<div id="banner1">
+				<a href="http://www.culture.go.kr/wday/">
+				<img src="<%=request.getContextPath()%>/images/culture.jpg" id="ban1">
+				</a>
+			</div>
+			<div id="banner2">
+				<a href="http://korean.visitkorea.or.kr/kor/inut/addOn/main/publish/index.jsp"> 
+				<img src="<%=request.getContextPath()%>/images/sigkor.jpg" id="ban2">
+				</a>
+			</div>
+			<div id="banner3">
+				<a href="http://www.letskorail.com/"> 
+				<img src="<%=request.getContextPath()%>/images/korail.jpg" id="ban3">
+				</a>
+			</div>
 		</div>
 	</div>
 	<hr>
