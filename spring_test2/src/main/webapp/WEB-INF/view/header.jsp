@@ -94,11 +94,10 @@ $(function() {
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	 $(function() {
-
 		$("#mbtn1").mouseover(function() {
 			$("#headmenuul1").slideDown('slow');
 		});
-		$("#headmenuul1"+"#mbtn1").mouseleave(function() {
+		$("#headmenuul1").mouseleave(function() {
 			$("#headmenuul1").slideUp('slow');
 		});
 	});
