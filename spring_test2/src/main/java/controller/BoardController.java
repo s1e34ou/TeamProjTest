@@ -47,16 +47,20 @@ public class BoardController {
 
 
 	@RequestMapping(value = "/festival_regionboard", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
-	public String festivalRegionboard(Model model) {
+	public String festivalRegionboard(Model model,HttpServletRequest req) {
+		if(req.getParameter("pageno")==null){
+			model.addAttribute("pageno",1);
+		}else{
+			model.addAttribute("pageno",Integer.parseInt(req.getParameter("pageno")));
+		}
 		model.addAttribute("contentpage", "/WEB-INF/view/festival/festival_regionboard.jsp");
 		return "start";
 	}
 
 	@RequestMapping(value = "/festival_regionboard_view", method = RequestMethod.GET)
-	public String festivalRegionView(Model model, @RequestParam int boardno, Board board) {
-		board = service.selectboard(boardno);
+	public String festivalRegionView(Model model,HttpServletRequest req) {
+		model.addAttribute("contentid",req.getParameter("contentid"));
 		model.addAttribute("contentpage", "/WEB-INF/view/festival/festival_regionboard_view.jsp");
-		model.addAttribute("currentboard", board);
 		return "start";
 	}
 
