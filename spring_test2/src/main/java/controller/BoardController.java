@@ -125,6 +125,8 @@ public class BoardController {
 		
 		List<Board> plist = service.getBoardByPage(page,select);
 		List<Board> list = service.getAllBoard(select);
+		int count = service.countboard(select);
+		model.addAttribute("count", count);
 		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
@@ -210,10 +212,12 @@ public class BoardController {
 		Board b = new Board();
 		List<Board> plist = service.getBoardByPage(page,"FREE");
 		List<Board> list = service.getAllBoard("FREE");
+		int count = service.countboard("FREE");
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
 		model.addAttribute("page",page);
+		model.addAttribute("count", count);
 		return "start";
 	}
 
@@ -308,6 +312,7 @@ public class BoardController {
 		model.addAttribute("pagelist", plist);
 		model.addAttribute("page",page);
 		model.addAttribute("select",select);
+		
 		return "start";
 	}
 
@@ -348,6 +353,8 @@ public class BoardController {
 		Board b = new Board();
 		List<Board> plist = service.getBoardByPage(1,b.getNOTICE());
 		List<Board> list = service.getAllBoard(b.getNOTICE());
+		int count = service.countboard(b.getNOTICE());
+		model.addAttribute("count", count);
 		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
@@ -431,6 +438,8 @@ public class BoardController {
 		Board b = new Board();
 		List<Board> plist = service.getBoardByPage(1,b.getQNA());
 		List<Board> list = service.getAllBoard(b.getQNA());
+		int count = service.countboard(b.getQNA());
+		model.addAttribute("count", count);
 		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
@@ -522,6 +531,8 @@ public class BoardController {
 		}
 		List<Board> plist = service.gettAllAllBoardByPage(page, select);
 		List<Board> list = service.getAllAllBoard(select);
+		int count = service.countboard(select);
+		model.addAttribute("count", count);
 		model.addAttribute("contentpage", "/WEB-INF/view/search/searchboard.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);

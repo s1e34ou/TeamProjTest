@@ -50,4 +50,10 @@ private static Logger logger = LoggerFactory.getLogger(BoardDaoTest.class);
 	public void deleteTest() {
 		dao.deleteBoard(10);
 	}
+	
+	@Test
+	public void test(){
+		int a = dao.countBoard("EVENT.*");
+		logger.trace("a : {}",a);
+	}
 }

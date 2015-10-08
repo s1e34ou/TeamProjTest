@@ -33,7 +33,7 @@
 		<div id="boardinhead">
 			<div id="contentnum">
 				<div id="numtext">
-				게시물수 : ㅇㅇㅇ</div>
+				게시물수 : <%=request.getAttribute("count") %></div>
 				<div class="dropdown" id="dropdown">
   				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
     			카테고리 선택

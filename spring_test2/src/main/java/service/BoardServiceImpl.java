@@ -90,4 +90,11 @@ public class BoardServiceImpl implements BoardService {
 		return boards;
 	}
 
+	@Override
+	public int countboard(String boardCode) {
+		int count = dao.countBoard(boardCode);
+		return count;
+		
+	}
+
 }

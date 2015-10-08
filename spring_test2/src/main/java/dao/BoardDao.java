@@ -29,5 +29,7 @@ public interface BoardDao {
 	
 	public List<Board> getAllAllBoardByPage(int page,String boardContent);
 	
+	public int countBoard(String boardCode);
+	
 	
 }

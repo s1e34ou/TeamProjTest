@@ -97,12 +97,92 @@ $(function() {
 </header>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-	 $(function() {
-		$("#mbtn1").mouseover(function() {
-			$("#headmenuul1").slideDown('slow');
-		});
-		$("#headmenuul1").mouseleave(function() {
-			$("#headmenuul1").slideUp('slow');
+	 $(document).ready(function () {
+		    $("#mbtn1").mouseover(function() {
+		        $("#headmenuul1").show();
+		    })
+		    $("#mbtn1").mouseout(function() {
+		        t = setTimeout(function() {
+		            $("#headmenuul1").hide();
+		        }, 100);
+		    $("#headmenuul1").on('mouseenter', function() {
+		        $("#headmenuul1").show();
+		        clearTimeout(t);
+		        }).on('mouseleave', function() {
+		            $("#headmenuul1").hide();
+	        });
+	    });
+	});
+	 $(document).ready(function () {
+		    $("#mbtn2").mouseover(function() {
+		        $("#headmenuul2").show();
+		    })
+		    $("#mbtn2").mouseout(function() {
+		        t = setTimeout(function() {
+		            $("#headmenuul2").hide();
+		        }, 100);
+		    $("#headmenuul2").on('mouseenter', function() {
+		        $("#headmenuul2").show();
+		        clearTimeout(t);
+		        }).on('mouseleave', function() {
+		            $("#headmenuul2").hide();
+	        });
+	    });
+	});
+	 $(document).ready(function () {
+		    $("#mbtn3").mouseover(function() {
+		        $("#headmenuul3").show();
+		    })
+		    $("#mbtn3").mouseout(function() {
+		        t = setTimeout(function() {
+		            $("#headmenuul3").hide();
+		        }, 100);
+		    $("#headmenuul3").on('mouseenter', function() {
+		        $("#headmenuul3").show();
+		        clearTimeout(t);
+		        }).on('mouseleave', function() {
+		            $("#headmenuul3").hide();
+	        });
+	    });
+	});
+	 $(document).ready(function () {
+		    $("#mbtn4").mouseover(function() {
+		        $("#headmenuul4").show();
+		    })
+		    $("#mbtn4").mouseout(function() {
+		        t = setTimeout(function() {
+		            $("#headmenuul4").hide();
+		        }, 100);
+		    $("#headmenuul4").on('mouseenter', function() {
+		        $("#headmenuul4").show();
+		        clearTimeout(t);
+		        }).on('mouseleave', function() {
+		            $("#headmenuul4").hide();
+	        });
+	    });
+	});
+	 $(document).ready(function () {
+		    $("#mbtn5").mouseover(function() {
+		        $("#headmenuul5").show();
+		    })
+		    $("#mbtn5").mouseout(function() {
+		        t = setTimeout(function() {
+		            $("#headmenuul5").hide();
+		        }, 100);
+		    $("#headmenuul5").on('mouseenter', function() {
+		        $("#headmenuul5").show();
+		        clearTimeout(t);
+		        }).on('mouseleave', function() {
+		            $("#headmenuul5").hide();
+	        });
+	    });
+	});
+	/* $(function() {
+			$("#mbtn1").mouseover(function() {
+				$("#headmenuul1").slideDown('slow');
+			});
+			$("#headmenuul1").mouseleave(function() {
+				$("#headmenuul1").slideUp('slow');
 		});
 	});
  	$(function() {
@@ -136,5 +216,5 @@ $(function() {
 		$("#headmenuul5").mouseleave(function() {
 			$("#headmenuul5").slideUp('slow');
 		});
-	});
+	}); */
 </script>
