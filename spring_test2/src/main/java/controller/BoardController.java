@@ -80,7 +80,15 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/festival_seasonboard", method = RequestMethod.GET)
-	public String festivalSeasonboard(Model model) {
+	public String festivalSeasonboard(Model model,HttpServletRequest req) {
+		model.addAttribute("start",req.getParameter("start"));
+		model.addAttribute("end",req.getParameter("end"));
+		logger.trace("regi: "+req.getAttribute("region"));
+		if(req.getParameter("pageno")==null){
+			model.addAttribute("pageno",1);
+		}else{
+			model.addAttribute("pageno",Integer.parseInt(req.getParameter("pageno")));
+		}
 		model.addAttribute("contentpage", "/WEB-INF/view/festival/festival_seasonboard.jsp");
 		return "start";
 	}
