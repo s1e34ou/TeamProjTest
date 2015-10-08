@@ -56,10 +56,10 @@ div {
 	margin-top: 30px;
 }
 #fastivalci{
+	width: 200px;
 }
 #fastivalfootlogo{
 	height: 40px;
-	
 }
 #fastivalinfo{
 	width: 750px; 
@@ -68,6 +68,6 @@ div {
 	width: 250px; 
 }
 #jumpMenu{
-	width: 250px; 
+	width: 240px; 
 	height: 30px;
 }
