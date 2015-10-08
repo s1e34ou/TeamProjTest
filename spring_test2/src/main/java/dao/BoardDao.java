@@ -25,11 +25,11 @@ public interface BoardDao {
 
 	public List<Board> getrankBoardByPage(int page, String boardCode);
 	
-	public List<Board> selectAllAllBoard(String boardContent);
+	public List<Board> selectAllAllBoard(String boardCode,String boardContent);
 	
-	public List<Board> getAllAllBoardByPage(int page,String boardContent);
+	public List<Board> getAllAllBoardByPage(int page,String boardCode,String boardContent);
 	
-	public int countBoard(String boardCode);
+	public int countBoard(String boardCode,String boardName);
 	
 	
 }

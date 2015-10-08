@@ -51,9 +51,9 @@ private static Logger logger = LoggerFactory.getLogger(BoardDaoTest.class);
 		dao.deleteBoard(10);
 	}
 	
-	@Test
+	/*@Test
 	public void test(){
 		int a = dao.countBoard("EVENT.*");
 		logger.trace("a : {}",a);
-	}
+	}*/
 }
