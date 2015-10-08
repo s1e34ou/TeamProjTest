@@ -7,7 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<link href="<%=request.getContextPath()%>/style/festivalboard.css"
+	rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/style/head_footer.css"
+	rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
@@ -168,29 +171,45 @@ $(function() {
 </head>
 <body>
 <div id="board">
-<h1>축제 게시판</h1>
-<div id="season">
-<a href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1"><button id="allseason">전체</button></a><br>
-<a href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0101&end=<%=sdf.format(date)%>0131"><button id="jan">1월</button></a>
-<a href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0201&end=<%=sdf.format(date)%>0228"><button id="fab">2월</button></a>
-<a href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0301&end=<%=sdf.format(date)%>0331"><button id="mar">3월</button></a>
-<a href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0401&end=<%=sdf.format(date)%>0430"><button id="apr">4월</button></a>
-<a href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0501&end=<%=sdf.format(date)%>0531"><button id="may">5월</button></a><br>
-<a href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0601&end=<%=sdf.format(date)%>0630"><button id="jun">6월</button></a>
-<a href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0701&end=<%=sdf.format(date)%>0731"><button id="jul">7월</button></a>
-<a href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0801&end=<%=sdf.format(date)%>0831"><button id="aug">8월</button></a>
-<a href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0901&end=<%=sdf.format(date)%>0930"><button id="sep">9월</button></a>
-<a href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>1001&end=<%=sdf.format(date)%>1031"><button id="oct">10월</button></a><br>
-<a href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>1101&end=<%=sdf.format(date)%>1130"><button id="nob">11월</button></a>
-<a href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>1201&end=<%=sdf.format(date)%>1231"><button id="dec">12월</button></a>
-</div>
-<div id="boardin">
-
-<table id="fromServer" border="1" cellpadding="1" cellspacing="1">
-     
-    
-    </table>
-    </div>
+	<h1>월별 축제</h1>
+		<div id="boardin">
+			<div id="boardinhead">
+				<div id="contentnum">
+					<div id="numtext">
+					게시물수 : <%=request.getAttribute("count") %></div>
+					<div class="dropdown" id="dropdown">
+	  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+	    			카테고리 선택
+	   				 <span class="caret"></span>
+	 				 </button>
+	 				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" id="season">
+	  					<li role="presentation"><a role="menuitem" tabindex="-1" id="allseason" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1">전체</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="jan"  href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0101&end=<%=sdf.format(date)%>0131">1월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="fab" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0201&end=<%=sdf.format(date)%>0228">2월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="mar" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0301&end=<%=sdf.format(date)%>0331">3월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="apr" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0401&end=<%=sdf.format(date)%>0430">4월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="may" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0501&end=<%=sdf.format(date)%>0531">5월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="jun" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0601&end=<%=sdf.format(date)%>0630">6월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="jul" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0701&end=<%=sdf.format(date)%>0731">7월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="aug" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0801&end=<%=sdf.format(date)%>0831">8월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="sep" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0901&end=<%=sdf.format(date)%>0930">9월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="oct" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>1001&end=<%=sdf.format(date)%>1031">10월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="nob" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>1101&end=<%=sdf.format(date)%>1130">11월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="dec" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>1201&end=<%=sdf.format(date)%>1231">12월</a></li>
+	 				</ul>
+	 				</div>
+	 			</div>
+	 			<div id="contentsearch">
+					<div id="contentsearchin">
+					<input type="text" name="searchtext" placeholder="키워드 검색" id="searchtext" />
+					<input class="btn btn-default" type="submit" id="searchbutton" value="검색" />
+					</div>
+				</div>
+			</div>
+			<div id="boardlist">
+				<table id="fromServer" border="1" cellpadding="1" cellspacing="1"></table>
+			</div>
+    	</div>
 </div>
 </body>
 </html>
