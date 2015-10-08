@@ -30,8 +30,7 @@
 	display: -webkit-box;
 }
 #numtext{
-	width: 250px;
-	border: solid 1px red;
+	width: 120px;
 }
 #dropdown{
 	width: 200px;
