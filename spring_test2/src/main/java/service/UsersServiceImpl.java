@@ -65,6 +65,7 @@ public class UsersServiceImpl implements UsersService {
 		Users selUser = null;
 		try {
 			selUser = dao.selectUser(userId);
+			logger.trace("selUsers {}",selUser);
 		} catch (EmptyResultDataAccessException e) {
 			logger.trace(e.getMessage());
 		}
