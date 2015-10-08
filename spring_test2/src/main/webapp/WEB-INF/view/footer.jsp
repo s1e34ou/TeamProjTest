@@ -17,12 +17,12 @@
 		<div class="select_link" id="sitegogo">
 			<select onchange="if(this.value) window.open(this.value);" name="jumpMenu" id="jumpMenu">
 				<option value="" selected="selected">관련 사이트</option>
-				<option value="http://www.naver.com/">네이버</option>
 				<option value="https://www.google.co.kr">구글</option>
-				<option value="http://korean.visitkorea.or.kr/kor/inut/addOn/main/publish/index.jsp">한국관광공사</option>
-				<option value="http://www.culture.go.kr/wday/">문화가있는날</option>
+				<option value="http://www.naver.com/">네이버</option>
 				<option value="http://www.letskorail.com/">코레일</option>
 				<option value="http://www.hoseo.ac.kr">호서대학교</option>
+				<option value="http://www.culture.go.kr/wday/">문화가있는날</option>
+				<option value="http://korean.visitkorea.or.kr/kor/inut/addOn/main/publish/index.jsp">한국관광공사</option>
 			</select> 
 		</div>
 	</div>
