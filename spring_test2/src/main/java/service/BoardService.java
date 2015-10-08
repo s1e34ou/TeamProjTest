@@ -26,4 +26,6 @@ public interface BoardService {
 	List<Board> getAllAllBoard(String boardContent);
 	
 	List<Board> gettAllAllBoardByPage(int page,String boardContent);
+	
+	int countboard(String boardCode);
 }

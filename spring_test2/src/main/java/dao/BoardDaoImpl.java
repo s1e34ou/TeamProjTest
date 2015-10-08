@@ -136,4 +136,11 @@ public class BoardDaoImpl implements BoardDao {
 		return board;
 	}
 
+	@Override
+	public int countBoard(String boardCode) {
+		String sql = "select count(*) from board where (regexp_like(board_code,?) or regexp_like(board_content,?))";
+		int count = jdbcTemp.queryForInt(sql,boardCode,boardCode);
+		return count;
+	}
+
 }

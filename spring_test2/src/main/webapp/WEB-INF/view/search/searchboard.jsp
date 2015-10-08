@@ -30,6 +30,7 @@
 <div id="board">
 	<h1>검색게시판</h1>
 		<div id="boardin">
+		<%=request.getAttribute("count") %>개의 결과를 찾음.
 <%
 Object loginUserObj = session.getAttribute("loginUser");
 if(loginUserObj!=null){
@@ -100,7 +101,6 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
         <td height="23" style="font-family:Tahoma;font-size:12pt;">
            <%
             	String code=pplist.get(i).getBoardCode();
-            	String q;
             	if(code.equals("EVENT_food")){
             		code="음식";
             	}else if(code.equals("EVENT_beauty")){
@@ -115,7 +115,24 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             
         </td>
             <td height="23" style="font-family:Tahoma;font-size:12pt;">
-            <a href="<%=request.getContextPath()%>/eventboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+            <% 
+            	String view = pplist.get(i).getBoardCode();
+				if(view.equals("FREE")){ %>
+					 <a href="<%=request.getContextPath()%>/freeboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+			<%		 
+				}else if(view.equals("QNA")){
+			%>
+					 <a href="<%=request.getContextPath()%>/qnaboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+			<%
+				}else if(view.equals("NOTICE")){
+            %>
+            	<a href="<%=request.getContextPath()%>/noticeboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+            <%
+            	}else{ 
+            %>
+            	<a href="<%=request.getContextPath()%>/eventboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+            <%} %>
+           
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;">
             <%=pplist.get(i).getUsersUsersId()%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;">

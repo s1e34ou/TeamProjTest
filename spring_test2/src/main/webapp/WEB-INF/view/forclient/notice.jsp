@@ -31,7 +31,7 @@
 		<div id="boardin">
 		<div id="boardinhead">
 			<div id="contentnum">
-				게시물수 : ㅇㅇㅇ 
+				게시물수 : <%=request.getAttribute("count") %>
 			</div>
 			<div id="contentsearch">
 				<div id="contentsearchin">
