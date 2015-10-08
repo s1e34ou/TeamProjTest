@@ -180,7 +180,7 @@ $(function() {
 					게시물수 : <%=request.getAttribute("count") %></div>
 					<div class="dropdown" id="dropdown">
 	  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-	    			카테고리 선택
+	    			지역별 선택
 	   				 <span class="caret"></span>
 	 				 </button>
 	  				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" id="region">
