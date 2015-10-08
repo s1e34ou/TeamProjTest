@@ -21,11 +21,12 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <style type="text/css">
 #fromServer{
-width:800px;
+width:900px;
 display:inline-flex;
 flex-wrap:wrap;
 }
 .sel{
+margin:10px 10px;
 width:400px;
 }
 </style>
