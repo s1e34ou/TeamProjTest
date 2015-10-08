@@ -28,7 +28,7 @@
 		<div id="sitemapin">
 			<div id="box1" class="list-group">
 				<a href="#" class="list-group-item active"> 축제 </a> 
-				<a href="#" class="list-group-item"> 지역별 </a> 
+				<a href="<%=request.getContextPath()%>/festival_regionboard" class="list-group-item"> 지역별 </a> 
 				<a href="#" class="list-group-item"> 계절별 </a> 
 			</div>
 			<div id="box2" class="list-group">

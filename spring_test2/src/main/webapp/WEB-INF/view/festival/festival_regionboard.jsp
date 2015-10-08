@@ -5,7 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<link href="<%=request.getContextPath()%>/style/festivalboard.css"
+	rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/style/head_footer.css"
+	rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
@@ -64,7 +67,6 @@ $(function() {
 			$.each(item,function(index,data){
 				$target.append("<tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><img src=" +data["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+">"+data["title"]+"</a></td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr>");
 				//한국관광공사 api
-				
 			});
 			var numOfRows=txt["response"]["body"]["numOfRows"];
 			var total=txt["response"]["body"]["totalCount"];
@@ -144,34 +146,50 @@ $(function() {
 </head>
 <body>
 <div id="board">
-<h1>축제 게시판</h1>
-<div id="region">
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1"><button id="allregion">전체</button></a><br>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=1"><button id="seoul">서울</button></a>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=2"><button id="incheon">인천</button></a>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=3"><button id="daejeon">대전</button></a>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=4"><button id="daegu">대구</button></a>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=5"><button id="gwangju">광주</button></a><br>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=6"><button id="busan">부산</button></a>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=7"><button id="ulsan">울산</button></a>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=8"><button id="sejong">세종</button></a>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=31"><button id="gyeonggi">경기</button></a>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=32"><button id="gangwon">강원</button></a><br>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=33"><button id="chungbuk">충북</button></a>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=34"><button id="chungnam">충남</button></a>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=35"><button id="gyeongbuk">경북</button></a>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=36"><button id="gyeongnam">경남</button></a>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=37"><button id="jeonbuk">전북</button></a><br>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=38"><button id="jeonnam">전남</button></a>
-<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=39"><button id="jeju">제주</button></a>
-</div>
-<div id="boardin">
-
-<table id="fromServer" border="1" cellpadding="1" cellspacing="1">
-     
-    
-    </table>
-    </div>
+	<h1>지역별 축제</h1>
+		<div id="boardin">
+			<div id="boardinhead">
+				<div id="contentnum">
+					<div id="numtext">
+					게시물수 : <%=request.getAttribute("count") %></div>
+					<div class="dropdown" id="dropdown">
+	  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+	    			카테고리 선택
+	   				 <span class="caret"></span>
+	 				 </button>
+	  				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" id="region">
+	  					<li role="presentation"><a role="menuitem" tabindex="-1" id="allregion" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1">전체</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="seoul"  href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=1">서울</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="incheon" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=2">인천</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="daejeon" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=3">대전</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="daegu" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=4">대구</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="gwangju" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=5">광주</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="busan" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=6">부산</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="ulsan" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=7">울산</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="sejong" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=8">세종</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="gyeonggi" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=31">경기</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="gangwon" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=32">강원</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="chungbuk" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=33">충북</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="chungnam" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=34">충남</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="gyeongbuk" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=35">경북</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="gyeongnam" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=36">경남</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="jeonbuk" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=37">전북</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="jeonnam" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=38">전남</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="jeju" href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=39">제주</a></li>
+	 				</ul>
+					</div>
+				</div>
+				<div id="contentsearch">
+					<div id="contentsearchin">
+					<input type="text" name="searchtext" placeholder="키워드 검색" id="searchtext" />
+					<input class="btn btn-default" type="submit" id="searchbutton" value="검색" />
+					</div>
+				</div>
+			</div>
+			<div id="boardlist">
+				<table id="fromServer" border="1" cellpadding="1" cellspacing="1"></table>
+    		</div>
+    	</div>
 </div>
 </body>
 </html>
