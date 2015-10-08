@@ -119,29 +119,29 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public List<Board> selectAllAllBoard(String boardContent) {
-		String sql = "select * from Board where (regexp_like(board_content,?) or regexp_like(board_name,?)) order by board_date desc";
-		List<Board> board = jdbcTemp.query(sql, new BeanPropertyRowMapper<Board>(Board.class),boardContent,boardContent);
+	public List<Board> selectAllAllBoard(String boardCode,String boardContent) {
+		String sql = "select * from Board where (regexp_like(board_code,?) and (regexp_like(board_content,?) or regexp_like(board_name,?))) order by board_date desc";
+		List<Board> board = jdbcTemp.query(sql, new BeanPropertyRowMapper<Board>(Board.class),boardCode,boardContent,boardContent);
 		return board;
 	}
 
 	@Override
-	public List<Board> getAllAllBoardByPage(int page, String boardContent) {
+	public List<Board> getAllAllBoardByPage(int page,String boardCode, String boardContent) {
 		String sql = "SELECT * FROM ("
 				+ 		"SELECT sub.*, ROWNUM AS RNUM "
-				+		"FROM ( select * from board where (regexp_like(board_content,?) or regexp_like(board_name,?)) order by board_date desc) sub)"
+				+		"FROM ( select * from board where (regexp_like(board_code,?) and (regexp_like(board_content,?) or regexp_like(board_name,?))) order by board_date desc) sub)"
 				+ "WHERE RNUM >= ? AND RNUM <= ?";
 		
-		List<Board> board = jdbcTemp.query(sql, new BeanPropertyRowMapper<Board>(Board.class),boardContent,boardContent,(page - 1) * BoardDao.BOARD_PER_PAGE + 1,page * BoardDao.BOARD_PER_PAGE);
+		List<Board> board = jdbcTemp.query(sql, new BeanPropertyRowMapper<Board>(Board.class),boardCode,boardContent,boardContent,(page - 1) * BoardDao.BOARD_PER_PAGE + 1,page * BoardDao.BOARD_PER_PAGE);
 		
 		
 		return board;
 	}
 
 	@Override
-	public int countBoard(String boardCode) {
-		String sql = "select count(*) from board where (regexp_like(board_code,?) or regexp_like(board_content,?))";
-		int count = jdbcTemp.queryForInt(sql,boardCode,boardCode);
+	public int countBoard(String boardCode, String boardName) {
+		String sql = "select count(*) from board where (regexp_like(board_code,?) and (regexp_like(board_name,?) or regexp_like(board_content,?)))";
+		int count = jdbcTemp.queryForInt(sql,boardCode,boardName,boardName);
 		return count;
 	}
 

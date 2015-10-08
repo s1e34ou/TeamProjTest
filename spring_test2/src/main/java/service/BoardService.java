@@ -23,9 +23,9 @@ public interface BoardService {
 	
 	List<Board> getRankBoardByPage(int page,String boardCode);
 	
-	List<Board> getAllAllBoard(String boardContent);
+	List<Board> getAllAllBoard(String boardCode,String boardContent);
 	
-	List<Board> gettAllAllBoardByPage(int page,String boardContent);
+	List<Board> gettAllAllBoardByPage(int page,String boardCode,String boardContent);
 	
-	int countboard(String boardCode);
+	int countboard(String boardCode,String boardName);
 }
