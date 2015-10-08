@@ -73,7 +73,7 @@ $(function() {
 	var url4="&eventStartDate="+today;
 	var url5="&eventEndDate=20151030";
 	var url6="&areaCode=<%=region%>";
-	var url7="&MobileOS=ETC&MobileApp=AppTesting&arrange=O&_type=json";
+	var url7="&MobileOS=ETC&MobileApp=AppTesting&arrange=Q&_type=json";
 	if(<%=regionObj%>==null){
 	url = url+url2+url3+ url4+url7;
 	}else{

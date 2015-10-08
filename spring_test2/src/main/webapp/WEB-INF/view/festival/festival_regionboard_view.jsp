@@ -30,15 +30,46 @@ $(function() {
 			%>
 	var image  = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailImage?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D&imageYN=Y";
 	var content = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailInfo?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D";
-	var url;  
+	var detail="http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D&overviewYN=Y&defaultYN=Y";;  
 	var url2 = "&contentId=<%=cont%>";	
 	var url3 = "&contentTypeId=15";
 	var url6 = "&MobileOS=ETC&MobileApp=AppTesting&arrange=P&_type=json";
 		
 		image = image + url2+ url3+ url6;
 		content= content + url2+ url3+ url6;
+		detail= detail+ url2+  url6;
 		var originimgurl;
 		var smallimageurl;
+		var homepage;
+		var tel;
+		var telname;
+		var title;
+		var overview;
+		$.ajax({
+			url : detail,
+			type : "get",
+			success : function(txt) {
+
+				var item = txt["response"]["body"]["items"]["item"];
+				$.each(item, function(index,data) {
+					homepage = data["homepage"];
+					tel = data["tel"];
+					telname = data["telname"];
+					title = data["title"];
+					overview = data["overview"];
+					
+				});
+				$("#homepage").append(homepage);
+				$("#tel").append(tel);
+				$("#telname").append(telname);
+				$("#title").append(title);
+				$("#overview").append(overview);
+				
+				//$("#infotext").append("<li>"+JSON.stringify(txt)+"</li>");
+			}
+		});
+
+		
 		$.ajax({
 			url : image,
 			type : "get",
@@ -90,8 +121,14 @@ $(function() {
 					<div id="originimgurl"></div>
 					<div id="smallimageurl"></div>		
 					<div id="infoname">제목 : </div>	
-					<div id="infotext">내용 : </div>	
+					<div id="infotext">내용 : </div>
+					<div id="homepage">홈페이지 : </div>
+					<div id="tel">전화 : </div>
+					<div id="telname"></div>
+					<div id="title"></div>
+					<div id="overview"></div>
 				</div>
+			<button>뒤로</button>
 			</div>
 		</body>
 </html>

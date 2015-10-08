@@ -85,7 +85,7 @@ $(function() {
 	var url3="&pageNo=<%=pn%>";
 	var url4="&eventStartDate="+today;
 	var url5="&eventEndDate=<%=end%>";
-	var url6="&MobileOS=ETC&MobileApp=AppTesting&arrange=P&_type=json";
+	var url6="&MobileOS=ETC&MobileApp=AppTesting&arrange=Q&_type=json";
 	if(<%=startObj%>==null){
 	url = url+url2+url3+url4+url6;
 	}else{
