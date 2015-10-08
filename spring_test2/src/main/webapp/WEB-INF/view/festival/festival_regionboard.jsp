@@ -16,6 +16,16 @@
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<style type="text/css">
+
+#boardin{
+width:500px;
+
+display:-webkit-box;
+
+}
+
+</style>
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -71,12 +81,11 @@ $(function() {
 		type:"get",
 		success:function(txt){
 			
-			var $target=$("#fromServer");
+			var $target=$("#boardin");
 			var $board=$("#board");
 			var item= txt["response"]["body"]["items"]["item"];
 			$.each(item,function(index,data){
-				$target.append("<tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><img src=" +data["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+">"+data["title"]+"</a></td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr>");
-				//한국관광공사 api
+				$target.append("<div width='600px'><table border=0><tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><img src=" +data["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+">"+data["title"]+"</a></td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div>");
 				
 			});
 			var numOfRows=txt["response"]["body"]["numOfRows"];
@@ -180,10 +189,6 @@ $(function() {
 </div>
 <div id="boardin">
 
-<table id="fromServer" border="1" cellpadding="1" cellspacing="1">
-     
-    
-    </table>
     </div>
 </div>
 </body>
