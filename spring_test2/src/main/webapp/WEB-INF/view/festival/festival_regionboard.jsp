@@ -20,7 +20,14 @@
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <style type="text/css">
-
+#fromServer{
+width:800px;
+display:inline-flex;
+flex-wrap:wrap;
+}
+.sel{
+width:400px;
+}
 </style>
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
@@ -81,7 +88,7 @@ $(function() {
 			var $board=$("#board");
 			var item= txt["response"]["body"]["items"]["item"];
 			$.each(item,function(index,data){
-				$target.append("<tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><img src=" +data["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+">"+data["title"]+"</a></td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr>");
+				$target.append("<div class=sel><table><tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><img src=" +data["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+">"+data["title"]+"</a></td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div>");
 				//한국관광공사 api
 			});
 			var numOfRows=txt["response"]["body"]["numOfRows"];
@@ -204,7 +211,7 @@ $(function() {
 				</div>
 			</div>
 			<div id="boardlist">
-				<table id="fromServer" border="1" cellpadding="1" cellspacing="1"></table>
+				<div id="fromServer"></div>
     		</div>
     	</div>
 </div>
