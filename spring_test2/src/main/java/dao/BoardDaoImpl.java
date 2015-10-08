@@ -2,6 +2,8 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -54,7 +56,6 @@ public class BoardDaoImpl implements BoardDao {
 		String sql = "insert into board values(BOARD_NO_SEQ.nextval,?,?,sysdate,?,?,?)";
 		jdbcTemp.update(sql, board.getBoardName(), board.getBoardContent(),0, board.getBoardCode(),
 				board.getUsersUsersId());
-
 	}
 
 	@Override

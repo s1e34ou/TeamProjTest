@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,7 +21,17 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 $(function() {
-	
+	function leadingZeros(n, digits) {
+		  var zero = '';
+		  n = n.toString();
+		  
+		  if (n.length < digits) {
+		   for (i = 0; i < digits - n.length; i++)
+		    zero += '0';
+		  }
+		  return zero + n;
+		 }
+		
 	<%Object pagenoObj = request.getAttribute("pageno");
 	int pn=1;
 	if(pagenoObj!=null){
@@ -32,24 +44,25 @@ $(function() {
 	}
 	
 	%>
-	
+	var date = new Date();
+    var today = date.getFullYear()+""+leadingZeros((date.getMonth()+1),2)+""+leadingZeros(date.getDate(),2);
+    
 	var pageblock=10;
 	var block=Math.ceil(<%=pn%>/pageblock) ;
 	var bstartpage=(block-1)*pageblock+1;
-	console.log(block);
 	var bendpage=bstartpage+pageblock-1;
 	
 	var url="http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D";
 	var url2="&numOfRows=10";
 	var url3="&pageNo=<%=pn%>";
-	var url4="&eventStartDate=20151001";
+	var url4="&eventStartDate="+today;
 	var url5="&eventEndDate=20151030";
 	var url6="&areaCode=<%=region%>";
-	var url7="&MobileOS=ETC&MobileApp=AppTesting&arrange=P&_type=json";
+	var url7="&MobileOS=ETC&MobileApp=AppTesting&arrange=O&_type=json";
 	if(<%=regionObj%>==null){
-	url = url+url2+url3+url4+url5+url7;
+	url = url+url2+url3+ url4+url7;
 	}else{
-		url = url+url2+url3+url4+url5+url6+url7;
+		url = url+url2+url3+ url4+url6+url7;
 	}
 	//한국관광공사 api
 	//var url ="http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?ServiceKey=Vy4971YDIgMFmywWHmPkgSex6ENrqIJLG2VRGHEZ7geY%2BqiSR7qdr7vXoVo20mxV1xIeM49o3WYt4Fft6%2Fg9yg%3D%3D&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=TestApp&_type=json";
