@@ -51,7 +51,7 @@ $(function() {
 				<span class="caret"></span></button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul1">
 				<li><a href="<%=request.getContextPath()%>/festival_regionboard">지역별 축제</a></li>
-				<li><a href="<%=request.getContextPath()%>/festival_seasonboard">계절별 축제</a></li>
+				<li><a href="<%=request.getContextPath()%>/festival_seasonboard">월별 축제</a></li>
 			</ul>
 		</div>
 		<div class="btn-group" role="group">
