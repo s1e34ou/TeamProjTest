@@ -82,8 +82,9 @@ public class UserController {
 		String address1 = req.getParameter("USERS_ADRESS1");
 		String address2 = req.getParameter("USERS_ADRESS2");
 		String address3 = req.getParameter("USERS_ADRESS3");
-		String address = address1 + address2 + address3;
-		users.setUsersAddress(address);
+		users.setUsersAddress1(address1);
+		users.setUsersAddress2(address2);
+		users.setUsersAddress3(address3);
 		service.join(users);
 		return "start";
 	}

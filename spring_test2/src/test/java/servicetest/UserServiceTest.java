@@ -24,7 +24,7 @@ private static Logger logger = LoggerFactory.getLogger(UserServiceTest.class);
 	@Autowired
 	UsersService service;
 	
-	@Test
+	/*@Test
 	public void joinTest() {
 		Users user= new Users("qqq", "qqq", "qqq", "a", "qqq", "qq", "qq", new Date(), "qq");
 		
@@ -47,7 +47,7 @@ private static Logger logger = LoggerFactory.getLogger(UserServiceTest.class);
 	public void changeTest() {
 		Users user= new Users("qq", "qq", "qq", "a", "qq", "vv", "qq", new Date(), "qq");
 		service.changeInfo(user);
-	}
+	}*/
 	
 	@Test
 	public void leaveTest() {

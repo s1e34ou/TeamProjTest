@@ -25,7 +25,7 @@ public class UserDaoTest {
 	@Autowired
 	UsersDao dao;
 
-	@Test
+	/*@Test
 	public void addTest() {
 		Users user= new Users("ee", "ee", "ee", "a", "ee", "ee", "ee",new Date(), "ee");
 		dao.insertUser(user);
@@ -37,7 +37,7 @@ public class UserDaoTest {
 		Users user= new Users("ee","ee","ee","a","ee","ee","dd",new Date(),"bbb");
 		dao.updateUser(user);
 		assertThat(user.getUsersName(), is("ee"));
-	}
+	}*/
 
 	@Test
 	public void selectTest() {

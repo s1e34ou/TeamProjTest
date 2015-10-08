@@ -180,17 +180,21 @@ Users seluser = (Users) session.getAttribute("seluser");
 						<label for="address" class="col-sm-2 control-label">주소</label>
 						<div id="addressinput">
 							<div id="adressnum">
-								<input type="text" class="form-control" id="sample6_postcode"
-									name="USERS_ADRESS1" placeholder="우편번호"> <input
+								<sform:label path="usersAddress1"/>
+								<sform:input class="form-control" 
+									path="usersAddress1" placeholder="우편번호"/> <input
 									class="btn btn-default" type="button"
 									onclick="sample6_execDaumPostcode()" id="adresssearchbtn"
 									value="주소찾기">
 							</div>
 							<div id="adresstext">
-								<input type="text" class="form-control" id="sample6_address"
-									name="USERS_ADRESS2" placeholder="address"> <input
-									type="text" class="form-control" id="sample6_address2"
-									name="USERS_ADRESS3" placeholder="상세주소">
+								<sform:label path="usersAddress2"/>
+								<sform:input class="form-control" 
+									path="usersAddress2" placeholder="address"/>
+									<sform:label path="usersAddress3"/>
+									 <sform:input
+									 class="form-control" 
+									path="usersAddress3" placeholder="상세주소"/>
 							</div>
 						</div>
 					</div>

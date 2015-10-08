@@ -12,7 +12,9 @@ public class Users {
 	private String usersGender;
 	private String usersPhone;
 	private String usersEmail;
-	private String usersAddress;
+	private String usersAddress1;
+	private String usersAddress2;
+	private String usersAddress3;
 	@DateTimeFormat(iso=ISO.DATE)
 	private Date usersBirth ;
 	private String usersPassques;
@@ -40,8 +42,13 @@ public class Users {
 
 
 
+	
+
+
+
 	public Users(String usersName, String usersId, String usersPassword, String usersGender, String usersPhone,
-			String usersEmail, String usersAddress, Date usersBirth, String usersPassques) {
+			String usersEmail, String usersAddress1, String usersAddress2, String usersAddress3, Date usersBirth,
+			String usersPassques) {
 		super();
 		this.usersName = usersName;
 		this.usersId = usersId;
@@ -49,12 +56,12 @@ public class Users {
 		this.usersGender = usersGender;
 		this.usersPhone = usersPhone;
 		this.usersEmail = usersEmail;
-		this.usersAddress = usersAddress;
+		this.usersAddress1 = usersAddress1;
+		this.usersAddress2 = usersAddress2;
+		this.usersAddress3 = usersAddress3;
 		this.usersBirth = usersBirth;
 		this.usersPassques = usersPassques;
 	}
-
-
 
 	public String getUsersName() {
 		return usersName;
@@ -128,15 +135,6 @@ public class Users {
 
 
 
-	public String getUsersAddress() {
-		return usersAddress;
-	}
-
-
-
-	public void setUsersAddress(String usersAddress) {
-		this.usersAddress = usersAddress;
-	}
 
 
 
@@ -162,16 +160,41 @@ public class Users {
 		this.usersPassques = usersPassques;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Users [usersName=" + usersName + ", usersId=" + usersId + ", usersPassword=" + usersPassword
 				+ ", usersGender=" + usersGender + ", usersPhone=" + usersPhone + ", usersEmail=" + usersEmail
-				+ ", usersAddress=" + usersAddress + ", usersBirth=" + usersBirth + ", usersPassques=" + usersPassques
-				+ "]";
+				+ ", usersAddress1=" + usersAddress1 + ", usersAddress2=" + usersAddress2 + ", usersAddress3="
+				+ usersAddress3 + ", usersBirth=" + usersBirth + ", usersPassques=" + usersPassques + "]";
 	}
 
+	public String getUsersAddress1() {
+		return usersAddress1;
+	}
+
+	public void setUsersAddress1(String usersAddress1) {
+		this.usersAddress1 = usersAddress1;
+	}
+
+	public String getUsersAddress2() {
+		return usersAddress2;
+	}
+
+	public void setUsersAddress2(String usersAddress2) {
+		this.usersAddress2 = usersAddress2;
+	}
+
+	public String getUsersAddress3() {
+		return usersAddress3;
+	}
+
+	public void setUsersAddress3(String usersAddress3) {
+		this.usersAddress3 = usersAddress3;
+	}
+
+
+
+	
 
 
 
