@@ -83,7 +83,6 @@ $(function() {
 </script>
 </head>
 <body>
-	<center>
 		<body>
 			<div id="board">
 				<h1>축제게시판</h1>

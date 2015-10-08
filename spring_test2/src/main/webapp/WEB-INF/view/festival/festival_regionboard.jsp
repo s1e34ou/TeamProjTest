@@ -25,6 +25,12 @@ $(function() {
 	if(pagenoObj!=null){
 		pn = (int)pagenoObj; 
 	}
+	Object regionObj = request.getAttribute("region");
+	String region=null;
+	if(regionObj!=null){
+		region=(String)regionObj;
+	}
+	
 	%>
 	
 	var pageblock=10;
@@ -38,9 +44,13 @@ $(function() {
 	var url3="&pageNo=<%=pn%>";
 	var url4="&eventStartDate=20151001";
 	var url5="&eventEndDate=20151030";
-	var url6="&MobileOS=ETC&MobileApp=AppTesting&arrange=P&_type=json";
-	
-	url = url+url2+url3+url4+url5+url6;
+	var url6="&areaCode=<%=region%>";
+	var url7="&MobileOS=ETC&MobileApp=AppTesting&arrange=P&_type=json";
+	if(<%=regionObj%>==null){
+	url = url+url2+url3+url4+url5+url7;
+	}else{
+		url = url+url2+url3+url4+url5+url6+url7;
+	}
 	//한국관광공사 api
 	//var url ="http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?ServiceKey=Vy4971YDIgMFmywWHmPkgSex6ENrqIJLG2VRGHEZ7geY%2BqiSR7qdr7vXoVo20mxV1xIeM49o3WYt4Fft6%2Fg9yg%3D%3D&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=TestApp&_type=json";
 	$.ajax({
@@ -52,12 +62,8 @@ $(function() {
 			var $board=$("#board");
 			var item= txt["response"]["body"]["items"]["item"];
 			$.each(item,function(index,data){
-				//$target.append("<li>"+"이름 : "+data["title"]+"내용 : " +data["content"]+"</li>");
-				$target.append("<tr><td rowspan=2><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><img src=" +data["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+">"+data["title"]+"</a></td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr>");
+				$target.append("<tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><img src=" +data["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+">"+data["title"]+"</a></td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr>");
 				//한국관광공사 api
-				//$target.append("<tr><td width=300px>"+data["title"]+"</td><td width=500px>"+ data["bgnde"]+"~"+data[endde]+"</td><td width=300px>"+data["sigun"]+"</td></tr>");
-				//강원도
-				//$target.append("<tr><td width=300px>"+data["name"]+"</td><td width=500px>"+ data["sday"]+"~"+data["eday"]+"</td><td width=300px>"+data["sigun"]+"</td></tr>");
 				
 			});
 			var numOfRows=txt["response"]["body"]["numOfRows"];
@@ -65,7 +71,7 @@ $(function() {
 			var page=txt["response"]["body"]["pageNo"];
 			var pnum;
 			pnum=Math.ceil(total/numOfRows);
-		
+			if(region==null){		
 			   if(<%=pn%><=1){ 
 	            }else{ 
 	            $board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno=1>[처음]</a>&nbsp");
@@ -97,6 +103,39 @@ $(function() {
 		            }else{
 		            	$board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno="+pnum+">[끝]</a>&nbsp");
 		            } 
+			}else{		
+				   if(<%=pn%><=1){ 
+		            }else{ 
+		            $board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=<%=region%>>[처음]</a>&nbsp");
+		            }
+		            
+		            if(<%=pn%><=1){ 
+		            }else{
+		            	$board.append("<a href='<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn-1 %>&region=<%=region%>'>[이전]</a>&nbsp");
+		            } 
+		            
+		            if(bendpage>pnum){
+						bendpage=pnum;
+					}
+				for(var i=bstartpage;i<=bendpage;i++){
+					
+					url3="&pageNo="+i;
+					if(<%=pn%>==i){
+						$board.append("[ "+i+" ]");
+					}else{
+						$board.append("<a href=<%=request.getContextPath()%>/festival_regionboard?pageno="+i+"&region=<%=region%>> ["+i+"]</a> ");
+					}
+				}
+				   if(<%=pn%>>=pnum){ 
+			            }else{ 
+			            $board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn+1%>&region=<%=region%>>[다음]</a>");
+			            }
+			            
+			            if(<%=pn%>>=pnum){ 
+			            }else{
+			            	$board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno="+pnum+"&region=<%=region%>>[끝]</a>");
+			            } 
+				}
 			//$target.append("<li>"+JSON.stringify(txt)+"</li>");
 		}
 	});
@@ -106,7 +145,28 @@ $(function() {
 <body>
 <div id="board">
 <h1>축제 게시판</h1>
+<div id="region">
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1"><button id="allregion">전체</button></a><br>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=1"><button id="seoul">서울</button></a>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=2"><button id="incheon">인천</button></a>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=3"><button id="daejeon">대전</button></a>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=4"><button id="daegu">대구</button></a>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=5"><button id="gwangju">광주</button></a><br>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=6"><button id="busan">부산</button></a>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=7"><button id="ulsan">울산</button></a>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=8"><button id="sejong">세종</button></a>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=31"><button id="gyeonggi">경기</button></a>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=32"><button id="gangwon">강원</button></a><br>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=33"><button id="chungbuk">충북</button></a>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=34"><button id="chungnam">충남</button></a>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=35"><button id="gyeongbuk">경북</button></a>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=36"><button id="gyeongnam">경남</button></a>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=37"><button id="jeonbuk">전북</button></a><br>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=38"><button id="jeonnam">전남</button></a>
+<a href="<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=39"><button id="jeju">제주</button></a>
+</div>
 <div id="boardin">
+
 <table id="fromServer" border="1" cellpadding="1" cellspacing="1">
      
     

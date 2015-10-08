@@ -48,6 +48,8 @@ public class BoardController {
 
 	@RequestMapping(value = "/festival_regionboard", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String festivalRegionboard(Model model,HttpServletRequest req) {
+		model.addAttribute("region",req.getParameter("region"));
+		logger.trace("regi: "+req.getAttribute("region"));
 		if(req.getParameter("pageno")==null){
 			model.addAttribute("pageno",1);
 		}else{
