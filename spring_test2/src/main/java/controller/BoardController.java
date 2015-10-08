@@ -133,13 +133,14 @@ public class BoardController {
 		
 		List<Board> plist = service.getBoardByPage(page,select);
 		List<Board> list = service.getAllBoard(select);
-		int count = service.countboard(select);
+		int count = service.countboard("EVENT_.*","*");
 		model.addAttribute("count", count);
 		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
 		model.addAttribute("page",page);
 		model.addAttribute("select",select);
+		model.addAttribute("count",count);
 		return "start";
 	}
 
@@ -166,7 +167,6 @@ public class BoardController {
 	@RequestMapping(value = "/eventboard_write", method = RequestMethod.POST)
 	public String eventWrite(Model model,Board board) {
 		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
-		/*board.setBoardCode(board.getEVENT());*/
 		service.writeboard(board);
 		
 		
@@ -220,7 +220,7 @@ public class BoardController {
 		Board b = new Board();
 		List<Board> plist = service.getBoardByPage(page,"FREE");
 		List<Board> list = service.getAllBoard("FREE");
-		int count = service.countboard("FREE");
+		int count = service.countboard("FREE","*");
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
@@ -361,7 +361,7 @@ public class BoardController {
 		Board b = new Board();
 		List<Board> plist = service.getBoardByPage(1,b.getNOTICE());
 		List<Board> list = service.getAllBoard(b.getNOTICE());
-		int count = service.countboard(b.getNOTICE());
+		int count = service.countboard(b.getNOTICE(),"*");
 		model.addAttribute("count", count);
 		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice.jsp");
 		model.addAttribute("boardlist", list);
@@ -446,7 +446,7 @@ public class BoardController {
 		Board b = new Board();
 		List<Board> plist = service.getBoardByPage(1,b.getQNA());
 		List<Board> list = service.getAllBoard(b.getQNA());
-		int count = service.countboard(b.getQNA());
+		int count = service.countboard(b.getQNA(),"*");
 		model.addAttribute("count", count);
 		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard.jsp");
 		model.addAttribute("boardlist", list);
@@ -526,22 +526,38 @@ public class BoardController {
 		}else{
 			page=Integer.parseInt(req.getParameter("page"));
 		}
-		
 		Object selectObj = req.getAttribute("select");
-		logger.trace("selectObj : {}",selectObj);
 		
 		String select;
 		if(selectObj!=null){
 			select = (String)selectObj;
 		}else{
 			select=req.getParameter("select");
-			logger.trace("select : {}",select);
 		}
-		List<Board> plist = service.gettAllAllBoardByPage(page, select);
-		List<Board> list = service.getAllAllBoard(select);
-		int count = service.countboard(select);
+		
+		String sea = req.getParameter("se");
+		logger.trace("sea : {}",sea);
+		
+		String code = "*";
+		
+		if(sea.equals("free")){
+			model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
+			code = "FREE";
+		}else if(sea.equals("event")){
+			model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
+			code = "EVENT_.*";
+		}else if(sea.equals("qna")){
+			model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard.jsp");
+			code = "QNA";
+		}else{
+			model.addAttribute("contentpage", "/WEB-INF/view/search/searchboard.jsp");
+		}
+		logger.trace("code {}",code);
+		List<Board> plist = service.gettAllAllBoardByPage(page,code, select);
+		List<Board> list = service.getAllAllBoard(code,select);
+		int count = service.countboard(code,select);
+		
 		model.addAttribute("count", count);
-		model.addAttribute("contentpage", "/WEB-INF/view/search/searchboard.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
 		model.addAttribute("page",page);

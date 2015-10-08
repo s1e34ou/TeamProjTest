@@ -35,8 +35,12 @@
 			</div>
 			<div id="contentsearch">
 				<div id="contentsearchin">
-				<input type="text" name="searchtext" placeholder="키워드 검색" id="searchtext" />
-				<input class="btn btn-default" type="submit" id="searchbutton" value="검색" />
+				<form action="<%=request.getContextPath()%>/search" method="get">
+					<input id="se" name="se" type="hidden" value="free">
+					<input id="page" name="page" type="hidden" value="1"> 
+					<input type="text" name="select" placeholder="키워드 검색" id="select" />
+					<input class="btn btn-default" type="submit" id="searchbutton" value="검색" />
+				</form>
 				</div>
 			</div>
 		</div>

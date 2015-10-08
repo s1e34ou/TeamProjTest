@@ -87,7 +87,7 @@ $(function() {
 		success:function(txt){
 			
 			var $target=$("#fromServer");
-			var $board=$("#board");
+			var $board=$("#prevnextbar");
 			var item= txt["response"]["body"]["items"]["item"];
 			$.each(item,function(index,data){
 				$target.append("<div class=sel><table><tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><img src=" +data["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+">"+data["title"]+"</a></td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div>");
@@ -215,6 +215,9 @@ $(function() {
 			<div id="boardlist">
 				<div id="fromServer"></div>
     		</div>
+    		<div id="boardfoot">
+				<div id="prevnextbar"></div>
+			</div>
     	</div>
 </div>
 </body>

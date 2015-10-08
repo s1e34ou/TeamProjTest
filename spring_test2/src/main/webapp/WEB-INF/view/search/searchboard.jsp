@@ -28,7 +28,7 @@
 
 <body>
 <div id="board">
-	<h1>검색게시판</h1>
+	<h1>검색결과</h1>
 		<div id="boardin">
 		<%=request.getAttribute("count") %>개의 결과를 찾음.
 <%

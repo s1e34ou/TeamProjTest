@@ -31,6 +31,7 @@ $(function() {
 
 				<form action="<%=request.getContextPath()%>/search"
 					method="get">
+					<input id="se" name="se" type="hidden" value="all">
 					<input id="page" name="page" type="hidden" value="1"> 
 					<div id="searchgr">
 					<input id="stext" name="select" type="text" class="form-control" placeholder="Search for..."> 
