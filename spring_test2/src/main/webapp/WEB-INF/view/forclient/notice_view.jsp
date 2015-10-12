@@ -78,11 +78,6 @@ $(function() {
 			<div id="boardfoot">
 				<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
-						<div>
-							<a
-								href="<%=request.getContextPath()%>/notice?page=1"><button
-									type="button" class="btn btn-default">목록</button></a>
-						</div>
 						<%
 							if (loginUser != null && loginUser.equals(board.getUsersUsersId())) {
 						%>
@@ -120,7 +115,7 @@ $(function() {
 		</div>
 		<div id="listgobtn">
 			<ul class="pager">
-				<li class="previous"><a href="#"> <span aria-hidden="true">&larr;</span>
+				<li class="previous"><a href="<%=request.getContextPath()%>/notice?page=1"> <span aria-hidden="true">&larr;</span>
 						list
 				</a></li>
 			</ul>

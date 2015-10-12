@@ -14,7 +14,7 @@ public interface BoardService {
 	void deleteboard(int boardNo);
 
 	Board selectboard(int boardNo);
-
+	
 	List<Board> getBoardByPage(int page,String boardCode);
 
 	List<Board> getAllBoard(String boardCode);

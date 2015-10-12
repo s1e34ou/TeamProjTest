@@ -51,6 +51,7 @@ public class BoardServiceImpl implements BoardService {
 		Board board = dao.selectBoard(boardNo);
 		return board;
 	}
+	
 
 	@Override
 	public List<Board> getBoardByPage(int page,String boardCode) {
@@ -96,5 +97,7 @@ public class BoardServiceImpl implements BoardService {
 		return count;
 		
 	}
+
+	
 
 }

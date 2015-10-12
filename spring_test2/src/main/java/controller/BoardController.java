@@ -564,4 +564,7 @@ public class BoardController {
 		model.addAttribute("select",select);
 		return "start";
 	}
+	
+	
+	
 }

@@ -41,8 +41,45 @@ $(function() {
 								e.preventDefault();
 							}
 							
-						});
+		});
+	
+	$("#like").on("click",function(){
+		$.ajax({
+			type:'get',
+			url:"<%=request.getContextPath()%>/like",
+			data:{usersId:"a"},
+			success:function(){
+				$("#like").css("color","black");
+				console.log("test");
+			}
+		});
 	});
+	
+	$("#usersId").on("keyup",function(){
+		
+		$target=$("#dup");
+		
+		$.ajax({
+			type:'get',
+			url:"<%=request.getContextPath()%>/duplication",
+			data:{usersId:$("#usersId").val()},
+			success:function(responseTxt){
+				dupl=responseTxt;
+				if(responseTxt=="아이디중복"){
+					$target.css("color","red");
+				}else{
+					$target.css("color","green");
+				}
+				$target.html(responseTxt);
+			},
+			
+			error:function(xhr, status, error){
+				console.log("error: "+error);
+			}
+			
+		});
+	});	
+});
 </script>
 </head>
 
@@ -75,14 +112,11 @@ $(function() {
 			<div id="boardmid">
 				<div id="boardcontent"><%=board.getBoardContent()%></div>
 			</div>
+			<button type="submit" class="btn btn-success" id="like" name="like">좋아요</button>
+			<button type="button" class="btn btn-danger">싫어요</button>
 			<div id="boardfoot">
 				<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
-						<div>
-							<a
-								href="<%=request.getContextPath()%>/freeboard?page=1"><button
-									type="button" class="btn btn-default">목록</button></a>
-						</div>
 						<%
 							if (loginUser != null && loginUser.equals(board.getUsersUsersId())) {
 						%>
@@ -120,7 +154,7 @@ $(function() {
 		</div>
 		<div id="listgobtn">
 			<ul class="pager">
-				<li class="previous"><a href="#"> <span aria-hidden="true">&larr;</span>
+				<li class="previous"><a href="<%=request.getContextPath()%>/freeboard?page=1"> <span aria-hidden="true">&larr;</span>
 						list
 				</a></li>
 			</ul>

@@ -66,6 +66,7 @@ public class BoardDaoImpl implements BoardDao {
 		jdbcTemp.update(sql,board.getBoardNo());
 		return board;
 	}
+	
 
 	@Override
 	public void updateBoard(Board board) {
@@ -144,5 +145,7 @@ public class BoardDaoImpl implements BoardDao {
 		int count = jdbcTemp.queryForInt(sql,boardCode,boardName,boardName);
 		return count;
 	}
+
+	
 
 }
