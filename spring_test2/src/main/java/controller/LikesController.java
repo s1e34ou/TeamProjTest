@@ -14,7 +14,6 @@ import dto.Likes;
 import service.LikesService;
 
 @Controller
-@SessionAttributes
 public class LikesController {
 	private static Logger logger = LoggerFactory.getLogger(LikesController.class);
 	
@@ -32,7 +31,6 @@ public class LikesController {
 		return null;
 	}*/
 	
-	@SuppressWarnings("finally")
 	@RequestMapping(value = "/like", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String userJoinDupleTest(@RequestParam String usersId) {
 			String msg;
