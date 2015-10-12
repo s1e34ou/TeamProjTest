@@ -6,6 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#carousel-example-generic{
+	width:500px;
+}
+
+#box1{
+	display:inline-flex;
+}
+</style>
 <link href="<%=request.getContextPath()%>/style/board_view.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
@@ -30,7 +39,7 @@ $(function() {
 			%>
 	var image  = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailImage?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D&imageYN=Y";
 	var content = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailInfo?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D";
-	var detail="http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D&overviewYN=Y&defaultYN=Y";;  
+	var detail="http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D&defaultYN=Y&overviewYN=Y";;  
 	var url2 = "&contentId=<%=cont%>";	
 	var url3 = "&contentTypeId=15";
 	var url6 = "&MobileOS=ETC&MobileApp=AppTesting&arrange=P&_type=json";
@@ -38,8 +47,9 @@ $(function() {
 		image = image + url2+ url3+ url6;
 		content= content + url2+ url3+ url6;
 		detail= detail+ url2+  url6;
-		var originimgurl;
-		var smallimageurl;
+		 var originimgurl=new Array();
+		var smallimageurl=new Array(); 
+		
 		var homepage;
 		var tel;
 		var telname;
@@ -51,22 +61,25 @@ $(function() {
 			success : function(txt) {
 
 				var item = txt["response"]["body"]["items"]["item"];
-				$.each(item, function(index,data) {
-					homepage = data["homepage"];
-					tel = data["tel"];
-					telname = data["telname"];
-					title = data["title"];
-					overview = data["overview"];
-					
-				});
-				$("#homepage").append(homepage);
-				$("#tel").append(tel);
-				$("#telname").append(telname);
-				$("#title").append(title);
-				$("#overview").append(overview);
-				
-				//$("#infotext").append("<li>"+JSON.stringify(txt)+"</li>");
+					homepage = item["homepage"];
+					tel = item["tel"];
+					telname = item["telname"];
+					title = item["title"];
+					overview = item["overview"];
+				if(homepage!=undefined){					
+				$("#homepage").append("<h4>홈페이지 </h4>"+homepage);
+				}
+				if(tel!=undefined){
+				$("#tel").append("<h4>문의</h4>"+tel);
+				}
+				$("#boardin").prepend("<h2>"+title+"</h2>");
+				if(overview!=undefined){
+				$("#overview").append("<h3>행사소개</h3>"+overview+"<br>");
+				}
+				//$("#title").append("<li>"+JSON.stringify(txt)+"</li>");
 			}
+			
+			
 		});
 
 		
@@ -76,23 +89,37 @@ $(function() {
 			success : function(txt) {
 
 				var item = txt["response"]["body"]["items"]["item"];
+				console.log(txt["response"]["body"]["items"]);
+				 if((txt["response"]["body"]["items"])!=""){ 
 				$.each(item, function(index,data) {
-					originimgurl = data["originimgurl"];
-					smallimageurl = data["smallimageurl"];
+					originimgurl[index] = data["originimgurl"];
+					console.log(originimgurl[index]);
+					smallimageurl[index] = data["smallimageurl"];
 					if(originimgurl!=null||originimgurl!=undefined){
-						$("#originimgurl").append("<img src="+originimgurl+">");		
+						if(index==0){
+						$(".carousel-indicators").append("<li data-target='#carousel-example-generic' data-slide-to="+index+" class='active'></li>")
+						$(".carousel-inner").append("<div class='item active'><img src="+originimgurl[index]+"></div>");
+						}
+						else{
+							$(".carousel-indicators").append("<li data-target='#carousel-example-generic' data-slide-to="+index+"></li>")
+							$(".carousel-inner").append("<div class='item'><img src="+originimgurl[index]+"></div>");
+						}
 					}else{
 						
-						$("#smallimageurl").append("<img src="+smallimageurl+">");	
+						$("#smallimageurl").append("<img src="+smallimageurl[index]+">");	
 					}
 				});
+				}else{
+					$(".carousel-indicators").append("<li data-target='#carousel-example-generic' data-slide-to=0 class='active'></li>")
+					$(".carousel-inner").append("<div class='item active'><img src=<%=request.getContextPath()%>/images/noimage.png></div>");
+				}
+			}					
+								
 				
-				
-				//$("#infotext").append("<li>"+JSON.stringify(txt)+"</li>");
-			}
-		});
+			
 		
-		var infoname;
+		});
+		var infoname
 		var infotext;
 		$.ajax({
 					url : content,
@@ -103,13 +130,19 @@ $(function() {
 						$.each(item, function(index,data) {
 							infoname = data["infoname"];
 							infotext = data["infotext"];
+							
 						});
-						$("#infoname").append(infoname);
-						$("#infotext").append(infotext);
-						
-						//$target.append("<li>"+JSON.stringify(txt)+"</li>");
+						if(infotext!=undefined){
+							$("#infotext").append("<h3>"+infoname+"</h3>"+"<br>"+infotext);
+							}
+					//	$target.append("<li>"+JSON.stringify(txt)+"</li>");
 					}
 				});
+		
+		$("#back").on("click",function(e){
+			history.go(-1);
+		
+		});
 	});
 </script>
 </head>
@@ -118,17 +151,35 @@ $(function() {
 			<div id="board">
 				<h1>축제게시판</h1>
 				<div id="boardin">
-					<div id="originimgurl"></div>
-					<div id="smallimageurl"></div>		
-					<div id="infoname">제목 : </div>	
-					<div id="infotext">내용 : </div>
-					<div id="homepage">홈페이지 : </div>
-					<div id="tel">전화 : </div>
-					<div id="telname"></div>
-					<div id="title"></div>
+						<div id="box1">
+						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+							<!-- Indicators -->
+							<ol class="carousel-indicators">
+							</ol>
+				
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner" role="listbox">
+							</div>
+				
+							<!-- Controls -->
+							<a class="left carousel-control" href="#carousel-example-generic"
+								role="button" data-slide="prev"> <span
+								class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a> <a class="right carousel-control" href="#carousel-example-generic"
+								role="button" data-slide="next"> <span
+								class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+						<div id="etc"><div id="homepage"> </div>
+					<div id="tel"></div></div>
+					</div>		
 					<div id="overview"></div>
+					<div id="infotext"></div>
+					
 				</div>
-			<button>뒤로</button>
+			<button id="back">뒤로</button>
 			</div>
 		</body>
 </html>

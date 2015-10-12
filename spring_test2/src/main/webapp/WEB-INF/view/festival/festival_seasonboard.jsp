@@ -109,15 +109,18 @@ $(function() {
 			var page=txt["response"]["body"]["pageNo"];
 			var pnum;
 			pnum=Math.ceil(total/numOfRows);
+			$("#numtext").append("게시물수 : "+total);
+			$("#month").append(today.substring(4));
+			console.log(today.substring(3,5));
 			if(<%=start%>==null){		
 			   if(<%=pn%><=1){ 
 	            }else{ 
-	            $board.append("<a href=<%=request.getContextPath() %>/festival_seasonboard?pageno=1>[처음]</a>&nbsp");
+	            $board.append("<a href=<%=request.getContextPath() %>/festival_seasonboard?pageno=1>[처음]</a>");
 	            }
 	            
 	            if(<%=pn%><=1){ 
 	            }else{
-	            	$board.append("<a href='<%=request.getContextPath() %>/festival_seasonboard?pageno=<%=pn-1 %>'>[이전]</a>&nbsp");
+	            	$board.append("<a href='<%=request.getContextPath() %>/festival_seasonboard?pageno=<%=pn-1 %>'>[이전]</a>");
 	            } 
 	            
 	            if(bendpage>pnum){
@@ -144,7 +147,7 @@ $(function() {
 			}else{		
 				   if(<%=pn%><=1){ 
 		            }else{ 
-		            $board.append("<a href=<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start="+today+"&end=<%=end%>[처음]</a>");
+		            $board.append("<a href=<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start="+today+"&end=<%=end%>>[처음]</a>");
 		            }
 		            
 		            if(<%=pn%><=1){ 
@@ -187,7 +190,7 @@ $(function() {
 			<div id="boardinhead">
 				<div id="contentnum">
 					<div id="numtext">
-					게시물수 : <%=request.getAttribute("count") %></div>
+					</div>
 					<div class="dropdown" id="dropdown">
 	  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 	    			월별 선택
@@ -209,6 +212,7 @@ $(function() {
 	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="dec" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>1201&end=<%=sdf.format(date)%>1231">12월</a></li>
 	 				</ul>
 	 				</div>
+	 				<div id="month"></div>
 	 			</div>
 	 			<div id="contentsearch">
 					<div id="contentsearchin">

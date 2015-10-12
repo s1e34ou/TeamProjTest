@@ -98,15 +98,16 @@ $(function() {
 			var page=txt["response"]["body"]["pageNo"];
 			var pnum;
 			pnum=Math.ceil(total/numOfRows);
+			$("#numtext").append("게시물수 : "+total);
 			if(region==null){		
 			   if(<%=pn%><=1){ 
 	            }else{ 
-	            $board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno=1>[처음]</a>&nbsp");
+	            $board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno=1>[처음]</a>");
 	            }
 	            
 	            if(<%=pn%><=1){ 
 	            }else{
-	            	$board.append("<a href='<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn-1 %>'>[이전]</a>&nbsp");
+	            	$board.append("<a href='<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn-1 %>'>[이전]</a>");
 	            } 
 	            
 	            if(bendpage>pnum){
@@ -123,22 +124,22 @@ $(function() {
 			}
 			   if(<%=pn%>>=pnum){ 
 		            }else{ 
-		            $board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn+1%>>[다음]</a>&nbsp");
+		            $board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn+1%>>[다음]</a>");
 		            }
 		            
 		            if(<%=pn%>>=pnum){ 
 		            }else{
-		            	$board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno="+pnum+">[끝]</a>&nbsp");
+		            	$board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno="+pnum+">[끝]</a>");
 		            } 
 			}else{		
 				   if(<%=pn%><=1){ 
 		            }else{ 
-		            $board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=<%=region%>>[처음]</a>&nbsp");
+		            $board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=<%=region%>>[처음]</a>");
 		            }
 		            
 		            if(<%=pn%><=1){ 
 		            }else{
-		            	$board.append("<a href='<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn-1 %>&region=<%=region%>'>[이전]</a>&nbsp");
+		            	$board.append("<a href='<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn-1 %>&region=<%=region%>'>[이전]</a>");
 		            } 
 		            
 		            if(bendpage>pnum){
@@ -177,7 +178,7 @@ $(function() {
 			<div id="boardinhead">
 				<div id="contentnum">
 					<div id="numtext">
-					게시물수 : <%=request.getAttribute("count") %></div>
+					</div>
 					<div class="dropdown" id="dropdown">
 	  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 	    			지역별 선택

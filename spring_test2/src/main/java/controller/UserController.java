@@ -199,11 +199,7 @@ public class UserController {
 	@SuppressWarnings("finally")
 	@RequestMapping(value = "/duplication", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String userJoinDupleTest(@RequestParam String usersId) {
-		// if(usersId.equals("ddd")){
-		// return "ok";
-		// }else{
-		// return "no";
-		// }
+	
 		String msg = null;
 		try {
 			Users user = service.selectUser(usersId);

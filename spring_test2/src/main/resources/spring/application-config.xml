@@ -19,8 +19,8 @@
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" /> -->
-		<property name="url" value="jdbc:oracle:thin:@210.119.105.183:1521:xe" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<!-- <property name="url" value="jdbc:oracle:thin:@210.119.105.183:1521:xe" /> -->
 		<property name="username" value="fastival" />
 		<property name="password" value="tiger" />
 		<property name="maxTotal" value="20" />
