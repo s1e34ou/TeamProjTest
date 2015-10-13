@@ -11,4 +11,6 @@ public interface LikesDao {
 	public void updateLikes(Likes likes);
 	
 	public Likes selectLikes(String usersId,int boardNo);
+	
+	public int countLikes(int boardNo,int likes);
 }

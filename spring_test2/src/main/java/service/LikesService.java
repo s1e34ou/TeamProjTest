@@ -11,4 +11,6 @@ public interface LikesService {
 	void update(Likes likes);
 	
 	Likes select(String usersId, int boardNo);
+	
+	int count(int boardNo,int likes);
 }

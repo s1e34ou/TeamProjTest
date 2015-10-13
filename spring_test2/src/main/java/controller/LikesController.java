@@ -4,11 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import dto.Likes;
 import service.LikesService;
@@ -20,27 +20,39 @@ public class LikesController {
 	@Autowired
 	LikesService service;
 	
-	/*@RequestMapping(value = "/like", method = RequestMethod.GET )
-	public String insertlikeForm(Model model,@RequestParam int boardNo,HttpSession sess){
-		Likes likes = new Likes();
-		Users users = (Users) sess.getAttribute("loginUser");
-		likes.setUserId(users.getUsersId());
-		likes.setBoardNo(boardNo);
-		likes.setLikes(1);
-		service.insert(likes);
-		return null;
-	}*/
-	
 	@RequestMapping(value = "/like", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	public @ResponseBody String userJoinDupleTest(@RequestParam String usersId) {
+	public @ResponseBody String like(@RequestParam String usersId,@RequestParam int boardNo,@RequestParam int likes) {
 			String msg;
 			Likes li = new Likes();
+			if(usersId==null){
+				msg = "로그인 하여야 가능합니다.";
+			}else{
 			li.setUserId(usersId);
+			li.setBoardNo(boardNo);
+			li.setLikes(likes);
 			logger.trace("msg : {}",li);
 			service.insert(li);
 			msg ="추천되었습니다";
+			}
 			return msg;
 		
 
+	}
+	
+	@RequestMapping(value = "/likechange", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	public @ResponseBody String likechange(@RequestParam String usersId,@RequestParam int boardNo,@RequestParam int likes) {
+			String msg;
+			Likes li = new Likes();
+			if(usersId==null){
+				msg = "로그인 하여야 가능합니다.";
+			}else{
+			li.setUserId(usersId);
+			li.setBoardNo(boardNo);
+			li.setLikes(likes);
+			logger.trace("msg : {}",li);
+			service.update(li);
+			msg ="추천되었습니다";
+			}
+			return msg;
 	}
 }

@@ -3,6 +3,8 @@ package dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,6 +16,7 @@ import dto.Likes;
 @Repository
 public class LikesDaoImpl implements LikesDao {
 	
+	private static Logger logger = LoggerFactory.getLogger(LikesDaoImpl.class);
 	@Autowired
 	JdbcTemplate jdbcTemp;
 	
@@ -60,6 +63,14 @@ public class LikesDaoImpl implements LikesDao {
 		String sql = "select * from likes where users_id=? and board_no=?";
 		Likes likes = jdbcTemp.queryForObject(sql, getLikesRowMapper(),usersId,boardNo);
 		return likes;
+	}
+
+	@Override
+	public int countLikes(int boardNo,int likes) {
+		String sql = "select count(*) from likes where board_no=? and likes=?";
+		int count = jdbcTemp.queryForInt(sql,boardNo,likes);
+		logger.trace("daocount : {}",count);
+		return count;
 	}
 	
 	
