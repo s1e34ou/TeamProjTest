@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import dto.Board;
+import dto.Likes;
 import dto.Users;
 import service.BoardService;
+import service.LikesService;
 
 @Controller
 @SessionAttributes({"boardlist","pagelist"})
@@ -31,7 +33,8 @@ public class BoardController {
 
 	@Autowired
 	BoardService service;
-	
+	@Autowired
+	LikesService lservice;
 
 	
 	@ModelAttribute("board")
@@ -145,14 +148,28 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/eventboard_view", method = RequestMethod.GET)
-	public String eventView(Model model, @RequestParam int boardNo) {
+	public String eventView(Model model, @RequestParam int boardNo,HttpSession sess) {
 		Board board = new Board();
 		board = service.selectboard(boardNo);
+		int likecount = lservice.count(boardNo,2);
+		int unlikcecount = lservice.count(boardNo,1);
+		logger.trace("likecount: {}",likecount);
+		model.addAttribute("likecount", likecount);
+		model.addAttribute("unlikecount", unlikcecount);
 		
+		
+		try{
+		Likes likes = new Likes();
+		Users users = (Users) sess.getAttribute("loginUser");
+		likes = lservice.select(users.getUsersId(), boardNo);
+		model.addAttribute("likes", likes);
+		}catch(NullPointerException e){
+			
+		}finally{
 		model.addAttribute("currentboard", board); //사용자 인증 
-		
 		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_view.jsp");
 		return "start";
+		}
 		
 	}
 
@@ -208,6 +225,7 @@ public class BoardController {
 	public String freeboard(Model model,HttpServletRequest req) {
 		Object pageObj = req.getAttribute("page");
 		
+		
 		logger.trace("pageObj : {}",pageObj);
 		
 		int page;
@@ -230,14 +248,30 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/freeboard_view", method = RequestMethod.GET)
-	public String freeboardView(Model model, @RequestParam int boardNo) {
+	public String freeboardView(Model model, @RequestParam int boardNo,HttpSession sess) {
 		Board board = new Board();
 		board = service.selectboard(boardNo);
+		int likecount = lservice.count(boardNo,2);
+		int unlikcecount = lservice.count(boardNo,1);
+		logger.trace("likecount: {}",likecount);
+		model.addAttribute("likecount", likecount);
+		model.addAttribute("unlikecount", unlikcecount);
 		
-		model.addAttribute("currentboard", board); //사용자 인증 
 		
-		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
-		return "start";
+		try{
+		Likes likes = new Likes();
+		Users users = (Users) sess.getAttribute("loginUser");
+		likes = lservice.select(users.getUsersId(), boardNo);
+		model.addAttribute("likes", likes);
+		}catch(NullPointerException e){
+			
+		}finally {
+			
+			model.addAttribute("currentboard", board); //사용자 인증 
+			model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
+			return "start";
+		}
+		
 	}
 
 	@RequestMapping(value = "/freeboard_write", method = RequestMethod.GET)

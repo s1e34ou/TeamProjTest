@@ -40,9 +40,9 @@
 				  </button>
 				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 				   <li role="presentation"><a role="menuitem" tabindex="-1" id="all" href="<%=request.getContextPath()%>/rankboard?page=1&select=*">전체</a></li>
-				   <li role="presentation"><a role="menuitem" tabindex="-1" id="food"  href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_.*">이벤트</a></li>
-				  <%--  <li role="presentation"><a role="menuitem" tabindex="-1" id="beauty" href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_b.*">미용</a></li>
-				   <li role="presentation"><a role="menuitem" tabindex="-1" id="culture" href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_c.*">문화</a></li> --%>
+				   <li role="presentation"><a role="menuitem" tabindex="-1" id="event"  href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_.*">이벤트</a></li>
+				 <li role="presentation"><a role="menuitem" tabindex="-1" id="free" href="<%=request.getContextPath()%>/rankboard?page=1&select=FREE">자유</a></li>
+				   <%-- <li role="presentation"><a role="menuitem" tabindex="-1" id="culture" href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_c.*">문화</a></li> --%>
 				  </ul>
 				</div>
 			</div>
@@ -115,8 +115,10 @@ List<Board> pplist = (List<Board>)plist;
             		code="음식";
             	}else if(code.equals("EVENT_beauty")){
             		code="미용";
-            	}else{
+            	}else if(code.equals("EVENT_culture")){
             		code="문화";
+            	}else if(code.equals("FREE")){
+            		code="자유";
             	}
             	out.println(code);
             %>

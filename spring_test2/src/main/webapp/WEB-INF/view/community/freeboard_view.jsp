@@ -1,7 +1,10 @@
+<%@page import="org.springframework.beans.factory.annotation.Autowired"%>
+<%@page import="service.LikesService"%>
 <%@page import="dto.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="dto.Board"%>
+<%@page import="dto.Likes" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,51 +37,82 @@
 				loginUser = ((Users) loginUserObj).getUsersId();
 			}%>
 $(function() {
-	$("#deleteboard").on("click",function(){
-		if(confirm("삭제하시겠습니까")){
-			$(location).attr("href", "<%=request.getContextPath()%>/freeboard_delete?boardNo=<%=board.getBoardNo()%>");	
+				$("#deleteboard").on("click",function(){
+					if(confirm("삭제하시겠습니까")){
+						$(location).attr("href", "<%=request.getContextPath()%>/freeboard_delete?boardNo=<%=board.getBoardNo()%>");	
 							} else{
 								e.preventDefault();
 							}
 							
-		});
-	
-	$("#like").on("click",function(){
-		$.ajax({
-			type:'get',
-			url:"<%=request.getContextPath()%>/like",
-			data:{usersId:"a"},
-			success:function(){
-				$("#like").css("color","black");
-				console.log("test");
-			}
-		});
-	});
-	
-	$("#usersId").on("keyup",function(){
-		
-		$target=$("#dup");
-		
-		$.ajax({
-			type:'get',
-			url:"<%=request.getContextPath()%>/duplication",
-			data:{usersId:$("#usersId").val()},
-			success:function(responseTxt){
-				dupl=responseTxt;
-				if(responseTxt=="아이디중복"){
-					$target.css("color","red");
-				}else{
-					$target.css("color","green");
+			});
+				
+				
+	<%
+		Object ob =  request.getAttribute("likes");
+		int like;
+		if(ob!=null){
+		Likes likes = (Likes)ob;
+		like= likes.getLikes();
+		%>
+		$("#like").on("click",function(){
+			$.ajax({
+				type:'get',
+				url:"<%=request.getContextPath()%>/likechange",
+				data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:2},
+				success:function(){
+					$("#like").removeAttr("disabled","disabled:disabled")
+					$("#unlike").attr("disabled","disabled:disabled")
+					
 				}
-				$target.html(responseTxt);
-			},
-			
-			error:function(xhr, status, error){
-				console.log("error: "+error);
-			}
-			
+			});
+			location.reload(true)
 		});
-	});	
+		
+		$("#unlike").on("click",function(){
+			$.ajax({
+				type:'get',
+				url:"<%=request.getContextPath()%>/likechange",
+				data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:1},
+				success:function(){
+					$("#like").attr("disabled","disabled:disabled")
+					$("#unlike").removeAttr("disabled","disabled:disabled")
+					
+				}
+			});
+			location.reload(true)
+		});
+		
+	<%
+		}else{
+			like=0;
+			%>
+			
+			$("#like").on("click",function(){
+				$.ajax({
+					type:'get',
+					url:"<%=request.getContextPath()%>/like",
+					data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:2},
+					success:function(){
+						$("#like").attr("disabled","disabled:disabled")
+					}
+				});
+			});
+			
+			$("#unlike").on("click",function(){
+				$.ajax({
+					type:'get',
+					url:"<%=request.getContextPath()%>/like",
+					data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:1},
+					success:function(){
+						$("#unlike").attr("disabled","disabled:disabled")
+					}
+				});
+			});
+			<%
+		}
+	%>
+	
+	
 });
 </script>
 </head>
@@ -112,8 +146,26 @@ $(function() {
 			<div id="boardmid">
 				<div id="boardcontent"><%=board.getBoardContent()%></div>
 			</div>
-			<button type="submit" class="btn btn-success" id="like" name="like">좋아요</button>
-			<button type="button" class="btn btn-danger">싫어요</button>
+			<%
+				if(like==2){
+			%>
+			<%=request.getAttribute("likecount") %>
+			<button type="submit" class="btn btn-success" disabled="disabled" id="like" name="like">좋아요</button>
+			<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
+			<%=request.getAttribute("unlikecount") %>
+			<%}else if(like==1){ %>
+			<%=request.getAttribute("likecount") %>
+			<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
+			<button type="button" class="btn btn-danger" disabled="disabled" id="unlike" name="unlike">싫어요</button>
+			<%=request.getAttribute("unlikecount") %>
+			<%}else { %>
+			<%=request.getAttribute("likecount") %>
+			<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
+			<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
+			<%=request.getAttribute("unlikecount") %>
+			<%} %>
+			
+			
 			<div id="boardfoot">
 				<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
