@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +22,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import dto.Board;
+import dto.Reply;
 import dto.Users;
 import service.BoardService;
+import service.ReplyService;
 
 @Controller
 @SessionAttributes({"boardlist","pagelist"})
@@ -32,6 +35,8 @@ public class BoardController {
 	@Autowired
 	BoardService service;
 	
+	@Autowired
+	ReplyService rservice;
 
 	
 	@ModelAttribute("board")
@@ -232,8 +237,11 @@ public class BoardController {
 	@RequestMapping(value = "/freeboard_view", method = RequestMethod.GET)
 	public String freeboardView(Model model, @RequestParam int boardNo) {
 		Board board = new Board();
+		List<Map<String, Object>> reply;
 		board = service.selectboard(boardNo);
+		reply=rservice.selectReplyByBoardNo(boardNo);
 		
+		model.addAttribute("replylist",reply);
 		model.addAttribute("currentboard", board); //사용자 인증 
 		
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
@@ -271,6 +279,7 @@ public class BoardController {
 	@RequestMapping(value = "/freeboard_change", method = RequestMethod.GET)
 	public String freeboardChangeForm(Model model,@RequestParam int boardNo) {
 		model.addAttribute("board", service.selectboard(boardNo));
+		
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_change.jsp");
 		return "start";
 	}
@@ -283,7 +292,10 @@ public class BoardController {
 		
 		board = service.selectboard(boardNo);
 		logger.trace("board 후 {}",board);
+		List<Map<String, Object>> reply;
+		reply=rservice.selectReplyByBoardNo(boardNo);
 		
+		model.addAttribute("replylist",reply);
 		model.addAttribute("currentboard", board); //사용자 인증 
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
 		return "start";

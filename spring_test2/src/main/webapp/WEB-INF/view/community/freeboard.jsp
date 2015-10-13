@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="dto.Users"%>
 <%@page import="service.BoardServiceImpl"%>
 <%@page import="dao.BoardDao"%>
@@ -24,10 +25,11 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
 </head>
 <body>
 <div id="board">
-	<h1>자유게시판</h1>
+	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/freeboard?page=1">자유게시판</a></h1>
 		<div id="boardin">
 		<div id="boardinhead">
 			<div id="contentnum">
@@ -57,12 +59,11 @@ if(currentPageObj!=null){
 	 currentPage = 1;
 }
 int pnum;
-int pageblock=10;
+int pageblock=20;
 int block=(int)Math.ceil((double)currentPage/pageblock);
 int bstartpage=(block-1)*pageblock+1;
 int bendpage=bstartpage+pageblock-1;
-System.out.println("cc : "+currentPage+" a : "+block+" b :"+bstartpage+" c : "+bendpage);
-
+SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 Object blist = request.getAttribute("boardlist"); 
 List<Board> list = (List<Board>)blist;
 
@@ -102,11 +103,11 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%=pplist.get(i).getBoardNo()%>
         </td>
             <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line"> 
-            <a href="<%=request.getContextPath()%>/freeboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+            <a style="color:black" href="<%=request.getContextPath()%>/freeboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getUsersUsersId()%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
-            <%=pplist.get(i).getBoardDate()%>
+            <%=sdf.format(pplist.get(i).getBoardDate())%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getBoardHits()%>
         </td>

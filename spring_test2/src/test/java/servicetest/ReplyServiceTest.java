@@ -24,10 +24,12 @@ public class ReplyServiceTest {
 	
 	@Test
 	public void insertTest() {
-		Reply reply = new Reply("abc", "qq", 21,21);
+		Reply reply = new Reply();
+		reply.setBoardBoardNo(105);
+		reply.setReplyContent("abc");
+		reply.setUsersUsersId("q");
 		Reply replys = new Reply("abc", "qq", 22,22);
 		service.insertBoardReply(reply);
-		service.insertPhotoReply(replys);
 	}
 	@Test
 	public void selectTest() {
@@ -49,8 +51,8 @@ public class ReplyServiceTest {
 	}
 	@Test
 	public void selectReplyByBoardNoTest() {
-		List<Map<String, Object>> replys = service.selectReplyByBoardNo(5);
-		logger.trace("replys : {}",replys);
+		List<Map<String, Object>> replys = service.selectReplyByBoardNo(106);
+		logger.trace("replys : {}",replys.get(0).get("reply_no"));
 	}
 	@Test
 	public void deleteReplyByBoardNoTest() {

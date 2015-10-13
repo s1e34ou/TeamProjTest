@@ -1,12 +1,35 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.logging.SimpleFormatter"%>
+<%@page import="java.util.*"%>
 <%@page import="dto.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="dto.Board"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.replyid{
+margin:3px;font-size: 17pt;
+}
+.replydate{
+margin:3px;font-size: 9pt;color: #BFBFBF;
+}
+
+.replycontent{
+margin:3px;
+font-size: 11pt;
+}
+#bbb{
+display:inline-flex;
+
+}
+
+</style>
 <link href="<%=request.getContextPath()%>/style/board_view.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
@@ -22,8 +45,6 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<link href="<%=request.getContextPath()%>/css/basic.css"
-	rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 <%Object cb = request.getAttribute("currentboard");
@@ -32,9 +53,19 @@
 			Object loginUserObj = session.getAttribute("loginUser");
 			if (loginUserObj != null) {
 				loginUser = ((Users) loginUserObj).getUsersId();
-			}%>
+			}
+			
+			Object replylistObj = request.getAttribute("replylist");
+			List<Map<String, Object>> replylist=null;
+			 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			if(replylistObj!=null){
+				replylist = (List<Map<String, Object>>)replylistObj;
+			}
+		
+			
+			%>
 $(function() {
-	$("#deleteboard").on("click",function(){
+	$("#deleteboard").on("click",function(e){
 		if(confirm("삭제하시겠습니까")){
 			$(location).attr("href", "<%=request.getContextPath()%>/freeboard_delete?boardNo=<%=board.getBoardNo()%>");	
 							} else{
@@ -42,6 +73,8 @@ $(function() {
 							}
 							
 		});
+	
+	
 	
 	$("#like").on("click",function(){
 		$.ajax({
@@ -55,37 +88,53 @@ $(function() {
 		});
 	});
 	
-	$("#usersId").on("keyup",function(){
-		
-		$target=$("#dup");
-		
+
+	var resize=<%=replylist.size()%>
+	$("#replybut").on("click",function(e){
+		if($("#replycont").val()==""){
+			alert("내용을 입력하세요");
+			e.preventDefault();
+		}else{
+		var url="<%=request.getContextPath()%>/replywrite";
+		var data={replycon:$("#replycont").val(),userid:"<%=loginUser%>",boardno:<%=board.getBoardNo()%>};
 		$.ajax({
-			type:'get',
-			url:"<%=request.getContextPath()%>/duplication",
-			data:{usersId:$("#usersId").val()},
-			success:function(responseTxt){
-				dupl=responseTxt;
-				if(responseTxt=="아이디중복"){
-					$target.css("color","red");
-				}else{
-					$target.css("color","green");
+			url:url,
+			type:"post",
+			data:data,
+			
+			success:function(txt){
+			
+				var add=txt.length-resize;
+				//targety.append("<li>"+JSON.stringify(txt)+"</li>");
+				$("#replycont").removeAttr("value");
+				//console.log(JSON.stringify(txt));
+				for(var j=resize;j<txt.length;j++){
+			
+				    $("#reply").before("<div style='margin:3px; width: 550px;'><div class='replyid' >"+txt[j]["USERS_USERS_ID"]+"</div>")
+				    $("#reply").before("<div id='bbb'><div class='replydate'>("+txt[j]["REPLY_DATE"]+")</div></div>");
+				    $("#reply").before("<div class='replycontent'>"+txt[j]["REPLY_CONTENT"]+"</div></div><hr>");
+					
+					//$("#reply").prepend(txt[j][]);
 				}
-				$target.html(responseTxt);
+				resize+=add;
+			//	location.reload(true);
 			},
-			
-			error:function(xhr, status, error){
-				console.log("error: "+error);
-			}
-			
+		
+			"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"
+		
 		});
-	});	
+		}
+	}); 
+	
+	
+	
 });
 </script>
 </head>
 
 <body>
 	<div id="board">
-		<h1>자유게시판</h1>
+		<h1><a style="color:black; text-decoration: none;" href="<%=request.getContextPath()%>/freeboard?page=1">자유게시판</a></h1>
 		<div id="boardin">
 			<div id="boardhead">
 				<div id="boardtitle">
@@ -125,6 +174,9 @@ $(function() {
 								href="<%=request.getContextPath()%>/freeboard_change?boardNo=<%=board.getBoardNo()%>"><button
 									type="button" class="btn btn-default">수정</button></a>
 						</div>
+						
+						
+						
 						<div>
 							<form method="post"
 								action="<%=request.getContextPath()%>/freeboard_delete">
@@ -132,16 +184,19 @@ $(function() {
 								<input type="button" id="deleteboard" class="btn btn-default" value="삭제">
 							</form>
 						</div>
+						
 						<%
 							}
 						%>
-						<div>
-							<button type="button" class="btn btn-default">댓글쓰기</button>
-						</div>
+						
+						
 					</div>
 				</div>
+				
 			</div>
+			
 		</div>
+		
 		<div id="prevnextbtn">
 			<ul class="pager">
 				<li><a href="#">Previous</a></li>
@@ -150,7 +205,41 @@ $(function() {
 		</div>
 		<div id="replyboard">
 			<h2>댓글</h2>
-			<div id="replyboardin"></div>
+			<div id="replyboardin">
+			 <%
+			
+			 if(replylistObj!=null){%>
+<%				 
+        for(int i=0;i<replylist.size();i++){
+    %>
+    
+    <div style="margin:3px; width: 550px;">
+    <div class="replyid"><%=replylist.get(i).get("users_users_id") %> </div>
+    <div id="bbb">
+    	<div class="replydate" >(<%=sdf.format(replylist.get(i).get("reply_date")) %>)</div> 
+    	<%if(loginUser!=null&&loginUser.equals(replylist.get(i).get("users_users_id"))){ %>
+    	<div id="replydel" class="replydate"><a href="<%=request.getContextPath()%>/replydelete?boardno=<%=board.getBoardNo() %>&replyno=<%=replylist.get(i).get("reply_no") %>" %>댓글삭제</a></div>
+    	<%} %>
+    </div>
+    <div class="replycontent"> <%=replylist.get(i).get("reply_content")%></div>
+    </div>
+  
+    <hr>
+    <%}%><% }%>
+    <%if(loginUser !=null){ %>
+			<div id="reply" style="text-align:center; display:inline-flex;">
+			<div style="margin:5px;">
+						<textarea rows="4" cols="80" id="replycont" name="replycont"></textarea>
+						</div>
+						<div style="margin:5px;">
+						<button style="height:83px;" type="button" id="replybut" class="btn btn-default">댓글쓰기</button>
+						</div>
+						</div>
+						
+						<%} %>
+			</div>
+			
+			
 		</div>
 		<div id="listgobtn">
 			<ul class="pager">

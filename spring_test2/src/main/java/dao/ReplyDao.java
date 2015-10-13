@@ -8,6 +8,8 @@ import dto.Reply;
 public interface ReplyDao {
 
 	public Reply selectReply(int no);
+	
+	public int countReplyByBoardNo(int boardNo);
 
 	public void deleteReply(int no);
 

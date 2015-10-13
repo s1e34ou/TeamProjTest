@@ -12,6 +12,8 @@ public class Board {
 	private Integer boardHits;
 	private String boardCode;
 	private String usersUsersId;
+	private Integer replyCount;
+	
 	final private String REGION="REGION";
 	final private String SEASON="SEASON";
 	final private String EVENT="EVENT";
@@ -20,6 +22,14 @@ public class Board {
 	final private String NOTICE="NOTICE";
 	final private String QNA="QNA";
 	
+	public Integer getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(Integer replyCount) {
+		this.replyCount = replyCount;
+	}
+
 	public String getREGION() {
 		return REGION;
 	}
@@ -139,7 +149,7 @@ public class Board {
 	public String toString() {
 		return "Board [boardNo=" + boardNo + ", boardName=" + boardName + ", boardContent=" + boardContent
 				+ ", boardDate=" + boardDate + ", boardHits=" + boardHits + ", boardCode=" + boardCode
-				+ ", usersUsersId=" + usersUsersId + "]";
+				+ ", usersUsersId=" + usersUsersId + ", replyCount=" + replyCount + "]";
 	}
 
 	

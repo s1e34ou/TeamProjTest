@@ -10,7 +10,8 @@ public class Reply {
 	private Integer boardBoardNo;
 	private Integer photoPhotoNo;
 	
-	
+
+
 	public Reply() {
 		super();
 	}

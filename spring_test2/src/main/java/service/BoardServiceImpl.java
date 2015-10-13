@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.BoardDao;
+import dao.ReplyDao;
 import dto.Board;
 
 @Service
@@ -17,7 +18,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	BoardDao dao;
-
+	@Autowired
+	ReplyDao rdao;
 	@Override
 	@Transactional
 	public void writeboard(Board board) {
@@ -42,6 +44,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	@Transactional
 	public void deleteboard(int boardNo) {
+		rdao.deleteReplyByBoardNo(boardNo);
 		dao.deleteBoard(boardNo);
 
 	}
