@@ -15,7 +15,7 @@
 	display:inline-flex;
 }
 </style>
-<link href="<%=request.getContextPath()%>/style/board_view.css"
+<link href="<%=request.getContextPath()%>/style/festivalboard_view.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
@@ -147,39 +147,44 @@ $(function() {
 </script>
 </head>
 <body>
-		<body>
-			<div id="board">
-				<h1>축제게시판</h1>
-				<div id="boardin">
-						<div id="box1">
-						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-							<!-- Indicators -->
-							<ol class="carousel-indicators">
-							</ol>
-				
-							<!-- Wrapper for slides -->
-							<div class="carousel-inner" role="listbox">
-							</div>
-				
-							<!-- Controls -->
-							<a class="left carousel-control" href="#carousel-example-generic"
-								role="button" data-slide="prev"> <span
-								class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-								<span class="sr-only">Previous</span>
-							</a> <a class="right carousel-control" href="#carousel-example-generic"
-								role="button" data-slide="next"> <span
-								class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-								<span class="sr-only">Next</span>
-							</a>
-						</div>
-						<div id="etc"><div id="homepage"> </div>
-					<div id="tel"></div></div>
-					</div>		
+	<div id="board">
+		<h1>축제게시판</h1>
+		<div id="boardin">
+			<div id="boardhead">
+				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+				</ol>
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox">
+				</div>
+				<!-- Controls -->
+				<a class="left carousel-control" href="#carousel-example-generic"
+					role="button" data-slide="prev"> 
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+				</a> 
+				<a class="right carousel-control" href="#carousel-example-generic"
+					role="button" data-slide="next"> 
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+				</a>
+				</div>
+			</div>
+			<div id="boardmid">
+				<div id="midh">
+					<div id="homepage"></div>
+					<div id="tel"></div>
+				</div>
+				<div id="midf">
 					<div id="overview"></div>
 					<div id="infotext"></div>
-					
 				</div>
-			<button id="back">뒤로</button>
 			</div>
-		</body>
+		</div>
+		<div id="boardfoot">
+			<button id="back">뒤로</button>
+		</div>
+	</div>
+</body>
 </html>
