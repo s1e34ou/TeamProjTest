@@ -182,6 +182,10 @@ $(function() {
 				</div>
 			</div>
 		</div>
+		<div id="replyboard">
+			<h2>댓글</h2>
+			<div id="replyboardin"></div>
+		</div>
 		<div id="boardfoot">
 			<button id="back">뒤로</button>
 		</div>

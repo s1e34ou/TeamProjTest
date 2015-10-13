@@ -26,10 +26,18 @@
 	margin-bottom: 50px;
 }
 #midf{
-	
 }
 #boardfoot{
 	height: 70px;
+}
+#replyboard {
+	height: auto; /* 댓글 양에따라 크기가 자유자재로 조절되게 */
+	margin-top: 40px;
+	margin-bottom: 25px;
+}
+#replyboardin {
+	border: solid 1px gray;
+	height: auto; /* 댓글 양에따라 크기가 자유자재로 조절되게 */
 }
 #back{
 	margin-left: 10px;
