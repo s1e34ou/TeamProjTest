@@ -1,5 +1,7 @@
 package service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +11,8 @@ import dto.Likes;
 
 @Service
 public class LikesServiceImple implements LikesService {
-
+	private static Logger logger = LoggerFactory.getLogger(LikesServiceImple.class);
+	
 	@Autowired
 	LikesDao dao;
 	
@@ -36,8 +39,20 @@ public class LikesServiceImple implements LikesService {
 
 	@Override
 	public Likes select(String usersId, int boardNo) {
+		try{
 		Likes likes = dao.selectLikes(usersId, boardNo);
 		return likes;
+		}catch(NullPointerException e){
+			throw e;
+		}
+		
+	}
+
+	@Override
+	public int count(int boardNo,int likes) {
+		int count = dao.countLikes(boardNo,likes);
+		logger.trace("servicecount : {}",count);
+		return count;
 	}
 
 

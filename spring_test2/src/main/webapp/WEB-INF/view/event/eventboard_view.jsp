@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="dto.Board"%>
+<%@page import="dto.Likes" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -42,6 +43,70 @@ $(function() {
 							}
 							
 						});
+	<%
+	Object ob =  request.getAttribute("likes");
+	int like;
+	if(ob!=null){
+	Likes likes = (Likes)ob;
+	like= likes.getLikes();
+	%>
+	$("#like").on("click",function(){
+		$.ajax({
+			type:'get',
+			url:"<%=request.getContextPath()%>/likechange",
+			data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:2},
+			success:function(){
+				$("#like").removeAttr("disabled","disabled:disabled")
+				$("#unlike").attr("disabled","disabled:disabled")
+				
+			}
+		});
+		location.reload(true)
+	});
+	
+	$("#unlike").on("click",function(){
+		$.ajax({
+			type:'get',
+			url:"<%=request.getContextPath()%>/likechange",
+			data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:1},
+			success:function(){
+				$("#like").attr("disabled","disabled:disabled")
+				$("#unlike").removeAttr("disabled","disabled:disabled")
+				
+			}
+		});
+		location.reload(true)
+	});
+	
+<%
+	}else{
+		like=0;
+		%>
+		
+		$("#like").on("click",function(){
+			$.ajax({
+				type:'get',
+				url:"<%=request.getContextPath()%>/like",
+				data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:2},
+				success:function(){
+					$("#like").attr("disabled","disabled:disabled")
+				}
+			});
+		});
+		
+		$("#unlike").on("click",function(){
+			$.ajax({
+				type:'get',
+				url:"<%=request.getContextPath()%>/like",
+				data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:1},
+				success:function(){
+					$("#unlike").attr("disabled","disabled:disabled")
+				}
+			});
+		});
+		<%
+	}
+%>
 	});
 </script>
 </head>
@@ -90,6 +155,25 @@ $(function() {
 			<div id="boardmid">
 				<div id="boardcontent"><%=board.getBoardContent()%></div>
 			</div>
+			<%
+				if(like==2){
+			%>
+			<%=request.getAttribute("likecount") %>
+			<button type="submit" class="btn btn-success" disabled="disabled" id="like" name="like">좋아요</button>
+			<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
+			<%=request.getAttribute("unlikecount") %>
+			<%}else if(like==1){ %>
+			<%=request.getAttribute("likecount") %>
+			<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
+			<button type="button" class="btn btn-danger" disabled="disabled" id="unlike" name="unlike">싫어요</button>
+			<%=request.getAttribute("unlikecount") %>
+			<%}else { %>
+			<%=request.getAttribute("likecount") %>
+			<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
+			<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
+			<%=request.getAttribute("unlikecount") %>
+			<%} %>
+			
 			<div id="boardfoot">
 				<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
