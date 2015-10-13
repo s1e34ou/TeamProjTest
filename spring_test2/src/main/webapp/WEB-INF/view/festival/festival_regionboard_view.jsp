@@ -39,7 +39,9 @@ $(function() {
 			%>
 	var image  = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailImage?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D&imageYN=Y";
 	var content = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailInfo?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D";
-	var detail="http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D&defaultYN=Y&overviewYN=Y";;  
+	var detail="http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D&defaultYN=Y&overviewYN=Y";
+	var detailintro="http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D&introYN=Y";
+	
 	var url2 = "&contentId=<%=cont%>";	
 	var url3 = "&contentTypeId=15";
 	var url6 = "&MobileOS=ETC&MobileApp=AppTesting&arrange=P&_type=json";
@@ -47,6 +49,7 @@ $(function() {
 		image = image + url2+ url3+ url6;
 		content= content + url2+ url3+ url6;
 		detail= detail+ url2+  url6;
+		detailintro=detailintro+url2+ url3+ url6;
 		 var originimgurl=new Array();
 		var smallimageurl=new Array(); 
 		
@@ -55,6 +58,111 @@ $(function() {
 		var telname;
 		var title;
 		var overview;
+		
+		var detailcon=new Array();
+		var agelimit;
+		var bookingplace;
+		var discountinfofestival;
+		var eventplace;
+		var placeinfo;
+		var playtime;
+		var program;
+		var spendtimefestival;
+		var sponsor1;
+		var sponsor1tel;
+		var sponsor2;
+		var sponsor2tel;
+		var subevent;
+		var usetimefestival;
+		
+		
+		$.ajax({
+			url : detailintro,
+			type : "get",
+			success : function(txt) {
+
+				var item = txt["response"]["body"]["items"]["item"];
+				agelimit = item["agelimit"];
+				bookingplace = item["bookingplace"];
+				discountinfofestival = item["discountinfofestival"];
+				eventplace = item["eventplace"];
+				placeinfo = item["placeinfo"];
+				playtime = item["playtime"];
+				program = item["program"];
+				spendtimefestival = item["spendtimefestival"];
+				sponsor1 = item["sponsor1"];
+				sponsor1tel = item["sponsor1tel"];
+				sponsor2 = item["sponsor2"];
+				sponsor2tel = item["sponsor2tel"];
+				subevent= item["subevent"];
+				usetimefestival= item["usetimefestival"];
+				
+				
+				if(agelimit!=""&&agelimit!=null&&agelimit!=undefined){
+					$("#agelimit").append("<h4>관람 가능 연령</h4><h5>"+agelimit+"</h5><br>");		
+				}
+				
+				if(bookingplace!=""&&bookingplace!=null&&bookingplace!=undefined){
+					$("#bookingplace").append("<h4>예매처</h4><h5> "+bookingplace+"</h5><br>");		
+				}
+				
+				if(discountinfofestival!=""&&discountinfofestival!=null&&discountinfofestival!=undefined){
+					$("#discountinfofestival").append("<h4>할인정보</h4><h5> "+discountinfofestival+"</h5><br>");		
+				}
+				
+				if(eventplace!=""&&eventplace!=null&&eventplace!=undefined){
+					$("#eventplace").append("<h4>행사 장소</h4><h5> "+eventplace+"</h5><br>");		
+				}
+				
+				if(placeinfo!=""&&placeinfo!=null&&placeinfo!=undefined){
+					$("#placeinfo").append("<h4>오시는 길 </h4><h5> "+placeinfo+"</h5><br>");		
+				}
+				
+				if(playtime!=""&&playtime!=null&&playtime!=undefined){
+					$("#playtime").append("<h4>행사 시간</h4><h5> "+playtime+"</h5><br>");		
+				}
+				
+				if(program!=""&&program!=null&&program!=undefined){
+					$("#program").append("<h4>행사 프로그램 </h4><h5>"+program+"</h5><br>");		
+				}
+				
+				if(spendtimefestival!=""&&spendtimefestival!=null&&spendtimefestival!=undefined){
+					$("#spendtimefestival").append("<h4>관람 소요 시간</h4><h5>"+spendtimefestival+"</h5><br>");		
+				}
+				
+				if(sponsor1!=""&&sponsor1!=null&&sponsor1!=undefined){
+					$("#sponsor1").append("<h4>주최자</h4><h5>"+sponsor1+"</h5><br>");		
+				}
+				if(sponsor1tel!=""&&sponsor1tel!=null&&sponsor1tel!=undefined){
+					$("#sponsor1tel").append("<h4>주최자 연락처</h4><h5>"+sponsor1tel+"</h5><br>");		
+				}
+				if(sponsor2!=""&&sponsor2!=null&&sponsor2!=undefined){
+					$("#sponsor2").append("<h4>주관사</h4><h5>"+sponsor2+"</h5><br>");		
+				}
+				if(sponsor2tel!=""&&sponsor2tel!=null&&sponsor2tel!=undefined){
+					$("#sponsor2tel").append("<h4>주관사 연락처</h4><h5>"+sponsor2tel+"</h5><br>");		
+				}
+				if(subevent!=""&&subevent!=null&&subevent!=undefined){
+					$("#subevent").append("<h4>부대행사</h4><h5>"+subevent+"</h5><br>");		
+				}	
+				if(usetimefestival!=""&&usetimefestival!=null&&usetimefestival!=undefined){
+					$("#usetimefestival").append("<h4>이용요금</h4><h5>"+usetimefestival+"</h5><br>");		
+				}
+				
+				
+				
+				
+				for(var i=0;i<14;i++){
+					if(detailcon[i]!=""&&detailcon[i]!=null&&detailcon[i]!=undefined){
+						$("#detailcon").append(detailcon[i]+"<br>");		
+					}
+				}
+				//$("#detailcon").append("<li>"+JSON.stringify(txt)+"</li>");
+			}
+			
+			
+		});
+		
 		$.ajax({
 			url : detail,
 			type : "get",
@@ -179,6 +287,22 @@ $(function() {
 				<div id="midf">
 					<div id="overview"></div>
 					<div id="infotext"></div>
+					<div id="detailcon"><h3>상세정보</h3>
+						<div id="agelimit"></div>
+						<div id="bookingplace"></div>
+						<div id="discountinfofestival"></div>
+						<div id="eventplace"></div>
+						<div id="placeinfo"></div>
+						<div id="playtime"></div>
+						<div id="program"></div>
+						<div id="spendtimefestival"></div>
+						<div id="sponsor1"></div>
+						<div id="sponsor1tel"></div>
+						<div id="sponsor2"></div>
+						<div id="sponsor2tel"></div>
+						<div id="subevent"></div>
+						<div id="usetimefestival"></div>
+					</div>
 				</div>
 			</div>
 		</div>

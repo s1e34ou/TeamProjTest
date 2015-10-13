@@ -20,6 +20,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#festid{
+	color:black;
+}
+.fes{
+padding-left:10px;
+}
+</style>
 <link href="<%=request.getContextPath()%>/style/index.css"
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet"
@@ -36,6 +44,13 @@
 <script type="text/javascript">
 
 $(function() {
+	<%
+	Date today = new Date();
+		SimpleDateFormat sdf;
+		sdf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh시 mm분");
+		SimpleDateFormat ddd=new SimpleDateFormat("yyyyMMdd");
+		String dddd=ddd.format(today);
+%>
 	$("#loginbutton").on("click",function(e){
 		if($("#usersId").val()==""){
 			alert("아이디를 입력해 주세요");
@@ -68,7 +83,31 @@ $(function() {
 <%} else if (msg == "비밀번호 확인") {%>
 	alert("비밀번호를 확인하세요");
 <%}%>
+
+var url="http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?ServiceKey=hqSFyMrMnkcgyqbBzDDaGYqeYOXRLBJbiNPu%2B6xLBOaOgrm3fJGIKuCRi5BIMHHGsejSK82dSwlS%2Bnr4%2FPWfkQ%3D%3D";
+var url2="&numOfRows=4";
+var url3="&pageNo=1";
+var url4="&eventStartDate=<%=dddd%>";
+var url5="&eventEndDate=<%=dddd%>";
+var url7="&MobileOS=ETC&MobileApp=AppTesting&arrange=Q&_type=json";
+
+url=url+url2+url3+url4+url5+url7;
+
+$.ajax({
+	url:url,
+	type:"get",
+	success:function(txt){
+		
+		var $box4=$("#box4");
+		var item= txt["response"]["body"]["items"]["item"];
+		$.each(item,function(index,data){
+			$box4.append("<a id='festid' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><div class='fes'><table><tr><td rowspan=3><img src=" +data["firstimage2"]+" width=60px height=60px></td><td width=500px>"+data["title"]+"</td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div></a>");
+			//한국관광공사 api
+		});
+	}
+	
 	});
+});
 </script>
 </head>
 <body>
@@ -103,7 +142,6 @@ $(function() {
 					<div class="carousel-caption">...</div>
 				</div>
 			</div>
-
 			<!-- Controls -->
 			<a class="left carousel-control" href="#carousel-example-generic"
 				role="button" data-slide="prev"> <span
@@ -150,11 +188,7 @@ $(function() {
 				</center>
 			</div>
 			<div id="timetoday">
-				<%
-					Date today = new Date();
-						SimpleDateFormat sdf;
-						sdf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh시 mm분");
-				%>
+				
 				<center><%=sdf.format(today)%></center>
 			</div>
 		</div>
