@@ -151,6 +151,13 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
       
     </tr>
     <%} %>
+     <tr align="right">
+        <td colspan="5">
+        <%if(loginUserObj!=null){ %>
+             <a href="<%=request.getContextPath() %>/eventboard_write">[글쓰기]</a>
+             <%} %>
+        </td>
+    </tr>
      <tr align=center height=100>
         <td colspan=7 style=font-family:Tahoma;font-size:11pt;>
             
@@ -193,15 +200,6 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%} %>
         </td>
     </tr>
-    <tr align="right">
-        <td colspan="5">
-        <%if(loginUserObj!=null){ %>
-             <a href="<%=request.getContextPath() %>/eventboard_write">[글쓰기]</a>
-             <%} %>
-        </td>
-    </tr>
-    
-
     
 </table>
 </div>
