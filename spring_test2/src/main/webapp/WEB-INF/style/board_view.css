@@ -65,3 +65,18 @@
 #listgobtn {
 	height: 70px;
 }
+.replyid{
+margin:3px;font-size: 17pt;
+}
+.replydate{
+margin:3px;font-size: 9pt;color: #BFBFBF;
+}
+
+.replycontent{
+margin:3px;
+font-size: 11pt;
+}
+#bbb{
+display:inline-flex;
+
+}

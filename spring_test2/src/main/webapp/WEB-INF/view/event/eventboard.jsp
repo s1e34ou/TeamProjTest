@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="dto.Users"%>
 <%@page import="service.BoardServiceImpl"%>
 <%@page import="dao.BoardDao"%>
@@ -63,6 +64,7 @@ Object loginUserObj = session.getAttribute("loginUser");
 if(loginUserObj!=null){
 String loginUser = ((Users) loginUserObj).getUsersId();
 }
+SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 Object currentPageObj= request.getAttribute("page");
 int currentPage;
@@ -138,11 +140,11 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             
         </td>
             <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
-            <a href="<%=request.getContextPath()%>/eventboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+            <a style="color: black" href="<%=request.getContextPath()%>/eventboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getUsersUsersId()%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
-            <%=pplist.get(i).getBoardDate()%>
+            <%=sdf.format(pplist.get(i).getBoardDate())%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getBoardHits()%>
         </td>

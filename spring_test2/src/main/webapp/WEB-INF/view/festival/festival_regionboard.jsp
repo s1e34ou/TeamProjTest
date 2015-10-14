@@ -71,7 +71,6 @@ $(function() {
 	var url2="&numOfRows=10";
 	var url3="&pageNo=<%=pn%>";
 	var url4="&eventStartDate="+today;
-	var url5="&eventEndDate=20151030";
 	var url6="&areaCode=<%=region%>";
 	var url7="&MobileOS=ETC&MobileApp=AppTesting&arrange=Q&_type=json";
 	if(<%=regionObj%>==null){
@@ -89,15 +88,22 @@ $(function() {
 			var $target=$("#fromServer");
 			var $board=$("#prevnextbar");
 			var item= txt["response"]["body"]["items"]["item"];
+			var numOfRows=txt["response"]["body"]["numOfRows"];
+			var total=txt["response"]["body"]["totalCount"];
+			var page=txt["response"]["body"]["pageNo"];
+			console.log(total%10);
+			var pnum;
+			pnum=Math.ceil(total/numOfRows);
+			
+			if(total%10==1&&<%=pn%>==pnum){
+				$target.append("<div class=sel><table><tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+item["contentid"]+"><img src=" +item["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+item["contentid"]+">"+item["title"]+"</a></td></tr><tr><td>"+item["eventstartdate"]+"~ "+item["eventenddate"]+"</td></tr><tr><td>"+item["addr1"]+"</td></tr></table></div>");
+			}else{
 			$.each(item,function(index,data){
 				$target.append("<div class=sel><table><tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><img src=" +data["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+">"+data["title"]+"</a></td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div>");
 				//한국관광공사 api
 			});
-			var numOfRows=txt["response"]["body"]["numOfRows"];
-			var total=txt["response"]["body"]["totalCount"];
-			var page=txt["response"]["body"]["pageNo"];
-			var pnum;
-			pnum=Math.ceil(total/numOfRows);
+			}
+		
 			$("#numtext").append("게시물수 : "+total);
 			if(region==null){		
 			   if(<%=pn%><=1){ 
@@ -165,6 +171,10 @@ $(function() {
 			            } 
 				}
 			//$target.append("<li>"+JSON.stringify(txt)+"</li>");
+		},
+		error:function(xhr,status,error){
+			console.log(error);
+			
 		}
 	});
 });

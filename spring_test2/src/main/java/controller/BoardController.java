@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dto.Board;
 import dto.Reply;
@@ -57,7 +58,7 @@ public class BoardController {
 	@RequestMapping(value = "/festival_regionboard", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String festivalRegionboard(Model model,HttpServletRequest req) {
 		model.addAttribute("region",req.getParameter("region"));
-		logger.trace("regi: "+req.getAttribute("region"));
+		logger.trace("regi: "+req.getParameter("region"));
 		if(req.getParameter("pageno")==null){
 			model.addAttribute("pageno",1);
 		}else{
@@ -282,7 +283,10 @@ public class BoardController {
 		}
 		
 	}
+	
+	
 
+	
 	@RequestMapping(value = "/freeboard_write", method = RequestMethod.GET)
 	public String freeboardWriteForm(Model model,Board board,HttpSession sess) {
 		 Users users = (Users) sess.getAttribute("loginUser");
@@ -292,16 +296,22 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/freeboard_write", method = RequestMethod.POST)
-	public String freeboardWrite(Model model,Board board) {
-		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
+	public String freeboardWrite(Model model,Board board,RedirectAttributes redir) {
+	//	model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
 		board.setBoardCode(board.getFREE());
 		service.writeboard(board);
-		
+		redir.addFlashAttribute("contentpage",  "/WEB-INF/view/community/freeboard.jsp");
 		
 		List<Board> plist = service.getBoardByPage(1,board.getFREE());
 		List<Board> list = service.getAllBoard(board.getFREE());
-		model.addAttribute("boardlist", list);
-		model.addAttribute("pagelist", plist);
+		//model.addAttribute("boardlist", list);
+		//model.addAttribute("pagelist", plist);
+		redir.addFlashAttribute("boardlist", list);
+		redir.addFlashAttribute("pagelist", plist);
+		return "redirect:freeboard_prg";
+	}
+	@RequestMapping(value="/freeboard_prg",method=RequestMethod.GET )
+	public String prgfreeboardWrite(Model model){
 		return "start";
 	}
 	@RequestMapping(value = "/freeboard_delete", method = RequestMethod.GET)
@@ -504,9 +514,12 @@ public class BoardController {
 
 	@RequestMapping(value = "/qnaboard_view", method = RequestMethod.GET)
 	public String qnaboardView(Model model, @RequestParam int boardNo) {
+		List<Map<String, Object>> reply;
 		Board board = new Board();
 		board = service.selectboard(boardNo);
+		reply=rservice.selectReplyByBoardNo(boardNo);
 		
+		model.addAttribute("replylist",reply);
 		model.addAttribute("currentboard", board); //사용자 인증 
 		
 		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_view.jsp");
