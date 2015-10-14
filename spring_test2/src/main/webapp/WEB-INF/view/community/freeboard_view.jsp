@@ -107,6 +107,7 @@ $(function() {
 				
 			}
 		});
+		location.reload(true)
 	});
 	
 <%
@@ -218,8 +219,25 @@ $(function() {
 			<div id="boardmid">
 				<div id="boardcontent"><%=board.getBoardContent()%></div>
 			</div>
-			<button type="submit" class="btn btn-success" id="like" name="like">좋아요</button>
-			<button type="button" class="btn btn-danger">싫어요</button>
+			<%
+				if(like==2){
+			%>
+			<%=request.getAttribute("likecount") %>
+			<button type="submit" class="btn btn-success" disabled="disabled" id="like" name="like">좋아요</button>
+			<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
+			<%=request.getAttribute("unlikecount") %>
+			<%}else if(like==1){ %>
+			<%=request.getAttribute("likecount") %>
+			<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
+			<button type="button" class="btn btn-danger" disabled="disabled" id="unlike" name="unlike">싫어요</button>
+			<%=request.getAttribute("unlikecount") %>
+			<%}else { %>
+			<%=request.getAttribute("likecount") %>
+			<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
+			<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
+			<%=request.getAttribute("unlikecount") %>
+			<%} %>
+			
 			<div id="boardfoot">
 				<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
