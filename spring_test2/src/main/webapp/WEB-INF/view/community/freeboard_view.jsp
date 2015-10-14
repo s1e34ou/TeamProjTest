@@ -2,6 +2,7 @@
 <%@page import="java.util.logging.SimpleFormatter"%>
 <%@page import="java.util.*"%>
 <%@page import="dto.Users"%>
+<%@page import="dto.Likes" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="dto.Board"%>
@@ -74,19 +75,75 @@ $(function() {
 							
 		});
 	
-	
-	
+	<%
+	Object ob =  request.getAttribute("likes");
+	int like;
+	if(ob!=null){
+	Likes likes = (Likes)ob;
+	like= likes.getLikes();
+	%>
 	$("#like").on("click",function(){
 		$.ajax({
 			type:'get',
-			url:"<%=request.getContextPath()%>/like",
-			data:{usersId:"a"},
+			url:"<%=request.getContextPath()%>/likechange",
+			data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:2},
 			success:function(){
-				$("#like").css("color","black");
-				console.log("test");
+				$("#like").removeAttr("disabled","disabled:disabled")
+				$("#unlike").attr("disabled","disabled:disabled")
+				
+			}
+		});
+		location.reload(true)
+	});
+	
+	$("#unlike").on("click",function(){
+		$.ajax({
+			type:'get',
+			url:"<%=request.getContextPath()%>/likechange",
+			data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:1},
+			success:function(){
+				$("#like").attr("disabled","disabled:disabled")
+				$("#unlike").removeAttr("disabled","disabled:disabled")
+				
 			}
 		});
 	});
+	
+<%
+	}else{
+		like=0;
+		%>
+		
+		$("#like").on("click",function(){
+			$.ajax({
+				type:'get',
+				url:"<%=request.getContextPath()%>/like",
+				data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:2},
+				success:function(){
+					$("#like").attr("disabled","disabled:disabled")
+				}
+			});
+		});
+		
+		$("#unlike").on("click",function(){
+			$.ajax({
+				type:'get',
+				url:"<%=request.getContextPath()%>/like",
+				data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:1},
+				success:function(){
+					$("#unlike").attr("disabled","disabled:disabled")
+				}
+			});
+		});
+		<%
+	}
+%>
+	
+	
+	
+	
+	
+	
 	
 
 	var resize=<%=replylist.size()%>
