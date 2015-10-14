@@ -88,12 +88,12 @@ $(function() {
 			url:"<%=request.getContextPath()%>/likechange",
 			data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:2},
 			success:function(){
-				$("#like").removeAttr("disabled","disabled:disabled")
-				$("#unlike").attr("disabled","disabled:disabled")
+				$("#like").removeAttr("disabled","disabled:disabled");
+				$("#unlike").attr("disabled","disabled:disabled");
 				
 			}
 		});
-		location.reload(true)
+		location.reload(true);
 	});
 	
 	$("#unlike").on("click",function(){
@@ -102,8 +102,8 @@ $(function() {
 			url:"<%=request.getContextPath()%>/likechange",
 			data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:1},
 			success:function(){
-				$("#like").attr("disabled","disabled:disabled")
-				$("#unlike").removeAttr("disabled","disabled:disabled")
+				$("#like").attr("disabled","disabled:disabled");
+				$("#unlike").removeAttr("disabled","disabled:disabled");
 				
 			}
 		});
@@ -120,7 +120,7 @@ $(function() {
 				url:"<%=request.getContextPath()%>/like",
 				data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:2},
 				success:function(){
-					$("#like").attr("disabled","disabled:disabled")
+					$("#like").attr("disabled","disabled:disabled");
 				}
 			});
 		});
@@ -131,7 +131,7 @@ $(function() {
 				url:"<%=request.getContextPath()%>/like",
 				data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:1},
 				success:function(){
-					$("#unlike").attr("disabled","disabled:disabled")
+					$("#unlike").attr("disabled","disabled:disabled");
 				}
 			});
 		});
