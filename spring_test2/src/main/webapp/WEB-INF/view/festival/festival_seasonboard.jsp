@@ -110,8 +110,8 @@ $(function() {
 			var pnum;
 			pnum=Math.ceil(total/numOfRows);
 			$("#numtext").append("게시물수 : "+total);
-			$("#month").append(today.substring(4));
-			console.log(today.substring(3,5));
+			
+			
 			if(<%=start%>==null){		
 			   if(<%=pn%><=1){ 
 	            }else{ 
