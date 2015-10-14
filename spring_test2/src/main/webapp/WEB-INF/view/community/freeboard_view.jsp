@@ -164,7 +164,6 @@ $(function() {
 			
 				var add=txt.length-resize;
 				//targety.append("<li>"+JSON.stringify(txt)+"</li>");
-				$("#replycont").removeAttr("value");
 				//console.log(JSON.stringify(txt));
 				for(var j=resize;j<txt.length;j++){
 			
