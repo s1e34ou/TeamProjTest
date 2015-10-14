@@ -2,13 +2,13 @@
 
 #board {
 	width: 1000px;
-	height: 850px;
+	height: auto;
 	margin: auto;
 }
 #boardin {
 	border: solid 1px black;
 	width: 1000px;
-	height: 750px;
+	height: auto;
 	margin: auto;
 }
 .sline{
@@ -40,4 +40,7 @@
 #boardlist {
 	width: 900px;
 	margin-top: 30px;
+}
+#footmargin{
+	height: 100px;
 }

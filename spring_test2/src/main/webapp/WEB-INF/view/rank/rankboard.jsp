@@ -141,6 +141,7 @@ List<Board> pplist = (List<Board>)plist;
 
     
 </table>
+<div id="footmargin"></div>
 </div>
 </div>
 </body>

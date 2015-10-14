@@ -161,10 +161,8 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
              <%} %>
         </td>
     </tr>
-    
-
-    
 </table>
+<div id="footmargin"></div>
 </div>
 </div>
 </body>
