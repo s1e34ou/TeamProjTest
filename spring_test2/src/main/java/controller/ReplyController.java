@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 
@@ -52,8 +53,7 @@ private static Logger logger = LoggerFactory.getLogger(ReplyController.class);
 	}
 
 	@RequestMapping(value = "/replydelete", method = RequestMethod.GET)
-	public String replyDelete(Model model,@RequestParam Integer boardno, @RequestParam Integer replyno) {
-		logger.trace("boardno:{}, replyno:{}",boardno,replyno);
+	public String replyDelete(Model model,@RequestParam Integer boardno, @RequestParam Integer replyno,RedirectAttributes redir) {
 		service.deleteReply(replyno);
 		
 		Board board = new Board();
@@ -62,10 +62,15 @@ private static Logger logger = LoggerFactory.getLogger(ReplyController.class);
 		
 		reply=service.selectReplyByBoardNo(boardno);
 		
-		model.addAttribute("replylist",reply);
-		model.addAttribute("currentboard", board);
+		redir.addFlashAttribute("replylist",reply);
+		redir.addFlashAttribute("currentboard", board);
 		
-		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
+		return "redirect:replygo";
+	}
+	
+	@RequestMapping(value = "/replygo", method = RequestMethod.GET)
+	public String replyDelete(Model model) {
 		return "start";
 	}
 	
