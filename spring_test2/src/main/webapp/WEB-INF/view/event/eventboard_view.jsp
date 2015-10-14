@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/board_view.css"
+<link href="<%=request.getContextPath()%>/style/eventboard_view.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
@@ -155,26 +155,28 @@ $(function() {
 			<div id="boardmid">
 				<div id="boardcontent"><%=board.getBoardContent()%></div>
 			</div>
-			<%
-				if(like==2){
-			%>
-			<%=request.getAttribute("likecount") %>
-			<button type="submit" class="btn btn-success" disabled="disabled" id="like" name="like">좋아요</button>
-			<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
-			<%=request.getAttribute("unlikecount") %>
-			<%}else if(like==1){ %>
-			<%=request.getAttribute("likecount") %>
-			<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
-			<button type="button" class="btn btn-danger" disabled="disabled" id="unlike" name="unlike">싫어요</button>
-			<%=request.getAttribute("unlikecount") %>
-			<%}else { %>
-			<%=request.getAttribute("likecount") %>
-			<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
-			<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
-			<%=request.getAttribute("unlikecount") %>
-			<%} %>
-			
 			<div id="boardfoot">
+				<div id="likeunlike">
+				<%
+					if(like==2){
+				%>
+				<%=request.getAttribute("likecount") %>
+				<button type="submit" class="btn btn-success" disabled="disabled" id="like" name="like">좋아요</button>
+				<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
+				<%=request.getAttribute("unlikecount") %>
+				<%}else if(like==1){ %>
+				<%=request.getAttribute("likecount") %>
+				<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
+				<button type="button" class="btn btn-danger" disabled="disabled" id="unlike" name="unlike">싫어요</button>
+				<%=request.getAttribute("unlikecount") %>
+				<%}else { %>
+				<%=request.getAttribute("likecount") %>
+				<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
+				<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
+				<%=request.getAttribute("unlikecount") %>
+				<%} %>
+				</div>
+				
 				<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
 						<%
@@ -195,9 +197,6 @@ $(function() {
 						<%
 							}
 						%>
-						<div>
-							<button type="button" class="btn btn-default">댓글쓰기</button>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -208,10 +207,10 @@ $(function() {
 				<li><a href="#">Next</a></li>
 			</ul>
 		</div>
-		<div id="replyboard">
+		<!-- <div id="replyboard">
 			<h2>댓글</h2>
 			<div id="replyboardin"></div>
-		</div>
+		</div> -->
 		<div id="listgobtn">
 			<ul class="pager">
 				<li class="previous"><a href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_.*"> <span aria-hidden="true">&larr;</span>

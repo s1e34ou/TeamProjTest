@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/board_change.css"
+<link href="<%=request.getContextPath()%>/style/eventboard_change.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
@@ -41,18 +41,26 @@ Board board = (Board) cb;
     <sform:form method="post" action="${eventboard_change }" modelAttribute="board">
         <fieldset>
         	<div id="blisthead">
+        		<div id="userid">
+				<sform:label path="usersUsersId">작성자</sform:label>
+	        	<sform:input path="usersUsersId"  readonly="true"/>
+	        	</div>
+	        	<div id="bcode">
+	        	<sform:label path="boardCode">종류</sform:label>
+	        	<sform:select path="boardCode">
+	        		<sform:option label="식품" value="EVENT_food"/>
+	        		<sform:option label="미용" value="EVENT_beauty"/>
+	        		<sform:option label="문화" value="EVENT_culture"/>
+	        	</sform:select>
+	        	</div>
+	        	<div id="bno">
+	        	<sform:label path="boardNo">글번호</sform:label>
+	        	<sform:input path="boardNo" readonly="true"/>
+	        	</div>
+        	</div>
+        	<div id="bname">
         	<sform:label path="boardName">제목</sform:label>
 			<sform:input path="boardName"/>
-			<sform:label path="usersUsersId">작성자</sform:label>
-        	<sform:input path="usersUsersId"  readonly="true"/>
-        	<sform:label path="boardCode">종류</sform:label>
-        	<sform:select path="boardCode">
-        		<sform:option label="식품" value="EVENT_food"/>
-        		<sform:option label="미용" value="EVENT_beauty"/>
-        		<sform:option label="문화" value="EVENT_culture"/>
-        	</sform:select>
-        	<sform:label path="boardNo">글번호</sform:label>
-        	<sform:input path="boardNo" readonly="true"/>
 			</div>
 			<hr>
             <sform:label path="boardContent">내용</sform:label>
