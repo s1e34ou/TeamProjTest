@@ -5,23 +5,28 @@
 	height: auto;
 	margin: auto;
 }
+
 #boardin {
 	border: solid 1px black;
 	width: 1000px;
 	height: auto; /* 글 양에따라 크기가 자유자재로 조절되게 */
 	margin: auto;
 }
+
 #boardhead {
 	height: 60px;
 }
+
 #boardtitle {
 	margin-left: 10px;
 }
+
 #boardinfo {
 	display: -webkit-box;
 	float: right;
 	margin-right: 10px;
 }
+
 #boardwriter {
 	margin-right: 20px;
 }
@@ -29,54 +34,88 @@
 #boarddate {
 	margin-right: 30px;
 }
+
 #boardindex {
 	margin-right: 20px;
 }
-#boardhits{
+
+#boardhits {
 	margin-right: 20px;
 }
+
 #boardmid {
 	height: auto; /* 글 양에따라 크기가 자유자재로 조절되게 */
 	width: 1000px;
+	margin-top: 30px;
+	margin-bottom: 50px;
 }
+
+#boardfoot {
+	display: -webkit-box;
+}
+
+#likeunlike {
+	width: 170px;
+	margin-left: 415px;
+	margin-bottom: 15px;
+	margin-right: 275px;
+}
+
+#boardmodidelbtn {
+	height: 50px;
+}
+
 #boardcontent {
 	height: auto; /* 글 양에따라 크기가 자유자재로 조절되게 */
 	width: 850px;
 	margin: auto;
 }
-#boardfoot {
-	height: auto;
-}
+
 #moddelbtn {
 	display: -webkit-box;
 	float: right;
 	margin-right: 15px;
 }
+
 #prevnextbtn {
 	height: 70px;
 }
+
 #replyboard {
 	height: auto; /* 댓글 양에따라 크기가 자유자재로 조절되게 */
 }
+
 #replyboardin {
 	border: solid 1px gray;
 	height: auto; /* 댓글 양에따라 크기가 자유자재로 조절되게 */
 }
+#replyinin {
+	width: 950px;
+	height: auto;
+	margin-left: 25px;
+	margin-top: 20px;
+}
+
 #listgobtn {
 	height: 70px;
 }
-.replyid{
-margin:3px;font-size: 17pt;
-}
-.replydate{
-margin:3px;font-size: 9pt;color: #BFBFBF;
+
+.replyid {
+	margin: 3px;
+	font-size: 17pt;
 }
 
-.replycontent{
-margin:3px;
-font-size: 11pt;
+.replydate {
+	margin: 3px;
+	font-size: 9pt;
+	color: #BFBFBF;
 }
-#bbb{
-display:inline-flex;
 
+.replycontent {
+	margin: 3px;
+	font-size: 11pt;
+}
+
+#bbb {
+	display: inline-flex;
 }
