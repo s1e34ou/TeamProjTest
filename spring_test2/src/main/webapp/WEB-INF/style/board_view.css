@@ -45,7 +45,7 @@
 	margin: auto;
 }
 #boardfoot {
-	height: 40px;
+	height: auto;
 }
 #moddelbtn {
 	display: -webkit-box;

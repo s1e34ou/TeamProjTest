@@ -38,7 +38,7 @@ public class BoardDaoImpl implements BoardDao {
 				board.setBoardName(rs.getString("board_name"));
 				board.setBoardDate(rs.getDate("board_date"));
 				board.setUsersUsersId(rs.getString("users_users_id"));
-				
+				board.setReplyCount(rs.getInt("reply_count"));
 				return board;
 			}
 		};
@@ -53,7 +53,7 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public void insertBoard(Board board) {
-		String sql = "insert into board values(BOARD_NO_SEQ.nextval,?,?,sysdate,?,?,?)";
+		String sql = "insert into board values(BOARD_NO_SEQ.nextval,?,?,sysdate,?,?,?,0)";
 		jdbcTemp.update(sql, board.getBoardName(), board.getBoardContent(),0, board.getBoardCode(),
 				board.getUsersUsersId());
 	}

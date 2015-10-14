@@ -47,8 +47,12 @@ public class ReplyDaoImpl implements ReplyDao {
 
 	@Override
 	public void deleteReply(int replyNo) {
-		String sql = "delete from reply where reply_no=?";
+		String sql = "update board set reply_count=reply_count-1 where board_no=?";
+		jdbcTemp.update(sql,selectReply(replyNo).getBoardBoardNo());
+		sql = "delete from reply where reply_no=?";
 		jdbcTemp.update(sql, replyNo);
+		
+	
 	}
 
 	@Override
@@ -62,13 +66,17 @@ public class ReplyDaoImpl implements ReplyDao {
 	public void insertBoardReply(Reply reply) {
 		String sql = "insert into reply values(reply_NO_SEQ.nextval,?,sysdate,?,?,?)";
 		jdbcTemp.update(sql, reply.getReplyContent(), reply.getUsersUsersId(), reply.getBoardBoardNo(),null);
+		sql = "update board set reply_count=reply_count+1 where board_no=?";
+		jdbcTemp.update(sql,reply.getBoardBoardNo());
+		
 
 	}
 
 	@Override
 	public List<Map<String, Object>> selectReplyByBoardNo(int boardNo) {
-		String sql = "select * from reply where board_board_no=?";
+		String sql = "select * from reply where board_board_no=? order by reply_date";
 		List<Map<String, Object>> reply = jdbcTemp.queryForList(sql,boardNo);
+		
 		return reply;
 	}
 
@@ -97,6 +105,13 @@ public class ReplyDaoImpl implements ReplyDao {
 		String sql = "delete from reply where photo_photo_no=?";
 		jdbcTemp.update(sql, photoNo);
 		
+	}
+
+	@Override
+	public int countReplyByBoardNo(int boardNo) {
+		String sql="select count(*) from reply where board_board_no=?";
+		int count=jdbcTemp.queryForInt(sql, boardNo);
+		return count;
 	}
 
 

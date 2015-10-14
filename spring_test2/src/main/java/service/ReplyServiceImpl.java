@@ -31,7 +31,7 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	@Transactional
 	public void deleteReply(int no) {
-		dao.deleteReply(14);
+		dao.deleteReply(no);
 		
 	}
 
@@ -81,6 +81,12 @@ public class ReplyServiceImpl implements ReplyService{
 	public void deleteReplyByPhotoNo(int photoNo) {
 		dao.deleteReplyByPhotoNo(photoNo);
 		
+	}
+
+	@Override
+	public int countReply(int boardNo) {
+		int count = dao.countReplyByBoardNo(boardNo);
+		return count;
 	}
 	
 

@@ -12,6 +12,8 @@ public interface ReplyService {
 
 	void deleteReply(int no);
 
+	int countReply(int boardNo);
+	
 	void updateReply(Reply reply);
 
 	void insertBoardReply(Reply reply);
