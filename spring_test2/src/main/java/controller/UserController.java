@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dto.Board;
 import com.google.gson.Gson;
@@ -51,7 +52,10 @@ public class UserController {
 	
 	
 		
-
+	@RequestMapping(value = "/go", method = RequestMethod.GET)
+	public String userPGR(Model model) {
+		return "start";
+	}
 	@InitBinder
 	public void bindData(WebDataBinder binder) {
 		SimpleDateFormat format = new SimpleDateFormat("yyMMdd");
@@ -77,8 +81,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String userJoin(Model model, Users users, HttpServletRequest req) {
-		model.addAttribute("contentpage", "/WEB-INF/view/join/joinsuccess.jsp");
+	public String userJoin(Model model, Users users, HttpServletRequest req,RedirectAttributes redir) {
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/join/joinsuccess.jsp");
 		String address1 = req.getParameter("USERS_ADRESS1");
 		String address2 = req.getParameter("USERS_ADRESS2");
 		String address3 = req.getParameter("USERS_ADRESS3");
@@ -86,7 +90,7 @@ public class UserController {
 		users.setUsersAddress2(address2);
 		users.setUsersAddress3(address3);
 		service.join(users);
-		return "start";
+		return "redirect:go";
 	}
 
 	@RequestMapping(value = "/infochange", method = RequestMethod.GET)
@@ -99,12 +103,12 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/infochange", method = RequestMethod.POST)
-	public String userInfoChange(Model model, Users users) {
-		model.addAttribute("contentpage", "/WEB-INF/view/join/id_infochangecheck.jsp");
+	public String userInfoChange(Model model, Users users,RedirectAttributes redir) {
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/join/id_infochangecheck.jsp");
 
 		service.changeInfo(users);
 
-		return "start";
+		return "redirect:go";
 	}
 
 	@RequestMapping(value = "/deleteconfirm", method = RequestMethod.GET)
@@ -117,7 +121,7 @@ public class UserController {
 
 	@SuppressWarnings("finally")
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String userLogin(Model model, HttpServletRequest req) {
+	public String userLogin(Model model, HttpServletRequest req,RedirectAttributes redir) {
 		String usersid = req.getParameter("usersId");
 		String userspassword = req.getParameter("usersPassword");
 		String msg = null;
@@ -139,18 +143,18 @@ public class UserController {
 			}
 
 		} finally {
-			model.addAttribute("ex", msg);
-			model.addAttribute("contentpage", "/WEB-INF/view/main.jsp");
-			return "start";
+			redir.addFlashAttribute("ex", msg);
+			redir.addFlashAttribute("contentpage", "/WEB-INF/view/main.jsp");
+			return "redirect:go";
 		}
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String userLogout(Model model, SessionStatus sessionstatus) {
+	public String userLogout(Model model, SessionStatus sessionstatus,RedirectAttributes redir) {
 		sessionstatus.setComplete();
-		model.addAttribute("contentpage", "/WEB-INF/view/main.jsp");
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/main.jsp");
 
-		return "start";
+		return "redirect:go";
 	}
 
 	@RequestMapping(value = "/login_findinput", method = RequestMethod.GET)
@@ -161,38 +165,38 @@ public class UserController {
 
 	@SuppressWarnings("finally")
 	@RequestMapping(value = "/login_findinput", method = RequestMethod.POST)
-	public String userLoginFindinput(Model model, HttpServletRequest req) {
+	public String userLoginFindinput(Model model, HttpServletRequest req,RedirectAttributes redir) {
 		String usersemail = req.getParameter("usersEmail");
 		String usersname = req.getParameter("usersName");
 		try {
 			Users findUser = service.find(usersemail, usersname);
 
-			model.addAttribute("findUser", findUser);
+			redir.addFlashAttribute("findUser", findUser);
 		} catch (Exception e) {
 			logger.trace(e.getMessage());
 		} finally {
-			model.addAttribute("contentpage", "/WEB-INF/view/login/login_id_find.jsp");
-			return "start";
+			redir.addFlashAttribute("contentpage", "/WEB-INF/view/login/login_id_find.jsp");
+			return "redirect:go";
 		}
 
 	}
 
 	@SuppressWarnings("finally")
 	@RequestMapping(value = "/login_findinputPw", method = RequestMethod.POST)
-	public String userLoginFindinputPw(Model model, HttpServletRequest req) {
+	public String userLoginFindinputPw(Model model, HttpServletRequest req,RedirectAttributes redir) {
 		String usersid = req.getParameter("usersId");
 		String usersname = req.getParameter("usersName");
 		String usersques = req.getParameter("usersPassques");
 		try {
 			Users findPw = service.findPw(usersid, usersname, usersques);
 
-			model.addAttribute("findPw", findPw);
+			redir.addFlashAttribute("findPw", findPw);
 		} catch (Exception e) {
 			logger.trace(e.getMessage());
 		} finally {
-			model.addAttribute("contentpage", "/WEB-INF/view/login/login_pw_find.jsp");
+			redir.addFlashAttribute("contentpage", "/WEB-INF/view/login/login_pw_find.jsp");
 
-			return "start";
+			return "redirect:go";
 		}
 	}
 

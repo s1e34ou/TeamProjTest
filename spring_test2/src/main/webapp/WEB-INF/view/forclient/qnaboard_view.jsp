@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.*"%>
 <%@page import="dto.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -32,7 +34,16 @@
 			Object loginUserObj = session.getAttribute("loginUser");
 			if (loginUserObj != null) {
 				loginUser = ((Users) loginUserObj).getUsersId();
-			}%>
+			}
+			Object replylistObj = request.getAttribute("replylist");
+			List<Map<String, Object>> replylist=null;
+			 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			if(replylistObj!=null){
+				replylist = (List<Map<String, Object>>)replylistObj;
+			}
+		
+			
+			%>
 $(function() {
 	$("#deleteboard").on("click",function(){
 		if(confirm("삭제하시겠습니까")){
@@ -42,6 +53,43 @@ $(function() {
 							}
 							
 						});
+	
+	
+	var resize=<%=replylist.size()%>
+	$("#replybut").on("click",function(e){
+		if($("#replycont").val()==""){
+			alert("내용을 입력하세요");
+			e.preventDefault();
+		}else{
+		var url="<%=request.getContextPath()%>/replywrite";
+		var data={replycon:$("#replycont").val(),userid:"<%=loginUser%>",boardno:<%=board.getBoardNo()%>};
+		$.ajax({
+			url:url,
+			type:"post",
+			data:data,
+			
+			success:function(txt){
+			
+				var add=txt.length-resize;
+				//targety.append("<li>"+JSON.stringify(txt)+"</li>");
+				//console.log(JSON.stringify(txt));
+				for(var j=resize;j<txt.length;j++){
+			
+				    $("#reply").before("<div style='margin:3px; width: 550px;'><div class='replyid' >"+txt[j]["USERS_USERS_ID"]+"</div>")
+				    $("#reply").before("<div id='bbb'><div class='replydate'>("+txt[j]["REPLY_DATE"]+")</div></div>");
+				    $("#reply").before("<div class='replycontent'>"+txt[j]["REPLY_CONTENT"]+"</div></div><hr>");
+					
+					//$("#reply").prepend(txt[j][]);
+				}
+				resize+=add;
+			//	location.reload(true);
+			},
+		
+			"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"
+		
+		});
+		}
+	}); 
 	});
 </script>
 </head>
@@ -116,7 +164,37 @@ $(function() {
 		</div>
 		<div id="replyboard">
 			<h2>댓글</h2>
-			<div id="replyboardin"></div>
+			<div id="replyboardin">		 <%
+			
+			 if(replylistObj!=null){%>
+<%				 
+        for(int i=0;i<replylist.size();i++){
+    %>
+    
+    <div style="margin:3px; width: 550px;">
+    <div class="replyid"><%=replylist.get(i).get("users_users_id") %> </div>
+    <div id="bbb">
+    	<div class="replydate" >(<%=sdf.format(replylist.get(i).get("reply_date")) %>)</div> 
+    	<%if(loginUser!=null&&loginUser.equals(replylist.get(i).get("users_users_id"))){ %>
+    	<div id="replydel" class="replydate"><a href="<%=request.getContextPath()%>/replydelete?boardno=<%=board.getBoardNo() %>&replyno=<%=replylist.get(i).get("reply_no") %>" %>댓글삭제</a></div>
+    	<%} %>
+    </div>
+    <div class="replycontent"> <%=replylist.get(i).get("reply_content")%></div>
+    </div>
+  
+    <hr>
+    <%}%><% }%>
+    <%if(loginUser !=null){ %>
+			<div id="reply" style="text-align:center; display:inline-flex;">
+			<div style="margin:5px;">
+						<textarea rows="4" cols="80" id="replycont" name="replycont"></textarea>
+						</div>
+						<div style="margin:5px;">
+						<button style="height:83px;" type="button" id="replybut" class="btn btn-default">댓글쓰기</button>
+						</div>
+						</div>
+						
+						<%} %></div>
 		</div>
 		<div id="listgobtn">
 			<ul class="pager">

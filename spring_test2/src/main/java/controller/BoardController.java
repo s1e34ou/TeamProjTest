@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dto.Board;
 import dto.Reply;
@@ -57,7 +58,7 @@ public class BoardController {
 	@RequestMapping(value = "/festival_regionboard", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String festivalRegionboard(Model model,HttpServletRequest req) {
 		model.addAttribute("region",req.getParameter("region"));
-		logger.trace("regi: "+req.getAttribute("region"));
+		logger.trace("regi: "+req.getParameter("region"));
 		if(req.getParameter("pageno")==null){
 			model.addAttribute("pageno",1);
 		}else{
@@ -81,10 +82,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/festival_regionboard_write", method = RequestMethod.POST)
-	public String festivalRegionWrite(Model model,Board board) {
-		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
+	public String festivalRegionWrite(Model model,Board board,RedirectAttributes redir) {
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
 		service.writeboard(board);
-		return "start";
+		return "redirect:board_prg";
 	}
 
 	@RequestMapping(value = "/festival_seasonboard", method = RequestMethod.GET)
@@ -187,43 +188,41 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/eventboard_write", method = RequestMethod.POST)
-	public String eventWrite(Model model,Board board) {
-		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
+	public String eventWrite(Model model,Board board,RedirectAttributes redir) {
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/event/eventboard.jsp");
 		service.writeboard(board);
 		
 		
 		List<Board> plist = service.getBoardByPage(1,board.getEVENT());
 		List<Board> list = service.getAllBoard(board.getEVENT());
-		model.addAttribute("boardlist", list);
-		model.addAttribute("pagelist", plist);
-		return "start";
+		redir.addFlashAttribute("boardlist", list);
+		redir.addFlashAttribute("pagelist", plist);
+		return "redirect:board_prg";
 	}
 	
 	@RequestMapping(value = "/eventboard_delete", method = RequestMethod.GET)
-	public String eventboardDelete(Model model,@RequestParam int boardNo) {
+	public String eventboardDelete(Model model,@RequestParam int boardNo,RedirectAttributes redir) {
 		service.deleteboard(boardNo);
-		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_delete.jsp");
-		return "start";
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/event/eventboard_delete.jsp");
+		return "redirect:board_prg";
 	}
 	
 	@RequestMapping(value = "/eventboard_change", method = RequestMethod.GET)
-	public String eventboardChangeForm(Model model,@RequestParam int boardNo) {
+	public String eventboardChange(Model model,@RequestParam int boardNo) {
 		model.addAttribute("board", service.selectboard(boardNo));
 		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_change.jsp");
 		return "start";
 	}
 	
 	@RequestMapping(value = "/eventboard_change", method = RequestMethod.POST)
-	public String eventboardChange(Model model,Board board,@RequestParam int boardNo) {
+	public String eventboardChangeForm(Model model,Board board,@RequestParam int boardNo,RedirectAttributes redir) {
 		
 		service.updateCodeboard(board);
-		logger.trace("board {}",board);
 		board = service.selectboard(boardNo);
-		logger.trace("board 후 {}",board);
 		
-		model.addAttribute("currentboard", board); //사용자 인증 
-		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_view.jsp");
-		return "start";
+		redir.addFlashAttribute("currentboard", board); //사용자 인증 
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/event/eventboard_view.jsp");
+		return "redirect:board_prg";
 	}
 
 	@RequestMapping(value = "/freeboard", method = RequestMethod.GET)
@@ -282,9 +281,12 @@ public class BoardController {
 		}
 		
 	}
+	
+	
 
+	
 	@RequestMapping(value = "/freeboard_write", method = RequestMethod.GET)
-	public String freeboardWriteForm(Model model,Board board,HttpSession sess) {
+	public String freeboardWrite(Model model,Board board,HttpSession sess) {
 		 Users users = (Users) sess.getAttribute("loginUser");
 		board.setUsersUsersId(users.getUsersId());
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_write.jsp");
@@ -292,27 +294,33 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/freeboard_write", method = RequestMethod.POST)
-	public String freeboardWrite(Model model,Board board) {
-		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
+	public String freeboardWriteForm(Model model,Board board,RedirectAttributes redir) {
+	//	model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard.jsp");
 		board.setBoardCode(board.getFREE());
 		service.writeboard(board);
-		
+		redir.addFlashAttribute("contentpage",  "/WEB-INF/view/community/freeboard.jsp");
 		
 		List<Board> plist = service.getBoardByPage(1,board.getFREE());
 		List<Board> list = service.getAllBoard(board.getFREE());
-		model.addAttribute("boardlist", list);
-		model.addAttribute("pagelist", plist);
+		//model.addAttribute("boardlist", list);
+		//model.addAttribute("pagelist", plist);
+		redir.addFlashAttribute("boardlist", list);
+		redir.addFlashAttribute("pagelist", plist);
+		return "redirect:board_prg";
+	}
+	@RequestMapping(value="/board_prg",method=RequestMethod.GET )
+	public String prgfreeboardWrite(Model model){
 		return "start";
 	}
 	@RequestMapping(value = "/freeboard_delete", method = RequestMethod.GET)
-	public String freeboardDelete(Model model,@RequestParam int boardNo) {
+	public String freeboardDelete(Model model,@RequestParam int boardNo,RedirectAttributes redir) {
 		service.deleteboard(boardNo);
-		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_delete.jsp");
-		return "start";
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/community/freeboard_delete.jsp");
+		return "redirect:board_prg";
 	}
 	
 	@RequestMapping(value = "/freeboard_change", method = RequestMethod.GET)
-	public String freeboardChangeForm(Model model,@RequestParam int boardNo) {
+	public String freeboardChange(Model model,@RequestParam int boardNo) {
 		model.addAttribute("board", service.selectboard(boardNo));
 		
 		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_change.jsp");
@@ -320,7 +328,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/freeboard_change", method = RequestMethod.POST)
-	public String freeboardChange(Model model,Board board,@RequestParam int boardNo) {
+	public String freeboardChangeForm(Model model,Board board,@RequestParam int boardNo,RedirectAttributes redir) {
 		
 		service.updateboard(board);
 		logger.trace("board {}",board);
@@ -330,10 +338,10 @@ public class BoardController {
 		List<Map<String, Object>> reply;
 		reply=rservice.selectReplyByBoardNo(boardNo);
 		
-		model.addAttribute("replylist",reply);
-		model.addAttribute("currentboard", board); //사용자 인증 
-		model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
-		return "start";
+		redir.addFlashAttribute("replylist",reply);
+		redir.addFlashAttribute("currentboard", board); //사용자 인증 
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
+		return "redirect:board_prg";
 	}
 
 	@RequestMapping(value = "/rankboard", method = RequestMethod.GET)
@@ -437,44 +445,42 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/notice_write", method = RequestMethod.POST)
-	public String noticeWrite(Model model,Board board) {
-		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice.jsp");
+	public String noticeWrite(Model model,Board board,RedirectAttributes redir) {
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/forclient/notice.jsp");
 		board.setBoardCode(board.getNOTICE());
 		service.writeboard(board);
 		
 		
 		List<Board> plist = service.getBoardByPage(1,board.getNOTICE());
 		List<Board> list = service.getAllBoard(board.getNOTICE());
-		model.addAttribute("boardlist", list);
-		model.addAttribute("pagelist", plist);
-		return "start";
+		redir.addFlashAttribute("boardlist", list);
+		redir.addFlashAttribute("pagelist", plist);
+		return "redirect:board_prg";
 	}
 	@RequestMapping(value = "/notice_delete", method = RequestMethod.GET)
-	public String noticeDelete(Model model,@RequestParam int boardNo) {
+	public String noticeDelete(Model model,@RequestParam int boardNo,RedirectAttributes redir) {
 		service.deleteboard(boardNo);
-		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice_delete.jsp");
-		return "start";
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/forclient/notice_delete.jsp");
+		return "redirect:board_prg";
 	}
 	
 	@RequestMapping(value = "/notice_change", method = RequestMethod.GET)
-	public String noticeChangeForm(Model model,@RequestParam int boardNo) {
+	public String noticeChange(Model model,@RequestParam int boardNo) {
 		model.addAttribute("board", service.selectboard(boardNo));
 		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice_change.jsp");
 		return "start";
 	}
 	
 	@RequestMapping(value = "/notice_change", method = RequestMethod.POST)
-	public String noticeChange(Model model,Board board,@RequestParam int boardNo) {
+	public String noticeChangeForm(Model model,Board board,@RequestParam int boardNo,RedirectAttributes redir) {
 		
 		service.updateboard(board);
-		logger.trace("board {}",board);
 		
 		board = service.selectboard(boardNo);
-		logger.trace("board 후 {}",board);
 		
-		model.addAttribute("currentboard", board); //사용자 인증 
-		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice_view.jsp");
-		return "start";
+		redir.addFlashAttribute("currentboard", board); //사용자 인증 
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/forclient/notice_view.jsp");
+		return "redirect:board_prg";
 	}
 
 	@RequestMapping(value = "/qnaboard", method = RequestMethod.GET)
@@ -504,9 +510,12 @@ public class BoardController {
 
 	@RequestMapping(value = "/qnaboard_view", method = RequestMethod.GET)
 	public String qnaboardView(Model model, @RequestParam int boardNo) {
+		List<Map<String, Object>> reply;
 		Board board = new Board();
 		board = service.selectboard(boardNo);
+		reply=rservice.selectReplyByBoardNo(boardNo);
 		
+		model.addAttribute("replylist",reply);
 		model.addAttribute("currentboard", board); //사용자 인증 
 		
 		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_view.jsp");
@@ -514,7 +523,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/qnaboard_write", method = RequestMethod.GET)
-	public String qnaboardWriteForm(Model model,Board board,HttpSession sess) {
+	public String qnaboardWrite(Model model,Board board,HttpSession sess) {
 		Users users = (Users) sess.getAttribute("loginUser");
 		board.setUsersUsersId(users.getUsersId());
 		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_write.jsp");
@@ -522,44 +531,42 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/qnaboard_write", method = RequestMethod.POST)
-	public String qnaboardWrite(Model model,Board board) {
-		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard.jsp");
+	public String qnaboardWriteForm(Model model,Board board,RedirectAttributes redir) {
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard.jsp");
 		board.setBoardCode(board.getQNA());
 		service.writeboard(board);
 		
 		
 		List<Board> plist = service.getBoardByPage(1,board.getQNA());
 		List<Board> list = service.getAllBoard(board.getQNA());
-		model.addAttribute("boardlist", list);
-		model.addAttribute("pagelist", plist);
-		return "start";
+		redir.addFlashAttribute("boardlist", list);
+		redir.addFlashAttribute("pagelist", plist);
+		return "redirect:board_prg";
 	}
 	@RequestMapping(value = "/qnaboard_delete", method = RequestMethod.GET)
-	public String qnaboardDelete(Model model,@RequestParam int boardNo) {
+	public String qnaboardDelete(Model model,@RequestParam int boardNo,RedirectAttributes redir) {
 		service.deleteboard(boardNo);
-		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_delete.jsp");
-		return "start";
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_delete.jsp");
+		return "redirect:board_prg";
 	}
 	
 	@RequestMapping(value = "/qnaboard_change", method = RequestMethod.GET)
-	public String qnaboardChangeForm(Model model,@RequestParam int boardNo) {
+	public String qnaboardChange(Model model,@RequestParam int boardNo) {
 		model.addAttribute("board", service.selectboard(boardNo));
 		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_change.jsp");
 		return "start";
 	}
 	
 	@RequestMapping(value = "/qnaboard_change", method = RequestMethod.POST)
-	public String qnaboardChange(Model model,Board board,@RequestParam int boardNo) {
+	public String qnaboardChangeForm(Model model,Board board,@RequestParam int boardNo,RedirectAttributes redir) {
 		
 		service.updateboard(board);
-		logger.trace("board {}",board);
 		
 		board = service.selectboard(boardNo);
-		logger.trace("board 후 {}",board);
 		
-		model.addAttribute("currentboard", board); //사용자 인증 
-		model.addAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_view.jsp");
-		return "start";
+		redir.addFlashAttribute("currentboard", board); //사용자 인증 
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_view.jsp");
+		return "redirect:board_prg";
 	}
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String searchboard(Model model,HttpServletRequest req) {

@@ -14,21 +14,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.replyid{
-margin:3px;font-size: 17pt;
-}
-.replydate{
-margin:3px;font-size: 9pt;color: #BFBFBF;
-}
 
-.replycontent{
-margin:3px;
-font-size: 11pt;
-}
-#bbb{
-display:inline-flex;
-
-}
 
 </style>
 <link href="<%=request.getContextPath()%>/style/board_view.css"

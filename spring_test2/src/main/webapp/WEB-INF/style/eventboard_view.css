@@ -38,14 +38,25 @@
 #boardmid {
 	height: auto; /* 글 양에따라 크기가 자유자재로 조절되게 */
 	width: 1000px;
+	margin-top: 30px;
+	margin-bottom: 50px;
+}
+#boardfoot{
+	display: -webkit-box;
+}
+#likeunlike{
+	width: 170px;
+	margin-left: 415px;
+	margin-bottom: 15px;
+	margin-right: 275px;
+}
+#boardmodidelbtn{
+	height: 50px;
 }
 #boardcontent {
 	height: auto; /* 글 양에따라 크기가 자유자재로 조절되게 */
 	width: 850px;
 	margin: auto;
-}
-#boardfoot {
-	height: auto;
 }
 #moddelbtn {
 	display: -webkit-box;
@@ -55,28 +66,13 @@
 #prevnextbtn {
 	height: 70px;
 }
-#replyboard {
-	height: auto; /* 댓글 양에따라 크기가 자유자재로 조절되게 */
+/* #replyboard {
+	height: auto; 댓글 양에따라 크기가 자유자재로 조절되게
 }
 #replyboardin {
 	border: solid 1px gray;
-	height: auto; /* 댓글 양에따라 크기가 자유자재로 조절되게 */
-}
+	height: auto; 댓글 양에따라 크기가 자유자재로 조절되게
+} */
 #listgobtn {
 	height: 70px;
-}
-.replyid{
-margin:3px;font-size: 17pt;
-}
-.replydate{
-margin:3px;font-size: 9pt;color: #BFBFBF;
-}
-
-.replycontent{
-margin:3px;
-font-size: 11pt;
-}
-#bbb{
-display:inline-flex;
-
 }

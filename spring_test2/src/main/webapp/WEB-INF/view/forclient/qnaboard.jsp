@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="dto.Users"%>
 <%@page import="service.BoardServiceImpl"%>
 <%@page import="dao.BoardDao"%>
@@ -65,7 +66,7 @@ List<Board> list = (List<Board>)blist;
 
 Object plist = request.getAttribute("pagelist"); 
 List<Board> pplist = (List<Board>)plist;
-
+SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 %>
 <center>
@@ -99,7 +100,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%=pplist.get(i).getBoardNo()%>
         </td>
             <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
-            <a href="<%=request.getContextPath()%>/qnaboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+            <a style="color: black" class="btitle" href="<%=request.getContextPath()%>/qnaboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
         				<%if(pplist.get(i).getUsersUsersId().equals(loginUser)){ %>
 							<%=pplist.get(i).getUsersUsersId()%>
@@ -107,7 +108,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 						익명
 						<%} %>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
-            <%=pplist.get(i).getBoardDate()%>
+            <%=sdf.format(pplist.get(i).getBoardDate())%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getBoardHits()%>
         </td>
@@ -163,6 +164,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
         </td>
     </tr>
 </table>
+<div id="footmargin"></div>
 </div>
 </div>
 </body>

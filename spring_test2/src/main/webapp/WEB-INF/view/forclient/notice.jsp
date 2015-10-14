@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="dto.Users"%>
 <%@page import="service.BoardServiceImpl"%>
 <%@page import="dao.BoardDao"%>
@@ -53,7 +54,7 @@ if(currentPageObj!=null){
 	 currentPage = 1;
 }
 int pnum;
-
+SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 Object blist = request.getAttribute("boardlist"); 
 List<Board> list = (List<Board>)blist;
 
@@ -93,11 +94,11 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%=pplist.get(i).getBoardNo()%>
         </td>
             <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
-            <a href="<%=request.getContextPath()%>/notice_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+            <a style="color: black" href="<%=request.getContextPath()%>/notice_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getUsersUsersId()%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
-            <%=pplist.get(i).getBoardDate()%>
+            <%=sdf.format(pplist.get(i).getBoardDate())%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getBoardHits()%>
         </td>
@@ -153,6 +154,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
         </td>
     </tr>
 </table>
+<div id="footmargin"></div>
 </div>
 </div>
 </body>

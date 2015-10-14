@@ -99,16 +99,21 @@ $(function() {
 			var $target=$("#fromServer");
 			var $board=$("#prevnextbar");
 			var item= txt["response"]["body"]["items"]["item"];
-			$.each(item,function(index,data){
-				$target.append("<div class=sel><table><tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><img src=" +data["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+">"+data["title"]+"</a></td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div>");
-				//한국관광공사 api
-				
-			});
 			var numOfRows=txt["response"]["body"]["numOfRows"];
 			var total=txt["response"]["body"]["totalCount"];
 			var page=txt["response"]["body"]["pageNo"];
 			var pnum;
 			pnum=Math.ceil(total/numOfRows);
+			
+			if(total%10==1&&<%=pn%>==pnum){
+				$target.append("<div class=sel><table><tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+item["contentid"]+"><img src=" +item["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+item["contentid"]+">"+item["title"]+"</a></td></tr><tr><td>"+item["eventstartdate"]+"~ "+item["eventenddate"]+"</td></tr><tr><td>"+item["addr1"]+"</td></tr></table></div>");
+			}else{
+			$.each(item,function(index,data){
+				$target.append("<div class=sel><table><tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><img src=" +data["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+">"+data["title"]+"</a></td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div>");
+				//한국관광공사 api
+				
+			});
+			}
 			$("#numtext").append("게시물수 : "+total);
 			
 			
