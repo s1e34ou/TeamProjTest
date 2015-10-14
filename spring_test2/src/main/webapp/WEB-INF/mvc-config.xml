@@ -21,12 +21,22 @@
 	<mvc:resources location="/WEB-INF/style/" mapping="/style/**"/>
 	<mvc:resources location="/WEB-INF/images/" mapping="/images/**"/>
 	<mvc:resources location="/WEB-INF/ckeditor/" mapping="/ckeditor/**"/>
+	<mvc:resources location="/WEB-INF/ckfinder/" mapping="/ckfinder/**"/>
+	<mvc:resources location="/WEB-INF/upload/" mapping="/upload/**"/>
+	
 	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->
 		<property name="prefix" value="/WEB-INF/view/" />
 		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<bean
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		id="multipartResolver">
+		<property name="defaultEncoding" value="UTF-8">
+		</property>
 	</bean>
 	
 	

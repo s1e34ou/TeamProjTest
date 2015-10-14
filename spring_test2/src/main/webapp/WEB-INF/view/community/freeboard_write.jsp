@@ -32,7 +32,7 @@
 		<div id="boardin">
 <div class="admin admin-add-problem">
 	<c:url value="/freeboard_write" var="freeboard_write"></c:url>
-    <sform:form method="post" action="${freeboard_write }" modelAttribute="board">
+    <sform:form method="post" action="${freeboard_write }" enctype="multipart/form-data" modelAttribute="board">
         <fieldset>
         	<div id="blisthead">
         	<sform:label path="boardName">제목</sform:label>
@@ -49,12 +49,14 @@
             </div>
         </fieldset>
     </sform:form>
+   
 </div>
 </div>
 </div>
 <script>
-	CKEDITOR.replace('boardContent');
-	
+	window.onload=function(){
+		CKEDITOR.replace('boardContent');
+	};
 </script>
 </body>
 </html>
