@@ -1,7 +1,7 @@
 <config>
 	<enabled>true</enabled>
-	<baseDir>D:/spring_test2/editorFiles2</baseDir>
-	<baseURL>/editorFiles2/</baseURL>
+	<baseDir>D:/editorFiles2</baseDir>
+	<baseURL>/spring_test2/editorFiles2/</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
 	<imgWidth>1600</imgWidth>

@@ -8,7 +8,7 @@
 
 	<Resources>
 		<PreResources className="org.apache.catalina.webresources.DirResourceSet"
-			base="D:/spring_test2/editorFiles2/" webAppMount="/WEB-INF/upload" />
+			base="D:/editorFiles2/" webAppMount="/WEB-INF/editorFiles2" />
 	</Resources>
     
 </Context>

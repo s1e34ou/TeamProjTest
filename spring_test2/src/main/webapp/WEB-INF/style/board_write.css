@@ -2,13 +2,13 @@
 
 #boardwrite {
 	width: 1000px;
-	height: 630px;
+	height: auto;
 	margin: auto;
 }
 #boardin {
 	border: solid 1px black;
 	width: 1000px;
-	height: 530px;
+	height: auto;
 	margin: auto;
 }
 #blisthead {

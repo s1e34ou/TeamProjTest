@@ -17,9 +17,13 @@ CKEDITOR.editorConfig = function( config ) {
 	 config.shiftEnterMode = CKEDITOR.ENTER_P;
 	 config.startupFocus = true;
 	 config.font_defaultLabel = '돋움';
-	/* config.font_names = 'Gulim/Gulim;Dotum/Dotum;Batang/Batang;Gungsuh/Gungsuh;';*/
 	 config.font_names = '맑은 고딕; 돋움; 바탕; 돋음; 궁서; Nanum Gothic Coding; Quattrocento Sans;' + CKEDITOR.config.font_names;
-
+	 //창크기 자동 조절
+	 config.extraPlugins = 'autogrow';
+	 config.autoGrow_onStartup = true;
+     config.autoGrow_minHeight = 200;
+     config.autoGrow_maxHeight = 600;
+     config.autoGrow_bottomSpace = 50; 
 
 	 config.fontSize_defaultLabel = '12px';
 	 
@@ -31,7 +35,4 @@ CKEDITOR.editorConfig = function( config ) {
 	 config.filebrowserImageUploadUrl ='/spring_test2/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images';
 	 config.filebrowserFlashUploadUrl ='/spring_test2/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash';
 	 config.toolbar ='User';
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
-	// config.uiColor = '#AADC6E';
 };
