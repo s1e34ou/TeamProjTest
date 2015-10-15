@@ -228,15 +228,6 @@ $(function() {
 				<%=request.getAttribute("unlikecount") %>
 				<%} %>
 				</div>
-				<div id="boardmodidelbtn">
-					<div class="btn-group" role="group" id="moddelbtn">
-						<div>
-							<a
-								href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_.*"><button
-									type="button" class="btn btn-default">목록</button></a>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 		<div id="prevnextbtn">
@@ -304,7 +295,7 @@ $(function() {
 		</div>
 		<div id="listgobtn">
 			<ul class="pager">
-				<li class="previous"><a href="#"> <span aria-hidden="true">&larr;</span>
+				<li class="previous"><a href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_.*"> <span aria-hidden="true">&larr;</span>
 						list
 				</a></li>
 			</ul>

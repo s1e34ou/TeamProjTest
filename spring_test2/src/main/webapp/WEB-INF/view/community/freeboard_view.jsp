@@ -14,8 +14,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
-
 </style>
 <link href="<%=request.getContextPath()%>/style/board_view.css"
 	rel="stylesheet" type="text/css">
@@ -127,7 +125,6 @@ $(function() {
 %>
 	
 	
-
 	var resize=<%=replylist.size()%>
 	$("#replybut").on("click",function(e){
 		if($("#replycont").val()==""){
