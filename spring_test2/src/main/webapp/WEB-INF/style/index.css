@@ -96,7 +96,6 @@ div {
 	width: 115px;
 }
 #boardbox{
-	border:solid 1px red;
 	margin: auto;
 	width: 1200px;
 	height: auto;
@@ -104,16 +103,16 @@ div {
 	display: -webkit-box;
 }
 #boardbox div:nth-of-type(1){
-	border:solid 1px yellow;
-	width: 450px;
+	border:solid 1px gray;
+	width: 400px;
 }
 #boardbox div:nth-of-type(2){
 	border:solid 1px green;
-	width: 450px;
+	width: 400px;
 }
 #boardbox div:nth-of-type(3){
 	border:solid 1px blue;
-	width: 300px;
+	width: 400px;
 }
 #defaultbox{
 	margin: auto;

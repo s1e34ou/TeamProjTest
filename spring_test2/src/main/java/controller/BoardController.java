@@ -156,13 +156,17 @@ public class BoardController {
 	@RequestMapping(value = "/eventboard_view", method = RequestMethod.GET)
 	public String eventView(Model model, @RequestParam int boardNo,HttpSession sess) {
 		Board board = new Board();
+		List<Map<String, Object>> reply;
 		board = service.selectboard(boardNo);
+		reply=rservice.selectReplyByBoardNo(boardNo);
 		int likecount = lservice.count(boardNo,2);
 		int unlikcecount = lservice.count(boardNo,1);
 		logger.trace("likecount: {}",likecount);
 		model.addAttribute("likecount", likecount);
 		model.addAttribute("unlikecount", unlikcecount);
 		
+		model.addAttribute("replylist",reply);
+		model.addAttribute("currentboard", board); //사용자 인증 
 		
 		try{
 		Likes likes = new Likes();
@@ -172,9 +176,9 @@ public class BoardController {
 		}catch(NullPointerException e){
 			
 		}finally{
-		model.addAttribute("currentboard", board); //사용자 인증 
-		model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_view.jsp");
-		return "start";
+			model.addAttribute("currentboard", board); //사용자 인증 
+			model.addAttribute("contentpage", "/WEB-INF/view/event/eventboard_view.jsp");
+			return "start";
 		}
 		
 	}
@@ -380,12 +384,33 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/rankboard_view", method = RequestMethod.GET)
-	public String rankView(Model model, @RequestParam int boardNo) {
+	public String rankView(Model model, @RequestParam int boardNo,HttpSession sess) {
 		Board board = new Board();
+		List<Map<String, Object>> reply;
 		board = service.selectboard(boardNo);
+		reply=rservice.selectReplyByBoardNo(boardNo);
+		int likecount = lservice.count(boardNo,2);
+		int unlikcecount = lservice.count(boardNo,1);
+		logger.trace("likecount: {}",likecount);
+		model.addAttribute("likecount", likecount);
+		model.addAttribute("unlikecount", unlikcecount);
+		
+		model.addAttribute("replylist",reply);
 		model.addAttribute("currentboard", board); //사용자 인증 
-		model.addAttribute("contentpage", "/WEB-INF/view/rank/rankboard_view.jsp");
-		return "start";
+		
+		try{
+			Likes likes = new Likes();
+			Users users = (Users) sess.getAttribute("loginUser");
+			likes = lservice.select(users.getUsersId(), boardNo);
+			model.addAttribute("likes", likes);
+			}catch(NullPointerException e){
+				
+			}finally {
+				
+				model.addAttribute("currentboard", board); //사용자 인증 
+				model.addAttribute("contentpage", "/WEB-INF/view/rank/rankboard_view.jsp");
+				return "start";
+			}
 	}
 
 	@RequestMapping(value = "/rankboard_write", method = RequestMethod.GET)

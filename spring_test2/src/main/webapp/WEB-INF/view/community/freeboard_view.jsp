@@ -14,8 +14,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
-
 </style>
 <link href="<%=request.getContextPath()%>/style/board_view.css"
 	rel="stylesheet" type="text/css">
@@ -127,12 +125,6 @@ $(function() {
 %>
 	
 	
-	
-	
-	
-	
-	
-
 	var resize=<%=replylist.size()%>
 	$("#replybut").on("click",function(e){
 		if($("#replycont").val()==""){
@@ -169,8 +161,6 @@ $(function() {
 		}
 	}); 
 	
-	
-	
 });
 </script>
 </head>
@@ -204,26 +194,28 @@ $(function() {
 			<div id="boardmid">
 				<div id="boardcontent"><%=board.getBoardContent()%></div>
 			</div>
-			<%
-				if(like==2){
-			%>
-			<%=request.getAttribute("likecount") %>
-			<button type="submit" class="btn btn-success" disabled="disabled" id="like" name="like">좋아요</button>
-			<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
-			<%=request.getAttribute("unlikecount") %>
-			<%}else if(like==1){ %>
-			<%=request.getAttribute("likecount") %>
-			<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
-			<button type="button" class="btn btn-danger" disabled="disabled" id="unlike" name="unlike">싫어요</button>
-			<%=request.getAttribute("unlikecount") %>
-			<%}else { %>
-			<%=request.getAttribute("likecount") %>
-			<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
-			<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
-			<%=request.getAttribute("unlikecount") %>
-			<%} %>
-			
 			<div id="boardfoot">
+				<div id="likeunlike">
+				<%
+					if(like==2){
+				%>
+				<%=request.getAttribute("likecount") %>
+				<button type="submit" class="btn btn-success" disabled="disabled" id="like" name="like">좋아요</button>
+				<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
+				<%=request.getAttribute("unlikecount") %>
+				<%}else if(like==1){ %>
+				<%=request.getAttribute("likecount") %>
+				<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
+				<button type="button" class="btn btn-danger" disabled="disabled" id="unlike" name="unlike">싫어요</button>
+				<%=request.getAttribute("unlikecount") %>
+				<%}else { %>
+				<%=request.getAttribute("likecount") %>
+				<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
+				<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
+				<%=request.getAttribute("unlikecount") %>
+				<%} %>
+				</div>
+			
 				<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
 						<%
@@ -234,9 +226,6 @@ $(function() {
 								href="<%=request.getContextPath()%>/freeboard_change?boardNo=<%=board.getBoardNo()%>"><button
 									type="button" class="btn btn-default">수정</button></a>
 						</div>
-						
-						
-						
 						<div>
 							<form method="post"
 								action="<%=request.getContextPath()%>/freeboard_delete">
@@ -266,6 +255,7 @@ $(function() {
 		<div id="replyboard">
 			<h2>댓글</h2>
 			<div id="replyboardin">
+				<div id="replyinin">
 			 <%
 			
 			 if(replylistObj!=null){%>
@@ -289,7 +279,7 @@ $(function() {
     <%if(loginUser !=null){ %>
 			<div id="reply" style="text-align:center; display:inline-flex;">
 			<div style="margin:5px;">
-						<textarea rows="4" cols="80" id="replycont" name="replycont"></textarea>
+						<textarea rows="4" cols="117" id="replycont" name="replycont"></textarea>
 						</div>
 						<div style="margin:5px;">
 						<button style="height:83px;" type="button" id="replybut" class="btn btn-default">댓글쓰기</button>
@@ -298,7 +288,7 @@ $(function() {
 						
 						<%} %>
 			</div>
-			
+			</div>
 			
 		</div>
 		<div id="listgobtn">

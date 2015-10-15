@@ -149,9 +149,6 @@ $(function() {
 						<%
 							}
 						%>
-						<div>
-							<button type="button" class="btn btn-default">댓글쓰기</button>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -164,7 +161,9 @@ $(function() {
 		</div>
 		<div id="replyboard">
 			<h2>댓글</h2>
-			<div id="replyboardin">		 <%
+			<div id="replyboardin">
+				<div id="replyinin">	
+				 <%
 			
 			 if(replylistObj!=null){%>
 <%				 
@@ -187,14 +186,16 @@ $(function() {
     <%if(loginUser !=null){ %>
 			<div id="reply" style="text-align:center; display:inline-flex;">
 			<div style="margin:5px;">
-						<textarea rows="4" cols="80" id="replycont" name="replycont"></textarea>
+						<textarea rows="4" cols="115" id="replycont" name="replycont"></textarea>
 						</div>
 						<div style="margin:5px;">
 						<button style="height:83px;" type="button" id="replybut" class="btn btn-default">댓글쓰기</button>
 						</div>
 						</div>
 						
-						<%} %></div>
+						<%} %>
+					</div>
+					</div>
 		</div>
 		<div id="listgobtn">
 			<ul class="pager">

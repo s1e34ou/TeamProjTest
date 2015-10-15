@@ -96,9 +96,6 @@ $(function() {
 						<%
 							}
 						%>
-						<div>
-							<button type="button" class="btn btn-default">댓글쓰기</button>
-						</div>
 					</div>
 				</div>
 			</div>

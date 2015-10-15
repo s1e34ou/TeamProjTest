@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+
+#boardwrite {
+	width: 1000px;
+	height: 630px;
+	margin: auto;
+}
+#boardin {
+	border: solid 1px black;
+	width: 1000px;
+	height: 575px;
+	margin: auto;
+}
+#blisthead {
+	display: -webkit-box;
+	margin-top: 15px;
+	margin-left: 10px;
+	margin-bottom: 20px;
+}
+#usersUsersId {
+	width: 200px;
+}
+#userid {
+	margin-right: 100px;
+}
+#boardCode {
+	width: 150px;
+}
+#bcode {
+	margin-right: 300px;
+}
+#boardNo {
+	width: 100px;
+}
+
+#boardName {
+	width: 550px;
+}
+#bname{
+	margin-left: 10px;
+}
+#blistfoot{
+	height: 40px;
+	margin-top: 10px;
+}
