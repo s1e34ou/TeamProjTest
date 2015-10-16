@@ -32,8 +32,8 @@
 	<h1>포토게시판</h1>
 		<div id="boardin">
 <div class="admin admin-add-problem">
-	<c:url value="/album_write" var="album_write"></c:url>
-    <sform:form method="post" action="${album_write }" enctype="multipart/form-data" modelAttribute="photo">
+	<c:url value="/albumboard_write" var="albumboard_write"></c:url>
+    <sform:form method="post" action="${albumboard_write }" enctype="multipart/form-data" modelAttribute="photo">
         <fieldset>
         	<div id="blisthead">
         	<sform:label path="photoName">제목</sform:label>
@@ -42,7 +42,7 @@
         	<sform:input path="usersUsersId" readonly="true"/>
 			</div>
 			<hr>
-			<sform:label path="photoImage">사진등록</sform:label>
+			<sform:label path="photoImage">썸네일등록</sform:label>
 			<input type="file" name="file"> 
 			<hr>
             <sform:label path="photoContent">내용</sform:label>

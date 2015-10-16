@@ -37,10 +37,7 @@
 	        		<sform:option label="문화" value="EVENT_culture"/>
 	        	</sform:select>
 	        	</div>
-	        	<div id="bno">
-	        	<sform:label path="boardNo">글번호</sform:label>
-	        	<sform:input path="boardNo" readonly="true"/>
-	        	</div>
+	        	
         	</div>
         	<div id="bname">
         	<sform:label path="boardName">제목</sform:label>

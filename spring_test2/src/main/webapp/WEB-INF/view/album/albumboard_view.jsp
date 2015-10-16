@@ -165,7 +165,7 @@ $("#replybut").on("click",function(e){
 
 <body>
 	<div id="board">
-		<h1>이벤트게시판</h1>
+		<h1>포토게시판</h1>
 		<div id="boardin">
 			<div id="boardhead">
 				<div id="boardtitle">
@@ -188,7 +188,7 @@ $("#replybut").on("click",function(e){
 						<%=photo.getPhotoHits()%></div>
 					<div>
 						썸네일
-						<img src="<%=photo.getPhotoImage()%>">
+						<img width="100px" src="<%=request.getContextPath()%>/editorFiles2/thumbnail/<%=photo.getPhotoImage()%>">
 					</div>
 				</div>
 			</div>

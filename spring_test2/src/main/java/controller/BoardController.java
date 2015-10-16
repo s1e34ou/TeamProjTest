@@ -278,7 +278,6 @@ public class BoardController {
 		}catch(NullPointerException e){
 			
 		}finally {
-			
 			model.addAttribute("currentboard", board); //사용자 인증 
 			model.addAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
 			return "start";

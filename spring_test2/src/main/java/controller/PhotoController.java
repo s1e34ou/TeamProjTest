@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -47,20 +48,29 @@ public class PhotoController {
 		return new Photo();
 	}
 	
-	@RequestMapping(value = "/album", method = RequestMethod.GET)
-	public String album(Model model) {
-
-		return "cummunity/album";
+	@RequestMapping(value = "/albumboard", method = RequestMethod.GET)
+	public String album(Model model,HttpServletRequest req) {
+		Object pageObj = req.getAttribute("page");
+		
+		int page;
+		if(pageObj!=null){
+			page=(int)pageObj;
+		}else{
+			page = Integer.parseInt(req.getParameter("page"));
+		}
+		
+		List<Photo> plist = service.getPhotoByPage(page);
+		List<Photo> list = service.getAllPhoto();
+		
+		model.addAttribute("contentpage", "/WEB-INF/view/album/albumboard.jsp");
+		model.addAttribute("boardlist", list);
+		model.addAttribute("pagelist", plist);
+		model.addAttribute("page",page);
+		return "start";
 	}
 
-	@RequestMapping(value = "/album_view", method = RequestMethod.GET)
-	public String albumView(Model model, @RequestParam int photono, Photo photo) {
-		photo = service.selectphoto(photono);
-		model.addAttribute("currentphoto",photo);
-		return "cummunity/album_view";
-	}
 
-	@RequestMapping(value = "/album_write", method = RequestMethod.GET)
+	@RequestMapping(value = "/albumboard_write", method = RequestMethod.GET)
 	public String albumWriteForm(Model model,Photo photo, HttpSession sess) {
 		Users users = (Users) sess.getAttribute("loginUser");
 		photo.setUsersUsersId(users.getUsersId());
@@ -68,15 +78,16 @@ public class PhotoController {
 		return "start";
 	}
 	
-	@RequestMapping(value = "/album_write", method = RequestMethod.POST)
+	@RequestMapping(value = "/albumboard_write", method = RequestMethod.POST)
 	public String albumWrite(Model model,Photo photo,@RequestParam MultipartFile file,RedirectAttributes redir) throws IllegalStateException, IOException {
 		redir.addFlashAttribute("contentpage", "/WEB-INF/view/album/albumboard_view.jsp");
 		File nfile = new File("C:/editorFiles2/thumbnail/"+file.getOriginalFilename());
 		file.transferTo(nfile);
+		logger.trace("filename : {}",file.getOriginalFilename());
 		Map<String, Object> data = new HashMap<>();
 		logger.trace("file : {}",file);
 		data.put("location", nfile.getCanonicalPath());
-		photo.setPhotoImage((String) data.get("location"));
+		photo.setPhotoImage(file.getOriginalFilename());
 		logger.trace("ex : {}",photo.getPhotoImage());
 		service.writephoto(photo);
 		

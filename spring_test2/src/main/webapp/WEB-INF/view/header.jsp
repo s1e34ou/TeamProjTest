@@ -71,7 +71,7 @@ $(function() {
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul3">
 				<li><a href="<%=request.getContextPath()%>/freeboard?page=1">자유게시판</a></li>
-				<li><a href="#">축제후기게시판</a></li>
+				<li><a href="<%=request.getContextPath()%>/albumboard?page=1">축제후기게시판</a></li>
 			</ul>
 		</div>
 		<div class="btn-group" role="group">
