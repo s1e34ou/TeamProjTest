@@ -29,7 +29,7 @@
 
 <body>
 <div id="board">
-	<h1>이벤트게시판</h1>
+	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_.*">이벤트게시판</a></h1>
 		<div id="boardin">
 		<div id="boardinhead">
 			<div id="contentnum">

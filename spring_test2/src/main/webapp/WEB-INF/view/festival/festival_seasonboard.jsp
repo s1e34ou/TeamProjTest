@@ -190,7 +190,7 @@ $(function() {
 </head>
 <body>
 <div id="board">
-	<h1>월별 축제</h1>
+	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/festival_seasonboard">월별 축제</a></h1>
 		<div id="boardin">
 			<div id="boardinhead">
 				<div id="contentnum">

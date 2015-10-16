@@ -30,7 +30,7 @@ $(function() {
 </head>
 <body>
 	<div id="fastivalintro">
-	<h1>Fastival Information</h1>
+	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/introduction">Fastival Information</a></h1>
 		<div id="fastivalintroin">
 			<div id="fastivalintrotalk">
 				<center><h1>Fastival</h1>
