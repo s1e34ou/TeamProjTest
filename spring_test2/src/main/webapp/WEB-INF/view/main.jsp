@@ -242,7 +242,7 @@ $.ajax({
 	<div id="defaultbox">
 		<div id="picboard">
 			<div id="picture1">
-				<a href="<%=request.getContextPath() %>/search?page=1&select=롯" class="thumbnail"> <img
+				<a href="<%=request.getContextPath() %>/album_write" class="thumbnail"> <img
 					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb1">
 				</a>
 				<div class="caption" id="picbtext1">
@@ -253,7 +253,7 @@ $.ajax({
 				</div>
 			</div>
 			<div id="picture2">
-				<a href="#" class="thumbnail"> <img
+				<a href="<%=request.getContextPath() %>/albumboard_view?photoNo=188" class="thumbnail"> <img
 					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb2">
 				</a>
 				<div class="caption" id="picbtext2">

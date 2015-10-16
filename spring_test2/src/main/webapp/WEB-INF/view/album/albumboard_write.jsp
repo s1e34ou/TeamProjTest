@@ -42,6 +42,9 @@
         	<sform:input path="usersUsersId" readonly="true"/>
 			</div>
 			<hr>
+			<sform:label path="photoImage">사진등록</sform:label>
+			<input type="file" name="file"> 
+			<hr>
             <sform:label path="photoContent">내용</sform:label>
             <sform:textarea path="photoContent"/>
             <div id="blistfoot">
