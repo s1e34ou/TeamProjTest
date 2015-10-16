@@ -451,15 +451,35 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/notice_view", method = RequestMethod.GET)
-	public String noticeView(Model model, @RequestParam int boardNo) {
+	public String noticeView(Model model, @RequestParam int boardNo,HttpSession sess) {
 		Board board = new Board();
+		List<Map<String, Object>> reply;
 		board = service.selectboard(boardNo);
+		reply=rservice.selectReplyByBoardNo(boardNo);
+		int likecount = lservice.count(boardNo,2);
+		int unlikcecount = lservice.count(boardNo,1);
+		logger.trace("likecount: {}",likecount);
+		model.addAttribute("likecount", likecount);
+		model.addAttribute("unlikecount", unlikcecount);
 		
+		model.addAttribute("replylist",reply);
 		model.addAttribute("currentboard", board); //사용자 인증 
 		
-		model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice_view.jsp");
-		return "start";
-	}
+		try{
+			Likes likes = new Likes();
+			Users users = (Users) sess.getAttribute("loginUser");
+			likes = lservice.select(users.getUsersId(), boardNo);
+			model.addAttribute("likes", likes);
+			}catch(NullPointerException e){
+				
+			}finally {
+				
+				model.addAttribute("currentboard", board); //사용자 인증 
+				model.addAttribute("contentpage", "/WEB-INF/view/forclient/notice_view.jsp");
+				return "start";
+			}
+			
+		}
 
 	@RequestMapping(value = "/notice_write", method = RequestMethod.GET)
 	public String noticeWriteForm(Model model,Board board,HttpSession sess) {
