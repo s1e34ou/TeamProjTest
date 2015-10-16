@@ -50,9 +50,9 @@ public class PhotoDaoImpl implements PhotoDao {
 
 	@Override
 	public void insertPhoto(Photo photo) {
-		String sql = "insert into photo values(BOARD_NO_SEQ.nextval,?,?,sysdate,?,?,?)";
+		String sql = "insert into photo values(BOARD_NO_SEQ.nextval,?,?,sysdate,?,?,?,?)";
 		jdbcTemp.update(sql,photo.getPhotoName(), photo.getPhotoContent(),0, photo.getPhotoImage(),
-				photo.getUsersUsersId());
+				photo.getUsersUsersId(),photo.getPhotoThumbnail());
 
 	}
 
@@ -65,8 +65,8 @@ public class PhotoDaoImpl implements PhotoDao {
 
 	@Override
 	public void updatePhoto(Photo photo) {
-		String sql = "update photo set photo_name=?,photo_content=? where photo_no=?";
-		jdbcTemp.update(sql, photo.getPhotoName(), photo.getPhotoContent(), photo.getPhotoNo());
+		String sql = "update photo set photo_name=?,photo_content=?,photo_thumbnail=? where photo_no=?";
+		jdbcTemp.update(sql, photo.getPhotoName(), photo.getPhotoContent(),photo.getPhotoThumbnail(), photo.getPhotoNo());
 	}
 
 	@Override

@@ -10,6 +10,7 @@ public class Photo {
 	private Integer photoHits;
 	private String photoImage;
 	private String usersUsersId;
+	private String photoThumbnail;
 	
 	
 	
@@ -49,6 +50,27 @@ public class Photo {
 
 
 
+
+	public String getPhotoThumbnail() {
+		return photoThumbnail;
+	}
+
+	public void setPhotoThumbnail(String photoThumbnail) {
+		this.photoThumbnail = photoThumbnail;
+	}
+
+	public Photo(Integer photoNo, String photoName, String photoContent, Date photoDate, Integer photoHits,
+			String photoImage, String usersUsersId, String photoThumbnail) {
+		super();
+		this.photoNo = photoNo;
+		this.photoName = photoName;
+		this.photoContent = photoContent;
+		this.photoDate = photoDate;
+		this.photoHits = photoHits;
+		this.photoImage = photoImage;
+		this.usersUsersId = usersUsersId;
+		this.photoThumbnail = photoThumbnail;
+	}
 
 	public Integer getPhotoNo() {
 		return photoNo;
@@ -145,15 +167,17 @@ public class Photo {
 		this.usersUsersId = usersUsersId;
 	}
 
-
-
-
 	@Override
 	public String toString() {
 		return "Photo [photoNo=" + photoNo + ", photoName=" + photoName + ", photoContent=" + photoContent
 				+ ", photoDate=" + photoDate + ", photoHits=" + photoHits + ", photoImage=" + photoImage
-				+ ", usersUsersId=" + usersUsersId + "]";
+				+ ", usersUsersId=" + usersUsersId + ", photoThumbnail=" + photoThumbnail + "]";
 	}
+
+
+
+
+	
 	
 	
 }
