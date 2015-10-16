@@ -1,4 +1,3 @@
-<%@page import="dto.Photo"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.logging.SimpleFormatter"%>
 <%@page import="java.util.*"%>
@@ -6,12 +5,16 @@
 <%@page import="dto.Likes" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="dto.Photo"%>
+<%@page import="dto.Board"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+</style>
 <link href="<%=request.getContextPath()%>/style/board_view.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
@@ -27,12 +30,10 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<link href="<%=request.getContextPath()%>/css/basic.css"
-	rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-<%Object cp = request.getAttribute("currentboard");
-			Photo photo = (Photo)cp;
+<%Object cb = request.getAttribute("currentboard");
+			Board board = (Board) cb;
 			String loginUser = null;
 			Object loginUserObj = session.getAttribute("loginUser");
 			if (loginUserObj != null) {
@@ -45,18 +46,19 @@
 			if(replylistObj!=null){
 				replylist = (List<Map<String, Object>>)replylistObj;
 			}
-			
+		
 			
 			%>
 $(function() {
-	$("#deleteboard").on("click",function(){
+	$("#deleteboard").on("click",function(e){
 		if(confirm("삭제하시겠습니까")){
-			$(location).attr("href", "<%=request.getContextPath()%>/albumboard_delete?photoNo=<%=photo.getPhotoNo()%>");	
+			$(location).attr("href", "<%=request.getContextPath()%>/freeboard_delete?boardNo=<%=board.getBoardNo()%>");	
 							} else{
 								e.preventDefault();
 							}
 							
 		});
+	
 	<%
 	Object ob =  request.getAttribute("likes");
 	int like;
@@ -68,24 +70,24 @@ $(function() {
 		$.ajax({
 			type:'get',
 			url:"<%=request.getContextPath()%>/likechange",
-			data:{usersId:"<%=loginUser%>",boardNo:<%=photo.getPhotoNo()%>,likes:2},
+			data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:2},
 			success:function(){
-				$("#like").removeAttr("disabled","disabled:disabled")
-				$("#unlike").attr("disabled","disabled:disabled")
+				$("#like").removeAttr("disabled","disabled:disabled");
+				$("#unlike").attr("disabled","disabled:disabled");
 				
 			}
 		});
-		location.reload(true)
+		location.reload(true);
 	});
 	
 	$("#unlike").on("click",function(){
 		$.ajax({
 			type:'get',
 			url:"<%=request.getContextPath()%>/likechange",
-			data:{usersId:"<%=loginUser%>",boardNo:<%=photo.getPhotoNo()%>,likes:1},
+			data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:1},
 			success:function(){
-				$("#like").attr("disabled","disabled:disabled")
-				$("#unlike").removeAttr("disabled","disabled:disabled")
+				$("#like").attr("disabled","disabled:disabled");
+				$("#unlike").removeAttr("disabled","disabled:disabled");
 				
 			}
 		});
@@ -101,9 +103,9 @@ $(function() {
 			$.ajax({
 				type:'get',
 				url:"<%=request.getContextPath()%>/like",
-				data:{usersId:"<%=loginUser%>",boardNo:<%=photo.getPhotoNo()%>,likes:2},
+				data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:2},
 				success:function(){
-					$("#like").attr("disabled","disabled:disabled")
+					$("#like").attr("disabled","disabled:disabled");
 				}
 			});
 		});
@@ -112,9 +114,9 @@ $(function() {
 			$.ajax({
 				type:'get',
 				url:"<%=request.getContextPath()%>/like",
-				data:{usersId:"<%=loginUser%>",boardNo:<%=photo.getPhotoNo()%>,likes:1},
+				data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:1},
 				success:function(){
-					$("#unlike").attr("disabled","disabled:disabled")
+					$("#unlike").attr("disabled","disabled:disabled");
 				}
 			});
 		});
@@ -123,78 +125,74 @@ $(function() {
 %>
 	
 	
-var resize=<%=replylist.size()%>
-$("#replybut").on("click",function(e){
-	if($("#replycont").val()==""){
-		alert("내용을 입력하세요");
-		e.preventDefault();
-	}else{
-	var url="<%=request.getContextPath()%>/replywrite";
-	var data={replycon:$("#replycont").val(),userid:"<%=loginUser%>",boardno:<%=photo.getPhotoNo()%>};
-	$.ajax({
-		url:url,
-		type:"post",
-		data:data,
+	var resize=<%=replylist.size()%>
+	$("#replybut").on("click",function(e){
+		if($("#replycont").val()==""){
+			alert("내용을 입력하세요");
+			e.preventDefault();
+		}else{
+		var url="<%=request.getContextPath()%>/replywrite";
+		var data={replycon:$("#replycont").val(),userid:"<%=loginUser%>",boardno:<%=board.getBoardNo()%>};
+		$.ajax({
+			url:url,
+			type:"post",
+			data:data,
+			
+			success:function(txt){
+			
+				var add=txt.length-resize;
+				//targety.append("<li>"+JSON.stringify(txt)+"</li>");
+				//console.log(JSON.stringify(txt));
+				for(var j=resize;j<txt.length;j++){
+			
+				    $("#reply").before("<div style='margin:3px; width: 550px;'><div class='replyid' >"+txt[j]["USERS_USERS_ID"]+"</div>")
+				    $("#reply").before("<div id='bbb'><div class='replydate'>("+txt[j]["REPLY_DATE"]+")</div></div>");
+				    $("#reply").before("<div class='replycontent'>"+txt[j]["REPLY_CONTENT"]+"</div></div><hr>");
+					
+					//$("#reply").prepend(txt[j][]);
+				}
+				resize+=add;
+			//	location.reload(true);
+			},
 		
-		success:function(txt){
+			"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"
 		
-			var add=txt.length-resize;
-			//targety.append("<li>"+JSON.stringify(txt)+"</li>");
-			//console.log(JSON.stringify(txt));
-			for(var j=resize;j<txt.length;j++){
-		
-			    $("#reply").before("<div style='margin:3px; width: 550px;'><div class='replyid' >"+txt[j]["USERS_USERS_ID"]+"</div>")
-			    $("#reply").before("<div id='bbb'><div class='replydate'>("+txt[j]["REPLY_DATE"]+")</div></div>");
-			    $("#reply").before("<div class='replycontent'>"+txt[j]["REPLY_CONTENT"]+"</div></div><hr>");
-				
-				//$("#reply").prepend(txt[j][]);
-			}
-			resize+=add;
-		//	location.reload(true);
-		},
+		});
+		}
+	}); 
 	
-		"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"
-	
-	});
-	}
-}); 
-
 });
 </script>
 </head>
 
 <body>
 	<div id="board">
-		<h1>이벤트게시판</h1>
+		<h1><a style="color:black; text-decoration: none;" href="<%=request.getContextPath()%>/freeboard?page=1">자유게시판</a></h1>
 		<div id="boardin">
 			<div id="boardhead">
 				<div id="boardtitle">
 					<h4>
 						제목 :
-						<%=photo.getPhotoName()%></h4>
+						<%=board.getBoardName()%></h4>
 				</div>
 				<div id="boardinfo">
 					<div id="boardwriter">
 						작성자 :
-						<%=photo.getUsersUsersId()%></div>
+						<%=board.getUsersUsersId()%></div>
 					<div id="boarddate">
 						작성일 :
-						<%=photo.getPhotoDate()%></div>
+						<%=board.getBoardDate()%></div>
 					<div id="boardindex">
 						글번호 :
-						<%=photo.getPhotoNo()%></div>
+						<%=board.getBoardNo()%></div>
 					<div id="boardhits">
 						조회수 :
-						<%=photo.getPhotoHits()%></div>
-					<div>
-						썸네일
-						<img src="<%=photo.getPhotoImage()%>">
-					</div>
+						<%=board.getBoardHits()%></div>
 				</div>
 			</div>
 			<hr>
 			<div id="boardmid">
-				<div id="boardcontent"><%=photo.getPhotoContent()%></div>
+				<div id="boardcontent"><%=board.getBoardContent()%></div>
 			</div>
 			<div id="boardfoot">
 				<div id="likeunlike">
@@ -217,31 +215,37 @@ $("#replybut").on("click",function(e){
 				<%=request.getAttribute("unlikecount") %>
 				<%} %>
 				</div>
-				
+			
 				<div id="boardmodidelbtn">
 					<div class="btn-group" role="group" id="moddelbtn">
 						<%
-							if (loginUser != null && loginUser.equals(photo.getUsersUsersId())) {
+							if (loginUser != null && loginUser.equals(board.getUsersUsersId())) {
 						%>
 						<div>
 							<a
-								href="<%=request.getContextPath()%>/albumboard_change?photoNo=<%=photo.getPhotoNo()%>"><button
+								href="<%=request.getContextPath()%>/freeboard_change?boardNo=<%=board.getBoardNo()%>"><button
 									type="button" class="btn btn-default">수정</button></a>
 						</div>
 						<div>
 							<form method="post"
-								action="<%=request.getContextPath()%>/eventboard_delete">
+								action="<%=request.getContextPath()%>/freeboard_delete">
 
 								<input type="button" id="deleteboard" class="btn btn-default" value="삭제">
 							</form>
 						</div>
+						
 						<%
 							}
 						%>
+						
+						
 					</div>
 				</div>
+				
 			</div>
+			
 		</div>
+		
 		<div id="prevnextbtn">
 			<ul class="pager">
 				<li><a href="#">Previous</a></li>
@@ -264,7 +268,7 @@ $("#replybut").on("click",function(e){
     <div id="bbb">
     	<div class="replydate" >(<%=sdf.format(replylist.get(i).get("reply_date")) %>)</div> 
     	<%if(loginUser!=null&&loginUser.equals(replylist.get(i).get("users_users_id"))){ %>
-    	<div id="replydel" class="replydate"><a href="<%=request.getContextPath()%>/replydelete?boardno=<%=photo.getPhotoNo() %>&replyno=<%=replylist.get(i).get("reply_no") %>" %>댓글삭제</a></div>
+    	<div id="replydel" class="replydate"><a href="<%=request.getContextPath()%>/replydelete?boardno=<%=board.getBoardNo() %>&replyno=<%=replylist.get(i).get("reply_no") %>" %>댓글삭제</a></div>
     	<%} %>
     </div>
     <div class="replycontent"> <%=replylist.get(i).get("reply_content")%></div>
@@ -289,7 +293,7 @@ $("#replybut").on("click",function(e){
 		</div>
 		<div id="listgobtn">
 			<ul class="pager">
-				<li class="previous"><a href="<%=request.getContextPath()%>/main"> <span aria-hidden="true">&larr;</span>
+				<li class="previous"><a href="<%=request.getContextPath()%>/freeboard?page=1"> <span aria-hidden="true">&larr;</span>
 						list
 				</a></li>
 			</ul>

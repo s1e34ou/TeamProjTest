@@ -28,7 +28,7 @@
 </head>
 <body>
 <div id="board">
-	<h1>공지사항</h1>
+	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/notice?page=1">공지사항</a></h1>
 		<div id="boardin">
 		<div id="boardinhead">
 			<div id="contentnum">
