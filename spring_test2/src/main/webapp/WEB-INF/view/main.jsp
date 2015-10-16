@@ -253,11 +253,7 @@ $.ajax({
 				</div>
 			</div>
 			<div id="picture2">
-<<<<<<< HEAD
 				<a href="<%=request.getContextPath() %>/albumboard_view?photoNo=195" class="thumbnail"> <img
-=======
-				<a href="#" class="thumbnail"> <img
->>>>>>> refs/remotes/origin/master
 					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb2">
 				</a>
 				<div class="caption" id="picbtext2">
