@@ -23,6 +23,7 @@
 	<mvc:resources location="/WEB-INF/ckeditor/" mapping="/ckeditor/**"/>
 	<mvc:resources location="/WEB-INF/ckfinder/" mapping="/ckfinder/**"/>
 	<mvc:resources location="/WEB-INF/upload/" mapping="/upload/**"/>
+	<mvc:resources location="/WEB-INF/upload/images/" mapping="/upload/images/**"/>
 	
 	
 	<bean

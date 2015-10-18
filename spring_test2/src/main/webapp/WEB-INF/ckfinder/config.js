@@ -11,8 +11,14 @@ CKFinder.customConfig = function( config )
 
 	// Sample configuration options:
 	// config.uiColor = '#BDE31E';
-	// config.language = 'fr';
+	// config.language = 'ko';
 	// config.removePlugins = 'basket';
 	 //CKFINDER
+	 config.filebrowserBrowseUrl = '/spring_test2/ckfinder/ckfinder.html';
+	 config.filebrowserImageBrowseUrl = '/spring_test2/ckfinder/ckfinder.html?type=Images';
+	 config.filebrowserFlashBrowseUrl = '/spring_test2/ckfinder/ckfinder.html?type=Flash';
+	 config.filebrowserUploadUrl = '/spring_test2/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files';
+	 config.filebrowserImageUploadUrl ='/spring_test2/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images';
+	 config.filebrowserFlashUploadUrl ='/spring_test2/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash';
 	 
 };
