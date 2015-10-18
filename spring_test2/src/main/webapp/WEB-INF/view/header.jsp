@@ -71,7 +71,7 @@ $(function() {
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul3">
 				<li><a href="<%=request.getContextPath()%>/freeboard?page=1">자유게시판</a></li>
-				<li><a href="#">축제후기게시판</a></li>
+				<li><a href="<%=request.getContextPath()%>/albumboard?page=1">축제후기게시판</a></li>
 			</ul>
 		</div>
 		<div class="btn-group" role="group">
@@ -80,7 +80,7 @@ $(function() {
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu" id="headmenuul4">
-				<li><a href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT.*">랭킹게시판(추천/조회수)</a></li>
+				<li><a href="<%=request.getContextPath()%>/rankboard?page=1&select=*">랭킹게시판(추천/조회수)</a></li>
 			</ul>
 		</div>
 		<div class="btn-group" role="group" id="menu5">

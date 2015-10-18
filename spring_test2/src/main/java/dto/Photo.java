@@ -48,8 +48,6 @@ public class Photo {
 	}
 
 
-
-
 	public Integer getPhotoNo() {
 		return photoNo;
 	}
@@ -145,15 +143,18 @@ public class Photo {
 		this.usersUsersId = usersUsersId;
 	}
 
-
-
-
 	@Override
 	public String toString() {
 		return "Photo [photoNo=" + photoNo + ", photoName=" + photoName + ", photoContent=" + photoContent
 				+ ", photoDate=" + photoDate + ", photoHits=" + photoHits + ", photoImage=" + photoImage
 				+ ", usersUsersId=" + usersUsersId + "]";
 	}
+
+
+
+
+
+	
 	
 	
 }

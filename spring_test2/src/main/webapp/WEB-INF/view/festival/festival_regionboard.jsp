@@ -183,7 +183,7 @@ $(function() {
 <body>
 <div id="board">
 
-	<h1>지역별 축제</h1>
+	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/festival_regionboard">지역별 축제</a></h1>
 		<div id="boardin">
 			<div id="boardinhead">
 				<div id="contentnum">

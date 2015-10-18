@@ -1,4 +1,8 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.logging.SimpleFormatter"%>
+<%@page import="java.util.*"%>
 <%@page import="dto.Users"%>
+<%@page import="dto.Likes" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="dto.Board"%>
@@ -32,7 +36,16 @@
 			Object loginUserObj = session.getAttribute("loginUser");
 			if (loginUserObj != null) {
 				loginUser = ((Users) loginUserObj).getUsersId();
-			}%>
+			}
+			
+			Object replylistObj = request.getAttribute("replylist");
+			List<Map<String, Object>> replylist=null;
+			 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			if(replylistObj!=null){
+				replylist = (List<Map<String, Object>>)replylistObj;
+			}
+			
+			%>
 $(function() {
 	$("#deleteboard").on("click",function(){
 		if(confirm("삭제하시겠습니까")){
@@ -41,14 +54,118 @@ $(function() {
 								e.preventDefault();
 							}
 							
-						});
+		});
+	
+	<%
+	Object ob =  request.getAttribute("likes");
+	int like;
+	if(ob!=null){
+	Likes likes = (Likes)ob;
+	like= likes.getLikes();
+	%>
+	$("#like").on("click",function(){
+		$.ajax({
+			type:'get',
+			url:"<%=request.getContextPath()%>/likechange",
+			data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:2},
+			success:function(){
+				$("#like").removeAttr("disabled","disabled:disabled");
+				$("#unlike").attr("disabled","disabled:disabled");
+				
+			}
+		});
+		location.reload(true);
 	});
+	
+	$("#unlike").on("click",function(){
+		$.ajax({
+			type:'get',
+			url:"<%=request.getContextPath()%>/likechange",
+			data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:1},
+			success:function(){
+				$("#like").attr("disabled","disabled:disabled");
+				$("#unlike").removeAttr("disabled","disabled:disabled");
+				
+			}
+		});
+		location.reload(true)
+	});
+	
+<%
+	}else{
+		like=0;
+		%>
+		
+		$("#like").on("click",function(){
+			$.ajax({
+				type:'get',
+				url:"<%=request.getContextPath()%>/like",
+				data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:2},
+				success:function(){
+					$("#like").attr("disabled","disabled:disabled");
+				}
+			});
+		});
+		
+		$("#unlike").on("click",function(){
+			$.ajax({
+				type:'get',
+				url:"<%=request.getContextPath()%>/like",
+				data:{usersId:"<%=loginUser%>",boardNo:<%=board.getBoardNo()%>,likes:1},
+				success:function(){
+					$("#unlike").attr("disabled","disabled:disabled");
+				}
+			});
+		});
+		<%
+	}
+%>
+	
+	
+
+	var resize=<%=replylist.size()%>
+	$("#replybut").on("click",function(e){
+		if($("#replycont").val()==""){
+			alert("내용을 입력하세요");
+			e.preventDefault();
+		}else{
+		var url="<%=request.getContextPath()%>/replywrite";
+		var data={replycon:$("#replycont").val(),userid:"<%=loginUser%>",boardno:<%=board.getBoardNo()%>};
+		$.ajax({
+			url:url,
+			type:"post",
+			data:data,
+			
+			success:function(txt){
+			
+				var add=txt.length-resize;
+				//targety.append("<li>"+JSON.stringify(txt)+"</li>");
+				//console.log(JSON.stringify(txt));
+				for(var j=resize;j<txt.length;j++){
+			
+				    $("#reply").before("<div style='margin:3px; width: 550px;'><div class='replyid' >"+txt[j]["USERS_USERS_ID"]+"</div>")
+				    $("#reply").before("<div id='bbb'><div class='replydate'>("+txt[j]["REPLY_DATE"]+")</div></div>");
+				    $("#reply").before("<div class='replycontent'>"+txt[j]["REPLY_CONTENT"]+"</div></div><hr>");
+					
+					//$("#reply").prepend(txt[j][]);
+				}
+				resize+=add;
+			//	location.reload(true);
+			},
+		
+			"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"
+		
+		});
+		}
+	}); 	
+	
+});
 </script>
 </head>
 
 <body>
 	<div id="board">
-		<h1>랭킹게시판</h1>
+		<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/rankboard?page=1&select=*">랭킹게시판</a></h1>
 		<div id="boardin">
 			<div id="boardhead">
 				<div id="boardtitle">
@@ -91,17 +208,25 @@ $(function() {
 				<div id="boardcontent"><%=board.getBoardContent()%></div>
 			</div>
 			<div id="boardfoot">
-				<div id="boardmodidelbtn">
-					<div class="btn-group" role="group" id="moddelbtn">
-						<div>
-							<a
-								href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_.*"><button
-									type="button" class="btn btn-default">목록</button></a>
-						</div>
-						<div>
-							<button type="button" class="btn btn-default">댓글쓰기</button>
-						</div>
-					</div>
+				<div id="likeunlike">
+				<%
+					if(like==2){
+				%>
+				<%=request.getAttribute("likecount") %>
+				<button type="submit" class="btn btn-success" disabled="disabled" id="like" name="like">좋아요</button>
+				<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
+				<%=request.getAttribute("unlikecount") %>
+				<%}else if(like==1){ %>
+				<%=request.getAttribute("likecount") %>
+				<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
+				<button type="button" class="btn btn-danger" disabled="disabled" id="unlike" name="unlike">싫어요</button>
+				<%=request.getAttribute("unlikecount") %>
+				<%}else { %>
+				<%=request.getAttribute("likecount") %>
+				<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
+				<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
+				<%=request.getAttribute("unlikecount") %>
+				<%} %>
 				</div>
 			</div>
 		</div>
@@ -113,11 +238,64 @@ $(function() {
 		</div>
 		<div id="replyboard">
 			<h2>댓글</h2>
-			<div id="replyboardin"></div>
+			<div id="replyboardin">
+				<div id="replyinin">
+					<%
+						if (replylistObj != null) {
+					%>
+					<%
+						for (int i = 0; i < replylist.size(); i++) {
+					%>
+
+					<div style="margin: 3px; width: 550px;">
+						<div class="replyid"><%=replylist.get(i).get("users_users_id")%>
+						</div>
+						<div id="bbb">
+							<div class="replydate">
+								(<%=sdf.format(replylist.get(i).get("reply_date"))%>)
+							</div>
+							<%
+								if (loginUser != null && loginUser.equals(replylist.get(i).get("users_users_id"))) {
+							%>
+							<div id="replydel" class="replydate">
+								<a
+									href="<%=request.getContextPath()%>/replydelete?boardno=<%=board.getBoardNo()%>&replyno=<%=replylist.get(i).get("reply_no")%>"%>댓글삭제</a>
+							</div>
+							<%
+								}
+							%>
+						</div>
+						<div class="replycontent">
+							<%=replylist.get(i).get("reply_content")%></div>
+					</div>
+
+					<hr>
+					<%
+						}
+					%>
+					<%
+						}
+					%>
+					<%
+						if (loginUser != null) {
+					%>
+					<div id="reply" style="text-align: center; display: inline-flex;">
+						<div style="margin: 5px;">
+							<textarea rows="4" cols="117" id="replycont" name="replycont"></textarea>
+						</div>
+						<div style="margin: 5px;">
+							<button style="height: 83px;" type="button" id="replybut"
+								class="btn btn-default">댓글쓰기</button>
+						</div>
+					</div>
+
+					<%} %>
+				</div>
+			</div>
 		</div>
 		<div id="listgobtn">
 			<ul class="pager">
-				<li class="previous"><a href="#"> <span aria-hidden="true">&larr;</span>
+				<li class="previous"><a href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_.*"> <span aria-hidden="true">&larr;</span>
 						list
 				</a></li>
 			</ul>

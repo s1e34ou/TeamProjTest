@@ -1,14 +1,17 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.logging.SimpleFormatter"%>
+<%@page import="java.util.*"%>
 <%@page import="dto.Users"%>
+<%@page import="dto.Likes" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="dto.Board"%>
-<%@page import="dto.Likes" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/eventboard_view.css"
+<link href="<%=request.getContextPath()%>/style/board_view.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
@@ -33,7 +36,17 @@
 			Object loginUserObj = session.getAttribute("loginUser");
 			if (loginUserObj != null) {
 				loginUser = ((Users) loginUserObj).getUsersId();
-			}%>
+			}
+			
+			Object replylistObj = request.getAttribute("replylist");
+			List<Map<String, Object>> replylist=null;
+			 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			if(replylistObj!=null){
+				replylist = (List<Map<String, Object>>)replylistObj;
+			}
+			
+			
+			%>
 $(function() {
 	$("#deleteboard").on("click",function(){
 		if(confirm("삭제하시겠습니까")){
@@ -42,7 +55,7 @@ $(function() {
 								e.preventDefault();
 							}
 							
-						});
+		});
 	<%
 	Object ob =  request.getAttribute("likes");
 	int like;
@@ -107,13 +120,51 @@ $(function() {
 		<%
 	}
 %>
+	
+	
+var resize=<%=replylist.size()%>
+$("#replybut").on("click",function(e){
+	if($("#replycont").val()==""){
+		alert("내용을 입력하세요");
+		e.preventDefault();
+	}else{
+	var url="<%=request.getContextPath()%>/replywrite";
+	var data={replycon:$("#replycont").val(),userid:"<%=loginUser%>",boardno:<%=board.getBoardNo()%>};
+	$.ajax({
+		url:url,
+		type:"post",
+		data:data,
+		
+		success:function(txt){
+		
+			var add=txt.length-resize;
+			//targety.append("<li>"+JSON.stringify(txt)+"</li>");
+			//console.log(JSON.stringify(txt));
+			for(var j=resize;j<txt.length;j++){
+		
+			    $("#reply").before("<div style='margin:3px; width: 550px;'><div class='replyid' >"+txt[j]["USERS_USERS_ID"]+"</div>")
+			    $("#reply").before("<div id='bbb'><div class='replydate'>("+txt[j]["REPLY_DATE"]+")</div></div>");
+			    $("#reply").before("<div class='replycontent'>"+txt[j]["REPLY_CONTENT"]+"</div></div><hr>");
+				
+				//$("#reply").prepend(txt[j][]);
+			}
+			resize+=add;
+		//	location.reload(true);
+		},
+	
+		"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"
+	
 	});
+	}
+}); 
+
+});
 </script>
 </head>
 
 <body>
 	<div id="board">
-		<h1>이벤트게시판</h1>
+		<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_.*">이벤트게시판</a></h1>
 		<div id="boardin">
 			<div id="boardhead">
 				<div id="boardtitle">
@@ -207,10 +258,45 @@ $(function() {
 				<li><a href="#">Next</a></li>
 			</ul>
 		</div>
-		<!-- <div id="replyboard">
+		<div id="replyboard">
 			<h2>댓글</h2>
-			<div id="replyboardin"></div>
-		</div> -->
+			<div id="replyboardin">
+				<div id="replyinin">
+			 <%
+			
+			 if(replylistObj!=null){%>
+<%				 
+        for(int i=0;i<replylist.size();i++){
+    %>
+    
+    <div style="margin:3px; width: 550px;">
+    <div class="replyid"><%=replylist.get(i).get("users_users_id") %> </div>
+    <div id="bbb">
+    	<div class="replydate" >(<%=sdf.format(replylist.get(i).get("reply_date")) %>)</div> 
+    	<%if(loginUser!=null&&loginUser.equals(replylist.get(i).get("users_users_id"))){ %>
+    	<div id="replydel" class="replydate"><a href="<%=request.getContextPath()%>/replydelete?boardno=<%=board.getBoardNo() %>&replyno=<%=replylist.get(i).get("reply_no") %>" %>댓글삭제</a></div>
+    	<%} %>
+    </div>
+    <div class="replycontent"> <%=replylist.get(i).get("reply_content")%></div>
+    </div>
+  
+    <hr>
+    <%}%><% }%>
+    <%if(loginUser !=null){ %>
+			<div id="reply" style="text-align:center; display:inline-flex;">
+			<div style="margin:5px;">
+						<textarea rows="4" cols="117" id="replycont" name="replycont"></textarea>
+						</div>
+						<div style="margin:5px;">
+						<button style="height:83px;" type="button" id="replybut" class="btn btn-default">댓글쓰기</button>
+						</div>
+						</div>
+						
+						<%} %>
+			</div>
+			</div>
+			
+		</div>
 		<div id="listgobtn">
 			<ul class="pager">
 				<li class="previous"><a href="<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_.*"> <span aria-hidden="true">&larr;</span>

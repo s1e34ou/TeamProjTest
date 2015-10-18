@@ -14,8 +14,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
-
 </style>
 <link href="<%=request.getContextPath()%>/style/board_view.css"
 	rel="stylesheet" type="text/css">
@@ -127,12 +125,6 @@ $(function() {
 %>
 	
 	
-	
-	
-	
-	
-	
-
 	var resize=<%=replylist.size()%>
 	$("#replybut").on("click",function(e){
 		if($("#replycont").val()==""){
@@ -168,8 +160,6 @@ $(function() {
 		});
 		}
 	}); 
-	
-	
 	
 });
 </script>
@@ -289,7 +279,7 @@ $(function() {
     <%if(loginUser !=null){ %>
 			<div id="reply" style="text-align:center; display:inline-flex;">
 			<div style="margin:5px;">
-						<textarea rows="4" cols="115" id="replycont" name="replycont"></textarea>
+						<textarea rows="4" cols="117" id="replycont" name="replycont"></textarea>
 						</div>
 						<div style="margin:5px;">
 						<button style="height:83px;" type="button" id="replybut" class="btn btn-default">댓글쓰기</button>

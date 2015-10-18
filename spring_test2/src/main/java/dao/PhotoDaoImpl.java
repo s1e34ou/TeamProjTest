@@ -65,8 +65,8 @@ public class PhotoDaoImpl implements PhotoDao {
 
 	@Override
 	public void updatePhoto(Photo photo) {
-		String sql = "update photo set photo_name=?,photo_content=? where photo_no=?";
-		jdbcTemp.update(sql, photo.getPhotoName(), photo.getPhotoContent(), photo.getPhotoNo());
+		String sql = "update photo set photo_name=?,photo_content=?,photo_image=? where photo_no=?";
+		jdbcTemp.update(sql, photo.getPhotoName(), photo.getPhotoContent(),photo.getPhotoImage(), photo.getPhotoNo());
 	}
 
 	@Override
