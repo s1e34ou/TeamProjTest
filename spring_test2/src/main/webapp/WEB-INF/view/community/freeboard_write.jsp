@@ -24,6 +24,7 @@
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
+<script src="<%=request.getContextPath()%>/ckfinder/ckfinder.js"></script>
 </head>
 
 <body>
