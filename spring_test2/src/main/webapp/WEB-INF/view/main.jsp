@@ -21,7 +21,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-#festid{
+.festid{
 	color:black;
 }
 .fes{
@@ -101,7 +101,7 @@ $.ajax({
 		var $box4=$("#box4");
 		var item= txt["response"]["body"]["items"]["item"];
 		$.each(item,function(index,data){
-			$box4.append("<a id='festid' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><div class='fes'><table><tr><td rowspan=3><img src=" +data["firstimage2"]+" width=60px height=60px></td><td width=500px>"+data["title"]+"</td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div></a>");
+			$box4.append("<a id='festid' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><div class='fes'><table align='center'><tr><td rowspan=3><img src=" +data["firstimage2"]+" width=60px height=60px></td><td width=500px>"+data["title"]+"</td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div></a>");
 			//한국관광공사 api
 		});
 	}
@@ -204,7 +204,47 @@ $.ajax({
 	</section>
 	<div id="boardbox">
 		<div id="box4"></div>
-		<div id="box5"></div>
+		<div id="box5">
+		<%Object melistObj= request.getAttribute("maineventlist"); 
+		List<Board> melist=(List<Board>)melistObj;
+        for(int i=0;i<4;i++){
+   		 %>
+   		 <a href="<%=request.getContextPath()%>/eventboard_view?boardNo=<%=melist.get(i).getBoardNo()%>">
+   <div class="fes">
+   <table height="60" width="350" border="1" >
+    <tr  align="center" valign="middle" bordercolor="#333333"
+        onmouseover="this.style.backgroundColor='F8F8F8'"
+        onmouseout="this.style.backgroundColor=''">
+        <td width="60"  rowspan="3">
+        	<%    	String code=melist.get(i).getBoardCode();
+        	String q;
+        	if(code.equals("EVENT_food")){
+        		code="음식";
+        		%><img width="60" height="60" src="<%=request.getContextPath()%>/images/food.png">
+        	<% }else if(code.equals("EVENT_beauty")){
+        		code="미용";
+        		%><img width="60" height="60" src="<%=request.getContextPath()%>/images/beau.png">
+        	<%}else{
+        		code="문화";%>
+        		<img width="60" height="60" src="<%=request.getContextPath()%>/images/cult.png">
+        	<%} %>
+        </td>
+        <td >
+            제목<%=melist.get(i).getBoardName()%>
+        </td>    
+        
+    </tr>
+    <tr align="center" valign="middle">
+    <td  >분야<%=code %></td>
+    </tr>
+    <tr align="center" valign="middle"><td>수정일<%=melist.get(i).getBoardDate()%></td>
+    </tr>
+    </table>
+    </div></a>
+    <%} %>
+
+		
+		</div>
 		<div id="box6">
 		<%
 		Object selectObj = request.getAttribute("select");
@@ -219,7 +259,9 @@ $.ajax({
 		List<Board> pplist = (List<Board>)plist;
 		%>
 		 <h2>랭킹</h2>
-		<%
+		<%Object mrlistObj= request.getAttribute("mainranklist");
+		
+		List<Board> mrlist=(List<Board>)mrlistObj;
         for(int i=0;i<4;i++){
    		 %>
    
@@ -227,10 +269,10 @@ $.ajax({
         onmouseover="this.style.backgroundColor='F8F8F8'"
         onmouseout="this.style.backgroundColor=''">
         <td height="23" style="font-family:Tahoma;font-size:12pt;">
-            <%out.println(i+1);%>위
+            <%= i+1 %>위
         </td>
         <td height="23" style="font-family:Tahoma;font-size:12pt;">
-            <a href="<%=request.getContextPath()%>/rankboard_view?boardNo=92">A</a>
+            <a href="<%=request.getContextPath()%>/rankboard_view?boardNo=<%=mrlist.get(i).getBoardNo()%>"><%=mrlist.get(i).getBoardName()%></a>
         </td>    
     </tr>
     <br>

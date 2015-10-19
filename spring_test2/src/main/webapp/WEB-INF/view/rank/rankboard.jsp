@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.awt.print.Printable"%>
 <%@page import="dto.Users"%>
 <%@page import="service.BoardServiceImpl"%>
@@ -80,7 +81,7 @@ if(selectObj!=null){
 	currentSelect="EVENT_.*";
 }
 
-
+SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 Object plist = request.getAttribute("pagelist"); 
 List<Board> pplist = (List<Board>)plist;
 
@@ -141,7 +142,7 @@ List<Board> pplist = (List<Board>)plist;
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getUsersUsersId()%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
-            <%=pplist.get(i).getBoardDate()%>
+            <%=sdf.format(pplist.get(i).getBoardDate())%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getBoardHits()%>
         </td>

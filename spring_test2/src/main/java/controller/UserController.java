@@ -3,6 +3,7 @@ package controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,12 +28,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 
+import dto.Board;
 import dto.Users;
 import service.BoardService;
 import service.UsersService;
 
 @Controller
-@SessionAttributes({ "loginUser", "seluser", "findUser", "findPw" })
+@SessionAttributes({ "loginUser", "seluser", "findUser", "findPw","mainranklist","maineventlist" })
 public class UserController {
 	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -41,6 +43,7 @@ public class UserController {
 	
 	@Autowired
 	BoardService serviceb;
+	
 	@ModelAttribute("users")
 	public Users getusers() {
 		
@@ -51,6 +54,11 @@ public class UserController {
 		
 	@RequestMapping(value = "/go", method = RequestMethod.GET)
 	public String userPGR(Model model) {
+		List<Board> mrlist= serviceb.getRankBoardByPage(1, "*");
+		model.addAttribute("mainranklist",mrlist);
+		
+		List<Board> melist=serviceb.getBoardByPage(1, "*");
+		model.addAttribute("maineventlist",melist);
 		return "start";
 	}
 	@InitBinder
@@ -61,6 +69,11 @@ public class UserController {
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String mainForm(Model model,HttpServletRequest req) {
+		List<Board> mrlist= serviceb.getRankBoardByPage(1, "*");
+		model.addAttribute("mainranklist",mrlist);
+		
+		List<Board> melist=serviceb.getBoardByPage(1, "*");
+		model.addAttribute("maineventlist",melist);
 		return "start";
 	}
 

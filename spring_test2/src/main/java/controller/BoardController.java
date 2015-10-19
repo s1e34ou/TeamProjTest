@@ -215,8 +215,14 @@ public class BoardController {
 	@RequestMapping(value = "/eventboard_change", method = RequestMethod.POST)
 	public String eventboardChangeForm(Model model,Board board,@RequestParam int boardNo,RedirectAttributes redir) {
 		
-		service.updateCodeboard(board);
+		service.updateboard(board);
+		
 		board = service.selectboard(boardNo);
+		List<Map<String, Object>> reply;
+		reply=rservice.selectReplyByBoardNo(boardNo);
+		
+		redir.addFlashAttribute("replylist",reply);
+		
 		
 		redir.addFlashAttribute("currentboard", board); //사용자 인증 
 		redir.addFlashAttribute("contentpage", "/WEB-INF/view/event/eventboard_view.jsp");
@@ -328,10 +334,8 @@ public class BoardController {
 	public String freeboardChangeForm(Model model,Board board,@RequestParam int boardNo,RedirectAttributes redir) {
 		
 		service.updateboard(board);
-		logger.trace("board {}",board);
 		
 		board = service.selectboard(boardNo);
-		logger.trace("board 후 {}",board);
 		List<Map<String, Object>> reply;
 		reply=rservice.selectReplyByBoardNo(boardNo);
 		
