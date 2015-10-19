@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import dto.Board;
 import dto.Likes;
 import dto.Photo;
 import dto.Users;
@@ -120,7 +119,7 @@ public class PhotoController {
 		likes = lservice.select(users.getUsersId(), photoNo);
 		model.addAttribute("likes", likes);
 		}catch(NullPointerException e){
-			
+			 
 		}finally{
 			model.addAttribute("currentboard", photo); //사용자 인증 
 			model.addAttribute("contentpage", "/WEB-INF/view/album/albumboard_view.jsp");
