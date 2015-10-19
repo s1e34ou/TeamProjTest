@@ -2,15 +2,18 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import dto.Board;
 import dto.Likes;
 
 @Repository
@@ -71,6 +74,27 @@ public class LikesDaoImpl implements LikesDao {
 		int count = jdbcTemp.queryForInt(sql,boardNo,likes);
 		logger.trace("daocount : {}",count);
 		return count;
+	}
+
+	@Override
+	public List<Board> selectlikeRankAllBoard(String boardCode) {
+		String sql = "select * from Likes l, Board b where b.BOARD_NO = l.BOARD_NO and regexp_like(b.board_code,?) order by likes desc";
+		
+		List<Board> board = jdbcTemp.query(sql, new BeanPropertyRowMapper<Board>(Board.class),boardCode);
+		return board;
+	}
+
+	@Override
+	public List<Board> getlikerankBoardByPage(int page, String boardCode) {
+		String sql = "SELECT * FROM ("
+				+ 		"SELECT sub.*, ROWNUM AS RNUM "
+				+		"FROM ( select * from Likes l, Board b where b.BOARD_NO = l.BOARD_NO and regexp_like(b.board_code,?) order by likes desc) sub)"
+				+ "WHERE RNUM >= ? AND RNUM <= ?";
+		
+		List<Board> board = jdbcTemp.query(sql, new BeanPropertyRowMapper<Board>(Board.class),boardCode,(page - 1) * BoardDao.BOARD_PER_PAGE + 1,page * BoardDao.BOARD_PER_PAGE);
+		
+		
+		return board;
 	}
 	
 	

@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/eventboard.css"
+<link href="<%=request.getContextPath()%>/style/searchboard.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
@@ -30,7 +30,8 @@
 <div id="board">
 	<h1>검색결과</h1>
 		<div id="boardin">
-		<%=request.getAttribute("count") %>개의 결과를 찾음.
+			<div id="boardinin">
+		<center><h2>총 <%=request.getAttribute("count") %>개의 결과를 찾음.</h2>
 <%
 Object loginUserObj = session.getAttribute("loginUser");
 if(loginUserObj!=null){
@@ -68,7 +69,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 <center>
 <table width=570 border="0" cellpadding="0" cellspacing="0" id="boardlist">
      
-    <tr align="center" valign="middle" bordercolor="#333333">
+    <tr align="center" valign="middle" bordercolor="#333333" id="sline">
         <th style="font-family:Tahoma;font-size:15pt;" width="8%" height="26">
             <div align="center">번호</div>
         </th>
@@ -94,7 +95,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
     %>
     <tr align="center" valign="middle" bordercolor="#333333"
         onmouseover="this.style.backgroundColor='F8F8F8'"
-        onmouseout="this.style.backgroundColor=''">
+        onmouseout="this.style.backgroundColor=''" id="line">
         <td height="23" style="font-family:Tahoma;font-size:12pt;">
             <%=pplist.get(i).getBoardNo()%>
         </td>
@@ -185,17 +186,11 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%} %>
         </td>
     </tr>
-    <tr align="right">
-        <td colspan="5">
-        <%if(loginUserObj!=null){ %>
-             <a href="<%=request.getContextPath() %>/searchboard_write">[글쓰기]</a>
-             <%} %>
-        </td>
-    </tr>
     
 
     
 </table>
+</div>
 </div>
 </div>
 </body>

@@ -59,12 +59,12 @@
 					</div>
 				</div>
 			</div>
-			<div id="contentsearch">
+			<!-- <div id="contentsearch">
 				<div id="contentsearchin">
 				<input type="text" name="searchtext" placeholder="키워드 검색" id="searchtext" />
 				<input class="btn btn-default" type="submit" id="searchbutton" value="검색" />
 				</div>
-			</div>
+			</div> -->
 		</div>
 <%
 Object loginUserObj = session.getAttribute("loginUser");

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="dto.Users"%>
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
@@ -18,8 +19,20 @@ $(function() {
 	});
 });
 </script>
-
+<%int abc = 0; %>
 	<header>
+	<%
+			Object loginUserObj = session.getAttribute("loginUser");
+			if (loginUserObj == null) {
+		%> 
+			<img src="<%=request.getContextPath()%>/images/LOGIN_off.jpg" id="logoff">
+			<!-- 로그인을 하지 않았습니다. -->
+		<%}else{ 
+			String loginUser = ((Users) loginUserObj).getUsersName();
+		%>
+			<img src="<%=request.getContextPath()%>/images/LOGIN_on.jpg" id="logon">
+			<%-- <%=loginUser%>님 반갑습니다. --%>
+		<% }  %>
 	<button type="button" id="sitemap" class="btn btn-default">사이트맵</button>
 	<br>
 	<br>
@@ -178,44 +191,5 @@ $(function() {
 	        });
 	    });
 	});
-	/* $(function() {
-			$("#mbtn1").mouseover(function() {
-				$("#headmenuul1").slideDown('slow');
-			});
-			$("#headmenuul1").mouseleave(function() {
-				$("#headmenuul1").slideUp('slow');
-		});
-	});
- 	$(function() {
-		$("#mbtn2").mouseover(function() {
-			$("#headmenuul2").slideDown('slow');
-		});
-		$("#headmenuul2").mouseleave(function() {
-			$("#headmenuul2").slideUp('slow');
-		});
-	});
- 	$(function() {
-		$("#mbtn3").mouseover(function() {
-			$("#headmenuul3").slideDown('slow');
-		});
-		$("#headmenuul3").mouseleave(function() {
-			$("#headmenuul3").slideUp('slow');
-		});
-	});
- 	$(function() {
-		$("#mbtn4").mouseover(function() {
-			$("#headmenuul4").slideDown('slow');
-		});
-		$("#headmenuul4").mouseleave(function() {
-			$("#headmenuul4").slideUp('slow');
-		});
-	});
- 	$(function() {
-		$("#mbtn5").mouseover(function() {
-			$("#headmenuul5").slideDown('slow');
-		});
-		$("#headmenuul5").mouseleave(function() {
-			$("#headmenuul5").slideUp('slow');
-		});
-	}); */
+	
 </script>

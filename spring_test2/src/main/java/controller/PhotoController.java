@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import dto.Board;
 import dto.Likes;
 import dto.Photo;
 import dto.Users;
@@ -79,7 +80,6 @@ public class PhotoController {
 	
 	@RequestMapping(value = "/albumboard_write", method = RequestMethod.POST)
 	public String albumWrite(Model model,Photo photo,@RequestParam MultipartFile file,RedirectAttributes redir) throws IllegalStateException, IOException {
-		redir.addFlashAttribute("contentpage", "/WEB-INF/view/album/albumboard_view.jsp");
 		File nfile = new File("C:/editorFiles2/thumbnail/"+file.getOriginalFilename());
 		file.transferTo(nfile);
 		Map<String, Object> data = new HashMap<>();
@@ -96,7 +96,7 @@ public class PhotoController {
 	}
 	
 	@RequestMapping(value = "/albumboard_view", method = RequestMethod.GET)
-	public String eventView(Model model, @RequestParam int photoNo,HttpSession sess) {
+	public String albumView(Model model, @RequestParam int photoNo,HttpSession sess) {
 		Photo photo = new Photo();
 		List<Map<String, Object>> reply;
 		photo = service.selectphoto(photoNo);
@@ -126,10 +126,43 @@ public class PhotoController {
 	}
 	
 	@RequestMapping(value = "/albumboard_delete", method = RequestMethod.GET)
-	public String eventboardDelete(Model model,@RequestParam int photoNo,RedirectAttributes redir) {
+	public String albumboardDelete(Model model,@RequestParam int photoNo,RedirectAttributes redir) {
 		logger.trace("photoNo : {}",photoNo);
 		service.deletephoto(photoNo);
 		redir.addFlashAttribute("contentpage", "/WEB-INF/view/album/albumboard_delete.jsp");
+		return "redirect:board_prg";
+	}
+	
+	
+	@RequestMapping(value = "/albumboard_change", method = RequestMethod.GET)
+	public String albumboardChange(Model model,@RequestParam int photoNo,Photo photo,RedirectAttributes redir){
+		model.addAttribute("photo", service.selectphoto(photoNo));
+		logger.trace("photo : {}",service.selectphoto(photoNo));
+		model.addAttribute("contentpage", "/WEB-INF/view/album/albumboard_change.jsp");
+		return "start";
+	}
+	
+	@RequestMapping(value = "/albumboard_change", method = RequestMethod.POST)
+	public String albumboardChangeForm(Model model,Photo photo,@RequestParam int photoNo,@RequestParam MultipartFile file,RedirectAttributes redir) throws IllegalStateException, IOException {
+		
+		File nfile = new File("C:/editorFiles2/thumbnail/"+file.getOriginalFilename());
+		file.transferTo(nfile);
+		Map<String, Object> data = new HashMap<>();
+		data.put("location", nfile.getCanonicalPath());
+		photo.setPhotoImage(file.getOriginalFilename());
+		logger.trace("board전 {}",photo);
+		service.updatephoto(photo);
+		logger.trace("board후 {}",photo);
+		
+		photo = service.selectphoto(photoNo);
+		List<Map<String, Object>> reply;
+		reply=rservice.selectReplyByPhotoNo(photoNo);
+		
+		
+		
+		redir.addFlashAttribute("replylist",reply);
+		redir.addFlashAttribute("currentboard", photo); //사용자 인증 
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/album/albumboard_view.jsp");
 		return "redirect:board_prg";
 	}
 	
