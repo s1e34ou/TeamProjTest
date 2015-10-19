@@ -29,21 +29,33 @@
 
 <body>
 <div id="board">
-	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/rankboard?page=1&select=*">랭킹게시판</a></h1>
+	<h1>랭킹게시판</h1>
 		<div id="boardin">
 		<div id="boardinhead">
 			<div id="contentnum">
 				<div class="dropdown" id="dropdown">
   				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-				    카테고리 선택
+				    게시판 선택
 				    <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-				   <li role="presentation"><a role="menuitem" tabindex="-1" id="all" href="<%=request.getContextPath()%>/rankboard?page=1&select=*">전체</a></li>
-				   <li role="presentation"><a role="menuitem" tabindex="-1" id="event"  href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_.*">이벤트</a></li>
-				 <li role="presentation"><a role="menuitem" tabindex="-1" id="free" href="<%=request.getContextPath()%>/rankboard?page=1&select=FREE">자유</a></li>
-				   <%-- <li role="presentation"><a role="menuitem" tabindex="-1" id="culture" href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_c.*">문화</a></li> --%>
-				  </ul>
+				</button>
+				  	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				   	<li role="presentation"><a role="menuitem" tabindex="-1" id="all" href="<%=request.getContextPath()%>/rankboard?page=1&select=*">전체</a></li>
+				  	 <li role="presentation"><a role="menuitem" tabindex="-1" id="event"  href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_.*">이벤트</a></li>
+				 	<li role="presentation"><a role="menuitem" tabindex="-1" id="free" href="<%=request.getContextPath()%>/rankboard?page=1&select=FREE">자유</a></li>
+				  	 <%-- <li role="presentation"><a role="menuitem" tabindex="-1" id="culture" href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_c.*">문화</a></li> --%>
+				 	</ul>
+				</div>
+				<div id="likehitbtn">
+					<div class="radio" id="radio1">
+						<label> 
+							<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 조회수
+						</label>
+					</div>
+					<div class="radio" id="radio2">
+						<label> 
+							<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> 추천수
+						</label>
+					</div>
 				</div>
 			</div>
 			<div id="contentsearch">

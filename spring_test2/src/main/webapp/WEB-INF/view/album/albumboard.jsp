@@ -29,7 +29,7 @@
 </head>
 <body>
 <div id="board">
-	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/freeboard?page=1">포토게시판</a></h1>
+	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/albumboard?page=1">포토게시판</a></h1>
 		<div id="boardin">
 		<div id="boardinhead">
 			<div id="contentnum">
@@ -82,7 +82,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
         <th style="font-family:Tahoma;font-size:15pt;" width="14%" class="sline">
             <div align="center">썸네일</div>
         </th>
-        <th style="font-family:Tahoma;font-size:15pt;" width="50%" class="sline">
+        <th style="font-family:Tahoma;font-size:15pt;" width="40%" class="sline">
             <div align="center">제목</div>
         </th>
         <th style="font-family:Tahoma;font-size:15pt;" width="14%" class="sline">
@@ -106,7 +106,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%=pplist.get(i).getPhotoNo()%>
         </td>
         <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
-           <img src="<%=request.getContextPath()%>/editorFiles2/thumbnail/<%=pplist.get(i).getPhotoImage()%>" width="100">
+           <a href="<%=request.getContextPath()%>/albumboard_view?photoNo=<%=pplist.get(i).getPhotoNo()%>"><img src="<%=request.getContextPath()%>/editorFiles2/thumbnail/<%=pplist.get(i).getPhotoImage()%>" width="100"></a>
         </td> 
             <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line"> 
             <a style="color: black" href="<%=request.getContextPath()%>/albumboard_view?photoNo=<%=pplist.get(i).getPhotoNo()%>"><%=pplist.get(i).getPhotoName()%></a>
@@ -125,12 +125,12 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             
             <%if(currentPage<=1){ %>
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/freeboard?page=1">[처음]</a>&nbsp;
+            <a href="<%=request.getContextPath() %>/albumboard?page=1">[처음]</a>&nbsp;
             <%} %>
             
             <%if(currentPage<=1){ %>
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/freeboard?page=<%=currentPage-1 %>">[이전]</a>&nbsp;
+            <a href="<%=request.getContextPath() %>/albumboard?page=<%=currentPage-1 %>">[이전]</a>&nbsp;
             <%} %>
             
           <%
@@ -144,7 +144,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 <%
 		} else {
 %>		
-		<a href="<%=request.getContextPath()%>/freeboard?page=<%=i%>"><%=i%></a>
+		<a href="<%=request.getContextPath()%>/albumboard?page=<%=i%>"><%=i%></a>
 <%
 		}
 	}
@@ -152,18 +152,18 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             
             <%if(currentPage>=pnum){ %>
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/freeboard?page=<%=currentPage+1 %>">[다음]</a>
+            <a href="<%=request.getContextPath() %>/albumboard?page=<%=currentPage+1 %>">[다음]</a>
             <%} %>
              <%if(currentPage>=pnum){ %>
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/freeboard?page=<%=pnum%>">[끝]</a>
+            <a href="<%=request.getContextPath() %>/albumboard?page=<%=pnum%>">[끝]</a>
             <%} %>
         </td>
     </tr>
     <tr align="right">
         <td colspan="5">
         <%if(loginUserObj!=null){ %>
-             <a href="<%=request.getContextPath() %>/freeboard_write">[글쓰기]</a>
+             <a href="<%=request.getContextPath() %>/albumboard_write">[글쓰기]</a>
              <%} %>
         </td>
     </tr>
