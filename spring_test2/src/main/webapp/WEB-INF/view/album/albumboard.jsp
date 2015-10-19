@@ -82,7 +82,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
         <th style="font-family:Tahoma;font-size:15pt;" width="14%" class="sline">
             <div align="center">썸네일</div>
         </th>
-        <th style="font-family:Tahoma;font-size:15pt;" width="50%" class="sline">
+        <th style="font-family:Tahoma;font-size:15pt;" width="40%" class="sline">
             <div align="center">제목</div>
         </th>
         <th style="font-family:Tahoma;font-size:15pt;" width="14%" class="sline">
