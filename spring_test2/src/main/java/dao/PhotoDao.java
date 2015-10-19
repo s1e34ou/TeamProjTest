@@ -5,7 +5,7 @@ import java.util.List;
 import dto.Photo;
 
 public interface PhotoDao {
-	int BOARD_PER_PAGE = 3;
+	int BOARD_PER_PAGE = 10;
 
 	public List<Photo> selectAllPhoto();
 

@@ -1,3 +1,4 @@
+<%@page import="dao.PhotoDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="dto.Users"%>
 <%@page import="service.BoardServiceImpl"%>
@@ -64,13 +65,13 @@ int block=(int)Math.ceil((double)currentPage/pageblock);
 int bstartpage=(block-1)*pageblock+1;
 int bendpage=bstartpage+pageblock-1;
 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-Object blist = request.getAttribute("boardlist"); 
+Object blist = request.getAttribute("photolist"); 
 List<Photo> list = (List<Photo>)blist;
 
 Object plist = request.getAttribute("pagelist"); 
 List<Photo> pplist = (List<Photo>)plist;
 
-pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
+pnum = (int) Math.ceil((double) list.size() / PhotoDao.BOARD_PER_PAGE);
 %>
 <center>
 <table width=570 border="0" cellpadding="0" cellspacing="0" id="boardlist">

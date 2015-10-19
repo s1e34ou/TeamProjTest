@@ -49,7 +49,7 @@
             <sform:textarea path="photoContent"/>
             <div id="blistfoot">
             <sform:button>글쓰기</sform:button>
-            <a href="<%=request.getContextPath()%>/album?page=1"><button type="button">취소</button></a>
+            <a href="<%=request.getContextPath()%>/albumboard?page=1"><button type="button">취소</button></a>
             </div>
         </fieldset>
     </sform:form>

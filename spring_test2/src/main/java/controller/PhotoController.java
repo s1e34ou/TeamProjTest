@@ -63,7 +63,7 @@ public class PhotoController {
 		List<Photo> list = service.getAllPhoto();
 		
 		model.addAttribute("contentpage", "/WEB-INF/view/album/albumboard.jsp");
-		model.addAttribute("boardlist", list);
+		model.addAttribute("photolist", list);
 		model.addAttribute("pagelist", plist);
 		model.addAttribute("page",page);
 		return "start";
@@ -83,20 +83,17 @@ public class PhotoController {
 		redir.addFlashAttribute("contentpage", "/WEB-INF/view/album/albumboard_view.jsp");
 		File nfile = new File("C:/editorFiles2/thumbnail/"+file.getOriginalFilename());
 		file.transferTo(nfile);
-		logger.trace("filename : {}",file.getOriginalFilename());
 		Map<String, Object> data = new HashMap<>();
-		logger.trace("file : {}",file);
 		data.put("location", nfile.getCanonicalPath());
 		photo.setPhotoImage(file.getOriginalFilename());
-		logger.trace("ex : {}",photo.getPhotoImage());
 		service.writephoto(photo);
 		
 		List<Photo> plist = service.getPhotoByPage(1);
 		List<Photo> list = service.getAllPhoto();
 		redir.addFlashAttribute("photolist", list);
 		redir.addFlashAttribute("pagelist", plist);
-		model.addAttribute("contentpage", "/WEB-INF/view/album/NewFile.jsp");
-		return "start";
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/album/albumboard.jsp");
+		return "redirect:board_prg";
 	}
 	
 	@RequestMapping(value = "/albumboard_view", method = RequestMethod.GET)
@@ -129,5 +126,12 @@ public class PhotoController {
 		
 	}
 	
+	@RequestMapping(value = "/albumboard_delete", method = RequestMethod.GET)
+	public String eventboardDelete(Model model,@RequestParam int photoNo,RedirectAttributes redir) {
+		logger.trace("photoNo : {}",photoNo);
+		service.deletephoto(photoNo);
+		redir.addFlashAttribute("contentpage", "/WEB-INF/view/album/albumboard_delete.jsp");
+		return "redirect:board_prg";
+	}
 	
 }
