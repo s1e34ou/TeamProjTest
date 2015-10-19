@@ -26,6 +26,16 @@ div {
 #stext{
 	width: 400px;
 }
+#logon{
+	height: 15px;
+	border-radius : 3px;
+	border: solid 1px black;
+}
+#logoff{
+	height: 15px;
+	border-radius : 3px;
+	border: solid 1px gray;
+}
 #sitemap {
 	float: right;
 }
