@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+#board {
+	width: 1000px;
+	height: auto;
+	margin: auto;
+}
+#boardin {
+	border: solid 1px black;
+	width: 1000px;
+	height: auto;
+	margin: auto;
+}
+#boardinin{
+	margin-top: 50px;	
+	margin-bottom: 70px;
+}
+#sline{
+	border-bottom:2px solid #808080;
+}
+#line{
+	border-bottom:1px solid #c0c0c0;
+}
+#boardlist{
+	width: 900px;
+	margin-top: 70px;
+	margin-bottom: 30px;
+	
+}
