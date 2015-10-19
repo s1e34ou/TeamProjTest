@@ -29,6 +29,18 @@
 	margin-top: 40px;
 	display: -webkit-box;
 }
+#likehitbtn{
+	display: -webkit-box;
+	margin-left: 20px;
+}
+#radio1{
+	height: 40px;
+	margin-right: 5px;
+}
+#radio2{
+	height: 40px;
+	margin-top: 10px;
+}
 #contentsearch{
 	width: 450px;
 	height: 40px;
