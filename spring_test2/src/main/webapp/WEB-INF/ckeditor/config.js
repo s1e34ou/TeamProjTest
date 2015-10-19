@@ -31,7 +31,7 @@ CKEDITOR.editorConfig = function( config ) {
 	 config.filebrowserBrowseUrl = '/spring_test2/ckfinder/ckfinder.html';
 	 config.filebrowserImageBrowseUrl = '/spring_test2/ckfinder/ckfinder.html?type=Images';
 	 config.filebrowserFlashBrowseUrl = '/spring_test2/ckfinder/ckfinder.html?type=Flash';
-	 config.filebrowserUploadUrl = '/spring_test2/ckfinder/core/connector/jsva/connector.java?command=QuickUpload&type=Files';
+	 config.filebrowserUploadUrl = '/spring_test2/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files';
 	 config.filebrowserImageUploadUrl ='/spring_test2/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images';
 	 config.filebrowserFlashUploadUrl ='/spring_test2/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash';
 	 config.toolbar ='User';

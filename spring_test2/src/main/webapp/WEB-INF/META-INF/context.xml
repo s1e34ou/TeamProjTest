@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context>
+<Context antiJARLocking="true" path="/spring_test2" >
+
 
     <!-- Default set of monitored resources. If one of these changes, the    -->
     <!-- web application will be reloaded.                                   -->
@@ -8,7 +9,9 @@
 
 	<Resources>
 		<PreResources className="org.apache.catalina.webresources.DirResourceSet"
-			base="C:/editorFiles2/" webAppMount="/WEB-INF/editorFiles2" />
+			base="D:/spring_test2/editorFiles2/" webAppMount="/WEB-INF/upload" />
+			<PreResources className="org.apache.catalina.webresources.DirResourceSet"
+			base="D:/spring_test2/editorFiles2/images/" webAppMount="/WEB-INF/upload/images" />
 	</Resources>
     
 </Context>
