@@ -3,7 +3,6 @@ package controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +25,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import dto.Board;
 import com.google.gson.Gson;
 
 import dto.Users;
@@ -35,7 +33,6 @@ import service.UsersService;
 
 @Controller
 @SessionAttributes({ "loginUser", "seluser", "findUser", "findPw" })
-
 public class UserController {
 	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
