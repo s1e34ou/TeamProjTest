@@ -111,7 +111,6 @@ $.ajax({
 </script>
 </head>
 <body>
-
 	<section id="parent">
 	<div id="box1">
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
