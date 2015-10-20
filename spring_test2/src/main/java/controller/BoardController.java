@@ -385,17 +385,14 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/rankjson", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public @ResponseBody String rankjsonForm(Model model,@RequestParam String selected, HttpServletRequest req) {
+	public @ResponseBody String rankjsonForm(Model model,@RequestParam String selected, @RequestParam String type, HttpServletRequest req) {
 		Gson gson=new Gson();
-		String t;
 		List<Board> mrlist=null;
 		if(selected.equals("hit")){
-			t="*";
-			mrlist= service.getRankBoardByPage(1, t);
+			mrlist= service.getRankBoardByPage(1, type);
 			
 		}else{
-			t="*";
-			mrlist= service.getRankrecomBoardByPage(1, t);
+			mrlist= service.getRankrecomBoardByPage(1, type);
 			
 		}
 		

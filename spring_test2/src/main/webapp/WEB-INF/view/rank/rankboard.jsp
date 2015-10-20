@@ -57,7 +57,7 @@ $(function() {
 		
 		url:ranklist,
 		type:"post",
-		data:{selected:rselected},
+		data:{selected:rselected,type:"<%=currentSelect%>"},
 		success:function(txt){
 			var $box5_2=$("#boardline");
 			$box5_2.empty();
