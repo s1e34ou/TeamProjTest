@@ -98,7 +98,7 @@ $(function() {
 			var eventenddate=item["eventenddate"];
 			var addr1=item["addr1"];
 			if(firstimage2==null){
-				firstimage2="<%=request.getContextPath()%>/images/noimage.png";
+				firstimage2="<%=request.getContextPath()%>/images/fastival2.jpg";
 			}
 			console.log(total%10);
 			var pnum;
@@ -115,7 +115,7 @@ $(function() {
 				 eventenddate=data["eventenddate"];
 				 addr1=data["addr1"];
 				 if(firstimage2==null){
-						firstimage2="<%=request.getContextPath()%>/images/noimage.png";
+						firstimage2="<%=request.getContextPath()%>/images/fastival2.jpg";
 					}
 				$target.append("<div class=sel><table><tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+contentid+"><img src=" +firstimage2+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+contentid+">"+title+"</a></td></tr><tr><td>"+eventstartdate+"~ "+eventenddate+"</td></tr><tr><td>"+addr1+"</td></tr></table></div>");
 				//한국관광공사 api

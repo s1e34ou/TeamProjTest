@@ -197,12 +197,13 @@ $(function() {
 			success : function(txt) {
 
 				var item = txt["response"]["body"]["items"]["item"];
-				console.log(txt["response"]["body"]["items"]);
-				 if((txt["response"]["body"]["items"])!=""){ 
+				 
+				
+				if((txt["response"]["body"]["items"])!=""){ 
 				$.each(item, function(index,data) {
 					originimgurl[index] = data["originimgurl"];
-					console.log(originimgurl[index]);
 					smallimageurl[index] = data["smallimageurl"];
+					 
 					if(originimgurl!=null||originimgurl!=undefined){
 						if(index==0){
 						$(".carousel-indicators").append("<li data-target='#carousel-example-generic' data-slide-to="+index+" class='active'></li>")
@@ -218,8 +219,8 @@ $(function() {
 					}
 				});
 				}else{
-					$(".carousel-indicators").append("<li data-target='#carousel-example-generic' data-slide-to=0 class='active'></li>")
-					$(".carousel-inner").append("<div class='item active'><img src=<%=request.getContextPath()%>/images/noimage.png></div>");
+					$("#boardhead").empty();
+					$("#boardhead").append("<div ><img src=<%=request.getContextPath()%>/images/fastival.jpg></div>");
 				}
 			}					
 								
