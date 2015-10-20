@@ -115,7 +115,7 @@ $.ajax({
 	
 	url:ranklist,
 	type:"post",
-	data:{selected:rselected},
+	data:{selected:rselected,type:"*"},
 	success:function(txt){
 		var $box6_2=$("#box6_2");
 		$box6_2.empty();
@@ -166,7 +166,7 @@ $.ajax({
 
 url:ranklist,
 type:"post",
-data:{selected:rselected},
+data:{selected:rselected,type:"*"},
 success:function(txt){
 	var $box6_2=$("#box6_2");
 	$box6_2.empty();
@@ -303,7 +303,6 @@ $.ajax({
 		$box5_2.empty();
 		var code;
 		for(var i=0;i<4;i++){
-			
 			var tod=txt[i]["boardDate"];
 			var date=new Date(tod);
 			var month=date.getMonth()+1;
