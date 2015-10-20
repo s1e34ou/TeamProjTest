@@ -18,4 +18,6 @@ public interface PhotoDao {
 	public void deletePhoto(int photoNo);
 
 	public List<Photo> getPhotoByPage(int page);
+
+	int countPhoto();
 }

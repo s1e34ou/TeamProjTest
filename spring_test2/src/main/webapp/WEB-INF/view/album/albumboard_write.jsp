@@ -27,11 +27,16 @@
 <script src="<%=request.getContextPath()%>/ckfinder/ckfinder.js"></script>
 <script type="text/javascript">
 $(function() {
+	
 	$("#wri").on("click",function(e){
 		if($("#photoName").val()==""){
 			alert("제목을 입력하세요");
 			e.preventDefault();
+		}else if($("#file").val()==""){
+			alert("썸네일을 등록하세요");
+			e.preventDefault();
 		}
+		
 	});
 });
 </script>
@@ -53,7 +58,7 @@ $(function() {
 			</div>
 			<hr>
 			<sform:label path="photoImage">썸네일등록</sform:label>
-			<input type="file" name="file"> 
+			<input type="file" id="file" name="file"> 
 			<hr>
             <sform:label path="photoContent">내용</sform:label>
             <sform:textarea path="photoContent"/>

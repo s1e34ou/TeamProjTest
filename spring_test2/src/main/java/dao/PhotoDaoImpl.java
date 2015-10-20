@@ -86,5 +86,10 @@ public class PhotoDaoImpl implements PhotoDao {
 
 		return photo;
 	}
-
+	@Override
+	public int countPhoto() {
+		String sql = "select count(*) from photo";
+		int count = jdbcTemp.queryForInt(sql);
+		return count;
+	}
 }

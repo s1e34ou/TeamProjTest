@@ -57,4 +57,10 @@ public class PhotoServiceImpl implements PhotoService {
 		return photos;
 	}
 
+	@Override
+	public int countphoto() {
+		int count = dao.countPhoto();
+		return count;
+		
+	}
 }

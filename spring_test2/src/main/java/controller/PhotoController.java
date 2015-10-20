@@ -61,11 +61,12 @@ public class PhotoController {
 		
 		List<Photo> plist = service.getPhotoByPage(page);
 		List<Photo> list = service.getAllPhoto();
-		
+		int count = service.countphoto();
 		model.addAttribute("contentpage", "/WEB-INF/view/album/albumboard.jsp");
 		model.addAttribute("photolist", list);
 		model.addAttribute("pagelist", plist);
 		model.addAttribute("page",page);
+		model.addAttribute("count",count);
 		return "start";
 	}
 
