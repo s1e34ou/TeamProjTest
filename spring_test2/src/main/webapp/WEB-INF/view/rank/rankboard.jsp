@@ -135,7 +135,7 @@ $(function() {
 										 
 										
 										"<table width=900 border=0 cellpadding=0 cellspacing=0 ><tr  align=center valign=middle bordercolor=#333333"+
-						        "onmouseover=this.style.backgroundColor='F8F8F8'"+
+						        "onmouseover=this.style.backgroundColor='#FFFAF5'"+
 						        "onmouseout=this.style.backgroundColor=''>"+
 						        "<td width=8% height=23 style='font-family:Tahoma;font-size:12pt;' class=line>"+
 						        +(index+1)+" 위"+
@@ -160,7 +160,7 @@ $(function() {
 											 
 											
 											"<table width=900 border=0 cellpadding=0 cellspacing=0 ><tr  align=center valign=middle bordercolor=#333333"+
-							        "onmouseover=this.style.backgroundColor='F8F8F8'"+
+							        "onmouseover=this.style.backgroundColor='#FFFAF5'"+
 							        "onmouseout=this.style.backgroundColor=''>"+
 							        "<td width=8% height=23 style='font-family:Tahoma;font-size:12pt;' class=line>"+
 							        +(index+1)+" 위"+
@@ -270,7 +270,7 @@ $(function() {
         for(int i=0;i<pplist.size();i++){
     %>
     <tr align="center" valign="middle" bordercolor="#333333"
-        onmouseover="this.style.backgroundColor='F8F8F8'"
+        onmouseover="this.style.backgroundColor='#FFFAF5'"
         onmouseout="this.style.backgroundColor=''">
         <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%out.println(i+1);%>위

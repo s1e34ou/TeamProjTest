@@ -101,7 +101,7 @@ pnum = (int) Math.ceil((double) list.size() / PhotoDao.BOARD_PER_PAGE);
         for(int i=0;i<pplist.size();i++){
     %>
     <tr align="center" valign="middle" bordercolor="#333333"
-        onmouseover="this.style.backgroundColor='F8F8F8'"
+       onmouseover="this.style.backgroundColor='#FFFAF5'"
         onmouseout="this.style.backgroundColor=''">
         <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getPhotoNo()%>
