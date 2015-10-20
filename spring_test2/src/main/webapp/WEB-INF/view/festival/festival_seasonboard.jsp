@@ -102,14 +102,33 @@ $(function() {
 			var numOfRows=txt["response"]["body"]["numOfRows"];
 			var total=txt["response"]["body"]["totalCount"];
 			var page=txt["response"]["body"]["pageNo"];
+			var contentid=item["contentid"];
+			var firstimage2=item["firstimage2"];
+			var title=item["title"];
+			var eventstartdate=item["eventstartdate"];
+			var eventenddate=item["eventenddate"];
+			var addr1=item["addr1"];
+			if(firstimage2==null){
+				firstimage2="<%=request.getContextPath()%>/images/noimage.png";
+			}
+			//$target.append("<li>"+JSON.stringify(txt)+"</li>");
 			var pnum;
 			pnum=Math.ceil(total/numOfRows);
 			
 			if(total%10==1&&<%=pn%>==pnum){
-				$target.append("<div class=sel><table><tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+item["contentid"]+"><img src=" +item["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+item["contentid"]+">"+item["title"]+"</a></td></tr><tr><td>"+item["eventstartdate"]+"~ "+item["eventenddate"]+"</td></tr><tr><td>"+item["addr1"]+"</td></tr></table></div>");
+				$target.append("<div class=sel><table><tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+contentid+"><img src=" +firstimage2+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+contentid+">"+title+"</a></td></tr><tr><td>"+eventstartdate+"~ "+eventenddate+"</td></tr><tr><td>"+addr1+"</td></tr></table></div>");
 			}else{
 			$.each(item,function(index,data){
-				$target.append("<div class=sel><table><tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><img src=" +data["firstimage2"]+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+">"+data["title"]+"</a></td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div>");
+				 contentid=data["contentid"];
+				 firstimage2=data["firstimage2"];
+				 title=data["title"];
+				 eventstartdate=data["eventstartdate"];
+				 eventenddate=data["eventenddate"];
+				 addr1=data["addr1"];
+				 if(firstimage2==null){
+						firstimage2="<%=request.getContextPath()%>/images/noimage.png";
+					}
+				$target.append("<div class=sel><table><tr><td rowspan=3><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+contentid+"><img src=" +firstimage2+" width=100px height=100px></a></td><td><a href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+contentid+">"+title+"</a></td></tr><tr><td>"+eventstartdate+"~ "+eventenddate+"</td></tr><tr><td>"+addr1+"</td></tr></table></div>");
 				//한국관광공사 api
 				
 			});
