@@ -54,11 +54,6 @@ public class UserController {
 		
 	@RequestMapping(value = "/go", method = RequestMethod.GET)
 	public String userPGR(Model model) {
-		List<Board> mrlist= serviceb.getRankBoardByPage(1, "*");
-		model.addAttribute("mainranklist",mrlist);
-		
-		List<Board> melist=serviceb.getBoardByPage(1, "*");
-		model.addAttribute("maineventlist",melist);
 		return "start";
 	}
 	@InitBinder
@@ -77,6 +72,38 @@ public class UserController {
 		return "start";
 	}
 
+	@RequestMapping(value = "/mainevent", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String maineventForm(Model model,@RequestParam String selected, HttpServletRequest req) {
+		Gson gson=new Gson();
+		String t;
+		if(selected.equals("all")){
+			t="EVENT_.*";
+		}else if(selected.equals("food")){
+			t="EVENT_f.*";
+		}else if(selected.equals("beauty")){
+			t="EVENT_b.*";
+		}else{
+			t="EVENT_c.*";
+		}
+		
+		List<Board> melist=serviceb.getBoardByPage(1, t);
+		
+		return gson.toJson(melist);
+	}
+	
+	@RequestMapping(value = "/mainrank", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String mainrankForm(Model model,@RequestParam String selected, HttpServletRequest req) {
+		Gson gson=new Gson();
+		String t;
+		if(selected.equals("hit")){
+			t="*";
+		}else{
+			t="*";
+		}
+		List<Board> mrlist=serviceb.getRankBoardByPage(1, t);
+		
+		return gson.toJson(mrlist);
+	}
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String userJoinForm(Model model) {
 		model.addAttribute("contentpage", "/WEB-INF/view/join/join.jsp");

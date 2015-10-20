@@ -31,6 +31,16 @@ Object cb = request.getAttribute("photo");
 Photo photo = (Photo)cb;
 
 %>
+<script type="text/javascript">
+$(function() {
+	$("#wri").on("click",function(e){
+		if($("#boardName").val()==""){
+			alert("제목을 입력하세요");
+			e.preventDefault();
+		}
+	});	
+});
+</script>
 </head>
 <body>
 <div id="boardchange">
@@ -56,7 +66,7 @@ Photo photo = (Photo)cb;
             <sform:label path="photoContent">내용</sform:label>
             <sform:textarea path="photoContent" rows="10" cols="100"></sform:textarea><br>
             <div id="blistfoot">
-            <sform:button>수정</sform:button>
+            <sform:button id="wri">수정</sform:button>
             <a href="<%=request.getContextPath()%>/albumboard_view?photoNo=<%=photo.getPhotoNo()%>"><button type="button">취소</button></a>
             </div>
         </fieldset>

@@ -28,4 +28,8 @@ public interface BoardService {
 	List<Board> gettAllAllBoardByPage(int page,String boardCode,String boardContent);
 	
 	int countboard(String boardCode,String boardName);
+
+	List<Board> getRankrecomAllBoard(String boardCode);
+
+	List<Board> getRankrecomBoardByPage(int page, String boardCode);
 }

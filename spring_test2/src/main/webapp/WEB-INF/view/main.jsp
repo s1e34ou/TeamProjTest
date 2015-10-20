@@ -107,7 +107,181 @@ $.ajax({
 	}
 	
 	});
+
+var ranklist="<%=request.getContextPath()%>/rankjson";
+var rselected = $('[name=rankradio]:checked').val();
+
+$.ajax({
+	
+	url:ranklist,
+	type:"post",
+	data:{selected:rselected},
+	success:function(txt){
+		var $box6_2=$("#box6_2");
+		$box6_2.empty();
+		var code;
+		for(var i=0;i<4;i++){
+			var tod=txt[i]["boardDate"];
+			
+				code="음식"
+				$box6_2.append("<a href=<%=request.getContextPath()%>/rankboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+						 "<tr  align=center valign=middle >"+
+						     "<td width=60  rowspan=3>"+
+							"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
+							"</td>"+
+							"<td>제목 - "+txt[i]["boardName"]+" </td></tr>"+
+							"<tr  align=center valign=middle>"+
+							"<td>분야 - "+txt[i]["boardCode"]+"</td></tr>"+
+							"<tr align=center valign=middle><td>등록일 - "+txt[i]["boardDate"]+"</td></tr></table></div>");
+							
+			}//한국관광공사 api
+	}
+	
+	});
+$('input[name=rankradio]').on("click",function(){
+rselected = $('[name=rankradio]:checked').val();
+$.ajax({
+
+url:ranklist,
+type:"post",
+data:{selected:rselected},
+success:function(txt){
+	var $box6_2=$("#box6_2");
+	$box6_2.empty();
+	var code;
+	for(var i=0;i<4;i++){
+		var tod=txt[i]["boardDate"];
+		code="음식"
+			$box6_2.append("<a href=<%=request.getContextPath()%>/rankboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+					 "<tr  align=center valign=middle >"+
+					     "<td width=60  rowspan=3>"+
+						"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
+						"</td>"+
+						"<td>제목 - "+txt[i]["boardName"]+" </td></tr>"+
+						"<tr  align=center valign=middle>"+
+						"<td>분야 - "+txt[i]["boardCode"]+"</td></tr>"+
+						"<tr align=center valign=middle><td>등록일 - "+txt[i]["boardDate"]+"</td></tr></table></div>");
+		}//한국관광공사 api
+}
+
 });
+});
+
+ var eventlist="<%=request.getContextPath()%>/mainevent";
+ var eselected = $('[name=eventradio]:checked').val();
+
+ $.ajax({
+		
+		url:eventlist,
+		type:"post",
+		data:{selected:eselected},
+		success:function(txt){
+			var $box5_2=$("#box5_2");
+			$box5_2.empty();
+			var code;
+			for(var i=0;i<4;i++){
+				var tod=txt[i]["boardDate"];
+				
+				if(txt[i]["boardCode"]=="EVENT_food"){
+					code="음식"
+					$box5_2.append("<a href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+							 "<tr  align=center valign=middle >"+
+							     "<td width=60  rowspan=3>"+
+								"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
+								"</td>"+
+								"<td>제목 - "+txt[i]["boardName"]+" </td></tr>"+
+								"<tr  align=center valign=middle>"+
+								"<td>분야 - "+code+"</td></tr>"+
+								"<tr align=center valign=middle><td>등록일 - "+txt[i]["boardDate"]+"</td></tr></table></div>");
+								
+				}else if(txt[i]["boardCode"]=="EVENT_beauty"){
+					code="미용"
+						$box5_2.append("<a href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+								 "<tr  align=center valign=middle >"+
+								     "<td width=60  rowspan=3>"+
+									"<img width=60 height=60 src=<%=request.getContextPath()%>/images/beau.png>"+
+									"</td>"+
+									"<td>제목 - "+txt[i]["boardName"]+" </td></tr>"+
+									"<tr  align=center valign=middle>"+
+									"<td>분야 - "+code+"</td></tr>"+
+									"<tr align=center valign=middle><td>등록일 - "+txt[i]["boardDate"]+"</td></tr></table></div>");
+						
+				}else{
+					code="문화"
+						$box5_2.append("<a href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+								 "<tr  align=center valign=middle >"+
+								     "<td width=60  rowspan=3>"+
+									"<img width=60 height=60 src=<%=request.getContextPath()%>/images/cult.png>"+
+									"</td>"+
+									"<td>제목 - "+txt[i]["boardName"]+" </td></tr>"+
+									"<tr  align=center valign=middle>"+
+									"<td>분야 - "+code+"</td></tr>"+
+									"<tr align=center valign=middle><td>등록일 - "+txt[i]["boardDate"]+"</td></tr></table></div>");
+						
+				}
+				}//한국관광공사 api
+		}
+		
+		});
+ $('input[name=eventradio]').on("click",function(){
+	eselected = $('[name=eventradio]:checked').val();
+$.ajax({
+	
+	url:eventlist,
+	type:"post",
+	data:{selected:eselected},
+	success:function(txt){
+		var $box5_2=$("#box5_2");
+		$box5_2.empty();
+		var code;
+		for(var i=0;i<4;i++){
+			var tod=txt[i]["boardDate"];
+			
+			if(txt[i]["boardCode"]=="EVENT_food"){
+				code="음식"
+				$box5_2.append("<a href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+						 "<tr  align=center valign=middle >"+
+						     "<td width=60  rowspan=3>"+
+							"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
+							"</td>"+
+							"<td>제목 - "+txt[i]["boardName"]+" </td></tr>"+
+							"<tr  align=center valign=middle>"+
+							"<td>분야 - "+code+"</td></tr>"+
+							"<tr align=center valign=middle><td>등록일 - "+txt[i]["boardDate"]+"</td></tr></table></div>");
+							
+			}else if(txt[i]["boardCode"]=="EVENT_beauty"){
+				code="미용"
+					$box5_2.append("<a href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+							 "<tr  align=center valign=middle >"+
+							     "<td width=60  rowspan=3>"+
+								"<img width=60 height=60 src=<%=request.getContextPath()%>/images/beau.png>"+
+								"</td>"+
+								"<td>제목 - "+txt[i]["boardName"]+" </td></tr>"+
+								"<tr  align=center valign=middle>"+
+								"<td>분야 - "+code+"</td></tr>"+
+								"<tr align=center valign=middle><td>등록일 - "+txt[i]["boardDate"]+"</td></tr></table></div>");
+					
+			}else{
+				code="문화"
+					$box5_2.append("<a href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+							 "<tr  align=center valign=middle >"+
+							     "<td width=60  rowspan=3>"+
+								"<img width=60 height=60 src=<%=request.getContextPath()%>/images/cult.png>"+
+								"</td>"+
+								"<td>제목 - "+txt[i]["boardName"]+" </td></tr>"+
+								"<tr  align=center valign=middle>"+
+								"<td>분야 - "+code+"</td></tr>"+
+								"<tr align=center valign=middle><td>등록일 - "+txt[i]["boardDate"]+"</td></tr></table></div>");
+					
+			}
+			}//한국관광공사 api
+	}
+	
+	});
+});
+});
+
+
 </script>
 </head>
 <body>
@@ -204,80 +378,19 @@ $.ajax({
 	<div id="boardbox">
 		<div id="box4"></div>
 		<div id="box5">
-		<%Object melistObj= request.getAttribute("maineventlist"); 
-		List<Board> melist=(List<Board>)melistObj;
-        for(int i=0;i<4;i++){
-   		 %>
-   		 <a href="<%=request.getContextPath()%>/eventboard_view?boardNo=<%=melist.get(i).getBoardNo()%>">
-   <div class="fes">
-   <table height="60" width="350" border="1" >
-    <tr  align="center" valign="middle" bordercolor="#333333"
-        onmouseover="this.style.backgroundColor='F8F8F8'"
-        onmouseout="this.style.backgroundColor=''">
-        <td width="60"  rowspan="3">
-        	<%    	String code=melist.get(i).getBoardCode();
-        	String q;
-        	if(code.equals("EVENT_food")){
-        		code="음식";
-        		%><img width="60" height="60" src="<%=request.getContextPath()%>/images/food.png">
-        	<% }else if(code.equals("EVENT_beauty")){
-        		code="미용";
-        		%><img width="60" height="60" src="<%=request.getContextPath()%>/images/beau.png">
-        	<%}else{
-        		code="문화";%>
-        		<img width="60" height="60" src="<%=request.getContextPath()%>/images/cult.png">
-        	<%} %>
-        </td>
-        <td >
-            제목<%=melist.get(i).getBoardName()%>
-        </td>    
-        
-    </tr>
-    <tr align="center" valign="middle">
-    <td  >분야<%=code %></td>
-    </tr>
-    <tr align="center" valign="middle"><td>수정일<%=melist.get(i).getBoardDate()%></td>
-    </tr>
-    </table>
-    </div></a>
-    <%} %>
-
-		
+		<div>
+	<input type="radio" id="eall" name="eventradio" value="all" checked><label for="eall">전체</label>
+		<input type="radio" id="efood" name="eventradio" value="food" ><label for="efood">음식</label>
+		<input type="radio" id="ebeau" name="eventradio" value="beauty"><label for="ebeau">미용</label>
+		<input type="radio" id="ecult" name="eventradio" value="culture"><label for="ecult">문화</label>
 		</div>
+		<div id=box5_2></div>
+			
+					</div>
 		<div id="box6">
-		<%
-		Object selectObj = request.getAttribute("select");
-		String currentSelect;
-		if(selectObj!=null){
-			currentSelect = (String)selectObj;
-		}else{
-			currentSelect="EVENT_.*";
-		}
-		
-		Object plist = request.getAttribute("pagelist"); 
-		List<Board> pplist = (List<Board>)plist;
-		%>
-		 <h2>랭킹</h2>
-		<%Object mrlistObj= request.getAttribute("mainranklist");
-		
-		List<Board> mrlist=(List<Board>)mrlistObj;
-        for(int i=0;i<4;i++){
-   		 %>
-   
-    <tr align="center" valign="middle" bordercolor="#333333"
-        onmouseover="this.style.backgroundColor='F8F8F8'"
-        onmouseout="this.style.backgroundColor=''">
-        <td height="23" style="font-family:Tahoma;font-size:12pt;">
-            <%= i+1 %>위
-        </td>
-        <td height="23" style="font-family:Tahoma;font-size:12pt;">
-            <a href="<%=request.getContextPath()%>/rankboard_view?boardNo=<%=mrlist.get(i).getBoardNo()%>"><%=mrlist.get(i).getBoardName()%></a>
-        </td>    
-    </tr>
-    <br>
-    <%} %>
-		
-		
+		<div><input type="radio" id="rhit" name="rankradio" value="hit" checked><label for="rhit">조회수</label>
+		<input type="radio" id="rrec" name="rankradio" value="rec" ><label for="rrec">추천수</label></div>
+		<div id="box6_2"></div>
 		</div>
 	</div>
 	<div id="defaultbox">

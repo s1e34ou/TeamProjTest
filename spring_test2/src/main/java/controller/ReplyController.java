@@ -49,6 +49,23 @@ private static Logger logger = LoggerFactory.getLogger(ReplyController.class);
 		
 		return gson.toJson(replylist);
 	}
+	
+	@RequestMapping(value = "/replyphotowrite", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String replyphotoWrite(Model model,@RequestParam String userid,@RequestParam Integer boardno,@RequestParam String replycon) {
+		Gson gson= new Gson();
+		
+		Reply reply = new Reply();
+		reply.setReplyContent(replycon);
+		reply.setUsersUsersId(userid);
+		reply.setPhotoPhotoNo(boardno);
+		logger.trace("reply : {}",reply);
+		service.insertPhotoReply(reply);
+		
+		List<Map<String, Object>> replylist = service.selectReplyByPhotoNo(boardno);
+		
+		return gson.toJson(replylist);
+	}
+
 
 	@RequestMapping(value = "/replydelete", method = RequestMethod.GET)
 	public String replyDelete(Model model,@RequestParam Integer boardno, @RequestParam Integer replyno,RedirectAttributes redir) {

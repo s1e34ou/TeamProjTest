@@ -100,7 +100,7 @@ public class PhotoController {
 		Photo photo = new Photo();
 		List<Map<String, Object>> reply;
 		photo = service.selectphoto(photoNo);
-		reply=rservice.selectReplyByBoardNo(photoNo);
+		reply=rservice.selectReplyByPhotoNo(photoNo);
 		int likecount = lservice.count(photoNo,2);
 		int unlikcecount = lservice.count(photoNo,1);
 		logger.trace("likecount: {}",likecount);

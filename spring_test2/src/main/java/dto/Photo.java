@@ -10,10 +10,32 @@ public class Photo {
 	private Integer photoHits;
 	private String photoImage;
 	private String usersUsersId;
+	private Integer replyCount;
 	
 	
 	
 	
+	public Photo(Integer photoNo, String photoName, String photoContent, Date photoDate, Integer photoHits,
+			String photoImage, String usersUsersId, Integer replyCount) {
+		super();
+		this.photoNo = photoNo;
+		this.photoName = photoName;
+		this.photoContent = photoContent;
+		this.photoDate = photoDate;
+		this.photoHits = photoHits;
+		this.photoImage = photoImage;
+		this.usersUsersId = usersUsersId;
+		this.replyCount = replyCount;
+	}
+
+	public Integer getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(Integer replyCount) {
+		this.replyCount = replyCount;
+	}
+
 	public Photo() {
 		super();
 	}
@@ -35,17 +57,7 @@ public class Photo {
 
 
 
-	public Photo(Integer photoNo, String photoName, String photoContent, Date photoDate, Integer photoHits,
-			String photoImage, String usersUsersId) {
-		super();
-		this.photoNo = photoNo;
-		this.photoName = photoName;
-		this.photoContent = photoContent;
-		this.photoDate = photoDate;
-		this.photoHits = photoHits;
-		this.photoImage = photoImage;
-		this.usersUsersId = usersUsersId;
-	}
+	
 
 
 	public Integer getPhotoNo() {
@@ -147,7 +159,7 @@ public class Photo {
 	public String toString() {
 		return "Photo [photoNo=" + photoNo + ", photoName=" + photoName + ", photoContent=" + photoContent
 				+ ", photoDate=" + photoDate + ", photoHits=" + photoHits + ", photoImage=" + photoImage
-				+ ", usersUsersId=" + usersUsersId + "]";
+				+ ", usersUsersId=" + usersUsersId + ", replyCount=" + replyCount + "]";
 	}
 
 
