@@ -76,11 +76,11 @@ public class UserController {
 	public @ResponseBody String maineventForm(Model model,@RequestParam String selected, HttpServletRequest req) {
 		Gson gson=new Gson();
 		String t;
-		if(selected.equals("all")){
+		if(selected.equals("eventall")){
 			t="EVENT_.*";
-		}else if(selected.equals("food")){
+		}else if(selected.equals("eventfood")){
 			t="EVENT_f.*";
-		}else if(selected.equals("beauty")){
+		}else if(selected.equals("eventbeauty")){
 			t="EVENT_b.*";
 		}else{
 			t="EVENT_c.*";

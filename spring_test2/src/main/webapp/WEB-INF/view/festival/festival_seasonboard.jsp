@@ -117,7 +117,7 @@ $(function() {
 			pnum=Math.ceil(total/numOfRows);
 			
 			if(total%10==1&&<%=pn%>==pnum){
-				$target.append("<a style='color:black;' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+contentid+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=sel><table><tr><td rowspan=3><img src=" +firstimage2+" width=100px height=100px></td><td>"+title+"</td></tr><tr><td>"+eventstartdate+"~ "+eventenddate+"</td></tr><tr><td>"+addr1+"</td></tr></table></div></a>");
+				$target.append("<a style='color:black; text-decoration: none;' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+contentid+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=sel><table><tr><td rowspan=3><img src=" +firstimage2+" width=100px height=100px></td><td>"+title+"</td></tr><tr><td>"+eventstartdate+"~ "+eventenddate+"</td></tr><tr><td>"+addr1+"</td></tr></table></div></a>");
 			}else{
 			$.each(item,function(index,data){
 				 contentid=data["contentid"];
@@ -129,7 +129,7 @@ $(function() {
 				 if(firstimage2==null){
 						firstimage2="<%=request.getContextPath()%>/images/fastival2.jpg";
 					}
-				$target.append("<a style='color:black;' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+contentid+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=sel><table><tr><td rowspan=3><img src=" +firstimage2+" width=100px height=100px></td><td>"+title+"</td></tr><tr><td>"+eventstartdate+"~ "+eventenddate+"</td></tr><tr><td>"+addr1+"</td></tr></table></div></a>");
+				$target.append("<a style='color:black; text-decoration: none;' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+contentid+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=sel><table><tr><td rowspan=3><img src=" +firstimage2+" width=100px height=100px></td><td>"+title+"</td></tr><tr><td>"+eventstartdate+"~ "+eventenddate+"</td></tr><tr><td>"+addr1+"</td></tr></table></div></a>");
 				//한국관광공사 api
 				
 			});

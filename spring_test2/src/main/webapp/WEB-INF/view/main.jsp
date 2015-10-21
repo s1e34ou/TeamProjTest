@@ -20,14 +20,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-.festid{
-	color:black;
-}
-.fes{
-padding-left:10px;
-}
-</style>
+
 <link href="<%=request.getContextPath()%>/style/index.css"
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet"
@@ -40,6 +33,7 @@ padding-left:10px;
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 
@@ -51,6 +45,7 @@ $(function() {
 		SimpleDateFormat ddd=new SimpleDateFormat("yyyyMMdd");
 		String dddd=ddd.format(today);
 %>
+
 	$("#loginbutton").on("click",function(e){
 		if($("#usersId").val()==""){
 			alert("아이디를 입력해 주세요");
@@ -101,7 +96,7 @@ $.ajax({
 		var $box4=$("#box4");
 		var item= txt["response"]["body"]["items"]["item"];
 		$.each(item,function(index,data){
-			$box4.append("<a id='festid' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><div class='fes'><table align='center'><tr><td rowspan=3><img src=" +data["firstimage2"]+" width=60px height=60px></td><td width=500px>"+data["title"]+"</td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div></a>");
+			$box4.append("<a style='color: black; text-decoration: none;' id='festid' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class='fes'><table align='center'><tr><td rowspan=3><img src=" +data["firstimage2"]+" width=60px height=60px></td><td width=500px>"+data["title"]+"</td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div></a>");
 			//한국관광공사 api
 		});
 	}
@@ -109,7 +104,7 @@ $.ajax({
 	});
 
 var ranklist="<%=request.getContextPath()%>/rankjson";
-var rselected = $('[name=rankradio]:checked').val();
+var rselected = "hit";
 
 $.ajax({
 	
@@ -146,7 +141,7 @@ $.ajax({
 			}
 			
 				code="음식"
-				$box6_2.append("<a href=<%=request.getContextPath()%>/rankboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+				$box6_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/rankboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
 						 "<tr  align=center valign=middle >"+
 						     "<td width=60  rowspan=3>"+
 							"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
@@ -160,8 +155,11 @@ $.ajax({
 	}
 	
 	});
-$('input[name=rankradio]').on("click",function(){
-rselected = $('[name=rankradio]:checked').val();
+$("#ranktabs>li").on(
+		"click",function(){
+			$("#ranktabs>li").removeAttr("class");
+		$(this).attr("class","active");
+		rselected=$(this).attr("id"); 
 $.ajax({
 
 url:ranklist,
@@ -196,7 +194,7 @@ success:function(txt){
 			sec="0"+sec;
 		}
 		code="음식"
-			$box6_2.append("<a href=<%=request.getContextPath()%>/rankboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+			$box6_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/rankboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
 					 "<tr  align=center valign=middle >"+
 					     "<td width=60  rowspan=3>"+
 						"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
@@ -211,9 +209,12 @@ success:function(txt){
 });
 });
 
- var eventlist="<%=request.getContextPath()%>/mainevent";
- var eselected = $('[name=eventradio]:checked').val();
 
+ var eventlist="<%=request.getContextPath()%>/mainevent";
+ var eselected ="eventall";
+ 
+
+	
  $.ajax({
 		
 		url:eventlist,
@@ -252,7 +253,7 @@ success:function(txt){
 				
 				if(txt[i]["boardCode"]=="EVENT_food"){
 					code="음식"
-					$box5_2.append("<a href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+					$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
 							 "<tr  align=center valign=middle >"+
 							     "<td width=60  rowspan=3>"+
 								"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
@@ -264,7 +265,7 @@ success:function(txt){
 								
 				}else if(txt[i]["boardCode"]=="EVENT_beauty"){
 					code="미용"
-						$box5_2.append("<a href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+						$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
 								 "<tr  align=center valign=middle >"+
 								     "<td width=60  rowspan=3>"+
 									"<img width=60 height=60 src=<%=request.getContextPath()%>/images/beau.png>"+
@@ -276,7 +277,7 @@ success:function(txt){
 						
 				}else{
 					code="문화"
-						$box5_2.append("<a href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+						$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
 								 "<tr  align=center valign=middle >"+
 								     "<td width=60  rowspan=3>"+
 									"<img width=60 height=60 src=<%=request.getContextPath()%>/images/cult.png>"+
@@ -291,8 +292,16 @@ success:function(txt){
 		}
 		
 		});
- $('input[name=eventradio]').on("click",function(){
-	eselected = $('[name=eventradio]:checked').val();
+ $("#eventtabs>li").on(
+		"click",function(){
+			$("#eventtabs>li").removeAttr("class");
+		$(this).attr("class","active");
+		eselected=$(this).attr("id"); 
+		
+		
+		
+	
+	
 $.ajax({
 	
 	url:eventlist,
@@ -330,7 +339,7 @@ $.ajax({
 			
 			if(txt[i]["boardCode"]=="EVENT_food"){
 				code="음식"
-				$box5_2.append("<a href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+				$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div  onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
 						 "<tr  align=center valign=middle >"+
 						     "<td width=60  rowspan=3>"+
 							"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
@@ -342,7 +351,7 @@ $.ajax({
 							
 			}else if(txt[i]["boardCode"]=="EVENT_beauty"){
 				code="미용"
-					$box5_2.append("<a href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+					$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
 							 "<tr  align=center valign=middle >"+
 							     "<td width=60  rowspan=3>"+
 								"<img width=60 height=60 src=<%=request.getContextPath()%>/images/beau.png>"+
@@ -354,7 +363,7 @@ $.ajax({
 					
 			}else{
 				code="문화"
-					$box5_2.append("<a href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div class=fes><table height=60 width=350 border=1 >"+
+					$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
 							 "<tr  align=center valign=middle >"+
 							     "<td width=60  rowspan=3>"+
 								"<img width=60 height=60 src=<%=request.getContextPath()%>/images/cult.png>"+
@@ -369,11 +378,22 @@ $.ajax({
 	}
 	
 	});
+		});
 });
-});
+
 
 
 </script>
+<style type="text/css">
+.festid{
+	color:black;
+}
+.fes{
+padding-left:10px;
+
+}
+
+</style>
 </head>
 <body>
 	<section id="parent">
@@ -469,18 +489,23 @@ $.ajax({
 	<div id="boardbox">
 		<div id="box4"></div>
 		<div id="box5">
+	<ul id="eventtabs" class="nav nav-pills">
+  <li id="eventall" role="presentation" class="active" ><a href="#">전체</a></li>
+  <li id="eventfood" role="presentation" ><a href="#">음식</a></li>
+  <li id="eventbeauty" role="presentation" ><a href="#">미용</a></li>
+  <li id="eventculture" role="presentation" ><a href="#">문화</a></li>
+</ul>
 		<div>
-	<input type="radio" id="eall" name="eventradio" value="all" checked><label for="eall">전체</label>
-		<input type="radio" id="efood" name="eventradio" value="food" ><label for="efood">음식</label>
-		<input type="radio" id="ebeau" name="eventradio" value="beauty"><label for="ebeau">미용</label>
-		<input type="radio" id="ecult" name="eventradio" value="culture"><label for="ecult">문화</label>
+		
 		</div>
 		<div id=box5_2></div>
 			
 					</div>
 		<div id="box6">
-		<div><input type="radio" id="rhit" name="rankradio" value="hit" checked><label for="rhit">조회수</label>
-		<input type="radio" id="rrec" name="rankradio" value="rec" ><label for="rrec">추천수</label></div>
+		<div><ul id="ranktabs" class="nav nav-pills">
+  <li id="hit" role="presentation" class="active" ><a href="#">조회수</a></li>
+  <li id="recom" role="presentation" ><a href="#">추천수</a></li>
+</ul></div>
 		<div id="box6_2"></div>
 		</div>
 	</div>

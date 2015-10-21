@@ -119,19 +119,19 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <% 
             	String view = pplist.get(i).getBoardCode();
 				if(view.equals("FREE")){ %>
-					 <a href="<%=request.getContextPath()%>/freeboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+					 <a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/freeboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
 			<%		 
 				}else if(view.equals("QNA")){
 			%>
-					 <a href="<%=request.getContextPath()%>/qnaboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+					 <a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/qnaboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
 			<%
 				}else if(view.equals("NOTICE")){
             %>
-            	<a href="<%=request.getContextPath()%>/noticeboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+            	<a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/noticeboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
             <%
             	}else{ 
             %>
-            	<a href="<%=request.getContextPath()%>/eventboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+            	<a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/eventboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
             <%} %>
            
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;">

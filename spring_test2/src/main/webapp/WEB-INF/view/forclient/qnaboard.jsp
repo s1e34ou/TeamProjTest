@@ -100,7 +100,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%=pplist.get(i).getBoardNo()%>
         </td>
             <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
-            <a style="color: black" class="btitle" href="<%=request.getContextPath()%>/qnaboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
+            <a style="color: black;text-decoration: none;" class="btitle" href="<%=request.getContextPath()%>/qnaboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
         				<%if(pplist.get(i).getUsersUsersId().equals(loginUser)){ %>
 							<%=pplist.get(i).getUsersUsersId()%>

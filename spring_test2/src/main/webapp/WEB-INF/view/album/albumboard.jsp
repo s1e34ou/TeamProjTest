@@ -26,7 +26,6 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
 </head>
 <body>
 <div id="board">
@@ -110,7 +109,7 @@ pnum = (int) Math.ceil((double) list.size() / PhotoDao.BOARD_PER_PAGE);
            <a href="<%=request.getContextPath()%>/albumboard_view?photoNo=<%=pplist.get(i).getPhotoNo()%>"><img src="<%=request.getContextPath()%>/editorFiles2/thumbnail/<%=pplist.get(i).getPhotoImage()%>" width="100"></a>
         </td> 
             <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line"> 
-            <a style="color: black" href="<%=request.getContextPath()%>/albumboard_view?photoNo=<%=pplist.get(i).getPhotoNo()%>"><%=pplist.get(i).getPhotoName()%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
+            <a style="color: black; text-decoration: none;" href="<%=request.getContextPath()%>/albumboard_view?photoNo=<%=pplist.get(i).getPhotoNo()%>"><%=pplist.get(i).getPhotoName()%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getUsersUsersId()%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
