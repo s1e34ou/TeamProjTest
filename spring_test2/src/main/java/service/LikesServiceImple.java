@@ -25,8 +25,8 @@ public class LikesServiceImple implements LikesService {
 
 	@Override
 	@Transactional
-	public void delete(int likesNo) {
-		dao.deleteLikes(likesNo);
+	public void delete(int boardNo) {
+		dao.deleteLikes(boardNo);
 		
 	}
 	

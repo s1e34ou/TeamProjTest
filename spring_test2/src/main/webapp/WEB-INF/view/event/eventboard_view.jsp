@@ -74,7 +74,7 @@ $(function() {
 				
 			}
 		});
-		location.reload(true)
+		location.reload(true);
 	});
 	
 	$("#unlike").on("click",function(){
@@ -88,7 +88,7 @@ $(function() {
 				
 			}
 		});
-		location.reload(true)
+		location.reload(true);
 	});
 	
 <%
@@ -105,6 +105,7 @@ $(function() {
 					$("#like").attr("disabled","disabled:disabled")
 				}
 			});
+			location.reload(true);
 		});
 		
 		$("#unlike").on("click",function(){
@@ -116,6 +117,7 @@ $(function() {
 					$("#unlike").attr("disabled","disabled:disabled")
 				}
 			});
+			location.reload(true);
 		});
 		<%
 	}
@@ -241,7 +243,6 @@ $("#replybut").on("click",function(e){
 						<div>
 							<form method="post"
 								action="<%=request.getContextPath()%>/eventboard_delete">
-
 								<input type="button" id="deleteboard" class="btn btn-default" value="삭제">
 							</form>
 						</div>

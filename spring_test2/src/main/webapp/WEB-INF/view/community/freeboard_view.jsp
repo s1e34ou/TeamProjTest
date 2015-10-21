@@ -108,6 +108,7 @@ $(function() {
 					$("#like").attr("disabled","disabled:disabled");
 				}
 			});
+			location.reload(true);
 		});
 		
 		$("#unlike").on("click",function(){
@@ -119,6 +120,7 @@ $(function() {
 					$("#unlike").attr("disabled","disabled:disabled");
 				}
 			});
+			location.reload(true);
 		});
 		<%
 	}
@@ -229,7 +231,6 @@ $(function() {
 						<div>
 							<form method="post"
 								action="<%=request.getContextPath()%>/freeboard_delete">
-
 								<input type="button" id="deleteboard" class="btn btn-default" value="삭제">
 							</form>
 						</div>

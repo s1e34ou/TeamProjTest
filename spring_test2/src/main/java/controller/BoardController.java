@@ -200,6 +200,8 @@ public class BoardController {
 	
 	@RequestMapping(value = "/eventboard_delete", method = RequestMethod.GET)
 	public String eventboardDelete(Model model,@RequestParam int boardNo,RedirectAttributes redir) {
+		lservice.delete(boardNo);
+		rservice.delete(boardNo);
 		service.deleteboard(boardNo);
 		redir.addFlashAttribute("contentpage", "/WEB-INF/view/event/eventboard_delete.jsp");
 		return "redirect:board_prg";
@@ -317,6 +319,8 @@ public class BoardController {
 	}
 	@RequestMapping(value = "/freeboard_delete", method = RequestMethod.GET)
 	public String freeboardDelete(Model model,@RequestParam int boardNo,RedirectAttributes redir) {
+		lservice.delete(boardNo);
+		rservice.delete(boardNo);
 		service.deleteboard(boardNo);
 		redir.addFlashAttribute("contentpage", "/WEB-INF/view/community/freeboard_delete.jsp");
 		return "redirect:board_prg";
@@ -501,6 +505,8 @@ public class BoardController {
 	}
 	@RequestMapping(value = "/notice_delete", method = RequestMethod.GET)
 	public String noticeDelete(Model model,@RequestParam int boardNo,RedirectAttributes redir) {
+		lservice.delete(boardNo);
+		rservice.delete(boardNo);
 		service.deleteboard(boardNo);
 		redir.addFlashAttribute("contentpage", "/WEB-INF/view/forclient/notice_delete.jsp");
 		return "redirect:board_prg";
@@ -587,6 +593,8 @@ public class BoardController {
 	}
 	@RequestMapping(value = "/qnaboard_delete", method = RequestMethod.GET)
 	public String qnaboardDelete(Model model,@RequestParam int boardNo,RedirectAttributes redir) {
+		lservice.delete(boardNo);
+		rservice.delete(boardNo);
 		service.deleteboard(boardNo);
 		redir.addFlashAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_delete.jsp");
 		return "redirect:board_prg";

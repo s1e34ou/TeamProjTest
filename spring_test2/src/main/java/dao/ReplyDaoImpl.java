@@ -54,6 +54,9 @@ public class ReplyDaoImpl implements ReplyDao {
 		
 	
 	}
+	
+	
+	
 
 	@Override
 	public void updateReply(Reply reply) {
@@ -112,6 +115,14 @@ public class ReplyDaoImpl implements ReplyDao {
 		String sql="select count(*) from reply where board_board_no=?";
 		int count=jdbcTemp.queryForInt(sql, boardNo);
 		return count;
+	}
+
+	@Override
+	public void delete(int boardNo) {
+		String sql = "delete from reply where board_board_no=?";
+		
+		jdbcTemp.update(sql, boardNo);
+		
 	}
 
 
