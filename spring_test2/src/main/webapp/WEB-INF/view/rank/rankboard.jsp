@@ -134,9 +134,8 @@ $(function() {
 								$box5_2.append("<center>"+
 										 
 										
-										"<table width=900 border=0 cellpadding=0 cellspacing=0 ><tr  align=center valign=middle bordercolor=#333333"+
-						        "onmouseover=this.style.backgroundColor='#FFFAF5'"+
-						        "onmouseout=this.style.backgroundColor=''>"+
+										"<table width=900 border=0 cellpadding=0 cellspacing=0 ><tr align=center valign=middle bordercolor='#333333'"+
+						        "onmouseover=this.style.backgroundColor='#E6E6E6' onmouseout=this.style.backgroundColor=''>"+
 						        "<td width=8% height=23 style='font-family:Tahoma;font-size:12pt;' class=line>"+
 						        +(index+1)+" 위"+
 						        "</td>"+
@@ -159,9 +158,8 @@ $(function() {
 									$box5_2.append("<center>"+
 											 
 											
-											"<table width=900 border=0 cellpadding=0 cellspacing=0 ><tr  align=center valign=middle bordercolor=#333333"+
-							        "onmouseover=this.style.backgroundColor='#FFFAF5'"+
-							        "onmouseout=this.style.backgroundColor=''>"+
+											"<table width=900 border=0 cellpadding=0 cellspacing=0 ><tr align=center valign=middle bordercolor='#333333' "+
+							        "onmouseover=this.style.backgroundColor='#E6E6E6' onmouseout=this.style.backgroundColor=''>"+
 							        "<td width=8% height=23 style='font-family:Tahoma;font-size:12pt;' class=line>"+
 							        +(index+1)+" 위"+
 							        "</td>"+
@@ -270,7 +268,7 @@ $(function() {
         for(int i=0;i<pplist.size();i++){
     %>
     <tr align="center" valign="middle" bordercolor="#333333"
-        onmouseover="this.style.backgroundColor='#FFFAF5'"
+        onmouseover="this.style.backgroundColor='#E6E6E6'"
         onmouseout="this.style.backgroundColor=''">
         <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%out.println(i+1);%>위
