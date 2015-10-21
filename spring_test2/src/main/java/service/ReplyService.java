@@ -27,5 +27,7 @@ public interface ReplyService {
 	List<Map<String, Object>> selectReplyByPhotoNo(int photoNo);
 
 	void deleteReplyByPhotoNo(int photoNo);
+	
+	void delete(int boardNo);
 
 }

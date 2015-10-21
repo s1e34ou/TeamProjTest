@@ -29,7 +29,7 @@
 </head>
 <body>
 <div id="board">
-	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/albumboard?page=1">포토게시판</a></h1>
+	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/albumboard?page=1">축제후기게시판</a></h1>
 		<div id="boardin">
 		<div id="boardinhead">
 			<div id="contentnum">

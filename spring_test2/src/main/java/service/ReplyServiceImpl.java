@@ -87,6 +87,13 @@ public class ReplyServiceImpl implements ReplyService{
 		int count = dao.countReplyByBoardNo(boardNo);
 		return count;
 	}
+
+	@Override
+	@Transactional
+	public void delete(int boardNo) {
+		dao.delete(boardNo);
+		
+	}
 	
 
 }

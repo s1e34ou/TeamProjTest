@@ -57,6 +57,9 @@ private static Logger logger = LoggerFactory.getLogger(ReplyDaoImpl.class);
 		
 	
 	}
+	
+	
+	
 
 	@Override
 	public void updateReply(Reply reply) {
@@ -116,6 +119,14 @@ private static Logger logger = LoggerFactory.getLogger(ReplyDaoImpl.class);
 		String sql="select count(*) from reply where board_board_no=?";
 		int count=jdbcTemp.queryForInt(sql, boardNo);
 		return count;
+	}
+
+	@Override
+	public void delete(int boardNo) {
+		String sql = "delete from reply where board_board_no=?";
+		
+		jdbcTemp.update(sql, boardNo);
+		
 	}
 
 

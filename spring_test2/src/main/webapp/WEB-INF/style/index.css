@@ -85,6 +85,7 @@ div {
 }
 #loginbox{
 	border:solid 1px #c5c5c5;
+	border-radius : 3px;
 }
 #adduser{
 	margin-top:15px;
@@ -102,17 +103,40 @@ div {
 	margin-top:15px;
 	display: -webkit-box;
 }
-#boardbox div:nth-of-type(1){
-	border:solid 1px gray;
-	width: 400px;
+#box4{
+	border :solid 1px gray;
+	border-radius : 3px;
+	width: 420px;
 }
-#boardbox div:nth-of-type(2){
-	border:solid 1px green;
-	width: 400px;
+#box4t{
+	border :solid 1px #dcd8d9;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
 }
-#boardbox div:nth-of-type(3){
-	border:solid 1px blue;
-	width: 400px;
+#box5{
+	border :solid 1px gray;
+	border-radius : 3px;
+	margin-left : 8px;
+	width: 375px;
+}
+#box5t{
+	border :solid 1px #dcd8d9;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+}
+#box6{
+	border :solid 1px gray;
+	border-radius : 3px;
+	margin-left : 8px;
+	width: 375px;
+}
+#box6t{
+	border :solid 1px #dcd8d9;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 5px;
 }
 #defaultbox{
 	margin: auto;
@@ -128,7 +152,8 @@ div {
 }
 #picture1{
 	border:solid 1px gray;
-	width: 225px;
+	width: 215px;
+	margin-right: 10px;
 }
 #picb1{
 	width: 200px;
@@ -136,7 +161,8 @@ div {
 }
 #picture2{
 	border:solid 1px gray;
-	width: 225px;
+	width: 215px;
+	margin-right: 10px;
 }
 #picb2{
 	width: 200px;
@@ -144,7 +170,8 @@ div {
 }
 #picture3{
 	border:solid 1px gray;
-	width: 225px;
+	width: 215px;
+	margin-right: 10px;
 }
 #picb3{
 	width: 200px;
@@ -152,7 +179,8 @@ div {
 }
 #picture4{
 	border:solid 1px gray;
-	width: 225px;
+	width: 215px;
+	margin-right: 10px;
 }
 #picb4{
 	width: 200px;
@@ -163,32 +191,35 @@ div {
 }
 #bannerbox div:nth-of-type(1){
 	height: 115px;
+	width: 290px;
 }
 #ban1{
-	height: 105px;
+	height: 108px;
 	width: 280px;
-	margin-left: 20px;
 	margin-top: 5px;
+	margin-left: 5px;
 	border:solid 1px black;
 	
 }
 #bannerbox div:nth-of-type(2){
 	height: 115px;
+	width: 290px;
 }
 #ban2{
-	height: 105px;
+	height: 108px;
 	width: 280px;
-	margin-left: 20px;
 	margin-top: 5px;
+	margin-left: 5px;
 	border:solid 1px black;
 }
 #bannerbox div:nth-of-type(3){
 	height: 115px;
+	width: 290px;
 }
 #ban3{
-	height: 105px;
+	height: 108px;
 	width: 280px;
-	margin-left: 20px;
 	margin-top: 5px;
+	margin-left: 5px;
 	border:solid 1px black;
 }

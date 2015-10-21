@@ -9,7 +9,7 @@ public interface LikesDao {
 
 	public void insertLikes(Likes likes);
 	
-	public void deleteLikes(int likesNo);
+	public void deleteLikes(int boardNo);
 	
 	public void updateLikes(Likes likes);
 	

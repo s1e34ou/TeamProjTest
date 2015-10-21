@@ -49,9 +49,9 @@ public class LikesDaoImpl implements LikesDao {
 	}
 
 	@Override
-	public void deleteLikes(int likesNo) {
-		String sql = "delete from likes where likes_no=? ";
-		jdbcTemp.update(sql,likesNo);
+	public void deleteLikes(int boardNo) {
+		String sql = "delete from likes where board_no=? ";
+		jdbcTemp.update(sql,boardNo);
 		
 	}
 
