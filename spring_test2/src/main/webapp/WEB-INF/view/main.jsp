@@ -96,7 +96,7 @@ $.ajax({
 		var $box4=$("#box4");
 		var item= txt["response"]["body"]["items"]["item"];
 		$.each(item,function(index,data){
-			$box4.append("<a style='color: black; text-decoration: none;' id='festid' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class='fes'><table align='center'><tr><td rowspan=3><img src=" +data["firstimage2"]+" width=60px height=60px></td><td width=500px>"+data["title"]+"</td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div></a>");
+			$box4.append("<a style='color: black; text-decoration: none;' id='festid' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class='fes'><table align='center' id='box4t'><tr><td rowspan=3><img src=" +data["firstimage2"]+" width=60px height=60px></td><td width=500px>"+data["title"]+"</td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div></a>");
 			//한국관광공사 api
 		});
 	}
@@ -141,7 +141,7 @@ $.ajax({
 			}
 			
 				code="음식"
-				$box6_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/rankboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
+				$box6_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/rankboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 id='box6t'>"+
 						 "<tr  align=center valign=middle >"+
 						     "<td width=60  rowspan=3>"+
 							"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
@@ -194,7 +194,7 @@ success:function(txt){
 			sec="0"+sec;
 		}
 		code="음식"
-			$box6_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/rankboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
+			$box6_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/rankboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 id='box6t'>"+
 					 "<tr  align=center valign=middle >"+
 					     "<td width=60  rowspan=3>"+
 						"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
@@ -253,7 +253,7 @@ success:function(txt){
 				
 				if(txt[i]["boardCode"]=="EVENT_food"){
 					code="음식"
-					$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
+					$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 id='box5t'>"+
 							 "<tr  align=center valign=middle >"+
 							     "<td width=60  rowspan=3>"+
 								"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
@@ -265,7 +265,7 @@ success:function(txt){
 								
 				}else if(txt[i]["boardCode"]=="EVENT_beauty"){
 					code="미용"
-						$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
+						$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 id='box5t'>"+
 								 "<tr  align=center valign=middle >"+
 								     "<td width=60  rowspan=3>"+
 									"<img width=60 height=60 src=<%=request.getContextPath()%>/images/beau.png>"+
@@ -277,7 +277,7 @@ success:function(txt){
 						
 				}else{
 					code="문화"
-						$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
+						$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 id='box5t'>"+
 								 "<tr  align=center valign=middle >"+
 								     "<td width=60  rowspan=3>"+
 									"<img width=60 height=60 src=<%=request.getContextPath()%>/images/cult.png>"+
@@ -339,7 +339,7 @@ $.ajax({
 			
 			if(txt[i]["boardCode"]=="EVENT_food"){
 				code="음식"
-				$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div  onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
+				$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div  onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 id='box5t'>"+
 						 "<tr  align=center valign=middle >"+
 						     "<td width=60  rowspan=3>"+
 							"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
@@ -351,7 +351,7 @@ $.ajax({
 							
 			}else if(txt[i]["boardCode"]=="EVENT_beauty"){
 				code="미용"
-					$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
+					$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 id='box5t'>"+
 							 "<tr  align=center valign=middle >"+
 							     "<td width=60  rowspan=3>"+
 								"<img width=60 height=60 src=<%=request.getContextPath()%>/images/beau.png>"+
@@ -363,7 +363,7 @@ $.ajax({
 					
 			}else{
 				code="문화"
-					$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 >"+
+					$box5_2.append("<a  style='color: black; text-decoration: none;' href=<%=request.getContextPath()%>/eventboard_view?boardNo="+txt[i]["boardNo"]+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=fes><table height=60 width=350 border=1 id='box5t'>"+
 							 "<tr  align=center valign=middle >"+
 							     "<td width=60  rowspan=3>"+
 								"<img width=60 height=60 src=<%=request.getContextPath()%>/images/cult.png>"+
