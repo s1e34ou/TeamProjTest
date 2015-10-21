@@ -73,7 +73,7 @@ List<Board> pplist = (List<Board>)plist;
 pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 %>
 <center>
-<table width=570 border="0" cellpadding="0" cellspacing="0" id="boardlist">
+<table width=570 border="0" cellpadding="0" cellspacing="0"  id="boardlist">
      
     <tr align="center" valign="middle" bordercolor="#333333">
         <th style="font-family:Tahoma;font-size:15pt;" width="8%" height="50" class="sline">
