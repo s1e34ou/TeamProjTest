@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.service.spi.ServiceBinding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.google.gson.Gson;
 
 import dto.Board;
 import dto.Likes;
@@ -353,7 +357,6 @@ public class BoardController {
 	public String rankboard(Model model,HttpServletRequest req) {
 		Object pageObj = req.getAttribute("page");
 		
-		logger.trace("pageObj : {}",pageObj);
 		
 		int page;
 		if(pageObj!=null){
@@ -372,9 +375,10 @@ public class BoardController {
 		}else{
 			select=req.getParameter("select");
 		}
-		
-		List<Board> plist = service.getRankBoardByPage(page,select);
-		List<Board> list = service.getRankAllBoard(select);
+		List<Board> plist=null;
+		List<Board> list=null;
+		plist = service.getRankBoardByPage(page,select);
+		list = service.getRankAllBoard(select);
 		model.addAttribute("contentpage", "/WEB-INF/view/rank/rankboard.jsp");
 		model.addAttribute("boardlist", list);
 		model.addAttribute("pagelist", plist);
@@ -384,6 +388,22 @@ public class BoardController {
 		return "start";
 	}
 
+	@RequestMapping(value = "/rankjson", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String rankjsonForm(Model model,@RequestParam String selected, @RequestParam String type, HttpServletRequest req) {
+		Gson gson=new Gson();
+		List<Board> mrlist=null;
+		if(selected.equals("hit")){
+			mrlist= service.getRankBoardByPage(1, type);
+			
+		}else{
+			mrlist= service.getRankrecomBoardByPage(1, type);
+			
+		}
+		
+		
+		return gson.toJson(mrlist);
+	}
+	
 	@RequestMapping(value = "/rankboard_view", method = RequestMethod.GET)
 	public String rankView(Model model, @RequestParam int boardNo,HttpSession sess) {
 		Board board = new Board();

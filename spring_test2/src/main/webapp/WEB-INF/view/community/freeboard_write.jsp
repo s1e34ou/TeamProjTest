@@ -25,6 +25,16 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
 <script src="<%=request.getContextPath()%>/ckfinder/ckfinderz.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#wri").on("click",function(e){
+		if($("#boardName").val()==""){
+			alert("제목을 입력하세요");
+			e.preventDefault();
+		}
+	});
+});
+</script>
 </head>
 
 <body>
@@ -45,7 +55,7 @@
             <sform:label path="boardContent">내용</sform:label>
             <sform:textarea path="boardContent"/>
             <div id="blistfoot">
-            <sform:button>글쓰기</sform:button>
+            <sform:button id="wri">글쓰기</sform:button>
             <a href="<%=request.getContextPath()%>/freeboard?page=1"><button type="button">취소</button></a>
             </div>
         </fieldset>

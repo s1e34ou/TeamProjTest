@@ -129,7 +129,7 @@ $("#replybut").on("click",function(e){
 		alert("내용을 입력하세요");
 		e.preventDefault();
 	}else{
-	var url="<%=request.getContextPath()%>/replywrite";
+	var url="<%=request.getContextPath()%>/replyphotowrite";
 	var data={replycon:$("#replycont").val(),userid:"<%=loginUser%>",boardno:<%=photo.getPhotoNo()%>};
 	$.ajax({
 		url:url,
@@ -137,7 +137,7 @@ $("#replybut").on("click",function(e){
 		data:data,
 		
 		success:function(txt){
-		
+			$("#replycont").val("");
 			var add=txt.length-resize;
 			//targety.append("<li>"+JSON.stringify(txt)+"</li>");
 			//console.log(JSON.stringify(txt));

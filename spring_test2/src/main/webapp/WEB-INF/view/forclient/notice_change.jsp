@@ -31,6 +31,16 @@ Object cb = request.getAttribute("board");
 Board board = (Board) cb;
 
 %>
+<script type="text/javascript">
+$(function() {
+	$("#wri").on("click",function(e){
+		if($("#boardName").val()==""){
+			alert("제목을 입력하세요");
+			e.preventDefault();
+		}
+	});	
+});
+</script>
 </head>
 <body>
 <div id="boardchange">
@@ -52,7 +62,7 @@ Board board = (Board) cb;
             <sform:label path="boardContent">내용</sform:label>
             <sform:textarea path="boardContent" rows="10" cols="100"></sform:textarea><br>
             <div id="blistfoot">
-            <sform:button>수정</sform:button>
+            <sform:button id="wri">수정</sform:button>
             <a href="<%=request.getContextPath()%>/notice_view?boardNo=<%=board.getBoardNo()%>"><button type="button">취소</button></a>
             </div>
         </fieldset>

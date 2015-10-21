@@ -29,7 +29,7 @@
 			<div id="box1" class="list-group">
 				<a href="#" class="list-group-item active"> 축제 </a> 
 				<a href="<%=request.getContextPath()%>/festival_regionboard" class="list-group-item"> 지역별 </a> 
-				<a href="#" class="list-group-item"> 월별 </a> 
+				<a href="<%=request.getContextPath()%>/festival_seasonboard" class="list-group-item"> 월별 </a> 
 			</div>
 			<div id="box2" class="list-group">
 				<a href="#" class="list-group-item active"> 이벤트 </a> 
@@ -38,7 +38,7 @@
 			<div id="box3" class="list-group">
 				<a href="#" class="list-group-item active"> 커뮤니티 </a> 
 				<a href="<%=request.getContextPath()%>/freeboard?page=1" class="list-group-item"> 자유게시판 </a> 
-				<a href="#" class="list-group-item"> 축제후기게시판 </a> 
+				<a href="<%=request.getContextPath()%>/albumboard?page=1" class="list-group-item"> 축제후기게시판 </a> 
 			</div>
 			<div id="box4" class="list-group">
 				<a href="#" class="list-group-item active"> 랭킹 </a> 

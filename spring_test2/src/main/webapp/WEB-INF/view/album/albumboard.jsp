@@ -30,7 +30,7 @@
 </head>
 <body>
 <div id="board">
-	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/albumboard?page=1">포토게시판</a></h1>
+	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/albumboard?page=1">축제후기게시판</a></h1>
 		<div id="boardin">
 		<div id="boardinhead">
 			<div id="contentnum">
@@ -101,7 +101,7 @@ pnum = (int) Math.ceil((double) list.size() / PhotoDao.BOARD_PER_PAGE);
         for(int i=0;i<pplist.size();i++){
     %>
     <tr align="center" valign="middle" bordercolor="#333333"
-        onmouseover="this.style.backgroundColor='F8F8F8'"
+       onmouseover="this.style.backgroundColor='#FFFAF5'"
         onmouseout="this.style.backgroundColor=''">
         <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getPhotoNo()%>
@@ -110,7 +110,7 @@ pnum = (int) Math.ceil((double) list.size() / PhotoDao.BOARD_PER_PAGE);
            <a href="<%=request.getContextPath()%>/albumboard_view?photoNo=<%=pplist.get(i).getPhotoNo()%>"><img src="<%=request.getContextPath()%>/editorFiles2/thumbnail/<%=pplist.get(i).getPhotoImage()%>" width="100"></a>
         </td> 
             <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line"> 
-            <a style="color: black" href="<%=request.getContextPath()%>/albumboard_view?photoNo=<%=pplist.get(i).getPhotoNo()%>"><%=pplist.get(i).getPhotoName()%></a>
+            <a style="color: black" href="<%=request.getContextPath()%>/albumboard_view?photoNo=<%=pplist.get(i).getPhotoNo()%>"><%=pplist.get(i).getPhotoName()%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getUsersUsersId()%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">

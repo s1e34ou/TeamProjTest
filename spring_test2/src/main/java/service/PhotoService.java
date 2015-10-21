@@ -16,4 +16,6 @@ public interface PhotoService {
 	List<Photo> getPhotoByPage(int page);
 
 	List<Photo> getAllPhoto();
+
+	int countphoto();
 }

@@ -141,7 +141,7 @@ $(function() {
 			data:data,
 			
 			success:function(txt){
-			
+				$("#replycont").val("");
 				var add=txt.length-resize;
 				//targety.append("<li>"+JSON.stringify(txt)+"</li>");
 				//console.log(JSON.stringify(txt));

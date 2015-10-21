@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -15,6 +17,7 @@ import dto.Reply;
 
 @Repository
 public class ReplyDaoImpl implements ReplyDao {
+private static Logger logger = LoggerFactory.getLogger(ReplyDaoImpl.class);
 
 	@Autowired
 	JdbcTemplate jdbcTemp;
@@ -71,7 +74,6 @@ public class ReplyDaoImpl implements ReplyDao {
 		jdbcTemp.update(sql, reply.getReplyContent(), reply.getUsersUsersId(), reply.getBoardBoardNo(),null);
 		sql = "update board set reply_count=reply_count+1 where board_no=?";
 		jdbcTemp.update(sql,reply.getBoardBoardNo());
-		
 
 	}
 
@@ -93,6 +95,8 @@ public class ReplyDaoImpl implements ReplyDao {
 	public void insertPhotoReply(Reply reply) {
 		String sql = "insert into reply values(reply_NO_SEQ.nextval,?,sysdate,?,?,?)";
 		jdbcTemp.update(sql, reply.getReplyContent(), reply.getUsersUsersId(),null, reply.getPhotoPhotoNo());
+		sql = "update photo set reply_count=reply_count+1 where photo_no=?";
+		jdbcTemp.update(sql,reply.getPhotoPhotoNo());
 	
 	}
 

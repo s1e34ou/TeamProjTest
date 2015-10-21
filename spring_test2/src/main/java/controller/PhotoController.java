@@ -61,11 +61,12 @@ public class PhotoController {
 		
 		List<Photo> plist = service.getPhotoByPage(page);
 		List<Photo> list = service.getAllPhoto();
-		
+		int count = service.countphoto();
 		model.addAttribute("contentpage", "/WEB-INF/view/album/albumboard.jsp");
 		model.addAttribute("photolist", list);
 		model.addAttribute("pagelist", plist);
 		model.addAttribute("page",page);
+		model.addAttribute("count",count);
 		return "start";
 	}
 
@@ -100,7 +101,7 @@ public class PhotoController {
 		Photo photo = new Photo();
 		List<Map<String, Object>> reply;
 		photo = service.selectphoto(photoNo);
-		reply=rservice.selectReplyByBoardNo(photoNo);
+		reply=rservice.selectReplyByPhotoNo(photoNo);
 		int likecount = lservice.count(photoNo,2);
 		int unlikcecount = lservice.count(photoNo,1);
 		logger.trace("likecount: {}",likecount);

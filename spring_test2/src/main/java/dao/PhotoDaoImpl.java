@@ -34,7 +34,7 @@ public class PhotoDaoImpl implements PhotoDao {
 				photo.setPhotoName(rs.getString("photo_name"));
 				photo.setPhotoDate(rs.getDate("photo_date"));
 				photo.setUsersUsersId(rs.getString("users_users_id"));
-
+				photo.setReplyCount(rs.getInt("reply_count"));
 				return photo;
 			}
 		};
@@ -49,7 +49,7 @@ public class PhotoDaoImpl implements PhotoDao {
 
 	@Override
 	public void insertPhoto(Photo photo) {
-		String sql = "insert into photo values(BOARD_NO_SEQ.nextval,?,?,sysdate,?,?,?)";
+		String sql = "insert into photo values(BOARD_NO_SEQ.nextval,?,?,sysdate,?,?,?,0)";
 		jdbcTemp.update(sql,photo.getPhotoName(), photo.getPhotoContent(),0, photo.getPhotoImage(),
 				photo.getUsersUsersId());
 
@@ -59,6 +59,8 @@ public class PhotoDaoImpl implements PhotoDao {
 	public Photo selectPhoto(int photoNo) {
 		String sql = "select * from photo where photo_no=?";
 		Photo photo = jdbcTemp.queryForObject(sql, getPhotoRowMapper(), photoNo);
+		sql = "update photo set photo_hits=photo_hits+1 where photo_no=?";
+		jdbcTemp.update(sql,photo.getPhotoNo());
 		return photo;
 	}
 
@@ -84,5 +86,10 @@ public class PhotoDaoImpl implements PhotoDao {
 
 		return photo;
 	}
-
+	@Override
+	public int countPhoto() {
+		String sql = "select count(*) from photo";
+		int count = jdbcTemp.queryForInt(sql);
+		return count;
+	}
 }

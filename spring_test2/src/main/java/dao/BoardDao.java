@@ -30,6 +30,10 @@ public interface BoardDao {
 	public List<Board> getAllAllBoardByPage(int page,String boardCode,String boardContent);
 	
 	public int countBoard(String boardCode,String boardName);
+
+	List<Board> selectRankrecomAllBoard(String boardCode);
+
+	List<Board> getrankrecomBoardByPage(int page, String boardCode);
 	
 	
 }
