@@ -129,6 +129,8 @@ public class PhotoController {
 	@RequestMapping(value = "/albumboard_delete", method = RequestMethod.GET)
 	public String albumboardDelete(Model model,@RequestParam int photoNo,RedirectAttributes redir) {
 		logger.trace("photoNo : {}",photoNo);
+		lservice.delete(photoNo);
+		rservice.delete(photoNo);
 		service.deletephoto(photoNo);
 		redir.addFlashAttribute("contentpage", "/WEB-INF/view/album/albumboard_delete.jsp");
 		return "redirect:board_prg";

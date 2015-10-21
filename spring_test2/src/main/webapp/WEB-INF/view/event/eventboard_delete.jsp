@@ -23,7 +23,7 @@
 <script type="text/javascript">
 $(function() {
 	$("#mainbut").on("click",function(){
-		$(location).attr("href", "<%=request.getContextPath()%>/eventboard?page=1");
+		$(location).attr("href", "<%=request.getContextPath()%>/eventboard?page=1&select=EVENT_.*");
 	});
 });
 </script>

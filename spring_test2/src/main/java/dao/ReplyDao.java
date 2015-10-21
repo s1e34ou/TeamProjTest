@@ -26,4 +26,6 @@ public interface ReplyDao {
 	public List<Map<String, Object>> selectReplyByBoardNo(int boardNo);
 
 	public void deleteReplyByBoardNo(int boardNo);
+	
+	public void delete(int boardNo);
 }

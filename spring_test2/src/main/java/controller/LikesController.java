@@ -17,10 +17,11 @@ public class LikesController {
 	private static Logger logger = LoggerFactory.getLogger(LikesController.class);
 	
 	@Autowired
-	LikesService service;
+	LikesService lservice;
 	
 	@RequestMapping(value = "/like", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String like(@RequestParam String usersId,@RequestParam int boardNo,@RequestParam int likes) {
+			logger.trace("usersId :{}",usersId);
 			String msg;
 			Likes li = new Likes();
 			if(usersId==null){
@@ -30,7 +31,7 @@ public class LikesController {
 			li.setBoardNo(boardNo);
 			li.setLikes(likes);
 			logger.trace("msg : {}",li);
-			service.insert(li);
+			lservice.insert(li);
 			msg ="추천되었습니다";
 			}
 			return msg;
@@ -40,6 +41,7 @@ public class LikesController {
 	
 	@RequestMapping(value = "/likechange", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String likechange(@RequestParam String usersId,@RequestParam int boardNo,@RequestParam int likes) {
+			logger.trace("usersId :{}",usersId);
 			String msg;
 			Likes li = new Likes();
 			if(usersId==null){
@@ -49,7 +51,7 @@ public class LikesController {
 			li.setBoardNo(boardNo);
 			li.setLikes(likes);
 			logger.trace("msg : {}",li);
-			service.update(li);
+			lservice.update(li);
 			msg ="추천되었습니다";
 			}
 			return msg;
