@@ -12,7 +12,7 @@
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
-	<%-- <link href="<%=request.getContextPath()%>/style/thumbnail.css " rel="stylesheet" type="text/css"> --%>
+	<link href="<%=request.getContextPath()%>/style/thumbnail.css " rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
@@ -107,9 +107,8 @@ $(function() {
 			</div>
 			<div class="filebox bs3-primary preview-image">
             	<input class="upload-name" value="파일등록" disabled="disabled" style="width: 200px;">
-            	
-            	<sform:label path="photoImage">썸네일등록</sform:label>
-            	<sform:input path="photoImage" type="file" class="upload-hidden"/>
+            	<label for="file">썸네일등록</label>
+            	<input id="file" name="file" type="file" class="upload-hidden"/>
             </div>
             
             

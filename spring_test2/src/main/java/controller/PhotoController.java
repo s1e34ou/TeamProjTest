@@ -87,9 +87,9 @@ public class PhotoController {
 	}
 	
 	@RequestMapping(value = "/albumboard_write", method = RequestMethod.POST)
-	public String albumWrite(Model model,Photo photo,@RequestParam MultipartFile file,RedirectAttributes redir) throws IllegalStateException, IOException {
+	public String albumWrite(Model model,Photo photo,@RequestParam MultipartFile file,RedirectAttributes redir,HttpServletRequest req) throws IllegalStateException, IOException {
 		logger.trace("photo : {}",file);
-		File nfile = new File("C:/editorFiles2/thumbnail/"+file.getOriginalFilename());
+		File nfile = new File("/editorFiles2/thumbnail/"+file.getOriginalFilename());
 		file.transferTo(nfile);
 		Map<String, Object> data = new HashMap<>();
 		data.put("location", nfile.getCanonicalPath());
@@ -157,7 +157,7 @@ public class PhotoController {
 	@RequestMapping(value = "/albumboard_change", method = RequestMethod.POST)
 	public String albumboardChangeForm(Model model,Photo photo,@RequestParam int photoNo,@RequestParam MultipartFile file,RedirectAttributes redir) throws IllegalStateException, IOException {
 		
-		File nfile = new File("C:/editorFiles2/thumbnail/"+file.getOriginalFilename());
+		File nfile = new File("/editorFiles2/thumbnail/"+file.getOriginalFilename());
 		file.transferTo(nfile);
 		Map<String, Object> data = new HashMap<>();
 		data.put("location", nfile.getCanonicalPath());

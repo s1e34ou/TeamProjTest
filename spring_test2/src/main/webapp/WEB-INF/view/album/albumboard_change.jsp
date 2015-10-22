@@ -110,8 +110,8 @@ $(document).ready(function(){
         	
 			<div class="filebox bs3-primary preview-image">
             	<input class="upload-name" value="<%=photo.getPhotoImage() %>" disabled="disabled" style="width: 200px;">
-            	<sform:label path="photoImage">썸네일등록</sform:label>
-            	<sform:input path="photoImage" type="file" class="upload-hidden"/>
+            	<label for="file">썸네일등록</label>
+            	<input id="file" name="file" type="file" class="upload-hidden"/>
             </div>
             
         	<sform:label path="photoNo">글번호</sform:label>
