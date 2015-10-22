@@ -15,15 +15,15 @@
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
 <!-- 합쳐지고 최소화된 옵션 테마 -->
 <link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+	href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
-	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 </head>
@@ -73,7 +73,7 @@ List<Board> pplist = (List<Board>)plist;
 pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 %>
 <center>
-<table width=570 border="0" cellpadding="0" cellspacing="0" id="boardlist">
+<table width=570 border="0" cellpadding="0" cellspacing="0"  id="boardlist">
      
     <tr align="center" valign="middle" bordercolor="#333333">
         <th style="font-family:Tahoma;font-size:15pt;" width="8%" height="50" class="sline">
@@ -97,7 +97,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
         for(int i=0;i<pplist.size();i++){
     %>
     <tr align="center" valign="middle" bordercolor="#333333"
-        onmouseover="this.style.backgroundColor='#FFFAF5'"
+        onmouseover="this.style.backgroundColor='#E6E6E6'"
         onmouseout="this.style.backgroundColor=''">
         <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getBoardNo()%>
@@ -115,16 +115,17 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
     </tr>
     <%} %>
      <tr align=center height=100>
-        <td colspan=7 style=font-family:Tahoma;font-size:11pt;>
-            
+        <td  colspan=5 style=font-family:Tahoma;font-size:11pt;>
+            <nav>
+            <ul class="pagination">
             <%if(currentPage<=1){ %>
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/freeboard?page=1">[처음]</a>&nbsp;
+            <li><a href="<%=request.getContextPath() %>/freeboard?page=1">처음</a></li>
             <%} %>
             
             <%if(currentPage<=1){ %>
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/freeboard?page=<%=currentPage-1 %>">[이전]</a>&nbsp;
+            <li><a aria-lable="Previous" href="<%=request.getContextPath() %>/freeboard?page=<%=currentPage-1 %>"><span aria-hidden="true">&laquo;</span></a></li>
             <%} %>
             
           <%
@@ -134,11 +135,11 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 	for (int i = bstartpage; i <= bendpage; i++) {
 		if (currentPage == i) {
 %>
-			 [<%=i%>] 
+			 <li class='active'><a style='color: white;' href="#"><%=i%></a></li>
 <%
 		} else {
 %>		
-		<a href="<%=request.getContextPath()%>/freeboard?page=<%=i%>"><%=i%></a>
+		<li><a href="<%=request.getContextPath()%>/freeboard?page=<%=i%>"><%=i%></a></li>
 <%
 		}
 	}
@@ -146,12 +147,14 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             
             <%if(currentPage>=pnum){ %>
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/freeboard?page=<%=currentPage+1 %>">[다음]</a>
+            <li><a aria-lable="Next" href="<%=request.getContextPath() %>/freeboard?page=<%=currentPage+1 %>"><span aria-hidden="true">&raquo;</span></a></li>
             <%} %>
              <%if(currentPage>=pnum){ %>
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/freeboard?page=<%=pnum%>">[끝]</a>
+            <li><a href="<%=request.getContextPath() %>/freeboard?page=<%=pnum%>">끝</a></li>
             <%} %>
+            </ul>
+        </nav>
         </td>
     </tr>
     <tr align="right">

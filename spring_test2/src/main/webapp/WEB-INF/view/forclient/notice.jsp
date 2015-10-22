@@ -27,20 +27,6 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
-<div id="board">
-	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/notice?page=1">공지사항</a></h1>
-		<div id="boardin">
-		<div id="boardinhead">
-			<div id="contentnum">
-				게시물수 : <%=request.getAttribute("count") %>
-			</div>
-			<div id="contentsearch">
-				<div id="contentsearchin">
-				<input type="text" name="searchtext" placeholder="키워드 검색" id="searchtext" />
-				<input class="btn btn-default" type="submit" id="searchbutton" value="검색" />
-				</div>
-			</div>
-		</div>
 <%
 Object loginUserObj = session.getAttribute("loginUser");
 if(loginUserObj!=null){
@@ -54,6 +40,10 @@ if(currentPageObj!=null){
 	 currentPage = 1;
 }
 int pnum;
+int pageblock=20;
+int block=(int)Math.ceil((double)currentPage/pageblock);
+int bstartpage=(block-1)*pageblock+1;
+int bendpage=bstartpage+pageblock-1;
 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 Object blist = request.getAttribute("boardlist"); 
 List<Board> list = (List<Board>)blist;
@@ -63,6 +53,21 @@ List<Board> pplist = (List<Board>)plist;
 
 pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 %>
+<div id="board">
+	<h1><a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/notice?page=1">공지사항</a></h1>
+		<div id="boardin">
+		<div id="boardinhead">
+			<div id="contentnum">
+				게시물수 : <%=list.size() %>
+			</div>
+			<div id="contentsearch">
+				<div id="contentsearchin">
+				<input type="text" name="searchtext" placeholder="키워드 검색" id="searchtext" />
+				<input class="btn btn-default" type="submit" id="searchbutton" value="검색" />
+				</div>
+			</div>
+		</div>
+
 <center>
 <table width=570 border="0" cellpadding="0" cellspacing="0" id="boardlist">
      
@@ -88,7 +93,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
         for(int i=0;i<pplist.size();i++){
     %>
     <tr align="center" valign="middle" bordercolor="#333333"
-        onmouseover="this.style.backgroundColor='#FFFAF5'"
+        onmouseover="this.style.backgroundColor='#E6E6E6'"
         onmouseout="this.style.backgroundColor=''">
         <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getBoardNo()%>
@@ -106,44 +111,46 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
     </tr>
     <%} %>
      <tr align=center height=100>
-        <td colspan=7 style=font-family:Tahoma;font-size:11pt;>
-            
+        <td  colspan=5 style=font-family:Tahoma;font-size:11pt;>
+            <nav>
+            <ul class="pagination">
             <%if(currentPage<=1){ %>
-            [처음]&nbsp;
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/notice?page=1">[처음]</a>&nbsp;
+            <li ><a href="<%=request.getContextPath() %>/notice?page=1">처음</a></li>
             <%} %>
             
             <%if(currentPage<=1){ %>
-            [이전]&nbsp;
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/notice?page=<%=currentPage-1 %>">[이전]</a>&nbsp;
+            <li><a aria-lable="Previous" href="<%=request.getContextPath() %>/notice?page=<%=currentPage-1 %>"><span aria-hidden="true">&laquo;</span></a></li>
             <%} %>
             
           <%
-	for (int i = 1; i <= pnum; i++) {
+          if(bendpage>pnum){
+				bendpage=pnum;
+			}
+	for (int i = bstartpage; i <= bendpage; i++) {
 		if (currentPage == i) {
 %>
-			 <%=i%> 
+			 <li class='active'><a style='color: white;' href="#"><%=i%></a></li>
 <%
 		} else {
-%>
-		<a href="<%=request.getContextPath()%>/notice?page=<%=i%>"><%=i%></a>
+%>		
+		<li><a href="<%=request.getContextPath()%>/notice?page=<%=i%>"><%=i%></a></li>
 <%
 		}
 	}
 %>
             
             <%if(currentPage>=pnum){ %>
-            [다음]
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/notice?page=<%=currentPage+1 %>">[다음]</a>
+            <li><a aria-lable="Next" href="<%=request.getContextPath() %>/notice?page=<%=currentPage+1 %>"><span aria-hidden="true">&raquo;</span></a></li>
             <%} %>
              <%if(currentPage>=pnum){ %>
-            [끝]
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/notice?page=<%=pnum%>">[끝]</a>
+            <li><a href="<%=request.getContextPath() %>/notice?page=<%=pnum%>">끝</a></li>
             <%} %>
+            </ul>
+        </nav>
         </td>
     </tr>
     <tr align="right">

@@ -86,7 +86,7 @@ $(function() {
 		success:function(txt){
 			
 			var $target=$("#fromServer");
-			var $board=$("#prevnextbar");
+			var $board=$("#paging");
 			var item= txt["response"]["body"]["items"]["item"];
 			var numOfRows=txt["response"]["body"]["numOfRows"];
 			var total=txt["response"]["body"]["totalCount"];
@@ -104,7 +104,7 @@ $(function() {
 			pnum=Math.ceil(total/numOfRows);
 			
 			if(total%10==1&&<%=pn%>==pnum){
-				$target.append("<a style='color:black; text-decoration: none;' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+contentid+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=sel><table ><tr><td rowspan=3><img src=" +firstimage2+" width=100px height=100px></td><td>"+title+"</td></tr><tr><td>"+eventstartdate+"~ "+eventenddate+"</td></tr><tr><td>"+addr1+"</td></tr></table></div></a>");
+				$target.append("<a style='color:black; text-decoration: none;' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+contentid+"><div onmouseover=this.style.backgroundColor='#E6E6E6' onmouseout=this.style.backgroundColor='' class=sel><table ><tr><td rowspan=3><img src=" +firstimage2+" width=100px height=100px></td><td>"+title+"</td></tr><tr><td>"+eventstartdate+"~ "+eventenddate+"</td></tr><tr><td>"+addr1+"</td></tr></table></div></a>");
 			}else{
 			$.each(item,function(index,data){
 				contentid=data["contentid"];
@@ -116,7 +116,7 @@ $(function() {
 				 if(firstimage2==null){
 						firstimage2="<%=request.getContextPath()%>/images/fastival2.jpg";
 					}
-				 $target.append("<a style='color:black; text-decoration: none;' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+contentid+"><div onmouseover=this.style.backgroundColor='#FFFAF5' onmouseout=this.style.backgroundColor='' class=sel><table ><tr><td rowspan=3><img src=" +firstimage2+" width=100px height=100px></td><td>"+title+"</td></tr><tr><td>"+eventstartdate+"~ "+eventenddate+"</td></tr><tr><td>"+addr1+"</td></tr></table></div></a>");
+				 $target.append("<a style='color:black; text-decoration: none;' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+contentid+"><div onmouseover=this.style.backgroundColor='#E6E6E6' onmouseout=this.style.backgroundColor='' class=sel><table ><tr><td rowspan=3><img src=" +firstimage2+" width=100px height=100px></td><td>"+title+"</td></tr><tr><td>"+eventstartdate+"~ "+eventenddate+"</td></tr><tr><td>"+addr1+"</td></tr></table></div></a>");
 				//한국관광공사 api
 			});
 			}
@@ -125,12 +125,12 @@ $(function() {
 			if(region==null){		
 			   if(<%=pn%><=1){ 
 	            }else{ 
-	            $board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno=1>[처음]</a>");
+	            $board.append("<li><a href=<%=request.getContextPath() %>/festival_regionboard?pageno=1>처음</a></li>");
 	            }
 	            
 	            if(<%=pn%><=1){ 
 	            }else{
-	            	$board.append("<a href='<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn-1 %>'>[이전]</a>");
+	            	$board.append("<li><a aria-lable='Previous'  href='<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn-1 %>'><span aria-hidden='true'>&laquo;</span></a></li>");
 	            } 
 	            
 	            if(bendpage>pnum){
@@ -140,24 +140,24 @@ $(function() {
 				
 				url3="&pageNo="+i;
 				if(<%=pn%>==i){
-					$board.append("[ "+i+" ]");
+					$board.append("<li class='active'><a style='color: white;' href='#''>"+i+"</a></li>");
 				}else{
-					$board.append("<a href='<%=request.getContextPath()%>/festival_regionboard?pageno="+i+"'> ["+i+"]</a> ");
+					$board.append("<li><a href='<%=request.getContextPath()%>/festival_regionboard?pageno="+i+"'>"+i+"</a></li> ");
 				}
 			}
 			   if(<%=pn%>>=pnum){ 
 		            }else{ 
-		            $board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn+1%>>[다음]</a>");
+		            $board.append("<li><a aria-lable='Next'  href=<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn+1%>><span aria-hidden='true'>&raquo;</span></a></li>");
 		            }
 		            
 		            if(<%=pn%>>=pnum){ 
 		            }else{
-		            	$board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno="+pnum+">[끝]</a>");
+		            	$board.append("<li><a href=<%=request.getContextPath() %>/festival_regionboard?pageno="+pnum+">끝</a></li>");
 		            } 
 			}else{		
 				   if(<%=pn%><=1){ 
 		            }else{ 
-		            $board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=<%=region%>>[처음]</a>");
+		            $board.append("<li><a href=<%=request.getContextPath() %>/festival_regionboard?pageno=1&region=<%=region%>>처음</a></li>");
 		            }
 		            
 		            if(<%=pn%><=1){ 
@@ -172,19 +172,19 @@ $(function() {
 					
 					url3="&pageNo="+i;
 					if(<%=pn%>==i){
-						$board.append("[ "+i+" ]");
+						$board.append("<li class='active'><a style='color: white;' href='#''>"+i+"</a></li>");
 					}else{
-						$board.append("<a href=<%=request.getContextPath()%>/festival_regionboard?pageno="+i+"&region=<%=region%>> ["+i+"]</a> ");
+						$board.append("<li><a href=<%=request.getContextPath()%>/festival_regionboard?pageno="+i+"&region=<%=region%>>"+i+"</a></li> ");
 					}
 				}
 				   if(<%=pn%>>=pnum){ 
 			            }else{ 
-			            $board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn+1%>&region=<%=region%>>[다음]</a>");
+			            $board.append("<li><a aria-lable='Next'  href=<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn+1%>&region=<%=region%>><span aria-hidden='true'>&raquo;</span></a></li>");
 			            }
 			            
 			            if(<%=pn%>>=pnum){ 
 			            }else{
-			            	$board.append("<a href=<%=request.getContextPath() %>/festival_regionboard?pageno="+pnum+"&region=<%=region%>>[끝]</a>");
+			            	$board.append("<li><a href=<%=request.getContextPath() %>/festival_regionboard?pageno="+pnum+"&region=<%=region%>>끝</a></li>");
 			            } 
 				}
 			//$target.append("<li>"+JSON.stringify(txt)+"</li>");
@@ -244,7 +244,7 @@ $(function() {
 				<div id="fromServer"></div>
     		</div>
     		<div id="boardfoot">
-				<div id="prevnextbar"></div>
+				<div id="prevnextbar"><nav><ul class="pagination" id="paging"></ul></nav></div>
 			</div>
     	</div>
 </div>
