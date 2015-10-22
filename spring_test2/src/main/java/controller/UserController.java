@@ -34,7 +34,7 @@ import service.BoardService;
 import service.UsersService;
 
 @Controller
-@SessionAttributes({ "loginUser", "seluser", "findUser", "findPw","mainranklist","maineventlist" })
+@SessionAttributes({ "loginUser", "seluser","mainranklist","maineventlist" })
 public class UserController {
 	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -205,12 +205,13 @@ public class UserController {
 	public String userLoginFindinput(Model model, HttpServletRequest req,RedirectAttributes redir) {
 		String usersemail = req.getParameter("usersEmail");
 		String usersname = req.getParameter("usersName");
-		Users findUser = service.find(usersemail, usersname);
 		try {
+			Users findUsers = service.find(usersemail, usersname);
+			redir.addFlashAttribute("findUser", findUsers);
 			
-			redir.addFlashAttribute("findUser", findUser);
 		} catch (Exception e) {
 			logger.trace(e.getMessage());
+			
 		} finally {
 			redir.addFlashAttribute("contentpage", "/WEB-INF/view/login/login_id_find.jsp");
 			return "redirect:go";
@@ -225,9 +226,9 @@ public class UserController {
 		String usersname = req.getParameter("usersName");
 		String usersques = req.getParameter("usersPassques");
 		try {
-			Users findPw = service.findPw(usersid, usersname, usersques);
+			Users findPws = service.findPw(usersid, usersname, usersques);
 
-			redir.addFlashAttribute("findPw", findPw);
+			redir.addFlashAttribute("findPw", findPws);
 		} catch (Exception e) {
 			logger.trace(e.getMessage());
 		} finally {

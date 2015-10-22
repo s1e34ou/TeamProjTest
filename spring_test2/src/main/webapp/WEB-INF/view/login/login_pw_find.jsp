@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 <link href="<%=request.getContextPath()%>/style/login_id_find.css"
 	rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/style/login_id_findfail.css"
+	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
 	
