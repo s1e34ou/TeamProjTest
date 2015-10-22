@@ -209,6 +209,8 @@ public class UserController {
 			Users findUser = service.find(usersemail, usersname);
 
 			redir.addFlashAttribute("findUser", findUser);
+			
+			
 		} catch (Exception e) {
 			logger.trace(e.getMessage());
 		} finally {

@@ -105,7 +105,7 @@ public class UsersServiceImpl implements UsersService {
 			return user;
 		} catch (EmptyResultDataAccessException e) {
 			msg = userEmail + "로 등록된 이메일이 없습니다.";
-			throw e;
+			throw new ServiceFailException(msg);
 		}
 	}
 
