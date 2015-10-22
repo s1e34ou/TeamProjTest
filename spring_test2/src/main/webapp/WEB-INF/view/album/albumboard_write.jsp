@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/style/board_write.css"
+<link href="<%=request.getContextPath()%>/style/albumboard_write.css"
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
@@ -105,7 +105,7 @@ $(function() {
         	<sform:label path="usersUsersId">작성자</sform:label>
         	<sform:input path="usersUsersId" readonly="true"/>
 			</div>
-			<div class="filebox bs3-primary preview-image">
+			<div class="filebox bs3-primary preview-image" id="photoupload">
             	<input class="upload-name" value="파일등록" disabled="disabled" style="width: 200px;">
             	<label for="file">썸네일등록</label>
             	<input id="file" name="file" type="file" class="upload-hidden"/>
