@@ -354,6 +354,13 @@ public class BoardController {
 		redir.addFlashAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
 		return "redirect:board_prg";
 	}
+	
+	@RequestMapping(value = "/adad", method = RequestMethod.GET)
+	public String adad(Model model) {
+		
+		model.addAttribute("contentpage", "/WEB-INF/view/adad.jsp");
+		return "start";
+	}
 
 	@RequestMapping(value = "/rankboard", method = RequestMethod.GET)
 	public String rankboard(Model model,HttpServletRequest req) {

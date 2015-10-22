@@ -89,7 +89,7 @@ public class PhotoController {
 	@RequestMapping(value = "/albumboard_write", method = RequestMethod.POST)
 	public String albumWrite(Model model,Photo photo,@RequestParam MultipartFile file,RedirectAttributes redir,HttpServletRequest req) throws IllegalStateException, IOException {
 		logger.trace("photo : {}",file);
-		File nfile = new File("/editorFiles2/thumbnail/"+file.getOriginalFilename());
+		File nfile = new File("c:/editorFiles2/thumbnail/"+file.getOriginalFilename());
 		file.transferTo(nfile);
 		Map<String, Object> data = new HashMap<>();
 		data.put("location", nfile.getCanonicalPath());
