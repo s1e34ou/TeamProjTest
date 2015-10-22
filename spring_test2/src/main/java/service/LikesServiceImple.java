@@ -82,7 +82,7 @@ public class LikesServiceImple implements LikesService {
 	@Override
 	public Likes selectphoto(String usersId, int photoNo) {
 		try{
-			Likes likes = dao.selectLikes(usersId, photoNo);
+			Likes likes = dao.selectphotoLikes(usersId, photoNo);
 			return likes;
 			}catch(NullPointerException e){
 				throw e;

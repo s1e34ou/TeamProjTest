@@ -60,9 +60,10 @@ $(function() {
 	<%
 	Object ob =  request.getAttribute("likes");
 	int like;
+	
 	if(ob!=null){
-	Likes likes = (Likes)ob;
-	like= likes.getLikes();
+		Likes likes = (Likes)ob;
+		like= likes.getLikes();
 	%>
 	
 	$("#like").on("click",function(){
@@ -244,12 +245,6 @@ $("#replybut").on("click",function(e){
 					</div>
 				</div>
 			</div>
-		</div>
-		<div id="prevnextbtn">
-			<ul class="pager">
-				<li><a href="#">Previous</a></li>
-				<li><a href="#">Next</a></li>
-			</ul>
 		</div>
 		<div id="replyboard">
 			<h2>댓글</h2>

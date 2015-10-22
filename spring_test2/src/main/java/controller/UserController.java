@@ -205,9 +205,9 @@ public class UserController {
 	public String userLoginFindinput(Model model, HttpServletRequest req,RedirectAttributes redir) {
 		String usersemail = req.getParameter("usersEmail");
 		String usersname = req.getParameter("usersName");
+		Users findUser = service.find(usersemail, usersname);
 		try {
-			Users findUser = service.find(usersemail, usersname);
-
+			
 			redir.addFlashAttribute("findUser", findUser);
 		} catch (Exception e) {
 			logger.trace(e.getMessage());

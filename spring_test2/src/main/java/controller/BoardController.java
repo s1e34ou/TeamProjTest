@@ -281,6 +281,7 @@ public class BoardController {
 		Likes likes = new Likes();
 		Users users = (Users) sess.getAttribute("loginUser");
 		likes = lservice.select(users.getUsersId(), boardNo);
+		logger.trace("likes : {}",likes);
 		model.addAttribute("likes", likes);
 		}catch(NullPointerException e){
 			
