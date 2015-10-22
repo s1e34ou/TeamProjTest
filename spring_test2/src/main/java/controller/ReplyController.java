@@ -31,6 +31,7 @@ private static Logger logger = LoggerFactory.getLogger(ReplyController.class);
 	BoardService bservice;
 	@ModelAttribute("reply")
 	public Reply getreply(){
+		
 		return new Reply();
 	}
 	

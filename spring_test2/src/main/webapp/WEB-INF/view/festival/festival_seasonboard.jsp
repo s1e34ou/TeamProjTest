@@ -1,5 +1,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
+<%@page import="java.lang.Integer" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -67,15 +68,21 @@ $(function() {
 	%>
 	var date = new Date();
 	var today;
+	
 	if(<%=startObj%>!=null){
 		today=<%=start%>;	
 	}else{
-    today = date.getFullYear()+""+leadingZeros((date.getMonth()+1),2)+""+leadingZeros(date.getDate(),2);
+    today = date.getFullYear()+leadingZeros((date.getMonth()+1),2)+leadingZeros(date.getDate(),2);
 	}
     <%Date date=new Date();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
-    
+    String datee = sdf.format(date);
+    int f=Integer.parseInt(datee);
+    SimpleDateFormat ee= new SimpleDateFormat("yyyyMMdd");
+    SimpleDateFormat dd= new SimpleDateFormat("MM");
     %>
+    
+
 	var pageblock=10;
 	var block=Math.ceil(<%=pn%>/pageblock) ;
 	var bstartpage=(block-1)*pageblock+1;
@@ -126,6 +133,7 @@ $(function() {
 				 eventstartdate=data["eventstartdate"];
 				 eventenddate=data["eventenddate"];
 				 addr1=data["addr1"];
+				 
 				 if(firstimage2==null){
 						firstimage2="<%=request.getContextPath()%>/images/fastival2.jpg";
 					}
@@ -223,18 +231,18 @@ $(function() {
 	 				 </button>
 	 				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" id="season">
 	  					<li role="presentation"><a role="menuitem" tabindex="-1" id="allseason" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1">전체</a></li>
-	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="jan"  href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0101&end=<%=sdf.format(date)%>0131">1월</a></li>
-	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="fab" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0201&end=<%=sdf.format(date)%>0228">2월</a></li>
-	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="mar" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0301&end=<%=sdf.format(date)%>0331">3월</a></li>
-	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="apr" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0401&end=<%=sdf.format(date)%>0430">4월</a></li>
-	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="may" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0501&end=<%=sdf.format(date)%>0531">5월</a></li>
-	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="jun" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0601&end=<%=sdf.format(date)%>0630">6월</a></li>
-	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="jul" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0701&end=<%=sdf.format(date)%>0731">7월</a></li>
-	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="aug" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0801&end=<%=sdf.format(date)%>0831">8월</a></li>
-	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="sep" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>0901&end=<%=sdf.format(date)%>0930">9월</a></li>
-	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="oct" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>1001&end=<%=sdf.format(date)%>1031">10월</a></li>
-	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="nob" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>1101&end=<%=sdf.format(date)%>1130">11월</a></li>
-	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="dec" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=sdf.format(date)%>1201&end=<%=sdf.format(date)%>1231">12월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="jan"  href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=datee%>0101&end=<%=datee%>%>0131">1월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="fab" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=datee%>0201&end=<%=datee%>0228">2월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="mar" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=datee%>0301&end=<%=datee%>0331">3월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="apr" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=datee%>0401&end=<%=datee%>0430">4월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="may" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=datee%>0501&end=<%=datee%>0531">5월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="jun" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=datee%>0601&end=<%=datee%>0630">6월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="jul" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=datee%>0701&end=<%=datee%>0731">7월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="aug" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=datee%>0801&end=<%=datee%>0831">8월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="sep" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=datee%>0901&end=<%=datee%>0930">9월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="oct" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=datee%>1001&end=<%=datee%>1031">10월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="nob" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=datee%>1101&end=<%=datee%>1130">11월</a></li>
+	   					<li role="presentation"><a role="menuitem" tabindex="-1" id="dec" href="<%=request.getContextPath() %>/festival_seasonboard?pageno=1&start=<%=datee%>1201&end=<%=datee%>1231">12월</a></li>
 	 				</ul>
 	 				</div>
 	 				<div id="month"></div>

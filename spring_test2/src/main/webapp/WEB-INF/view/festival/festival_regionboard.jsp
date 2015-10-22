@@ -162,7 +162,7 @@ $(function() {
 		            
 		            if(<%=pn%><=1){ 
 		            }else{
-		            	$board.append("<a href='<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn-1 %>&region=<%=region%>'>[이전]</a>");
+		            	$board.append("<li><a aria-lable='Previous' href='<%=request.getContextPath() %>/festival_regionboard?pageno=<%=pn-1 %>&region=<%=region%>'><span aria-hidden='true'>&laquo;</span></a></li>");
 		            } 
 		            
 		            if(bendpage>pnum){

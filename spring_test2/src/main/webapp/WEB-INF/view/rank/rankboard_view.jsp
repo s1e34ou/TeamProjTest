@@ -295,7 +295,7 @@ $(function() {
 		</div>
 		<div id="listgobtn">
 			<ul class="pager">
-				<li class="previous"><a href="<%=request.getContextPath()%>/rankboard?page=1&select=EVENT_.*"> <span aria-hidden="true">&larr;</span>
+				<li class="previous"><a href="<%=request.getContextPath()%>/rankboard?page=1&select=*"> <span aria-hidden="true">&larr;</span>
 						list
 				</a></li>
 			</ul>

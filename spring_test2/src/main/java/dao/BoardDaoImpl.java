@@ -112,7 +112,7 @@ public class BoardDaoImpl implements BoardDao {
 				+ 		"SELECT sub.*, ROWNUM AS RNUM "
 				+		"FROM ( select * from board where regexp_like(board_code,?) order by board_hits desc) sub)"
 				+ "WHERE RNUM >= ? AND RNUM <= ?";
-		
+		 
 		List<Board> board = jdbcTemp.query(sql, new BeanPropertyRowMapper<Board>(Board.class),boardCode,(page - 1) * BoardDao.BOARD_PER_PAGE + 1,page * BoardDao.BOARD_PER_PAGE);
 		
 		
@@ -130,7 +130,7 @@ public class BoardDaoImpl implements BoardDao {
 	public List<Board> getrankrecomBoardByPage(int page,String boardCode) {
 		String sql = "SELECT * "
 			+	"FROM (SELECT sub.*, ROWNUM AS RNUM "
-				+	     " FROM (  select b.* from (select b.board_no, count(*) board_recom from board b,likes l group by b.board_no having b.board_no=l.board_no order by board_recom desc) a, board b where regexp_like(b.board_code,?) and a.board_no=b.BOARD_NO) sub)" 
+				+	     " FROM (  select b.* from (select b.board_no, count(*) board_recom from board b,likes l group by b.board_no having b.board_no=l.board_no order by board_recom desc) a, board b where regexp_like(b.board_code,?) and a.board_no=b.BOARD_NO) sub)"
 					+"WHERE RNUM >= ? AND RNUM <= ?";
 		
 		List<Board> board = jdbcTemp.query(sql, new BeanPropertyRowMapper<Board>(Board.class),boardCode,(page - 1) * BoardDao.BOARD_PER_PAGE + 1,page * BoardDao.BOARD_PER_PAGE);
