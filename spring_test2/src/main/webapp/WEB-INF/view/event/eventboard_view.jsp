@@ -253,12 +253,6 @@ $("#replybut").on("click",function(e){
 				</div>
 			</div>
 		</div>
-		<div id="prevnextbtn">
-			<ul class="pager">
-				<li><a href="#">Previous</a></li>
-				<li><a href="#">Next</a></li>
-			</ul>
-		</div>
 		<div id="replyboard">
 			<h2>댓글</h2>
 			<div id="replyboardin">

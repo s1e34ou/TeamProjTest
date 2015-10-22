@@ -588,46 +588,47 @@ padding-left:10px;
 	<div id="defaultbox">
 		<div id="picboard">
 			<div id="picture1">
-				<a href="<%=request.getContextPath() %>/search?page=1&select=롯" class="thumbnail"> <img
-					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb1">
+				<a href="<%=request.getContextPath() %>/albumboard_view?photoNo=267" class="thumbnail"> <img
+					src="<%=request.getContextPath()%>/editorFiles2/thumbnail/RPZ122G_B1.jpg" id="picb1">
 				</a>
+				
 				<div class="caption" id="picbtext1">
 					<center>
-						<h3>제목제목제목1</h3>
-						<p>내용내용내용내용내용내용내용내용내용내용내용내용</p>
+						<h3>씨푸드 곡물 도우 후기</h3>
+						<p>맛있는 피자 한쪽 먹고 가세요~</p>
 					</center>
 				</div>
 			</div>
 			<div id="picture2">
-				<a href="<%=request.getContextPath() %>/albumboard_view?photoNo=195" class="thumbnail"> <img
-					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb2">
+				<a href="<%=request.getContextPath() %>/albumboard_view?photoNo=268" class="thumbnail"> <img
+					src="<%=request.getContextPath()%>/editorFiles2/thumbnail/lol.jpg" id="picb2">
 				</a>
 				<div class="caption" id="picbtext2">
 					<center>
-						<h3>제목제목제목2</h3>
-						<p>내용내용내용내용내용내용내용내용내용내용내용내용</p>
+						<h3>롤드컵은 치킨과 함께</h3>
+						<p>롤드컵 치킨각이벤트~! 서울과 지방 치킨집에서 같이 구경을~!</p>
 					</center>
 				</div>
 			</div>
 			<div id="picture3">
-				<a href="#" class="thumbnail"> <img
-					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb3">
+				<a href="<%=request.getContextPath() %>/albumboard_view?photoNo=269" class="thumbnail"> <img
+					src="<%=request.getContextPath()%>/editorFiles2/thumbnail/nain.jpg" id="picb3">
 				</a>
 				<div class="caption" id="picbtext3">
 					<center>
-						<h3>제목제목제목3</h3>
-						<p>내용내용내용내용내용내용내용내용내용내용내용내용</p>
+						<h3>샤오미 나인봇 미니 </h3>
+						<p>정말 해도 너무한 35만원짜리 샤오미 나인봇 미니</p>
 					</center>
 				</div>
 			</div>
 			<div id="picture4">
-				<a href="#" class="thumbnail"> <img
-					src="<%=request.getContextPath()%>/images/planets.jpg" id="picb4">
+				<a href="<%=request.getContextPath() %>/albumboard_view?photoNo=270" class="thumbnail"> <img
+					src="<%=request.getContextPath()%>/editorFiles2/thumbnail/a.jpg" id="picb4">
 				</a>
 				<div class="caption" id="picbtext4">
 					<center>
-						<h3>제목제목제목4</h3>
-						<p>내용내용내용내용내용내용내용내용내용내용내용내용</p>
+						<h3>'그녀는 예뻤다' 황정음♥박서준</h3>
+						<p>황정음♥박서준, 횡단보도 초근접 눈맞춤 '설렘 폭발'</p>
 					</center>
 				</div>
 			</div>
