@@ -5,8 +5,18 @@ public class Likes {
 	private String usersId;
 	private Integer boardNo;
 	private Integer likes;
+	private Integer photoNo;
 	
 	
+	
+	public Likes(Integer likesNo, String usersId, Integer boardNo, Integer likes, Integer photoNo) {
+		super();
+		this.likesNo = likesNo;
+		this.usersId = usersId;
+		this.boardNo = boardNo;
+		this.likes = likes;
+		this.photoNo = photoNo;
+	}
 	public Likes(Integer likesNo, String usersId, Integer boardNo, Integer likes) {
 		super();
 		this.likesNo = likesNo;
@@ -47,9 +57,22 @@ public class Likes {
 	public void setLikes(Integer likes) {
 		this.likes = likes;
 	}
+	public String getUsersId() {
+		return usersId;
+	}
+	public void setUsersId(String usersId) {
+		this.usersId = usersId;
+	}
+	public Integer getPhotoNo() {
+		return photoNo;
+	}
+	public void setPhotoNo(Integer photoNo) {
+		this.photoNo = photoNo;
+	}
 	@Override
 	public String toString() {
-		return "Likes [likesNo=" + likesNo + ", userId=" + usersId + ", boardNo=" + boardNo + ", likes=" + likes + "]";
+		return "Likes [likesNo=" + likesNo + ", usersId=" + usersId + ", boardNo=" + boardNo + ", likes=" + likes
+				+ ", photoNo=" + photoNo + "]";
 	}
 
 	

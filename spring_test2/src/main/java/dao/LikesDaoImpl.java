@@ -35,7 +35,7 @@ public class LikesDaoImpl implements LikesDao {
 				likes.setUserId(rs.getString("users_id"));
 				likes.setBoardNo(rs.getInt("board_no"));
 				likes.setLikes(rs.getInt("likes"));
-				
+				likes.setPhotoNo(rs.getInt("photo_no"));
 				return likes;
 			}
 		};
@@ -43,8 +43,8 @@ public class LikesDaoImpl implements LikesDao {
 
 	@Override
 	public void insertLikes(Likes likes) {
-		String sql = "insert into likes values(LIKES_NO_SEQ.nextval,?,?,?)";
-		jdbcTemp.update(sql,likes.getUserId(),likes.getBoardNo(),likes.getLikes());
+		String sql = "insert into likes values(LIKES_NO_SEQ.nextval,?,?,?,?)";
+		jdbcTemp.update(sql,likes.getUserId(),likes.getBoardNo(),likes.getLikes(),null);
 		
 	}
 
@@ -95,6 +95,41 @@ public class LikesDaoImpl implements LikesDao {
 		
 		
 		return board;
+	}
+
+	@Override
+	public void insertphotoLikes(Likes likes) {
+		String sql = "insert into likes values(LIKES_NO_SEQ.nextval,?,?,?,?)";
+		jdbcTemp.update(sql,likes.getUserId(),null,likes.getLikes(),likes.getPhotoNo());		
+	}
+
+	@Override
+	public void deletephotoLikes(int photoNo) {
+		String sql = "delete from likes where photo_no=? ";
+		jdbcTemp.update(sql,photoNo);
+		
+	}
+
+	@Override
+	public void updatephotoLikes(Likes likes) {
+		String sql = "update likes set likes=? where users_id=? and photo_no=?";
+		jdbcTemp.update(sql, likes.getLikes(), likes.getUserId(), likes.getPhotoNo());
+		
+	}
+
+	@Override
+	public int countphotoLikes(int photoNo, int likes) {
+		String sql = "select count(*) from likes where photo_no=? and likes=?";
+		int count = jdbcTemp.queryForInt(sql,photoNo,likes);
+		logger.trace("daocount : {}",count);
+		return count;
+	}
+
+	@Override
+	public Likes selectphotoLikes(String usersId, int photoNo) {
+		String sql = "select * from likes where users_id=? and photo_no=?";
+		Likes likes = jdbcTemp.queryForObject(sql, getLikesRowMapper(),usersId,photoNo);
+		return likes;
 	}
 	
 	

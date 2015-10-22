@@ -64,11 +64,12 @@ $(function() {
 	Likes likes = (Likes)ob;
 	like= likes.getLikes();
 	%>
+	
 	$("#like").on("click",function(){
 		$.ajax({
 			type:'get',
-			url:"<%=request.getContextPath()%>/likechange",
-			data:{usersId:"<%=loginUser%>",boardNo:<%=photo.getPhotoNo()%>,likes:2},
+			url:"<%=request.getContextPath()%>/photolikechange",
+			data:{usersId:"<%=loginUser%>",photoNo:<%=photo.getPhotoNo()%>,likes:2},
 			success:function(){
 				$("#like").removeAttr("disabled","disabled:disabled")
 				$("#unlike").attr("disabled","disabled:disabled")
@@ -81,8 +82,8 @@ $(function() {
 	$("#unlike").on("click",function(){
 		$.ajax({
 			type:'get',
-			url:"<%=request.getContextPath()%>/likechange",
-			data:{usersId:"<%=loginUser%>",boardNo:<%=photo.getPhotoNo()%>,likes:1},
+			url:"<%=request.getContextPath()%>/photolikechange",
+			data:{usersId:"<%=loginUser%>",photoNo:<%=photo.getPhotoNo()%>,likes:1},
 			success:function(){
 				$("#like").attr("disabled","disabled:disabled")
 				$("#unlike").removeAttr("disabled","disabled:disabled")
@@ -100,23 +101,25 @@ $(function() {
 		$("#like").on("click",function(){
 			$.ajax({
 				type:'get',
-				url:"<%=request.getContextPath()%>/like",
-				data:{usersId:"<%=loginUser%>",boardNo:<%=photo.getPhotoNo()%>,likes:2},
+				url:"<%=request.getContextPath()%>/photolike",
+				data:{usersId:"<%=loginUser%>",photoNo:<%=photo.getPhotoNo()%>,likes:2},
 				success:function(){
 					$("#like").attr("disabled","disabled:disabled")
 				}
 			});
+			location.reload(true)
 		});
 		
 		$("#unlike").on("click",function(){
 			$.ajax({
 				type:'get',
-				url:"<%=request.getContextPath()%>/like",
-				data:{usersId:"<%=loginUser%>",boardNo:<%=photo.getPhotoNo()%>,likes:1},
+				url:"<%=request.getContextPath()%>/photolike",
+				data:{usersId:"<%=loginUser%>",photoNo:<%=photo.getPhotoNo()%>,likes:1},
 				success:function(){
 					$("#unlike").attr("disabled","disabled:disabled")
 				}
 			});
+			location.reload(true)
 		});
 		<%
 	}
@@ -203,17 +206,17 @@ $("#replybut").on("click",function(e){
 				%>
 				<%=request.getAttribute("likecount") %>
 				<button type="submit" class="btn btn-success" disabled="disabled" id="like" name="like">좋아요</button>
-				<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
+				<button type="submit" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
 				<%=request.getAttribute("unlikecount") %>
 				<%}else if(like==1){ %>
 				<%=request.getAttribute("likecount") %>
 				<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
-				<button type="button" class="btn btn-danger" disabled="disabled" id="unlike" name="unlike">싫어요</button>
+				<button type="submit" class="btn btn-danger" disabled="disabled" id="unlike" name="unlike">싫어요</button>
 				<%=request.getAttribute("unlikecount") %>
 				<%}else { %>
 				<%=request.getAttribute("likecount") %>
 				<button type="submit" class="btn btn-success"  id="like" name="like">좋아요</button>
-				<button type="button" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
+				<button type="submit" class="btn btn-danger" id="unlike" name="unlike">싫어요</button>
 				<%=request.getAttribute("unlikecount") %>
 				<%} %>
 				</div>

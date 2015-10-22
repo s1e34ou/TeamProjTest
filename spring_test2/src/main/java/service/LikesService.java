@@ -14,4 +14,15 @@ public interface LikesService {
 	
 	int count(int boardNo,int likes);
 	
+	void insertphoto(Likes likes);
+	
+	void deletephoto(int photoNo);
+	
+	void updatephoto(Likes likes);
+	
+	int countphoto(int photoNo,int likes);
+	
+	Likes selectphoto(String usersId, int photoNo);
+	
+	
 }

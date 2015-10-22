@@ -101,9 +101,10 @@ public class PhotoController {
 		Photo photo = new Photo();
 		List<Map<String, Object>> reply;
 		photo = service.selectphoto(photoNo);
+		logger.trace("photo :{}",photo);
 		reply=rservice.selectReplyByPhotoNo(photoNo);
-		int likecount = lservice.count(photoNo,2);
-		int unlikcecount = lservice.count(photoNo,1);
+		int likecount = lservice.countphoto(photoNo, 2);
+		int unlikcecount = lservice.countphoto(photoNo, 1);
 		logger.trace("likecount: {}",likecount);
 		model.addAttribute("likecount", likecount);
 		model.addAttribute("unlikecount", unlikcecount);
@@ -114,7 +115,7 @@ public class PhotoController {
 		try{
 		Likes likes = new Likes();
 		Users users = (Users) sess.getAttribute("loginUser");
-		likes = lservice.select(users.getUsersId(), photoNo);
+		likes = lservice.selectphoto(users.getUsersId(), photoNo);
 		model.addAttribute("likes", likes);
 		}catch(NullPointerException e){
 			 
@@ -129,7 +130,7 @@ public class PhotoController {
 	@RequestMapping(value = "/albumboard_delete", method = RequestMethod.GET)
 	public String albumboardDelete(Model model,@RequestParam int photoNo,RedirectAttributes redir) {
 		logger.trace("photoNo : {}",photoNo);
-		lservice.delete(photoNo);
+		lservice.deletephoto(photoNo);
 		rservice.delete(photoNo);
 		service.deletephoto(photoNo);
 		redir.addFlashAttribute("contentpage", "/WEB-INF/view/album/albumboard_delete.jsp");

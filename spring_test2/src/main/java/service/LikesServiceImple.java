@@ -55,6 +55,40 @@ public class LikesServiceImple implements LikesService {
 		return count;
 	}
 
+	@Override
+	@Transactional
+	public void insertphoto(Likes likes) {
+		dao.insertphotoLikes(likes);
+	}
+
+	@Override
+	@Transactional
+	public void deletephoto(int photoNo) {
+		dao.deletephotoLikes(photoNo);
+	}
+
+	@Override
+	@Transactional
+	public void updatephoto(Likes likes) {
+		dao.updatephotoLikes(likes);
+	}
+
+	@Override
+	public int countphoto(int photoNo, int likes) {
+		int count = dao.countphotoLikes(photoNo, likes);
+		return count;
+	}
+
+	@Override
+	public Likes selectphoto(String usersId, int photoNo) {
+		try{
+			Likes likes = dao.selectLikes(usersId, photoNo);
+			return likes;
+			}catch(NullPointerException e){
+				throw e;
+			}
+	}
+
 
 	
 

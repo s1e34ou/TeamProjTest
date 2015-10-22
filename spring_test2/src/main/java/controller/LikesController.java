@@ -56,4 +56,42 @@ public class LikesController {
 			}
 			return msg;
 	}
+	
+	@RequestMapping(value = "/photolike", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	public @ResponseBody String photolike(@RequestParam String usersId,@RequestParam int photoNo,@RequestParam int likes) {
+			logger.trace("usersId :{}",usersId);
+			String msg;
+			Likes li = new Likes();
+			if(usersId==null){
+				msg = "로그인 하여야 가능합니다.";
+			}else{
+			li.setUserId(usersId);
+			li.setPhotoNo(photoNo);
+			li.setLikes(likes);
+			logger.trace("msg : {}",li);
+			lservice.insertphoto(li);
+			msg ="추천되었습니다";
+			}
+			return msg;
+		
+
+	}
+	
+	@RequestMapping(value = "/photolikechange", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	public @ResponseBody String photolikechange(@RequestParam String usersId,@RequestParam int photoNo,@RequestParam int likes) {
+			logger.trace("usersId :{}",usersId);
+			String msg;
+			Likes li = new Likes();
+			if(usersId==null){
+				msg = "로그인 하여야 가능합니다.";
+			}else{
+			li.setUserId(usersId);
+			li.setPhotoNo(photoNo);
+			li.setLikes(likes);
+			logger.trace("msg : {}",li);
+			lservice.updatephoto(li);
+			msg ="추천되었습니다";
+			}
+			return msg;
+	}
 }

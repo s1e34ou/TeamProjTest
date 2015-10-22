@@ -150,13 +150,13 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%if(currentPage<=1){ %>
             [처음]&nbsp;
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/search?page=1&select=<%=currentSelect%>">[처음]</a>&nbsp;
+            <a href="<%=request.getContextPath() %>/search?se=all&page=1&select=<%=currentSelect%>">[처음]</a>&nbsp;
             <%} %>
             
             <%if(currentPage<=1){ %>
             [이전]&nbsp;
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/search?page=<%=currentPage-1 %>&select=<%=currentSelect%>">[이전]</a>&nbsp;
+            <a href="<%=request.getContextPath() %>/search?se=all&page=<%=currentPage-1 %>&select=<%=currentSelect%>">[이전]</a>&nbsp;
             <%} %>
             
           <%
@@ -168,7 +168,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 		} else {
 %>		
 		
-		<a href="<%=request.getContextPath()%>/search?page=<%=i%>&select=<%=currentSelect%>"><%=i%></a>
+		<a href="<%=request.getContextPath()%>/search?se=all&page=<%=i%>&select=<%=currentSelect%>"><%=i%></a>
 <%
 		}
 	}
@@ -177,12 +177,12 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <%if(currentPage>=pnum){ %>
             [다음]
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/search?page=<%=currentPage+1 %>&select=<%=currentSelect%>">[다음]</a>
+            <a href="<%=request.getContextPath() %>/search?se=all&page=<%=currentPage+1 %>&select=<%=currentSelect%>">[다음]</a>
             <%} %>
              <%if(currentPage>=pnum){ %>
             [끝]
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/search?page=<%=pnum%>&select=<%=currentSelect%>">[끝]</a>
+            <a href="<%=request.getContextPath() %>/search?se=all&page=<%=pnum%>&select=<%=currentSelect%>">[끝]</a>
             <%} %>
         </td>
     </tr>
