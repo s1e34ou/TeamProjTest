@@ -49,7 +49,9 @@
 #boardfoot{
 	height: 100px;
 	width: 500px;
-	margin-left: 320px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }
 #prevnextbar{
 	margin-top: 30px;

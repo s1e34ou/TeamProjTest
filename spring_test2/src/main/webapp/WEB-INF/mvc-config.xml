@@ -19,6 +19,7 @@
 	<context:component-scan base-package="aspect,controller"></context:component-scan>
 
 	<mvc:resources location="/WEB-INF/style/" mapping="/style/**" />
+	<mvc:resources location="/WEB-INF/jquery-ui/" mapping="/jquery-ui/**" />
 	<mvc:resources location="/WEB-INF/images/" mapping="/images/**" />
 	<mvc:resources location="/WEB-INF/ckeditor/" mapping="/ckeditor/**" />
 	<mvc:resources location="/WEB-INF/ckfinder/" mapping="/ckfinder/**" />

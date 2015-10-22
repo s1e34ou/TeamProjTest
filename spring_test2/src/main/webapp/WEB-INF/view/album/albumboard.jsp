@@ -26,7 +26,6 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
 </head>
 <body>
 <div id="board">
@@ -101,7 +100,7 @@ pnum = (int) Math.ceil((double) list.size() / PhotoDao.BOARD_PER_PAGE);
         for(int i=0;i<pplist.size();i++){
     %>
     <tr align="center" valign="middle" bordercolor="#333333"
-       onmouseover="this.style.backgroundColor='#FFFAF5'"
+       onmouseover="this.style.backgroundColor='#E6E6E6'"
         onmouseout="this.style.backgroundColor=''">
         <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getPhotoNo()%>
@@ -110,7 +109,7 @@ pnum = (int) Math.ceil((double) list.size() / PhotoDao.BOARD_PER_PAGE);
            <a href="<%=request.getContextPath()%>/albumboard_view?photoNo=<%=pplist.get(i).getPhotoNo()%>"><img src="<%=request.getContextPath()%>/editorFiles2/thumbnail/<%=pplist.get(i).getPhotoImage()%>" width="100"></a>
         </td> 
             <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line"> 
-            <a style="color: black" href="<%=request.getContextPath()%>/albumboard_view?photoNo=<%=pplist.get(i).getPhotoNo()%>"><%=pplist.get(i).getPhotoName()%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
+            <a style="color: black; text-decoration: none;" href="<%=request.getContextPath()%>/albumboard_view?photoNo=<%=pplist.get(i).getPhotoNo()%>"><%=pplist.get(i).getPhotoName()%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getUsersUsersId()%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
@@ -123,15 +122,16 @@ pnum = (int) Math.ceil((double) list.size() / PhotoDao.BOARD_PER_PAGE);
     <%} %>
      <tr align=center height=100>
         <td colspan=7 style=font-family:Tahoma;font-size:11pt;>
-            
+            <nav>
+            <ul class="pagination">
             <%if(currentPage<=1){ %>
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/albumboard?page=1">[처음]</a>&nbsp;
+            <li><a href="<%=request.getContextPath() %>/albumboard?page=1">처음</a></li>
             <%} %>
             
             <%if(currentPage<=1){ %>
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/albumboard?page=<%=currentPage-1 %>">[이전]</a>&nbsp;
+            <li><a aria-label="Previous" href="<%=request.getContextPath() %>/albumboard?page=<%=currentPage-1 %>"><span aria-hidden="true">&laquo;</span></a></li>
             <%} %>
             
           <%
@@ -141,11 +141,11 @@ pnum = (int) Math.ceil((double) list.size() / PhotoDao.BOARD_PER_PAGE);
 	for (int i = bstartpage; i <= bendpage; i++) {
 		if (currentPage == i) {
 %>
-			 [<%=i%>] 
+			 <li class='active'><a style='color: white;' href="#"><%=i%></a></li> 
 <%
 		} else {
 %>		
-		<a href="<%=request.getContextPath()%>/albumboard?page=<%=i%>"><%=i%></a>
+		<li><a href="<%=request.getContextPath()%>/albumboard?page=<%=i%>"><%=i%></a></li>
 <%
 		}
 	}
@@ -153,12 +153,14 @@ pnum = (int) Math.ceil((double) list.size() / PhotoDao.BOARD_PER_PAGE);
             
             <%if(currentPage>=pnum){ %>
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/albumboard?page=<%=currentPage+1 %>">[다음]</a>
+            <li><a aria-label="Next" href="<%=request.getContextPath() %>/albumboard?page=<%=currentPage+1 %>"><span aria-hidden="true">&raquo;</span></a></li>
             <%} %>
              <%if(currentPage>=pnum){ %>
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/albumboard?page=<%=pnum%>">[끝]</a>
+            <li><a href="<%=request.getContextPath() %>/albumboard?page=<%=pnum%>">끝</a></li>
             <%} %>
+            </ul>
+            </nav>
         </td>
     </tr>
     <tr align="right">

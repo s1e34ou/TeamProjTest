@@ -60,7 +60,10 @@ if(currentPageObj!=null){
 	 currentPage = 1;
 }
 int pnum;
-
+int pageblock=20;
+int block=(int)Math.ceil((double)currentPage/pageblock);
+int bstartpage=(block-1)*pageblock+1;
+int bendpage=bstartpage+pageblock-1;
 Object blist = request.getAttribute("boardlist"); 
 List<Board> list = (List<Board>)blist;
 
@@ -94,13 +97,13 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
         for(int i=0;i<pplist.size();i++){
     %>
     <tr align="center" valign="middle" bordercolor="#333333"
-        onmouseover="this.style.backgroundColor='#FFFAF5'"
+        onmouseover="this.style.backgroundColor='#E6E6E6'"
         onmouseout="this.style.backgroundColor=''">
         <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getBoardNo()%>
         </td>
             <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
-            <a style="color: black" class="btitle" href="<%=request.getContextPath()%>/qnaboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
+            <a style="color: black;text-decoration: none;" class="btitle" href="<%=request.getContextPath()%>/qnaboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
         				<%if(pplist.get(i).getUsersUsersId().equals(loginUser)){ %>
 							<%=pplist.get(i).getUsersUsersId()%>
@@ -115,45 +118,47 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
       
     </tr>
     <%} %>
-     <tr align=center height=100>
-        <td colspan=7 style=font-family:Tahoma;font-size:11pt;>
-            
+    <tr align=center height=100>
+        <td  colspan=5 style=font-family:Tahoma;font-size:11pt;>
+            <nav>
+            <ul class="pagination">
             <%if(currentPage<=1){ %>
-            [처음]&nbsp;
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/qnaboard?page=1">[처음]</a>&nbsp;
+            <li><a href="<%=request.getContextPath() %>/qnaboard?page=1">처음</a></li>
             <%} %>
             
             <%if(currentPage<=1){ %>
-            [이전]&nbsp;
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/qnaboard?page=<%=currentPage-1 %>">[이전]</a>&nbsp;
+            <li><a aria-lable="Previous" href="<%=request.getContextPath() %>/qnaboard?page=<%=currentPage-1 %>"><span aria-hidden="true">&laquo;</span></a></li>
             <%} %>
             
           <%
-	for (int i = 1; i <= pnum; i++) {
+          if(bendpage>pnum){
+				bendpage=pnum;
+			}
+	for (int i = bstartpage; i <= bendpage; i++) {
 		if (currentPage == i) {
 %>
-			 <%=i%> 
+			 <li class='active'><a style='color: white;' href="#"><%=i%></a></li>
 <%
 		} else {
-%>
-		<a href="<%=request.getContextPath()%>/qnaboard?page=<%=i%>"><%=i%></a>
+%>		
+		<li><a href="<%=request.getContextPath()%>/qnaboard?page=<%=i%>"><%=i%></a></li>
 <%
 		}
 	}
 %>
             
             <%if(currentPage>=pnum){ %>
-            [다음]
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/qnaboard?page=<%=currentPage+1 %>">[다음]</a>
+            <li><a aria-lable="Next" href="<%=request.getContextPath() %>/qnaboard?page=<%=currentPage+1 %>"><span aria-hidden="true">&raquo;</span></a></li>
             <%} %>
              <%if(currentPage>=pnum){ %>
-            [끝]
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/qnaboard?page=<%=pnum%>">[끝]</a>
+            <li><a href="<%=request.getContextPath() %>/qnaboard?page=<%=pnum%>">끝</a></li>
             <%} %>
+            </ul>
+        </nav>
         </td>
     </tr>
     <tr align="right">

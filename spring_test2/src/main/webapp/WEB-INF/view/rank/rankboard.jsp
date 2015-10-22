@@ -134,9 +134,8 @@ $(function() {
 								$box5_2.append("<center>"+
 										 
 										
-										"<table width=900 border=0 cellpadding=0 cellspacing=0 ><tr  align=center valign=middle bordercolor=#333333"+
-						        "onmouseover=this.style.backgroundColor='#FFFAF5'"+
-						        "onmouseout=this.style.backgroundColor=''>"+
+										"<table width=900 border=0 cellpadding=0 cellspacing=0 ><tr align=center valign=middle bordercolor='#333333'"+
+						        "onmouseover=this.style.backgroundColor='#E6E6E6' onmouseout=this.style.backgroundColor=''>"+
 						        "<td width=8% height=23 style='font-family:Tahoma;font-size:12pt;' class=line>"+
 						        +(index+1)+" 위"+
 						        "</td>"+
@@ -144,7 +143,7 @@ $(function() {
 						          	code+  
 						        "</td>"+
 						            "<td width=45% height=23 style='font-family:Tahoma;font-size:12pt;' class=line>"+
-						            "<a style='color: black' href='<%=request.getContextPath()%>/rankboard_view?boardNo="+boardno+"'>"+title+
+						            "<a style='color: black; text-decoration: none;' href='<%=request.getContextPath()%>/rankboard_view?boardNo="+boardno+"'>"+title+
 						            "</a>"+
 						        "</td>    <td width=15%  height=23 style='font-family:Tahoma;font-size:12pt;' class=line>"+
 						        id+
@@ -159,9 +158,8 @@ $(function() {
 									$box5_2.append("<center>"+
 											 
 											
-											"<table width=900 border=0 cellpadding=0 cellspacing=0 ><tr  align=center valign=middle bordercolor=#333333"+
-							        "onmouseover=this.style.backgroundColor='#FFFAF5'"+
-							        "onmouseout=this.style.backgroundColor=''>"+
+											"<table width=900 border=0 cellpadding=0 cellspacing=0 ><tr align=center valign=middle bordercolor='#333333' "+
+							        "onmouseover=this.style.backgroundColor='#E6E6E6' onmouseout=this.style.backgroundColor=''>"+
 							        "<td width=8% height=23 style='font-family:Tahoma;font-size:12pt;' class=line>"+
 							        +(index+1)+" 위"+
 							        "</td>"+
@@ -169,7 +167,7 @@ $(function() {
 							          	code+  
 							        "</td>"+
 							            "<td width=45% height=23 style='font-family:Tahoma;font-size:12pt;' class=line>"+
-							            "<a style='color: black' href='<%=request.getContextPath()%>/rankboard_view?boardNo="+boardno+"'>"+title+
+							            "<a style='color: black; text-decoration: none;' href='<%=request.getContextPath()%>/rankboard_view?boardNo="+boardno+"'>"+title+
 							            
 							            " ("+replycount+")"+
 							            
@@ -270,7 +268,7 @@ $(function() {
         for(int i=0;i<pplist.size();i++){
     %>
     <tr align="center" valign="middle" bordercolor="#333333"
-        onmouseover="this.style.backgroundColor='#FFFAF5'"
+        onmouseover="this.style.backgroundColor='#E6E6E6'"
         onmouseout="this.style.backgroundColor=''">
         <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%out.println(i+1);%>위
@@ -293,7 +291,7 @@ $(function() {
             
         </td>
             <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
-            <a style="color: black" href="<%=request.getContextPath()%>/rankboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
+            <a style="color: black; text-decoration: none;" href="<%=request.getContextPath()%>/rankboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getUsersUsersId()%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
