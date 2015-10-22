@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,6 +43,11 @@ public class PhotoController {
 	
 	@Autowired
 	LikesService lservice;
+	
+	@InitBinder
+	public void columnFiltering(WebDataBinder binder){
+		binder.setDisallowedFields("photoImage");
+	}
 	
 	@ModelAttribute("photo")
 	public Photo getphoto(){
@@ -81,6 +88,7 @@ public class PhotoController {
 	
 	@RequestMapping(value = "/albumboard_write", method = RequestMethod.POST)
 	public String albumWrite(Model model,Photo photo,@RequestParam MultipartFile file,RedirectAttributes redir) throws IllegalStateException, IOException {
+		logger.trace("photo : {}",file);
 		File nfile = new File("C:/editorFiles2/thumbnail/"+file.getOriginalFilename());
 		file.transferTo(nfile);
 		Map<String, Object> data = new HashMap<>();

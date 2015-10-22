@@ -12,7 +12,7 @@
 	rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/style/head_footer.css"
 	rel="stylesheet" type="text/css">
-	<link href="<%=request.getContextPath()%>/style/thumbnail.css " rel="stylesheet" type="text/css">
+	<%-- <link href="<%=request.getContextPath()%>/style/thumbnail.css " rel="stylesheet" type="text/css"> --%>
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
@@ -41,7 +41,7 @@ $(function() {
 	});
 });
 
-$(document).ready(function(){
+ $(document).ready(function(){
 	   var fileTarget = $('.filebox .upload-hidden');
 
 	    fileTarget.on('change', function(){
@@ -87,7 +87,7 @@ $(document).ready(function(){
 	            img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""+imgSrc+"\")";        
 	        }
 	    });
-	});
+	}); 
 </script>
 </head>
 
@@ -107,9 +107,12 @@ $(document).ready(function(){
 			</div>
 			<div class="filebox bs3-primary preview-image">
             	<input class="upload-name" value="파일등록" disabled="disabled" style="width: 200px;">
+            	
             	<sform:label path="photoImage">썸네일등록</sform:label>
             	<sform:input path="photoImage" type="file" class="upload-hidden"/>
             </div>
+            
+            
             <sform:label path="photoContent">내용</sform:label>
             <sform:textarea path="photoContent"/>
             <div id="blistfoot">

@@ -108,16 +108,12 @@ $(document).ready(function(){
 			<sform:label path="usersUsersId">작성자</sform:label>
         	<sform:input path="usersUsersId"  readonly="true"/>
         	
-			
 			<div class="filebox bs3-primary preview-image">
             	<input class="upload-name" value="<%=photo.getPhotoImage() %>" disabled="disabled" style="width: 200px;">
             	<sform:label path="photoImage">썸네일등록</sform:label>
             	<sform:input path="photoImage" type="file" class="upload-hidden"/>
             </div>
-			
-        	
-			
-			
+            
         	<sform:label path="photoNo">글번호</sform:label>
         	<sform:input path="photoNo" readonly="true"/>
 			</div>
