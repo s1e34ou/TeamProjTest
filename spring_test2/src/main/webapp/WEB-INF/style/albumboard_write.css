@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+#boardwrite {
+	width: 1000px;
+	height: auto;
+	margin: auto;
+}
+#boardin {
+	border: solid 1px black;
+	width: 1000px;
+	height: auto;
+	margin: auto;
+}
+#blisthead {
+	width: 980px;
+	height: 50px;
+	
+	display: -webkit-box;
+}
+#photoName {
+	width: 500px;
+	margin-right: 170px;
+	margin-top: 20px;
+}
+#usersUsersId {
+	width: 150px;
+}
+#photoupload {	
+	margin-top: 15px;
+	margin-bottom: 30px;
+	margin-left: 33px;
+}
+#blistfoot{
+	height: 30px;
+	margin-top: 30px;
+}
