@@ -31,7 +31,7 @@
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	
 <script type="text/javascript" 
-    src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=9965e9a6e40988eea1a1300dc3b93b71"></script>
+    src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=f4f85f1736847177016ecff8ecfbd1d2"></script>
 <script type="text/javascript">
 
 $(function() {
