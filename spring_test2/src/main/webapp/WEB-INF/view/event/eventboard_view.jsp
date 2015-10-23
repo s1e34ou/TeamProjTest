@@ -167,7 +167,7 @@ $("#replybut").on("click",function(e){
 				}
 				var fd=date.getFullYear()+"-"+month+"-"+day+" "+hour+":"+min+":"+sec;
 			    $("#reply").before("<div style='margin:3px; width: 550px;'><div class='replyid' >"+txt[j]["USERS_USERS_ID"]+"</div>")
-				    $("#reply").before("<div id='bbb'><div class='replydate'> ("+fd+")</div><div id=replydel class=replydate><a href=<%=request.getContextPath()%>/replydelete?boardno=<%=board.getBoardNo() %>&replyno="+txt[j]["REPLY_NO"]+">댓글삭제</a></div></div>");
+				    $("#reply").before("<div id='bbb'><div class='replydate'>("+fd+")</div><div id=replydel class=replydate><a href=<%=request.getContextPath()%>/replydelete?boardno=<%=board.getBoardNo() %>&replyno="+txt[j]["REPLY_NO"]+">댓글삭제</a></div></div>");
 			    $("#reply").before("<div class='replycontent'>"+txt[j]["REPLY_CONTENT"]+"</div></div><hr>");
 				
 				//$("#reply").prepend(txt[j][]);

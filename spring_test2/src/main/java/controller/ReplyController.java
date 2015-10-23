@@ -101,6 +101,7 @@ public class ReplyController {
 			int boardno = Integer.parseInt((String) boardnoObj);
 			int likecount = lservice.count(boardno, 2);
 			int unlikcecount = lservice.count(boardno, 1);
+			
 			redir.addFlashAttribute("likecount", likecount);
 			redir.addFlashAttribute("unlikecount", unlikcecount);
 
@@ -121,13 +122,13 @@ public class ReplyController {
 				if (board.getBoardCode().equals("FREE")) {
 
 					redir.addFlashAttribute("contentpage", "/WEB-INF/view/community/freeboard_view.jsp");
+				}  else if (board.getBoardCode().equals("QNA")) {
+					redir.addFlashAttribute("contentpage", "/WEB-INF/view/forclient/qnaboard_view.jsp");
+				} else if (board.getBoardCode().equals("NOTICE")){
+					redir.addFlashAttribute("contentpage", "/WEB-INF/view/forclient/notice_view.jsp");
 				} else if (board.getBoardCode().substring(0,5).equals("EVENT")) {
 					redir.addFlashAttribute("contentpage", "/WEB-INF/view/event/eventboard_view.jsp");
-				} else if (board.getBoardCode().substring(0,3).equals("QNA")) {
-					redir.addFlashAttribute("contentpage", "/WEB-INF/view/forclient/qndboard_view.jsp");
-				} else if (board.getBoardCode().substring(0,6).equals("NOTICE")){
-					redir.addFlashAttribute("contentpage", "/WEB-INF/view/forclient/noticeboard_view.jsp");
-				} else{
+				}else{
 					redir.addFlashAttribute("contentpage", "/WEB-INF/view/rank/rankboard_view.jsp");
 				}
 				redir.addFlashAttribute("replylist", reply);
