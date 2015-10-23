@@ -87,6 +87,7 @@ public class UsersServiceImpl implements UsersService {
 		dao.deleteUser(userId);
 	}
 
+	@SuppressWarnings("finally")
 	@Override
 	public Users find(String userEmail, String userName) {
 
@@ -95,17 +96,21 @@ public class UsersServiceImpl implements UsersService {
 		try {
 
 			Users finded = dao.findUser(userEmail);
+			logger.trace("finded:{}, userName:{}",finded,userName);
 			if (finded.getUsersName().equals(userName)) {
 				user = finded;
 				logger.trace("사용자 찾기{}", user);
 			} else {
+				logger.trace("tqt");
 				msg = "이름이 일치하지 않습니다.";
-				throw new ServiceFailException(msg);
+			//	throw new ServiceFailException(msg);
 			}
-			return user;
 		} catch (EmptyResultDataAccessException e) {
+			logger.trace("eeee");
 			msg = userEmail + "로 등록된 이메일이 없습니다.";
-			throw new ServiceFailException(msg);
+		//	throw new ServiceFailException(msg);
+		}finally{
+			return user;
 		}
 	}
 

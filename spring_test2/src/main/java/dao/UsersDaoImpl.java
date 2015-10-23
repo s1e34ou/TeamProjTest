@@ -78,8 +78,11 @@ public class UsersDaoImpl implements UsersDao {
 
 	@Override
 	public Users findUser(String usersEmail) {
+		logger.trace("aaaa");
 		String sql = "select * from users where users_email=?";
+		
 		Users users = jdbcTemp.queryForObject(sql, getUsersRowMapper(), usersEmail);
+		logger.trace("duser:{}",users);
 		return users;
 	}
 

@@ -30,6 +30,7 @@ import com.google.gson.Gson;
 
 import dto.Board;
 import dto.Users;
+import exception.ServiceFailException;
 import service.BoardService;
 import service.UsersService;
 
@@ -205,17 +206,18 @@ public class UserController {
 	public String userLoginFindinput(Model model, HttpServletRequest req,RedirectAttributes redir) {
 		String usersemail = req.getParameter("usersEmail");
 		String usersname = req.getParameter("usersName");
-		try {
+		//try {
 			Users findUsers = service.find(usersemail, usersname);
+			logger.trace("findUser :{}",findUsers);
 			redir.addFlashAttribute("findUser", findUsers);
 			
-		} catch (Exception e) {
-			logger.trace(e.getMessage());
+	//	} catch (ServiceFailException e) {
+	//		logger.trace(e+"");
 			
-		} finally {
+		//} finally {
 			redir.addFlashAttribute("contentpage", "/WEB-INF/view/login/login_id_find.jsp");
 			return "redirect:go";
-		}
+		//}
 
 	}
 
