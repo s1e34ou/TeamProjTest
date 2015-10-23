@@ -96,6 +96,10 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
     
     <%
         for(int i=0;i<pplist.size();i++){
+        	String boardname = pplist.get(i).getBoardName();
+        	if(boardname.length()>19){
+        		boardname = boardname.substring(0,19)+"...";
+        	}
     %>
     <tr align="center" valign="middle" bordercolor="#333333"
         onmouseover="this.style.backgroundColor='E6E6E6'"
@@ -123,19 +127,19 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             <% 
             	String view = pplist.get(i).getBoardCode();
 				if(view.equals("FREE")){ %>
-					 <a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/freeboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+					 <a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/freeboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=boardname%></a>
 			<%		 
 				}else if(view.equals("QNA")){
 			%>
-					 <a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/qnaboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+					 <a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/qnaboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=boardname%></a>
 			<%
 				}else if(view.equals("NOTICE")){
             %>
-            	<a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/noticeboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+            	<a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/noticeboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=boardname%></a>
             <%
             	}else{ 
             %>
-            	<a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/eventboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%></a>
+            	<a style="color:black;text-decoration: none;" href="<%=request.getContextPath()%>/eventboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=boardname%></a>
             <%} %>
            
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;">
