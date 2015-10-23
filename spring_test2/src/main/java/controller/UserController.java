@@ -206,19 +206,18 @@ public class UserController {
 	public String userLoginFindinput(Model model, HttpServletRequest req,RedirectAttributes redir) {
 		String usersemail = req.getParameter("usersEmail");
 		String usersname = req.getParameter("usersName");
-		//try {
+		
+		try {
 			Users findUsers = service.find(usersemail, usersname);
 			logger.trace("findUser :{}",findUsers);
 			redir.addFlashAttribute("findUser", findUsers);
 			
-	//	} catch (ServiceFailException e) {
-	//		logger.trace(e+"");
-			
-		//} finally {
+		} catch (Exception e) {
+			logger.trace(e.getMessage());
+		} finally {
 			redir.addFlashAttribute("contentpage", "/WEB-INF/view/login/login_id_find.jsp");
 			return "redirect:go";
-		//}
-
+		}
 	}
 
 	@SuppressWarnings("finally")
