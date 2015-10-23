@@ -88,7 +88,7 @@ $(function() {
 				
 			}
 		});
-		location.reload(true)
+		location.reload(true);
 	});
 	
 <%
@@ -105,6 +105,7 @@ $(function() {
 					$("#like").attr("disabled","disabled:disabled");
 				}
 			});
+			location.reload(true);
 		});
 		
 		$("#unlike").on("click",function(){
@@ -116,6 +117,7 @@ $(function() {
 					$("#unlike").attr("disabled","disabled:disabled");
 				}
 			});
+			location.reload(true);
 		});
 		<%
 	}
