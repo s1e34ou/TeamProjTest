@@ -46,6 +46,10 @@ if(currentPageObj!=null){
 	 currentPage = 1;
 }
 int pnum;
+int pageblock=20;
+int block=(int)Math.ceil((double)currentPage/pageblock);
+int bstartpage=(block-1)*pageblock+1;
+int bendpage=bstartpage+pageblock-1;
 
 Object selectObj = request.getAttribute("select");
 String currentSelect;
@@ -109,7 +113,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
             	}else if(code.equals("EVENT_culture")){
             		code="문화";
             	}else{
-            		code="기타";
+            		code="자유";
             	}
             	out.println(code);
             %>
@@ -146,44 +150,46 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
     <%} %>
      <tr align=center height=20>
         <td colspan=7 style=font-family:Tahoma;font-size:11pt;>
-            
+            <nav>
+            <ul class="pagination">
             <%if(currentPage<=1){ %>
-            [처음]&nbsp;
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/search?se=all&page=1&select=<%=currentSelect%>">[처음]</a>&nbsp;
+            <li><a href="<%=request.getContextPath() %>/search?se=all&page=1&select=<%=currentSelect%>">처음</a></li>
             <%} %>
             
             <%if(currentPage<=1){ %>
-            [이전]&nbsp;
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/search?se=all&page=<%=currentPage-1 %>&select=<%=currentSelect%>">[이전]</a>&nbsp;
+            <li><a aria-lable="Previous" href="<%=request.getContextPath() %>/search?se=all&page=<%=currentPage-1 %>&select=<%=currentSelect%>"><span aria-hidden="true">&laquo;</span></a></li>
             <%} %>
             
           <%
-	for (int i = 1; i <= pnum; i++) {
-		if (currentPage == i) {
+          if(bendpage>pnum){
+				bendpage=pnum;
+			}
+          for (int i = bstartpage; i <= bendpage; i++) {
+      		if (currentPage == i) {
 %>
-			 <%=i%> 
+	<li class='active'><a style='color: white;' href="#"><%=i%></a></li> 
 <%
 		} else {
 %>		
 		
-		<a href="<%=request.getContextPath()%>/search?se=all&page=<%=i%>&select=<%=currentSelect%>"><%=i%></a>
+		<li><a href="<%=request.getContextPath()%>/search?se=all&page=<%=i%>&select=<%=currentSelect%>"><%=i%></a></li>
 <%
 		}
 	}
 %>
             
             <%if(currentPage>=pnum){ %>
-            [다음]
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/search?se=all&page=<%=currentPage+1 %>&select=<%=currentSelect%>">[다음]</a>
+            <li><a aria-lable="Next" href="<%=request.getContextPath() %>/search?se=all&page=<%=currentPage+1 %>&select=<%=currentSelect%>"><span aria-hidden="true">&raquo;</span></a></li>
             <%} %>
              <%if(currentPage>=pnum){ %>
-            [끝]
             <%}else{ %>
-            <a href="<%=request.getContextPath() %>/search?se=all&page=<%=pnum%>&select=<%=currentSelect%>">[끝]</a>
+            <li><a href="<%=request.getContextPath() %>/search?se=all&page=<%=pnum%>&select=<%=currentSelect%>">끝</a></li>
             <%} %>
+            </ul>
+            </nav>
         </td>
     </tr>
     

@@ -123,7 +123,6 @@ $.ajax({
 			var hour=date.getHours();
 			var min=date.getMinutes();
 			var sec=date.getSeconds();
-			console.log(txt[i]["boardCode"]);
 			if(month<10){
 				month="0"+(date.getMonth()+1);
 			}

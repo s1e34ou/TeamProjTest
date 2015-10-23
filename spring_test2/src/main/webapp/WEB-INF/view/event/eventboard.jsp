@@ -180,7 +180,7 @@ pnum = (int) Math.ceil((double) list.size() / BoardDao.BOARD_PER_PAGE);
 		} else {
 %>		
 		
-		 <li><a ref="<%=request.getContextPath()%>/eventboard?page=<%=i%>&select=<%=currentSelect%>"><%=i%></a></li>
+		 <li><a href="<%=request.getContextPath()%>/eventboard?page=<%=i%>&select=<%=currentSelect%>"><%=i%></a></li>
 <%
 		}
 	}

@@ -157,6 +157,7 @@ public class BoardController {
 		List<Map<String, Object>> reply;
 		board = service.selectboard(boardNo);
 		reply=rservice.selectReplyByBoardNo(boardNo);
+		
 		int likecount = lservice.count(boardNo,2);
 		int unlikcecount = lservice.count(boardNo,1);
 		logger.trace("likecount: {}",likecount);

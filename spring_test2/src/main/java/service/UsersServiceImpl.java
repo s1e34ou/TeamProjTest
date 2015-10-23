@@ -127,7 +127,7 @@ public class UsersServiceImpl implements UsersService {
 			return user;
 		} catch (EmptyResultDataAccessException e) {
 			msg = userId + "로 등록된 사용자가 없습니다.";
-			throw e;
+			throw new ServiceFailException(msg);
 		}
 	}
 

@@ -30,4 +30,6 @@ public interface ReplyService {
 	
 	void delete(int boardNo);
 
+	void deletephotoReply(int no);
+
 }
