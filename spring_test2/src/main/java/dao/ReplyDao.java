@@ -28,4 +28,6 @@ public interface ReplyDao {
 	public void deleteReplyByBoardNo(int boardNo);
 	
 	public void delete(int boardNo);
+
+	void deletephotoReply(int replyNo);
 }

@@ -31,7 +31,6 @@
 		var dupl;
 		var dupl2;
 		$("#usersId").on("keyup",function(){
-										
 					$target=$("#dup");
 					
 					$.ajax({
@@ -68,7 +67,7 @@
 					dupl2=result;
 					if(result=="비밀번호 다름"){
 						$target.css("color","red");
-					}else{
+					}else {
 						$target.css("color","green");
 					}
 					$target.html(result);
@@ -173,6 +172,18 @@
 						alert("비밀번호를 확인해주세요");
 						e.preventDefault();
 					}
+					
+					if(($("#usersId").val()).length<4){
+						alert("ID는 4자 이상입니다.");
+						e.preventDefault();
+					}else if(($("#usersPassword").val()).length<4){
+						alert("비밀번호는 4자 이상입니다.");
+						e.preventDefault();
+					}else if(($("#usersPasswordcheck").val()).length<4){
+						alert("비밀번호는 4자 이상입니다.");
+					e.preventDefault();
+				}
+					
 				});
 	});
 </script>

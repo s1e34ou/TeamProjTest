@@ -88,7 +88,9 @@ $(function() {
 						    "</tr>");
 						    
 							$.each(txt,function(index,data){
-								
+
+					        	
+					        	
 								var boardno=txt[index]["boardNo"];
 								var code=txt[index]["boardCode"];
 								var title=txt[index]["boardName"];
@@ -102,6 +104,11 @@ $(function() {
 								var hour=date.getHours();
 								var min=date.getMinutes();
 								var sec=date.getSeconds();
+								
+								if(title.length>19){
+					        		title = title.substring(0,19)+"...";
+					        	}
+								
 								
 								if(month<10){
 									month="0"+(date.getMonth()+1);
@@ -266,6 +273,10 @@ $(function() {
     
     <%
         for(int i=0;i<pplist.size();i++){
+        	String boardname = pplist.get(i).getBoardName();
+        	if(boardname.length()>19){
+        		boardname = boardname.substring(0,19)+"...";
+        	}
     %>
     <tr align="center" valign="middle" bordercolor="#333333"
         onmouseover="this.style.backgroundColor='#E6E6E6'"
@@ -291,7 +302,7 @@ $(function() {
             
         </td>
             <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
-            <a style="color: black; text-decoration: none;" href="<%=request.getContextPath()%>/rankboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=pplist.get(i).getBoardName()%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
+            <a style="color: black; text-decoration: none;" href="<%=request.getContextPath()%>/rankboard_view?boardNo=<%=pplist.get(i).getBoardNo()%>"><%=boardname%><%if(pplist.get(i).getReplyCount()>0){ %> (<%=pplist.get(i).getReplyCount()%>)<%}%></a>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">
             <%=pplist.get(i).getUsersUsersId()%>
         </td>    <td height="23" style="font-family:Tahoma;font-size:12pt;" class="line">

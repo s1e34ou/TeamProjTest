@@ -96,8 +96,11 @@ $.ajax({
 		var $box4=$("#box4");
 		var item= txt["response"]["body"]["items"]["item"];
 		$.each(item,function(index,data){
-			$box4.append("<a style='color: black; text-decoration: none;' id='festid' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><div onmouseover=this.style.backgroundColor='#E6E6E6' onmouseout=this.style.backgroundColor='' class='fes'><table align='center' id='box4t'><tr><td rowspan=3><img src=" +data["firstimage2"]+" width=60px height=60px></td><td width=500px>"+data["title"]+"</td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div></a>");
-			//한국관광공사 api
+			var title = data["title"];
+			if(title.length>24){
+        		title = title.substring(0,24)+"...";
+        	}
+			$box4.append("<a style='color: black; text-decoration: none;' id='festid' href=<%=request.getContextPath()%>/festival_regionboard_view?contentid="+data["contentid"]+"><div onmouseover=this.style.backgroundColor='#E6E6E6' onmouseout=this.style.backgroundColor='' class='fes'><table align='center' id='box4t'><tr><td rowspan=3><img src=" +data["firstimage2"]+" width=60px height=60px></td><td width=500px>"+title+"</td></tr><tr><td>"+data["eventstartdate"]+"~ "+data["eventenddate"]+"</td></tr><tr><td>"+data["addr1"]+"</td></tr></table></div></a>");		//한국관광공사 api
 		});
 	}
 	
@@ -123,7 +126,10 @@ $.ajax({
 			var hour=date.getHours();
 			var min=date.getMinutes();
 			var sec=date.getSeconds();
-			console.log(txt[i]["boardCode"]);
+			var title = txt[i]["boardName"];
+			if(title.length>20){
+        		title = title.substring(0,20)+"...";
+        	}
 			if(month<10){
 				month="0"+(date.getMonth()+1);
 			}
@@ -147,7 +153,7 @@ $.ajax({
 							     "<td width=60  rowspan=3>"+
 								"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
 								"</td>"+
-								"<td>"+txt[i]["boardName"]+" </td></tr>"+
+								"<td>"+title+" </td></tr>"+
 								"<tr  align=center valign=middle>"+
 								"<td>"+code+"</td></tr>"+
 								"<tr align=center valign=middle><td>"+ date.getFullYear()+"-"+month+"-"+day+"</td></tr></table></div>");
@@ -158,7 +164,7 @@ $.ajax({
 								     "<td width=60  rowspan=3>"+
 									"<img width=60 height=60 src=<%=request.getContextPath()%>/images/beau.png>"+
 									"</td>"+
-									"<td>"+txt[i]["boardName"]+" </td></tr>"+
+									"<td>"+title+" </td></tr>"+
 									"<tr  align=center valign=middle>"+
 									"<td> "+code+"</td></tr>"+
 									"<tr align=center valign=middle><td>"+ date.getFullYear()+"-"+month+"-"+day+" </td></tr></table></div>");
@@ -170,7 +176,7 @@ $.ajax({
 								     "<td width=60  rowspan=3>"+
 									"<img width=60 height=60 src=<%=request.getContextPath()%>/images/cult.png>"+
 									"</td>"+
-									"<td> "+txt[i]["boardName"]+" </td></tr>"+
+									"<td> "+title+" </td></tr>"+
 									"<tr  align=center valign=middle>"+
 									"<td>"+code+"</td></tr>"+
 									"<tr align=center valign=middle><td>"+ date.getFullYear()+"-"+month+"-"+day+" </td></tr></table></div>");
@@ -182,7 +188,7 @@ $.ajax({
 								     "<td width=60  rowspan=3>"+
 									"<img width=60 height=60 src=<%=request.getContextPath()%>/images/fastival2.jpg>"+
 									"</td>"+
-									"<td> "+txt[i]["boardName"]+" </td></tr>"+
+									"<td> "+title+" </td></tr>"+
 									"<tr  align=center valign=middle>"+
 									"<td>"+code+"</td></tr>"+
 									"<tr align=center valign=middle><td>"+ date.getFullYear()+"-"+month+"-"+day+" </td></tr></table></div>");
@@ -214,7 +220,10 @@ success:function(txt){
 		var hour=date.getHours();
 		var min=date.getMinutes();
 		var sec=date.getSeconds();
-		
+		var title = txt[i]["boardName"];
+		if(title.length>20){
+    		title = title.substring(0,20)+"...";
+    	}
 		if(month<10){
 			month="0"+(date.getMonth()+1);
 		}
@@ -237,7 +246,7 @@ success:function(txt){
 					     "<td width=60  rowspan=3>"+
 						"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
 						"</td>"+
-						"<td>"+txt[i]["boardName"]+" </td></tr>"+
+						"<td>"+title+" </td></tr>"+
 						"<tr  align=center valign=middle>"+
 						"<td>"+code+"</td></tr>"+
 						"<tr align=center valign=middle><td>"+ date.getFullYear()+"-"+month+"-"+day+"</td></tr></table></div>");
@@ -248,7 +257,7 @@ success:function(txt){
 						     "<td width=60  rowspan=3>"+
 							"<img width=60 height=60 src=<%=request.getContextPath()%>/images/beau.png>"+
 							"</td>"+
-							"<td>"+txt[i]["boardName"]+" </td></tr>"+
+							"<td>"+title+" </td></tr>"+
 							"<tr  align=center valign=middle>"+
 							"<td> "+code+"</td></tr>"+
 							"<tr align=center valign=middle><td>"+ date.getFullYear()+"-"+month+"-"+day+" </td></tr></table></div>");
@@ -260,7 +269,7 @@ success:function(txt){
 						     "<td width=60  rowspan=3>"+
 							"<img width=60 height=60 src=<%=request.getContextPath()%>/images/cult.png>"+
 							"</td>"+
-							"<td> "+txt[i]["boardName"]+" </td></tr>"+
+							"<td> "+title+" </td></tr>"+
 							"<tr  align=center valign=middle>"+
 							"<td>"+code+"</td></tr>"+
 							"<tr align=center valign=middle><td>"+ date.getFullYear()+"-"+month+"-"+day+" </td></tr></table></div>");
@@ -272,7 +281,7 @@ success:function(txt){
 						     "<td width=60  rowspan=3>"+
 							"<img width=60 height=60 src=<%=request.getContextPath()%>/images/fastival2.jpg>"+ 
 							"</td>"+
-							"<td> "+txt[i]["boardName"]+" </td></tr>"+
+							"<td> "+title+" </td></tr>"+
 							"<tr  align=center valign=middle>"+
 							"<td>"+code+"</td></tr>"+
 							"<tr align=center valign=middle><td>"+ date.getFullYear()+"-"+month+"-"+day+" </td></tr></table></div>");
@@ -308,7 +317,10 @@ success:function(txt){
 				var hour=date.getHours();
 				var min=date.getMinutes();
 				var sec=date.getSeconds();
-				
+				var title = txt[i]["boardName"];
+				if(title.length>20){
+	        		title = title.substring(0,20)+"...";
+	        	}
 				if(month<10){
 					month="0"+(date.getMonth()+1);
 				}
@@ -333,7 +345,7 @@ success:function(txt){
 							     "<td width=60  rowspan=3>"+
 								"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
 								"</td>"+
-								"<td> "+txt[i]["boardName"]+" </td></tr>"+
+								"<td> "+title+" </td></tr>"+
 								"<tr  align=center valign=middle>"+
 								"<td>"+code+"</td></tr>"+
 								"<tr align=center valign=middle><td>"+ date.getFullYear()+"-"+month+"-"+day+"</td></tr></table></div>");
@@ -345,7 +357,7 @@ success:function(txt){
 								     "<td width=60  rowspan=3>"+
 									"<img width=60 height=60 src=<%=request.getContextPath()%>/images/beau.png>"+
 									"</td>"+
-									"<td>"+txt[i]["boardName"]+" </td></tr>"+
+									"<td>"+title+" </td></tr>"+
 									"<tr  align=center valign=middle>"+
 									"<td> "+code+"</td></tr>"+
 									"<tr align=center valign=middle><td>"+ date.getFullYear()+"-"+month+"-"+day+" </td></tr></table></div>");
@@ -357,7 +369,7 @@ success:function(txt){
 								     "<td width=60  rowspan=3>"+
 									"<img width=60 height=60 src=<%=request.getContextPath()%>/images/cult.png>"+
 									"</td>"+
-									"<td> "+txt[i]["boardName"]+" </td></tr>"+
+									"<td> "+title+" </td></tr>"+
 									"<tr  align=center valign=middle>"+
 									"<td>"+code+"</td></tr>"+
 									"<tr align=center valign=middle><td>"+ date.getFullYear()+"-"+month+"-"+day+" </td></tr></table></div>");
@@ -394,7 +406,10 @@ $.ajax({
 			var hour=date.getHours();
 			var min=date.getMinutes();
 			var sec=date.getSeconds();
-			
+			var title = txt[i]["boardName"];
+			if(title.length>20){
+        		title = title.substring(0,20)+"...";
+        	}
 			if(month<10){
 				month="0"+(date.getMonth()+1);
 			}
@@ -419,7 +434,7 @@ $.ajax({
 						     "<td width=60  rowspan=3>"+
 							"<img width=60 height=60 src=<%=request.getContextPath()%>/images/food.png>"+
 							"</td>"+
-							"<td> "+txt[i]["boardName"]+" </td></tr>"+
+							"<td> "+title+" </td></tr>"+
 							"<tr  align=center valign=middle>"+
 							"<td>"+code+"</td></tr>"+
 							"<tr align=center valign=middle><td>"+ date.getFullYear()+"-"+month+"-"+day+"</td></tr></table></div>");
@@ -431,7 +446,7 @@ $.ajax({
 							     "<td width=60  rowspan=3>"+
 								"<img width=60 height=60 src=<%=request.getContextPath()%>/images/beau.png>"+
 								"</td>"+
-								"<td> "+txt[i]["boardName"]+" </td></tr>"+
+								"<td> "+title+" </td></tr>"+
 								"<tr  align=center valign=middle>"+
 								"<td> "+code+"</td></tr>"+
 								"<tr align=center valign=middle><td>"+ date.getFullYear()+"-"+month+"-"+day+"</td></tr></table></div>");
@@ -443,7 +458,7 @@ $.ajax({
 							     "<td width=60  rowspan=3>"+
 								"<img width=60 height=60 src=<%=request.getContextPath()%>/images/cult.png>"+
 								"</td>"+
-								"<td> "+txt[i]["boardName"]+" </td></tr>"+
+								"<td> "+title+" </td></tr>"+
 								"<tr  align=center valign=middle>"+
 								"<td>"+code+"</td></tr>"+
 								"<tr align=center valign=middle><td>"+ date.getFullYear()+"-"+month+"-"+day+"</td></tr></table></div>");

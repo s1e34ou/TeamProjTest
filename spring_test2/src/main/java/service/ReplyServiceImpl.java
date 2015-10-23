@@ -33,6 +33,12 @@ public class ReplyServiceImpl implements ReplyService{
 		dao.deleteReply(no);
 		
 	}
+	@Override
+	@Transactional
+	public void deletephotoReply(int no) {
+		dao.deletephotoReply(no);
+		
+	}
 
 	@Override
 	@Transactional

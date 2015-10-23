@@ -74,9 +74,31 @@ $(function() {
 				//targety.append("<li>"+JSON.stringify(txt)+"</li>");
 				//console.log(JSON.stringify(txt));
 				for(var j=resize;j<txt.length;j++){
-			
+					var tod = txt[j]["REPLY_DATE"];
+					var date=new Date(tod);
+					var month=date.getMonth()+1;
+					var day=date.getDate();
+					var hour=date.getHours();
+					var min=date.getMinutes();
+					var sec=date.getSeconds();
+					if(month<10){
+						month="0"+(date.getMonth()+1);
+					}
+					if(day<10){
+						day="0"+date.getDate();
+					}
+					if(hour<10){
+						hour="0"+hour;
+					}
+					if(min<10){
+						min="0"+min;
+					}
+					if(sec<10){
+						sec="0"+sec;
+					}
+					var fd=date.getFullYear()+"-"+month+"-"+day+" "+hour+":"+min+":"+sec;
 				    $("#reply").before("<div style='margin:3px; width: 550px;'><div class='replyid' >"+txt[j]["USERS_USERS_ID"]+"</div>")
-				    $("#reply").before("<div id='bbb'><div class='replydate'>("+txt[j]["REPLY_DATE"]+")</div></div>");
+				    $("#reply").before("<div id='bbb'><div class='replydate'>("+fd+")</div><div id=replydel class=replydate><a href=<%=request.getContextPath()%>/replydelete?boardno=<%=board.getBoardNo() %>&replyno="+txt[j]["REPLY_NO"]+">댓글삭제</a></div></div>");
 				    $("#reply").before("<div class='replycontent'>"+txt[j]["REPLY_CONTENT"]+"</div></div><hr>");
 					
 					//$("#reply").prepend(txt[j][]);

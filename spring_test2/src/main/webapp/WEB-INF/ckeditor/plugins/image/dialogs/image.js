@@ -561,7 +561,8 @@
 								id: 'browse',
 								// v-align with the 'txtUrl' field.
 								// TODO: We need something better than a fixed size here.
-								style: 'display:inline-block;margin-top:14px;',
+								//inline-block;
+								style: 'display:none;margin-top:10px;',
 								align: 'center',
 								label: editor.lang.common.browseServer,
 								hidden: true,

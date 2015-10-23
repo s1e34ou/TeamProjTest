@@ -57,7 +57,15 @@ private static Logger logger = LoggerFactory.getLogger(ReplyDaoImpl.class);
 		
 	
 	}
+	@Override
+	public void deletephotoReply(int replyNo) {
+		String sql = "update photo set reply_count=reply_count-1 where photo_no=?";
+		jdbcTemp.update(sql,selectReply(replyNo).getPhotoPhotoNo());
+		sql = "delete from reply where reply_no=?";
+		jdbcTemp.update(sql, replyNo);
+		
 	
+	}
 	
 	
 
@@ -87,6 +95,7 @@ private static Logger logger = LoggerFactory.getLogger(ReplyDaoImpl.class);
 
 	@Override
 	public void deleteReplyByBoardNo(int boardNo) {
+		
 		String sql = "delete from reply where board_board_no=?";
 		jdbcTemp.update(sql, boardNo);
 	}
