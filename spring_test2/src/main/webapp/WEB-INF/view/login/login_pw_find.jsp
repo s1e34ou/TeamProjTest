@@ -17,7 +17,7 @@
 </head>
 <body>
 <% 
-	Object loginUserObj = session.getAttribute("findPw");
+	Object loginUserObj = request.getAttribute("findPw");
 	if(loginUserObj ==null) {
 %>
 	<div id="idpwsearch3">
